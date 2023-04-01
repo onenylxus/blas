@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "lib": [],
+    "strict": true,
+    "esModuleInterop": true,
+    "outDir": "out-tsc",
+    "rootDir": "./"
+  },
+  "include": ["./src/**/*.ts"]
+}
