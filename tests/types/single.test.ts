@@ -1,5 +1,6 @@
 // Import
 import { Single, S } from '../../src/types/single';
+import random from '../../utils/random';
 
 // Define test variables
 let value: number;
@@ -9,7 +10,7 @@ let error: number;
 // Single type test
 describe('Single type', () => {
   beforeAll(() => {
-    value = Number.MIN_SAFE_INTEGER + Math.random() * (Number.MAX_SAFE_INTEGER - Number.MIN_SAFE_INTEGER);
+    value = random();
     instance = new Single();
   });
 

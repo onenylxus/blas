@@ -1,5 +1,6 @@
 // Import
 import { Double, D } from '../../src/types/double';
+import random from '../../utils/random';
 
 // Define test variables
 let value: number;
@@ -8,7 +9,7 @@ let instance: D;
 // Double type test
 describe('Double type', () => {
   beforeAll(() => {
-    value = Number.MIN_SAFE_INTEGER + Math.random() * (Number.MAX_SAFE_INTEGER - Number.MIN_SAFE_INTEGER);
+    value = random();
     instance = new Double();
   });
 
