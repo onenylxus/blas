@@ -20,10 +20,12 @@ import drotmg from './routines/1d/drotmg';
 import dscal from './routines/1d/dscal';
 import dsdot from './routines/1d/dsdot';
 import dswap from './routines/1d/dswap';
+import dzasum from './routines/1z/dzasum';
 import dznrm2 from './routines/1d/dznrm2';
 import icamax from './routines/1c/icamax';
 import idamax from './routines/1d/idamax';
 import isamax from './routines/1s/isamax';
+import izamax from './routines/1z/izamax';
 import sasum from './routines/1s/sasum';
 import saxpy from './routines/1s/saxpy';
 import scasum from './routines/1c/scasum';
@@ -38,6 +40,15 @@ import srotm from './routines/1s/srotm';
 import srotmg from './routines/1s/srotmg';
 import sscal from './routines/1s/sscal';
 import sswap from './routines/1s/sswap';
+import zaxpy from './routines/1z/zaxpy';
+import zcopy from './routines/1z/zcopy';
+import zdotc from './routines/1z/zdotc';
+import zdotu from './routines/1z/zdotu';
+import zdrot from './routines/1z/zdrot';
+import zdscal from './routines/1z/zdscal';
+import zrotg from './routines/1z/zrotg';
+import zscal from './routines/1z/zscal';
+import zswap from './routines/1z/zswap';
 
 // Routine interface
 interface Routine {
@@ -98,6 +109,19 @@ const blas: Package = {
   cdotc: { name: 'cdotc', level: 1, type: 'c', function: cdotc },
   scasum: { name: 'scasum', level: 1, type: 'c', function: scasum },
   icamax: { name: 'icamax', level: 1, type: 'c', function: icamax },
+
+  // Level 1 - Double complex
+  zrotg: { name: 'zrotg', level: 1, type: 'z', function: zrotg },
+  zdrot: { name: 'zdrot', level: 1, type: 'z', function: zdrot },
+  zswap: { name: 'zswap', level: 1, type: 'z', function: zswap },
+  zscal: { name: 'zscal', level: 1, type: 'z', function: zscal },
+  zdscal: { name: 'zdscal', level: 1, type: 'z', function: zdscal },
+  zcopy: { name: 'zcopy', level: 1, type: 'z', function: zcopy },
+  zaxpy: { name: 'zaxpy', level: 1, type: 'z', function: zaxpy },
+  zdotu: { name: 'zdotu', level: 1, type: 'z', function: zdotu },
+  zdotc: { name: 'zdotc', level: 1, type: 'z', function: zdotc },
+  dzasum: { name: 'dzasum', level: 1, type: 'z', function: dzasum },
+  izamax: { name: 'izamax', level: 1, type: 'z', function: izamax },
 };
 
 // Export
