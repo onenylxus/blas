@@ -69,7 +69,7 @@ const blas: Package = {
   srotg: { name: 'srotg', level: 1, type: 's', function: srotg },
   srotmg: { name: 'srotmg', level: 1, type: 's', function: srotmg },
   srot: { name: 'srot', level: 1, type: 's', function: srot },
-  srotm: { name: 'srotmg', level: 1, type: 's', function: srotm },
+  srotm: { name: 'srotm', level: 1, type: 's', function: srotm },
   sswap: { name: 'sswap', level: 1, type: 's', function: sswap },
   sscal: { name: 'sscal', level: 1, type: 's', function: sscal },
   scopy: { name: 'scopy', level: 1, type: 's', function: scopy },
