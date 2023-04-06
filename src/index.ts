@@ -1,4 +1,13 @@
 // Import
+import caxpy from './routines/1c/caxpy';
+import ccopy from './routines/1c/ccopy';
+import cdotc from './routines/1c/cdotc';
+import cdotu from './routines/1c/cdotu';
+import crotg from './routines/1c/crotg';
+import cscal from './routines/1c/cscal';
+import csrot from './routines/1c/csrot';
+import csscal from './routines/1c/csscal';
+import cswap from './routines/1c/cswap';
 import dasum from './routines/1d/dasum';
 import daxpy from './routines/1d/daxpy';
 import dcopy from './routines/1d/dcopy';
@@ -12,10 +21,12 @@ import dscal from './routines/1d/dscal';
 import dsdot from './routines/1d/dsdot';
 import dswap from './routines/1d/dswap';
 import dznrm2 from './routines/1d/dznrm2';
+import icamax from './routines/1c/icamax';
 import idamax from './routines/1d/idamax';
 import isamax from './routines/1s/isamax';
 import sasum from './routines/1s/sasum';
 import saxpy from './routines/1s/saxpy';
+import scasum from './routines/1c/scasum';
 import scopy from './routines/1s/scopy';
 import scnrm2 from './routines/1s/scnrm2';
 import sdot from './routines/1s/sdot';
@@ -74,6 +85,19 @@ const blas: Package = {
   dznrm2: { name: 'dznrm2', level: 1, type: 'd', function: dznrm2 },
   dasum: { name: 'dasum', level: 1, type: 'd', function: dasum },
   idamax: { name: 'idamax', level: 1, type: 'd', function: idamax },
+
+  // Level 1 - Complex
+  crotg: { name: 'crotg', level: 1, type: 'c', function: crotg },
+  csrot: { name: 'csrot', level: 1, type: 'c', function: csrot },
+  cswap: { name: 'cswap', level: 1, type: 'c', function: cswap },
+  cscal: { name: 'cscal', level: 1, type: 'c', function: cscal },
+  csscal: { name: 'csscal', level: 1, type: 'c', function: csscal },
+  ccopy: { name: 'ccopy', level: 1, type: 'c', function: ccopy },
+  caxpy: { name: 'caxpy', level: 1, type: 'c', function: caxpy },
+  cdotu: { name: 'cdotu', level: 1, type: 'c', function: cdotu },
+  cdotc: { name: 'cdotc', level: 1, type: 'c', function: cdotc },
+  scasum: { name: 'scasum', level: 1, type: 'c', function: scasum },
+  icamax: { name: 'icamax', level: 1, type: 'c', function: icamax },
 };
 
 // Export
