@@ -1,5 +1,4 @@
 // Import
-import { Dual } from '../../types/complex';
 import { Double, D } from '../../types/double';
 import { DoubleComplex, Z } from '../../types/doubleComplex';
 import { Integer, I } from '../../types/integer';

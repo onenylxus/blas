@@ -1,5 +1,5 @@
 // Import
-import { Complex } from './complex';
+import Complex from './complex';
 import { Double, D } from './double';
 
 // Define type

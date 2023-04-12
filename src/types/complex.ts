@@ -2,9 +2,6 @@
 import { D } from './double';
 import { S } from './single';
 
-// Define type
-type TDual = { r: number, i: number };
-
 // Complex class
 class Complex<T extends S | D> {
   // Properties
@@ -18,7 +15,7 @@ class Complex<T extends S | D> {
   }
 
   // Get value from store
-  public get(): TDual {
+  public get(): Dual {
     return { r: this.rstore!.get(), i: this.istore!.get() };
   }
 
@@ -30,4 +27,4 @@ class Complex<T extends S | D> {
 }
 
 // Export
-export { Complex, TDual as Dual };
+export default Complex;
