@@ -4,7 +4,7 @@ import { DoubleComplex, Z } from '../../types/doubleComplex';
 import { Integer, I } from '../../types/integer';
 
 // ZDROT routine
-const zdrot = (n: number, zx: Array<Dual>, incx: number, zy: Array<Dual>, incy: number, c: Dual, s: Dual): void => {
+const zdrot = (n: number, zx: Dual[], incx: number, zy: Dual[], incy: number, c: Dual, s: Dual): void => {
 
 };
 

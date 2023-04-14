@@ -3,7 +3,7 @@ import { DoubleComplex, Z } from '../../types/doubleComplex';
 import { Integer, I } from '../../types/integer';
 
 // ZSWAP routine
-const zswap = (n: number, zx: Array<Dual>, incx: number, zy: Array<Dual>, incy: number): void => {
+const zswap = (n: number, zx: Dual[], incx: number, zy: Dual[], incy: number): void => {
 
 };
 

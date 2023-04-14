@@ -3,7 +3,7 @@ import { Integer, I } from '../../types/integer';
 import { SingleComplex, C } from '../../types/singleComplex';
 
 // SCASUM routine
-const scasum = (n: number, cx: Array<Dual>, incx: number): void => {
+const scasum = (n: number, cx: Dual[], incx: number): void => {
 
 };
 

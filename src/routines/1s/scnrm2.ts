@@ -3,7 +3,7 @@ import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 
 // SCNRM2 routine
-const scnrm2 = (n: number, x: Array<number>, incx: number): void => {
+const scnrm2 = (n: number, x: number[], incx: number): void => {
 
 };
 

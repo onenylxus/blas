@@ -3,7 +3,7 @@ import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 
 // ISAMAX routine
-const isamax = (n: number, sx: Array<number>, incx: number): void => {
+const isamax = (n: number, sx: number[], incx: number): void => {
 
 };
 

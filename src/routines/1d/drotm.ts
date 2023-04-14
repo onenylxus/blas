@@ -3,7 +3,7 @@ import { Double, D } from '../../types/double';
 import { Integer, I } from '../../types/integer';
 
 // DROTM routine
-const drotm = (n: number, dx: Array<number>, incx: number, dy: Array<number>, incy: number, dparam: Array<number>): void => {
+const drotm = (n: number, dx: number[], incx: number, dy: number[], incy: number, dparam: number[]): void => {
 
 };
 

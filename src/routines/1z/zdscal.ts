@@ -4,7 +4,7 @@ import { DoubleComplex, Z } from '../../types/doubleComplex';
 import { Integer, I } from '../../types/integer';
 
 // ZDSCAL routine
-const zdscal = (n: number, da: number, zx: Array<Dual>, incx: number): void => {
+const zdscal = (n: number, da: number, zx: Dual[], incx: number): void => {
 
 };
 

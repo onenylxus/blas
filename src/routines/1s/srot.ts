@@ -3,7 +3,7 @@ import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 
 // SROT routine
-const srot = (n: number, sx: Array<number>, incx: number, sy: Array<number>, incy: number, c: number, s: number): void => {
+const srot = (n: number, sx: number[], incx: number, sy: number[], incy: number, c: number, s: number): void => {
 
 };
 

@@ -4,7 +4,7 @@ import { DoubleComplex, Z } from '../../types/doubleComplex';
 import { Integer, I } from '../../types/integer';
 
 // DZNRM2 routine
-const dznrm2 = (n: number, dx: Array<number>, incx: number): void => {
+const dznrm2 = (n: number, dx: number[], incx: number): void => {
 
 };
 

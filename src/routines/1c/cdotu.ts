@@ -3,7 +3,7 @@ import { Integer, I } from '../../types/integer';
 import { SingleComplex, C } from '../../types/singleComplex';
 
 // CDOTU routine
-const cdotu = (n: number, cx: Array<Dual>, incx: number, cy: Array<Dual>, incy: number): void => {
+const cdotu = (n: number, cx: Dual[], incx: number, cy: Dual[], incy: number): void => {
 
 };
 

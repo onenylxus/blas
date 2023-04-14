@@ -2,7 +2,7 @@
 import { Single, S } from '../../types/single';
 
 // SROTG routine
-const srotg = (a: number, b: number, c?: number, s?: number): void => {
+const srotg = (a: number, b: number, c: number, s: number): void => {
 
 };
 

@@ -3,7 +3,7 @@ import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 
 // SDOT routine
-const sdot = (n: number, sx: Array<number>, incx: number, sy: Array<number>, incy: number): void => {
+const sdot = (n: number, sx: number[], incx: number, sy: number[], incy: number): void => {
 
 };
 

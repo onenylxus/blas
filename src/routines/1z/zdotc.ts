@@ -3,7 +3,7 @@ import { DoubleComplex, Z } from '../../types/doubleComplex';
 import { Integer, I } from '../../types/integer';
 
 // ZDOTC routine
-const zdotc = (n: number, zx: Array<Dual>, incx: number, zy: Array<Dual>, incy: number): void => {
+const zdotc = (n: number, zx: Dual[], incx: number, zy: Dual[], incy: number): void => {
 
 };
 

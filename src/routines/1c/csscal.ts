@@ -4,7 +4,7 @@ import { Single, S } from '../../types/single';
 import { SingleComplex, C } from '../../types/singleComplex';
 
 // CSSCAL routine
-const csscal = (n: number, sa: Dual, cx: Array<Dual>, incx: number): void => {
+const csscal = (n: number, sa: Dual, cx: Dual[], incx: number): void => {
 
 };
 

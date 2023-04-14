@@ -4,7 +4,7 @@ import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 
 // SDSDOT routine
-const sdsdot = (n: number, sb: number, sx: Array<number>, incx: number, sy: Array<number>, incy: number): void => {
+const sdsdot = (n: number, sb: number, sx: number[], incx: number, sy: number[], incy: number): void => {
 
 };
 
