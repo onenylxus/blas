@@ -14,16 +14,16 @@ describe('Double type', () => {
   });
 
   it('should get value correctly in constructor', () => {
-    expect(instance.get()).toEqual(0);
+    expect(instance.get()).toStrictEqual(0);
   });
 
   it('should set and get value correctly', () => {
     instance.set(value);
-    expect(instance.get()).toEqual(value);
+    expect(instance.get()).toStrictEqual(value);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
-    expect(instance.get()).toEqual(0);
+    expect(instance.get()).toStrictEqual(0);
   });
 });

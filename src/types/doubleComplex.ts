@@ -8,10 +8,10 @@ type TDoubleComplex = InstanceType<typeof CDoubleComplex>;
 // Double complex class
 class CDoubleComplex extends Complex<D> {
   // Constructor
-  public constructor(rvalue: number = 0, ivalue: number = 0) {
+  public constructor(value: Dual = { r: 0, i: 0 }) {
     super();
-    this.rstore = new Double(rvalue);
-    this.istore = new Double(ivalue);
+    this.rstore = new Double(value.r);
+    this.istore = new Double(value.i);
   }
 }
 

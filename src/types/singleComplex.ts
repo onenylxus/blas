@@ -8,10 +8,10 @@ type TSingleComplex = InstanceType<typeof CSingleComplex>;
 // Single complex class
 class CSingleComplex extends Complex<S> {
   // Constructor
-  public constructor(rvalue: number = 0, ivalue: number = 0) {
+  public constructor(value: Dual = { r: 0, i: 0 }) {
     super();
-    this.rstore = new Single(rvalue);
-    this.istore = new Single(ivalue);
+    this.rstore = new Single(value.r);
+    this.istore = new Single(value.i);
   }
 }
 

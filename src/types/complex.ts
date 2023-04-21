@@ -9,9 +9,9 @@ class Complex<T extends S | D> {
   protected istore: T | undefined;
 
   // Set value to store
-  public set(rvalue: number, ivalue: number): void {
-    this.rstore!.set(rvalue);
-    this.istore!.set(ivalue);
+  public set(value: Dual): void {
+    this.rstore!.set(value.r);
+    this.istore!.set(value.i);
   }
 
   // Get value from store

@@ -15,7 +15,7 @@ describe('Single type', () => {
   });
 
   it('should get value correctly in constructor', () => {
-    expect(instance.get()).toEqual(0);
+    expect(instance.get()).toStrictEqual(0);
   });
 
   it('should set and get value correctly', () => {
@@ -26,6 +26,6 @@ describe('Single type', () => {
 
   it('should clear value to zero', () => {
     instance.clear();
-    expect(instance.get()).toEqual(0);
+    expect(instance.get()).toStrictEqual(0);
   });
 });

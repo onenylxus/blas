@@ -16,19 +16,19 @@ describe('Double complex type', () => {
   });
 
   it('should get value correctly in constructor', () => {
-    expect(instance.get().r).toEqual(0);
-    expect(instance.get().i).toEqual(0);
+    expect(instance.get().r).toStrictEqual(0);
+    expect(instance.get().i).toStrictEqual(0);
   });
 
   it('should set and get value correctly', () => {
-    instance.set(rvalue, ivalue);
-    expect(instance.get().r).toEqual(rvalue);
-    expect(instance.get().i).toEqual(ivalue);
+    instance.set({ r: rvalue, i: ivalue });
+    expect(instance.get().r).toStrictEqual(rvalue);
+    expect(instance.get().i).toStrictEqual(ivalue);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
-    expect(instance.get().r).toEqual(0);
-    expect(instance.get().i).toEqual(0);
+    expect(instance.get().r).toStrictEqual(0);
+    expect(instance.get().i).toStrictEqual(0);
   });
 });

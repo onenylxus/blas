@@ -18,12 +18,12 @@ describe('Single complex type', () => {
   });
 
   it('should get value correctly in constructor', () => {
-    expect(instance.get().r).toEqual(0);
-    expect(instance.get().i).toEqual(0);
+    expect(instance.get().r).toStrictEqual(0);
+    expect(instance.get().i).toStrictEqual(0);
   });
 
   it('should set and get value correctly', () => {
-    instance.set(rvalue, ivalue);
+    instance.set({ r: rvalue, i: ivalue });
     rerror = Math.abs((instance.get().r - rvalue) / rvalue);
     ierror = Math.abs((instance.get().i - ivalue) / ivalue);
     expect(rerror).toBeLessThan(10 ** -7);
@@ -32,7 +32,7 @@ describe('Single complex type', () => {
 
   it('should clear value to zero', () => {
     instance.clear();
-    expect(instance.get().r).toEqual(0);
-    expect(instance.get().i).toEqual(0);
+    expect(instance.get().r).toStrictEqual(0);
+    expect(instance.get().i).toStrictEqual(0);
   });
 });
