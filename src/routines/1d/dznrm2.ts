@@ -1,11 +1,29 @@
 // Import
 import { Double, D } from '../../types/double';
-import { DoubleComplex, Z } from '../../types/doubleComplex';
+import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
 import { Integer, I } from '../../types/integer';
 
-// DZNRM2 routine
-const dznrm2 = (n: number, dx: number[], incx: number): void => {
+// Math library snippets
+const { abs } = Math;
 
+// DZNRM2 routine
+const dznrm2 = (n: FInteger, dx: FDoubleComplexArray, incx: FInteger): FDouble => {
+  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+  // Copyright (c) 2023      Nicholas Ng. All rights reserved.
+
+  // Input
+  const _n: I = new Integer(n);
+  const _dx: ZA = new DoubleComplexArray(dx, 1 + (n - 1) * abs(incx));
+  const _incx: I = new Integer(incx);
+  const _ret: D = new Double();
+
+  // Output
+  n = _n.get();
+  dx = _dx.getAll();
+  incx = _incx.get();
+  return _ret.get();
 };
 
 // Export

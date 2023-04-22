@@ -3,9 +3,6 @@ import { SingleComplexArray, CA } from '../../src/types/singleComplexArray';
 import random from '../../utils/random';
 import relerr from '../../utils/relerr';
 
-// Dual number type
-type Dual = { r: number, i: number };
-
 // Define test variables
 let values: Dual[];
 let index: number;

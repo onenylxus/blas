@@ -9,13 +9,13 @@ const MAX_INT = Number.MAX_SAFE_INTEGER;
 const MIN_INT = Number.MIN_SAFE_INTEGER;
 
 // SROTG routine
-const srotg = (a: FReal, b: FReal, c: FReal | undefined, s: FReal | undefined): void => {
+const srotg = (a: FReal, b: FReal, c: FReal | FEmpty, s: FReal | FEmpty): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
   // Copyright (c) 2023      Nicholas Ng. All rights reserved.
 
-  // Scalar arguments
+  // Input
   const _a: S = new Single(a);
   const _b: S = new Single(b);
   const _c: S = new Single(c);

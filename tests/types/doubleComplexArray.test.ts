@@ -2,9 +2,6 @@
 import { DoubleComplexArray, ZA } from '../../src/types/doubleComplexArray';
 import random from '../../utils/random';
 
-// Dual number type
-type Dual = { r: number, i: number };
-
 // Define test variables
 let values: Dual[];
 let index: number;
