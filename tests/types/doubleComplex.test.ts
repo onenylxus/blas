@@ -3,15 +3,13 @@ import { DoubleComplex, Z } from '../../src/types/doubleComplex';
 import random from '../../utils/random';
 
 // Define test variables
-let rvalue: number;
-let ivalue: number;
+let value: Dual;
 let instance: Z;
 
 // Double complex type test
 describe('Double complex type', () => {
   beforeAll(() => {
-    rvalue = random();
-    ivalue = random();
+    value = { r: random(), i: random() };
     instance = new DoubleComplex();
   });
 
@@ -21,9 +19,9 @@ describe('Double complex type', () => {
   });
 
   it('should set and get value correctly', () => {
-    instance.set({ r: rvalue, i: ivalue });
-    expect(instance.get().r).toStrictEqual(rvalue);
-    expect(instance.get().i).toStrictEqual(ivalue);
+    instance.set(value);
+    expect(instance.get().r).toStrictEqual(value.r);
+    expect(instance.get().i).toStrictEqual(value.i);
   });
 
   it('should clear value to zero', () => {

@@ -1,15 +1,16 @@
 // Import
 import { Integer, I } from '../../src/types/integer';
+import random from '../../utils/random';
+import relerr from '../../utils/relerr';
 
 // Define test variables
 let value: number;
 let instance: I;
-let error: number;
 
 // Integer type test
 describe('Integer type', () => {
   beforeAll(() => {
-    value = Number.MIN_SAFE_INTEGER + Math.random() * (Number.MAX_SAFE_INTEGER - Number.MIN_SAFE_INTEGER);
+    value = random();
     instance = new Integer();
   });
 
@@ -19,8 +20,7 @@ describe('Integer type', () => {
 
   it('should set and get value correctly', () => {
     instance.set(value);
-    error = Math.abs((instance.get() - value) / value);
-    expect(error).toBeLessThan(1);
+    expect(relerr(instance.get(), value)).toBeLessThan(1);
   });
 
   it('should clear value to zero', () => {

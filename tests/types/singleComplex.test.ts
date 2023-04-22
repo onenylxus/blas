@@ -1,19 +1,16 @@
 // Import
 import { SingleComplex, C } from '../../src/types/singleComplex';
 import random from '../../utils/random';
+import relerr from '../../utils/relerr';
 
 // Define test variables
-let rvalue: number;
-let ivalue: number;
+let value: Dual;
 let instance: C;
-let rerror: number;
-let ierror: number;
 
 // Single complex type test
 describe('Single complex type', () => {
   beforeAll(() => {
-    rvalue = random();
-    ivalue = random();
+    value = { r: random(), i: random() };
     instance = new SingleComplex();
   });
 
@@ -23,11 +20,9 @@ describe('Single complex type', () => {
   });
 
   it('should set and get value correctly', () => {
-    instance.set({ r: rvalue, i: ivalue });
-    rerror = Math.abs((instance.get().r - rvalue) / rvalue);
-    ierror = Math.abs((instance.get().i - ivalue) / ivalue);
-    expect(rerror).toBeLessThan(10 ** -7);
-    expect(ierror).toBeLessThan(10 ** -7);
+    instance.set(value);
+    expect(relerr(instance.get().r, value.r)).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get().i, value.i)).toBeLessThan(10 ** -7);
   });
 
   it('should clear value to zero', () => {

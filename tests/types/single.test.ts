@@ -1,11 +1,11 @@
 // Import
 import { Single, S } from '../../src/types/single';
 import random from '../../utils/random';
+import relerr from '../../utils/relerr';
 
 // Define test variables
 let value: number;
 let instance: S;
-let error: number;
 
 // Single type test
 describe('Single type', () => {
@@ -20,8 +20,7 @@ describe('Single type', () => {
 
   it('should set and get value correctly', () => {
     instance.set(value);
-    error = Math.abs((instance.get() - value) / value);
-    expect(error).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get(), value)).toBeLessThan(10 ** -7);
   });
 
   it('should clear value to zero', () => {
