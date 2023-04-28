@@ -2,6 +2,7 @@
 type Dual = { r: number, i: number };
 
 // Fortran number types
+type FCharacter = string;
 type FComplex = Dual;
 type FComplexArray = FComplex[];
 type FDouble = number;
