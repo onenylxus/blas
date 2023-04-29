@@ -21,7 +21,7 @@ const srotg = (a: FReal, b: FReal, c: FReal | FEmpty, s: FReal | FEmpty): FVoid 
   const _c: S = new Single(c);
   const _s: S = new Single(s);
 
-  // Local scalars
+  // Local variables
   const anorm: S = new Single();
   const bnorm: S = new Single();
   const scl: S = new Single();
