@@ -19,11 +19,34 @@ const sscal = (n: FInteger, sa: FReal, sx: FRealArray, incx: FInteger): FVoid =>
   const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
   const _incx: I = new Integer(incx);
 
+  // Local variables
+  const nincx: I = new Integer();
+
+  // Return control
+  const resolve = (): void => {
+    n = _n.get();
+    sa = _sa.get();
+    sx = _sx.getAll();
+    incx = _incx.get();
+  };
+
+  // Process
+  if (_n.get() <= 0 || _incx.get() <= 0 || _sa.get() === 1) {
+    return resolve();
+  }
+  if (_incx.get() === 1) {
+    for (let i = 0; i < _n.get(); ++i) {
+      _sx.set(i, _sa.get() * _sx.get(i)!);
+    }
+  } else {
+    nincx.set(_n.get() * _incx.get());
+    for (let i = 0; i < nincx.get(); ++i) {
+      _sx.set(i, _sa.get() * _sx.get(i)!);
+    }
+  }
+
   // Output
-  n = _n.get();
-  sa = _sa.get();
-  sx = _sx.getAll();
-  incx = _incx.get();
+  resolve();
 };
 
 // Export
