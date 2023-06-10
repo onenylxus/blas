@@ -33,13 +33,29 @@ import scopy from './routines/1s/scopy';
 import scnrm2 from './routines/1s/scnrm2';
 import sdot from './routines/1s/sdot';
 import sdsdot from './routines/1s/sdsdot';
+import sgbmv from './routines/2s/sgbmv';
+import sgemv from './routines/2s/sgemv';
+import sger from './routines/2s/sger';
 import snrm2 from './routines/1s/snrm2';
 import srot from './routines/1s/srot';
 import srotg from './routines/1s/srotg';
 import srotm from './routines/1s/srotm';
 import srotmg from './routines/1s/srotmg';
+import ssbmv from './routines/2s/ssbmv';
 import sscal from './routines/1s/sscal';
+import sspmv from './routines/2s/sspmv';
+import sspr from './routines/2s/sspr';
+import sspr2 from './routines/2s/sspr2';
 import sswap from './routines/1s/sswap';
+import ssymv from './routines/2s/ssymv';
+import ssyr from './routines/2s/ssyr';
+import ssyr2 from './routines/2s/ssyr2';
+import stbmv from './routines/2s/stbmv';
+import stbsv from './routines/2s/stbsv';
+import stpmv from './routines/2s/stpmv';
+import stpsv from './routines/2s/stpsv';
+import strmv from './routines/2s/strmv';
+import strsv from './routines/2s/strsv';
 import zaxpy from './routines/1z/zaxpy';
 import zcopy from './routines/1z/zcopy';
 import zdotc from './routines/1z/zdotc';
@@ -54,7 +70,7 @@ import zswap from './routines/1z/zswap';
 interface Routine {
   level: 1 | 2 | 3;
   type: 's' | 'd' | 'c' | 'z';
-  function: (...args: any[]) => void;
+  function: () => FVoid;
 };
 
 // Package interface
@@ -121,6 +137,24 @@ const blas: Package = {
   zdotc: { level: 1, type: 'z', function: zdotc },
   dzasum: { level: 1, type: 'z', function: dzasum },
   izamax: { level: 1, type: 'z', function: izamax },
+
+  // Level 2 - Single
+  sgemv: { level: 2, type: 's', function: sgemv },
+  sgbmv: { level: 2, type: 's', function: sgbmv },
+  ssymv: { level: 2, type: 's', function: ssymv },
+  ssbmv: { level: 2, type: 's', function: ssbmv },
+  sspmv: { level: 2, type: 's', function: sspmv },
+  strmv: { level: 2, type: 's', function: strmv },
+  stbmv: { level: 2, type: 's', function: stbmv },
+  stpmv: { level: 2, type: 's', function: stpmv },
+  strsv: { level: 2, type: 's', function: strsv },
+  stbsv: { level: 2, type: 's', function: stbsv },
+  stpsv: { level: 2, type: 's', function: stpsv },
+  sger: { level: 2, type: 's', function: sger },
+  ssyr: { level: 2, type: 's', function: ssyr },
+  sspr: { level: 2, type: 's', function: sspr },
+  ssyr2: { level: 2, type: 's', function: ssyr2 },
+  sspr2: { level: 2, type: 's', function: sspr2 },
 };
 
 // Export
