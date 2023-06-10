@@ -238,4 +238,75 @@ describe('Module test', () => {
       expectRoutine('izamax');
     });
   });
+
+  describe('Level 2 - Single', () => {
+    beforeAll(() => {
+      level = 2;
+      type = 's';
+    });
+
+    it('should contain correct SGEMV routine', () => {
+      expectRoutine('sgemv');
+    });
+
+    it('should contain correct SGBMV routine', () => {
+      expectRoutine('sgbmv');
+    });
+
+    it('should contain correct SSYMV routine', () => {
+      expectRoutine('ssymv');
+    });
+
+    it('should contain correct SSBMV routine', () => {
+      expectRoutine('ssbmv');
+    });
+
+    it('should contain correct SSPMV routine', () => {
+      expectRoutine('sspmv');
+    });
+
+    it('should contain correct STRMV routine', () => {
+      expectRoutine('strmv');
+    });
+
+    it('should contain correct STBMV routine', () => {
+      expectRoutine('stbmv');
+    });
+
+    it('should contain correct STPMV routine', () => {
+      expectRoutine('stpmv');
+    });
+
+    it('should contain correct STRSV routine', () => {
+      expectRoutine('strsv');
+    });
+
+    it('should contain correct STBSV routine', () => {
+      expectRoutine('stbsv');
+    });
+
+    it('should contain correct STPSV routine', () => {
+      expectRoutine('stpsv');
+    });
+
+    it('should contain correct SGER routine', () => {
+      expectRoutine('sger');
+    });
+
+    it('should contain correct SSYR routine', () => {
+      expectRoutine('ssyr');
+    });
+
+    it('should contain correct SSPR routine', () => {
+      expectRoutine('sspr');
+    });
+
+    it('should contain correct SSYR2 routine', () => {
+      expectRoutine('ssyr2');
+    });
+
+    it('should contain correct SSPR2 routine', () => {
+      expectRoutine('sspr2');
+    });
+  });
 });
