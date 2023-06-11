@@ -12,14 +12,30 @@ import dasum from './routines/1d/dasum';
 import daxpy from './routines/1d/daxpy';
 import dcopy from './routines/1d/dcopy';
 import ddot from './routines/1d/ddot';
+import dgbmv from './routines/2d/dgbmv';
+import dgemv from './routines/2d/dgemv';
+import dger from './routines/2d/dger';
 import dnrm2 from './routines/1d/dnrm2';
 import drot from './routines/1d/drot';
 import drotg from './routines/1d/drotg';
 import drotm from './routines/1d/drotm';
 import drotmg from './routines/1d/drotmg';
+import dsbmv from './routines/2d/dsbmv';
 import dscal from './routines/1d/dscal';
 import dsdot from './routines/1d/dsdot';
+import dspmv from './routines/2d/dspmv';
+import dspr from './routines/2d/dspr';
+import dspr2 from './routines/2d/dspr2';
 import dswap from './routines/1d/dswap';
+import dsymv from './routines/2d/dsymv';
+import dsyr from './routines/2d/dsyr';
+import dsyr2 from './routines/2d/dsyr2';
+import dtbmv from './routines/2d/dtbmv';
+import dtbsv from './routines/2d/dtbsv';
+import dtpmv from './routines/2d/dtpmv';
+import dtpsv from './routines/2d/dtpsv';
+import dtrmv from './routines/2d/dtrmv';
+import dtrsv from './routines/2d/dtrsv';
 import dzasum from './routines/1z/dzasum';
 import dznrm2 from './routines/1d/dznrm2';
 import icamax from './routines/1c/icamax';
@@ -155,6 +171,24 @@ const blas: Package = {
   sspr: { level: 2, type: 's', function: sspr },
   ssyr2: { level: 2, type: 's', function: ssyr2 },
   sspr2: { level: 2, type: 's', function: sspr2 },
+
+  // Level 2 - Double
+  dgemv: { level: 2, type: 'd', function: dgemv },
+  dgbmv: { level: 2, type: 'd', function: dgbmv },
+  dsymv: { level: 2, type: 'd', function: dsymv },
+  dsbmv: { level: 2, type: 'd', function: dsbmv },
+  dspmv: { level: 2, type: 'd', function: dspmv },
+  dtrmv: { level: 2, type: 'd', function: dtrmv },
+  dtbmv: { level: 2, type: 'd', function: dtbmv },
+  dtpmv: { level: 2, type: 'd', function: dtpmv },
+  dtrsv: { level: 2, type: 'd', function: dtrsv },
+  dtbsv: { level: 2, type: 'd', function: dtbsv },
+  dtpsv: { level: 2, type: 'd', function: dtpsv },
+  dger: { level: 2, type: 'd', function: dger },
+  dsyr: { level: 2, type: 'd', function: dsyr },
+  dspr: { level: 2, type: 'd', function: dspr },
+  dsyr2: { level: 2, type: 'd', function: dsyr2 },
+  dspr2: { level: 2, type: 'd', function: dspr2 },
 };
 
 // Export

@@ -309,4 +309,75 @@ describe('Module test', () => {
       expectRoutine('sspr2');
     });
   });
+
+  describe('Level 2 - Double', () => {
+    beforeAll(() => {
+      level = 2;
+      type = 'd';
+    });
+
+    it('should contain correct DGEMV routine', () => {
+      expectRoutine('dgemv');
+    });
+
+    it('should contain correct DGBMV routine', () => {
+      expectRoutine('dgbmv');
+    });
+
+    it('should contain correct DSYMV routine', () => {
+      expectRoutine('dsymv');
+    });
+
+    it('should contain correct DSBMV routine', () => {
+      expectRoutine('dsbmv');
+    });
+
+    it('should contain correct DSPMV routine', () => {
+      expectRoutine('dspmv');
+    });
+
+    it('should contain correct DTRMV routine', () => {
+      expectRoutine('dtrmv');
+    });
+
+    it('should contain correct DTBMV routine', () => {
+      expectRoutine('dtbmv');
+    });
+
+    it('should contain correct DTPMV routine', () => {
+      expectRoutine('dtpmv');
+    });
+
+    it('should contain correct DTRSV routine', () => {
+      expectRoutine('dtrsv');
+    });
+
+    it('should contain correct DTBSV routine', () => {
+      expectRoutine('dtbsv');
+    });
+
+    it('should contain correct DTPSV routine', () => {
+      expectRoutine('dtpsv');
+    });
+
+    it('should contain correct DGER routine', () => {
+      expectRoutine('dger');
+    });
+
+    it('should contain correct DSYR routine', () => {
+      expectRoutine('dsyr');
+    });
+
+    it('should contain correct DSPR routine', () => {
+      expectRoutine('dspr');
+    });
+
+    it('should contain correct DSYR2 routine', () => {
+      expectRoutine('dsyr2');
+    });
+
+    it('should contain correct DSPR2 routine', () => {
+      expectRoutine('dspr2');
+    });
+  });
 });
