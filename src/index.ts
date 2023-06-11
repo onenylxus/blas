@@ -3,11 +3,28 @@ import caxpy from './routines/1c/caxpy';
 import ccopy from './routines/1c/ccopy';
 import cdotc from './routines/1c/cdotc';
 import cdotu from './routines/1c/cdotu';
+import cgbmv from './routines/2c/cgbmv';
+import cgemv from './routines/2c/cgemv';
+import cgerc from './routines/2c/cgerc';
+import cgeru from './routines/2c/cgeru';
+import chbmv from './routines/2c/chbmv';
+import chemv from './routines/2c/chemv';
+import cher from './routines/2c/cher';
+import cher2 from './routines/2c/cher2';
+import chpmv from './routines/2c/chpmv';
+import chpr from './routines/2c/chpr';
+import chpr2 from './routines/2c/chpr2';
 import crotg from './routines/1c/crotg';
 import cscal from './routines/1c/cscal';
 import csrot from './routines/1c/csrot';
 import csscal from './routines/1c/csscal';
 import cswap from './routines/1c/cswap';
+import ctbmv from './routines/2c/ctbmv';
+import ctbsv from './routines/2c/ctbsv';
+import ctpmv from './routines/2c/ctpmv';
+import ctpsv from './routines/2c/ctpsv';
+import ctrmv from './routines/2c/ctrmv';
+import ctrsv from './routines/2c/ctrsv';
 import dasum from './routines/1d/dasum';
 import daxpy from './routines/1d/daxpy';
 import dcopy from './routines/1d/dcopy';
@@ -189,6 +206,25 @@ const blas: Package = {
   dspr: { level: 2, type: 'd', function: dspr },
   dsyr2: { level: 2, type: 'd', function: dsyr2 },
   dspr2: { level: 2, type: 'd', function: dspr2 },
+
+  // Level 2 - Complex
+  cgemv: { level: 2, type: 'c', function: cgemv },
+  cgbmv: { level: 2, type: 'c', function: cgbmv },
+  chemv: { level: 2, type: 'c', function: chemv },
+  chbmv: { level: 2, type: 'c', function: chbmv },
+  chpmv: { level: 2, type: 'c', function: chpmv },
+  ctrmv: { level: 2, type: 'c', function: ctrmv },
+  ctbmv: { level: 2, type: 'c', function: ctbmv },
+  ctpmv: { level: 2, type: 'c', function: ctpmv },
+  ctrsv: { level: 2, type: 'c', function: ctrsv },
+  ctbsv: { level: 2, type: 'c', function: ctbsv },
+  ctpsv: { level: 2, type: 'c', function: ctpsv },
+  cgeru: { level: 2, type: 'c', function: cgeru },
+  cgerc: { level: 2, type: 'c', function: cgerc },
+  cher: { level: 2, type: 'c', function: cher },
+  chpr: { level: 2, type: 'c', function: chpr },
+  cher2: { level: 2, type: 'c', function: cher2 },
+  chpr2: { level: 2, type: 'c', function: chpr2 },
 };
 
 // Export

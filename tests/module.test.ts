@@ -380,4 +380,79 @@ describe('Module test', () => {
       expectRoutine('dspr2');
     });
   });
+
+  describe('Level 2 - Complex', () => {
+    beforeAll(() => {
+      level = 2;
+      type = 'c';
+    });
+
+    it('should contain correct CGEMV routine', () => {
+      expectRoutine('cgemv');
+    });
+
+    it('should contain correct CGBMV routine', () => {
+      expectRoutine('cgbmv');
+    });
+
+    it('should contain correct CHEMV routine', () => {
+      expectRoutine('chemv');
+    });
+
+    it('should contain correct CHBMV routine', () => {
+      expectRoutine('chbmv');
+    });
+
+    it('should contain correct CHPMV routine', () => {
+      expectRoutine('chpmv');
+    });
+
+    it('should contain correct CTRMV routine', () => {
+      expectRoutine('ctrmv');
+    });
+
+    it('should contain correct CTBMV routine', () => {
+      expectRoutine('ctbmv');
+    });
+
+    it('should contain correct CTPMV routine', () => {
+      expectRoutine('ctpmv');
+    });
+
+    it('should contain correct CTRSV routine', () => {
+      expectRoutine('ctrsv');
+    });
+
+    it('should contain correct CTBSV routine', () => {
+      expectRoutine('ctbsv');
+    });
+
+    it('should contain correct CTPSV routine', () => {
+      expectRoutine('ctpsv');
+    });
+
+    it('should contain correct CGERU routine', () => {
+      expectRoutine('cgeru');
+    });
+
+    it('should contain correct CGERC routine', () => {
+      expectRoutine('cgerc');
+    });
+
+    it('should contain correct CHER routine', () => {
+      expectRoutine('cher');
+    });
+
+    it('should contain correct CHPR routine', () => {
+      expectRoutine('chpr');
+    });
+
+    it('should contain correct CHER2 routine', () => {
+      expectRoutine('cher2');
+    });
+
+    it('should contain correct CHPR2 routine', () => {
+      expectRoutine('chpr2');
+    });
+  });
 });
