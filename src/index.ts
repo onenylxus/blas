@@ -67,6 +67,7 @@ import scnrm2 from './routines/1s/scnrm2';
 import sdot from './routines/1s/sdot';
 import sdsdot from './routines/1s/sdsdot';
 import sgbmv from './routines/2s/sgbmv';
+import sgemm from './routines/3s/sgemm';
 import sgemv from './routines/2s/sgemv';
 import sger from './routines/2s/sger';
 import snrm2 from './routines/1s/snrm2';
@@ -80,14 +81,19 @@ import sspmv from './routines/2s/sspmv';
 import sspr from './routines/2s/sspr';
 import sspr2 from './routines/2s/sspr2';
 import sswap from './routines/1s/sswap';
+import ssymm from './routines/3s/ssymm';
 import ssymv from './routines/2s/ssymv';
 import ssyr from './routines/2s/ssyr';
 import ssyr2 from './routines/2s/ssyr2';
+import ssyr2k from './routines/3s/ssyr2k';
+import ssyrk from './routines/3s/ssyrk';
 import stbmv from './routines/2s/stbmv';
 import stbsv from './routines/2s/stbsv';
 import stpmv from './routines/2s/stpmv';
 import stpsv from './routines/2s/stpsv';
+import strmm from './routines/3s/strmm';
 import strmv from './routines/2s/strmv';
+import strsm from './routines/3s/strsm';
 import strsv from './routines/2s/strsv';
 import zaxpy from './routines/1z/zaxpy';
 import zcopy from './routines/1z/zcopy';
@@ -261,6 +267,14 @@ const blas: Package = {
   zhpr: { level: 2, type: 'z', function: zhpr },
   zher2: { level: 2, type: 'z', function: zher2 },
   zhpr2: { level: 2, type: 'z', function: zhpr2 },
+
+  // Level 3 - Single
+  sgemm: { level: 3, type: 's', function: sgemm },
+  ssymm: { level: 3, type: 's', function: ssymm },
+  ssyrk: { level: 3, type: 's', function: ssyrk },
+  ssyr2k: { level: 3, type: 's', function: ssyr2k },
+  strmm: { level: 3, type: 's', function: strmm },
+  strsm: { level: 3, type: 's', function: strsm },
 };
 
 // Export

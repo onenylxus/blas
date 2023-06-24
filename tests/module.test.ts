@@ -530,4 +530,35 @@ describe('Module test', () => {
       expectRoutine('zhpr2');
     });
   });
+
+  describe('Level 3 - Single', () => {
+    beforeAll(() => {
+      level = 3;
+      type = 's';
+    });
+
+    it('should contain correct SGEMM routine', () => {
+      expectRoutine('sgemm');
+    });
+
+    it('should contain correct SSYMM routine', () => {
+      expectRoutine('ssymm');
+    });
+
+    it('should contain correct SSYRK routine', () => {
+      expectRoutine('ssyrk');
+    });
+
+    it('should contain correct SSYR2K routine', () => {
+      expectRoutine('ssyr2k');
+    });
+
+    it('should conatin correct STRMM routine', () => {
+      expectRoutine('strmm');
+    });
+
+    it('should contain correct STRSM routine', () => {
+      expectRoutine('strsm');
+    });
+  });
 });
