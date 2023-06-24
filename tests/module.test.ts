@@ -561,4 +561,35 @@ describe('Module test', () => {
       expectRoutine('strsm');
     });
   });
+
+  describe('Level 3 - Double', () => {
+    beforeAll(() => {
+      level = 3;
+      type = 'd';
+    });
+
+    it('should contain correct DGEMM routine', () => {
+      expectRoutine('dgemm');
+    });
+
+    it('should contain correct DSYMM routine', () => {
+      expectRoutine('dsymm');
+    });
+
+    it('should contain correct DSYRK routine', () => {
+      expectRoutine('dsyrk');
+    });
+
+    it('should contain correct DSYR2K routine', () => {
+      expectRoutine('dsyr2k');
+    });
+
+    it('should contain correct DTRMM routine', () => {
+      expectRoutine('dtrmm');
+    });
+
+    it('should contain correct DTRSM routine', () => {
+      expectRoutine('dtrsm');
+    });
+  });
 });

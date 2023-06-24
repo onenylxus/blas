@@ -30,6 +30,7 @@ import daxpy from './routines/1d/daxpy';
 import dcopy from './routines/1d/dcopy';
 import ddot from './routines/1d/ddot';
 import dgbmv from './routines/2d/dgbmv';
+import dgemm from './routines/3d/dgemm';
 import dgemv from './routines/2d/dgemv';
 import dger from './routines/2d/dger';
 import dnrm2 from './routines/1d/dnrm2';
@@ -44,14 +45,19 @@ import dspmv from './routines/2d/dspmv';
 import dspr from './routines/2d/dspr';
 import dspr2 from './routines/2d/dspr2';
 import dswap from './routines/1d/dswap';
+import dsymm from './routines/3d/dsymm';
 import dsymv from './routines/2d/dsymv';
 import dsyr from './routines/2d/dsyr';
 import dsyr2 from './routines/2d/dsyr2';
+import dsyr2k from './routines/3d/dsyr2k';
+import dsyrk from './routines/3d/dsyrk';
 import dtbmv from './routines/2d/dtbmv';
 import dtbsv from './routines/2d/dtbsv';
 import dtpmv from './routines/2d/dtpmv';
 import dtpsv from './routines/2d/dtpsv';
+import dtrmm from './routines/3d/dtrmm';
 import dtrmv from './routines/2d/dtrmv';
+import dtrsm from './routines/3d/dtrsm';
 import dtrsv from './routines/2d/dtrsv';
 import dzasum from './routines/1z/dzasum';
 import dznrm2 from './routines/1d/dznrm2';
@@ -275,6 +281,14 @@ const blas: Package = {
   ssyr2k: { level: 3, type: 's', function: ssyr2k },
   strmm: { level: 3, type: 's', function: strmm },
   strsm: { level: 3, type: 's', function: strsm },
+
+  // Level 3 - Double
+  dgemm: { level: 3, type: 'd', function: dgemm },
+  dsymm: { level: 3, type: 'd', function: dsymm },
+  dsyrk: { level: 3, type: 'd', function: dsyrk },
+  dsyr2k: { level: 3, type: 'd', function: dsyr2k },
+  dtrmm: { level: 3, type: 'd', function: dtrmm },
+  dtrsm: { level: 3, type: 'd', function: dtrsm },
 };
 
 // Export
