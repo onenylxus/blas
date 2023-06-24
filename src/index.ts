@@ -95,9 +95,26 @@ import zdotc from './routines/1z/zdotc';
 import zdotu from './routines/1z/zdotu';
 import zdrot from './routines/1z/zdrot';
 import zdscal from './routines/1z/zdscal';
+import zgbmv from './routines/2z/zgbmv';
+import zgemv from './routines/2z/zgemv';
+import zgerc from './routines/2z/zgerc';
+import zgeru from './routines/2z/zgeru';
+import zhbmv from './routines/2z/zhbmv';
+import zhemv from './routines/2z/zhemv';
+import zher from './routines/2z/zher';
+import zher2 from './routines/2z/zher2';
+import zhpmv from './routines/2z/zhpmv';
+import zhpr from './routines/2z/zhpr';
+import zhpr2 from './routines/2z/zhpr2';
 import zrotg from './routines/1z/zrotg';
 import zscal from './routines/1z/zscal';
 import zswap from './routines/1z/zswap';
+import ztbmv from './routines/2z/ztbmv';
+import ztbsv from './routines/2z/ztbsv';
+import ztpmv from './routines/2z/ztpmv';
+import ztpsv from './routines/2z/ztpsv';
+import ztrmv from './routines/2z/ztrmv';
+import ztrsv from './routines/2z/ztrsv';
 
 // Routine interface
 interface Routine {
@@ -225,6 +242,25 @@ const blas: Package = {
   chpr: { level: 2, type: 'c', function: chpr },
   cher2: { level: 2, type: 'c', function: cher2 },
   chpr2: { level: 2, type: 'c', function: chpr2 },
+
+  // Level 2 - Double Complex
+  zgemv: { level: 2, type: 'z', function: zgemv },
+  zgbmv: { level: 2, type: 'z', function: zgbmv },
+  zhemv: { level: 2, type: 'z', function: zhemv },
+  zhbmv: { level: 2, type: 'z', function: zhbmv },
+  zhpmv: { level: 2, type: 'z', function: zhpmv },
+  ztrmv: { level: 2, type: 'z', function: ztrmv },
+  ztbmv: { level: 2, type: 'z', function: ztbmv },
+  ztpmv: { level: 2, type: 'z', function: ztpmv },
+  ztrsv: { level: 2, type: 'z', function: ztrsv },
+  ztbsv: { level: 2, type: 'z', function: ztbsv },
+  ztpsv: { level: 2, type: 'z', function: ztpsv },
+  zgeru: { level: 2, type: 'z', function: zgeru },
+  zgerc: { level: 2, type: 'z', function: zgerc },
+  zher: { level: 2, type: 'z', function: zher },
+  zhpr: { level: 2, type: 'z', function: zhpr },
+  zher2: { level: 2, type: 'z', function: zher2 },
+  zhpr2: { level: 2, type: 'z', function: zhpr2 },
 };
 
 // Export

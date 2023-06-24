@@ -455,4 +455,79 @@ describe('Module test', () => {
       expectRoutine('chpr2');
     });
   });
+
+  describe('Level 2 - Double Complex', () => {
+    beforeAll(() => {
+      level = 2;
+      type = 'z';
+    });
+
+    it('should contain correct ZGEMV routine', () => {
+      expectRoutine('zgemv');
+    });
+
+    it('should contain correct ZGBMV routine', () => {
+      expectRoutine('zgbmv');
+    });
+
+    it('should contain correct ZHEMV routine', () => {
+      expectRoutine('zhemv');
+    });
+
+    it('should contain correct ZHBMV routine', () => {
+      expectRoutine('zhbmv');
+    });
+
+    it('should contain correct ZHPMV routine', () => {
+      expectRoutine('zhpmv');
+    });
+
+    it('should contain correct ZTRMV routine', () => {
+      expectRoutine('ztrmv');
+    });
+
+    it('should contain correct ZTBMV routine', () => {
+      expectRoutine('ztbmv');
+    });
+
+    it('should contain correct ZTPMV routine', () => {
+      expectRoutine('ztpmv');
+    });
+
+    it('should contain correct ZTRSV routine', () => {
+      expectRoutine('ztrsv');
+    });
+
+    it('should contain correct ZTBSV routine', () => {
+      expectRoutine('ztbsv');
+    });
+
+    it('should contain correct ZTPSV routine', () => {
+      expectRoutine('ztpsv');
+    });
+
+    it('should contain correct ZGERU routine', () => {
+      expectRoutine('zgeru');
+    });
+
+    it('should contain correct ZGERC routine', () => {
+      expectRoutine('zgerc');
+    });
+
+    it('should contain correct ZHER routine', () => {
+      expectRoutine('zher');
+    });
+
+    it('should contain correct ZHPR routine', () => {
+      expectRoutine('zhpr');
+    });
+
+    it('should contain correct ZHER2 routine', () => {
+      expectRoutine('zher2');
+    });
+
+    it('should contain correct ZHPR2 routine', () => {
+      expectRoutine('zhpr2');
+    });
+  });
 });
