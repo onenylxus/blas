@@ -635,4 +635,47 @@ describe('Module test', () => {
       expectRoutine('ctrsm');
     });
   });
+
+  describe('Level 3 - Double Complex', () => {
+    beforeAll(() => {
+      level = 3;
+      type = 'z';
+    });
+
+    it('should contain correct ZGEMM routine', () => {
+      expectRoutine('zgemm');
+    });
+
+    it('should contain correct ZSYMM routine', () => {
+      expectRoutine('zsymm');
+    });
+
+    it('should contain correct ZHEMM routine', () => {
+      expectRoutine('zhemm');
+    });
+
+    it('should contain correct ZSYRK routine', () => {
+      expectRoutine('zsyrk');
+    });
+
+    it('should contain correct ZHERK routine', () => {
+      expectRoutine('zherk');
+    });
+
+    it('should contain correct ZSYR2K routine', () => {
+      expectRoutine('zsyr2k');
+    });
+
+    it('should contain correct ZHER2K routine', () => {
+      expectRoutine('zher2k');
+    });
+
+    it('should contain correct ZTRMM routine', () => {
+      expectRoutine('ztrmm');
+    });
+
+    it('should contain correct ZTRSM routine', () => {
+      expectRoutine('ztrsm');
+    });
+  });
 });

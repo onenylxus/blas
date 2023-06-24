@@ -117,24 +117,33 @@ import zdotu from './routines/1z/zdotu';
 import zdrot from './routines/1z/zdrot';
 import zdscal from './routines/1z/zdscal';
 import zgbmv from './routines/2z/zgbmv';
+import zgemm from './routines/3z/zgemm';
 import zgemv from './routines/2z/zgemv';
 import zgerc from './routines/2z/zgerc';
 import zgeru from './routines/2z/zgeru';
 import zhbmv from './routines/2z/zhbmv';
+import zhemm from './routines/3z/zhemm';
 import zhemv from './routines/2z/zhemv';
 import zher from './routines/2z/zher';
 import zher2 from './routines/2z/zher2';
+import zher2k from './routines/3z/zher2k';
+import zherk from './routines/3z/zherk';
 import zhpmv from './routines/2z/zhpmv';
 import zhpr from './routines/2z/zhpr';
 import zhpr2 from './routines/2z/zhpr2';
 import zrotg from './routines/1z/zrotg';
 import zscal from './routines/1z/zscal';
 import zswap from './routines/1z/zswap';
+import zsymm from './routines/3z/zsymm';
+import zsyr2k from './routines/3z/zsyr2k';
+import zsyrk from './routines/3z/zsyrk';
 import ztbmv from './routines/2z/ztbmv';
 import ztbsv from './routines/2z/ztbsv';
 import ztpmv from './routines/2z/ztpmv';
 import ztpsv from './routines/2z/ztpsv';
+import ztrmm from './routines/3z/ztrmm';
 import ztrmv from './routines/2z/ztrmv';
+import ztrsm from './routines/3z/ztrsm';
 import ztrsv from './routines/2z/ztrsv';
 
 // Routine interface
@@ -309,6 +318,17 @@ const blas: Package = {
   csyrk: { level: 3, type: 'c', function: csyrk },
   ctrmm: { level: 3, type: 'c', function: ctrmm },
   ctrsm: { level: 3, type: 'c', function: ctrsm },
+
+  // Level 3 - Double Complex
+  zgemm: { level: 3, type: 'z', function: zgemm },
+  zsymm: { level: 3, type: 'z', function: zsymm },
+  zhemm: { level: 3, type: 'z', function: zhemm },
+  zsyrk: { level: 3, type: 'z', function: zsyrk },
+  zherk: { level: 3, type: 'z', function: zherk },
+  zsyr2k: { level: 3, type: 'z', function: zsyr2k },
+  zher2k: { level: 3, type: 'z', function: zher2k },
+  ztrmm: { level: 3, type: 'z', function: ztrmm },
+  ztrsm: { level: 3, type: 'z', function: ztrsm },
 };
 
 // Export
