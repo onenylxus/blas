@@ -592,4 +592,47 @@ describe('Module test', () => {
       expectRoutine('dtrsm');
     });
   });
+
+  describe('Level 3 - Complex', () => {
+    beforeAll(() => {
+      level = 3;
+      type = 'c';
+    });
+
+    it('should contain correct CGEMM routine', () => {
+      expectRoutine('cgemm');
+    });
+
+    it('should contain correct CSYMM routine', () => {
+      expectRoutine('csymm');
+    });
+
+    it('shoul contain correct CHEMM routine', () => {
+      expectRoutine('chemm');
+    });
+
+    it('should contain correct CSYRK routine', () => {
+      expectRoutine('csyrk');
+    });
+
+    it('should contain correct CHERK routine', () => {
+      expectRoutine('cherk');
+    });
+
+    it('should contain correct CSYR2K routine', () => {
+      expectRoutine('csyr2k');
+    });
+
+    it('should contain correct CHER2K routine', () => {
+      expectRoutine('cher2k');
+    });
+
+    it('should contain correct CTRMM routine', () => {
+      expectRoutine('ctrmm');
+    });
+
+    it('should contain correct CTRSM routine', () => {
+      expectRoutine('ctrsm');
+    });
+  });
 });

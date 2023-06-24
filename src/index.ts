@@ -4,13 +4,17 @@ import ccopy from './routines/1c/ccopy';
 import cdotc from './routines/1c/cdotc';
 import cdotu from './routines/1c/cdotu';
 import cgbmv from './routines/2c/cgbmv';
+import cgemm from './routines/3c/cgemm';
 import cgemv from './routines/2c/cgemv';
 import cgerc from './routines/2c/cgerc';
 import cgeru from './routines/2c/cgeru';
 import chbmv from './routines/2c/chbmv';
+import chemm from './routines/3c/chemm';
 import chemv from './routines/2c/chemv';
 import cher from './routines/2c/cher';
 import cher2 from './routines/2c/cher2';
+import cher2k from './routines/3c/cher2k';
+import cherk from './routines/3c/cherk';
 import chpmv from './routines/2c/chpmv';
 import chpr from './routines/2c/chpr';
 import chpr2 from './routines/2c/chpr2';
@@ -19,11 +23,16 @@ import cscal from './routines/1c/cscal';
 import csrot from './routines/1c/csrot';
 import csscal from './routines/1c/csscal';
 import cswap from './routines/1c/cswap';
+import csymm from './routines/3c/csymm';
+import csyr2k from './routines/3c/csyr2k';
+import csyrk from './routines/3c/csyrk';
 import ctbmv from './routines/2c/ctbmv';
 import ctbsv from './routines/2c/ctbsv';
 import ctpmv from './routines/2c/ctpmv';
 import ctpsv from './routines/2c/ctpsv';
+import ctrmm from './routines/3c/ctrmm';
 import ctrmv from './routines/2c/ctrmv';
+import ctrsm from './routines/3c/ctrsm';
 import ctrsv from './routines/2c/ctrsv';
 import dasum from './routines/1d/dasum';
 import daxpy from './routines/1d/daxpy';
@@ -289,6 +298,17 @@ const blas: Package = {
   dsyr2k: { level: 3, type: 'd', function: dsyr2k },
   dtrmm: { level: 3, type: 'd', function: dtrmm },
   dtrsm: { level: 3, type: 'd', function: dtrsm },
+
+  // Level 3 - Complex
+  cgemm: { level: 3, type: 'c', function: cgemm },
+  chemm: { level: 3, type: 'c', function: chemm },
+  cher2k: { level: 3, type: 'c', function: cher2k },
+  cherk: { level: 3, type: 'c', function: cherk },
+  csymm: { level: 3, type: 'c', function: csymm },
+  csyr2k: { level: 3, type: 'c', function: csyr2k },
+  csyrk: { level: 3, type: 'c', function: csyrk },
+  ctrmm: { level: 3, type: 'c', function: ctrmm },
+  ctrsm: { level: 3, type: 'c', function: ctrsm },
 };
 
 // Export
