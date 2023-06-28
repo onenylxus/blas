@@ -1,6 +1,6 @@
 // Import
-import { D } from './double';
-import { S } from './single';
+import { D } from '../types/double';
+import { S } from '../types/single';
 
 // Complex class
 class Complex<T extends S | D> {

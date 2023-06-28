@@ -1,9 +1,9 @@
 // Import
-import { C } from './singleComplex';
-import { D } from './double';
-import { I } from './integer';
-import { S } from './single';
-import { Z } from './doubleComplex';
+import { C } from '../types/singleComplex';
+import { D } from '../types/double';
+import { I } from '../types/integer';
+import { S } from '../types/single';
+import { Z } from '../types/doubleComplex';
 
 // Fortran array class
 class FortranArray<T extends S | D | I | C | Z> {

@@ -1,5 +1,5 @@
 // Import
-import FortranArray from './fortranArray';
+import FortranArray from '../structs/fortranArray';
 import { Integer, I } from './integer';
 
 // Define type
