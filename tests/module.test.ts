@@ -1,16 +1,21 @@
 // Import
 import blas from '../src/index';
+import routines from './routines.json';
 
 // Define test variables
 let level: 1 | 2 | 3;
 let type: 's' | 'd' | 'c' | 'z';
 
-// Define routine expect function
-const expectRoutine = (routine: string): void => {
-  expect(blas.hasOwnProperty(routine)).toBeTruthy();
-  expect(blas[routine].level).toStrictEqual(level);
-  expect(blas[routine].type).toStrictEqual(type);
-  expect(blas[routine].function.name).toStrictEqual(routine);
+// Test routines function
+const testRoutines = (routines: string[]): void => {
+  routines.forEach((routine) => {
+    it(`should contain correct ${routine.toUpperCase()} routine`, () => {
+      expect(blas.hasOwnProperty(routine)).toBeTruthy();
+      expect(blas[routine].level).toStrictEqual(level);
+      expect(blas[routine].type).toStrictEqual(type);
+      expect(blas[routine].function.name).toStrictEqual(routine);
+    });
+  });
 };
 
 // Module test
@@ -20,62 +25,7 @@ describe('Module test', () => {
       level = 1;
       type = 's';
     });
-
-    it('should contain correct SROTG routine', () => {
-      expectRoutine('srotg');
-    });
-
-    it('should contain correct SROTMG routine', () => {
-      expectRoutine('srotmg');
-    });
-
-    it('should contain correct SROT routine', () => {
-      expectRoutine('srot');
-    });
-
-    it('should contain correct SROTM routine', () => {
-      expectRoutine('srotm');
-    });
-
-    it('should contain correct SSWAP routine', () => {
-      expectRoutine('sswap');
-    });
-
-    it('should contain correct SSCAL routine', () => {
-      expectRoutine('sscal');
-    });
-
-    it('should contain correct SCOPY routine', () => {
-      expectRoutine('scopy');
-    });
-
-    it('should contain correct SAXPY routine', () => {
-      expectRoutine('saxpy');
-    });
-
-    it('should contain correct SDOT routine', () => {
-      expectRoutine('sdot');
-    });
-
-    it('should contain correct SDSDOT routine', () => {
-      expectRoutine('sdsdot');
-    });
-
-    it('should contain correct SNRM2 routine', () => {
-      expectRoutine('snrm2');
-    });
-
-    it('should contain correct SCNRM2 routine', () => {
-      expectRoutine('scnrm2');
-    });
-
-    it('should contain correct SASUM routine', () => {
-      expectRoutine('sasum');
-    });
-
-    it('should contain correct ISAMAX routine', () => {
-      expectRoutine('isamax');
-    });
+    testRoutines(routines['1s']);
   });
 
   describe('Level 1 - Double', () => {
@@ -83,62 +33,7 @@ describe('Module test', () => {
       level = 1;
       type = 'd';
     });
-
-    it('should contain correct DROTG routine', () => {
-      expectRoutine('drotg');
-    });
-
-    it('should contain correct DROTMG routine', () => {
-      expectRoutine('drotmg');
-    });
-
-    it('should contain correct DROT routine', () => {
-      expectRoutine('drot');
-    });
-
-    it('should contain correct DROTM routine', () => {
-      expectRoutine('drotm');
-    });
-
-    it('should contain correct DSWAP routine', () => {
-      expectRoutine('dswap');
-    });
-
-    it('should contain correct DSCAL routine', () => {
-      expectRoutine('dscal');
-    });
-
-    it('should contain correct DCOPY routine', () => {
-      expectRoutine('dcopy');
-    });
-
-    it('should contain correct DAXPY routine', () => {
-      expectRoutine('daxpy');
-    });
-
-    it('should contain correct DDOT routine', () => {
-      expectRoutine('ddot');
-    });
-
-    it('should contain correct DSDOT routine', () => {
-      expectRoutine('dsdot');
-    });
-
-    it('should contain correct DNRM2 routine', () => {
-      expectRoutine('dnrm2');
-    });
-
-    it('should contain correct DZNRM2 routine', () => {
-      expectRoutine('dznrm2');
-    });
-
-    it('should contain correct DASUM routine', () => {
-      expectRoutine('dasum');
-    });
-
-    it('should contain correct IDAMAX routine', () => {
-      expectRoutine('idamax');
-    });
+    testRoutines(routines['1d']);
   });
 
   describe('Level 1 - Complex', () => {
@@ -146,46 +41,7 @@ describe('Module test', () => {
       level = 1;
       type = 'c';
     });
-
-    it('should contain correct CROTG routine', () => {
-      expectRoutine('crotg');
-    });
-
-    it('should contain correct CSROT routine', () => {
-      expectRoutine('csrot');
-    });
-
-    it('should contain correct CSWAP routine', () => {
-      expectRoutine('cswap');
-    });
-
-    it('should contain correct CSCAL routine', () => {
-      expectRoutine('cscal');
-    });
-
-    it('should contain correct CCOPY routine', () => {
-      expectRoutine('ccopy');
-    });
-
-    it('should contain correct CAXPY routine', () => {
-      expectRoutine('caxpy');
-    });
-
-    it('should contain correct CDOTU routine', () => {
-      expectRoutine('cdotu');
-    });
-
-    it('should contain correct CDOTC routine', () => {
-      expectRoutine('cdotc');
-    });
-
-    it('should contain correct SCASUM routine', () => {
-      expectRoutine('scasum');
-    });
-
-    it('should contain correct ICAMAX routine', () => {
-      expectRoutine('icamax');
-    });
+    testRoutines(routines['1c']);
   });
 
   describe('Level 1 - Double Complex', () => {
@@ -193,49 +49,70 @@ describe('Module test', () => {
       level = 1;
       type = 'z';
     });
+    testRoutines(routines['1z']);
+  });
 
-    it('should contain correct ZROTG routine', () => {
-      expectRoutine('zrotg');
+  describe('Level 2 - Single', () => {
+    beforeAll(() => {
+      level = 2;
+      type = 's';
     });
+    testRoutines(routines['2s']);
+  });
 
-    it('should contain correct ZDROT routine', () => {
-      expectRoutine('zdrot');
+  describe('Level 2 - Double', () => {
+    beforeAll(() => {
+      level = 2;
+      type = 'd';
     });
+    testRoutines(routines['2d']);
+  });
 
-    it('should contain correct ZSWAP routine', () => {
-      expectRoutine('zswap');
+  describe('Level 2 - Complex', () => {
+    beforeAll(() => {
+      level = 2;
+      type = 'c';
     });
+    testRoutines(routines['2c']);
+  });
 
-    it('should contain correct ZSCAL routine', () => {
-      expectRoutine('zscal');
+  describe('Level 2 - Double Complex', () => {
+    beforeAll(() => {
+      level = 2;
+      type = 'z';
     });
+    testRoutines(routines['2z']);
+  });
 
-    it('should contain correct ZDSCAL routine', () => {
-      expectRoutine('zdscal');
+  describe('Level 3 - Single', () => {
+    beforeAll(() => {
+      level = 3;
+      type = 's';
     });
+    testRoutines(routines['3s']);
+  });
 
-    it('should contain correct ZCOPY routine', () => {
-      expectRoutine('zcopy');
+  describe('Level 3 - Double', () => {
+    beforeAll(() => {
+      level = 3;
+      type = 'd';
     });
+    testRoutines(routines['3d']);
+  });
 
-    it('should contain correct ZAXPY routine', () => {
-      expectRoutine('zaxpy');
+  describe('Level 3 - Complex', () => {
+    beforeAll(() => {
+      level = 3;
+      type = 'c';
     });
+    testRoutines(routines['3c']);
+  });
 
-    it('should contain correct ZDOTU routine', () => {
-      expectRoutine('zdotu');
+  describe('Level 3 - Double Complex', () => {
+    beforeAll(() => {
+      level = 3;
+      type = 'z';
     });
-
-    it('should contain correct ZDOTC routine', () => {
-      expectRoutine('zdotc');
-    });
-
-    it('should contain correct DZASUM routine', () => {
-      expectRoutine('dzasum');
-    });
-
-    it('should contain correct IZAMAX routine', () => {
-      expectRoutine('izamax');
-    });
+    testRoutines(routines['3z']);
   });
 });
