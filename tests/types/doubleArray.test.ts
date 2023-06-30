@@ -19,21 +19,21 @@ describe('Double array type', () => {
 
   it('should get value correctly in constructor', () => {
     for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i)).toStrictEqual(values[i]);
+      expect(instance.get(i + 1)).toStrictEqual(values[i]);
     }
   });
 
   it('should set and get value correctly', () => {
     index = random(0, 99, true);
     values[index] = random();
-    instance.set(index, values[index]);
-    expect(instance.get(index)).toStrictEqual(values[index]);
+    instance.set(index + 1, values[index]);
+    expect(instance.get(index + 1)).toStrictEqual(values[index]);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
     for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i)).toStrictEqual(0);
+      expect(instance.get(i + 1)).toStrictEqual(0);
     }
   });
 });

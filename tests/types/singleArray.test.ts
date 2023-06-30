@@ -20,21 +20,21 @@ describe('Single array type', () => {
 
   it('should get value correctly in constructor', () => {
     for (let i = 0; i < 100; ++i) {
-      expect(relerr(instance.get(i)!, values[i])).toBeLessThan(10 ** -7);
+      expect(relerr(instance.get(i + 1)!, values[i])).toBeLessThan(10 ** -7);
     }
   });
 
   it('should set and get value correctly', () => {
     index = random(0, 99, true);
     values[index] = random();
-    instance.set(index, values[index]);
-    expect(relerr(instance.get(index)!, values[index])).toBeLessThan(10 ** -7);
+    instance.set(index + 1, values[index]);
+    expect(relerr(instance.get(index + 1)!, values[index])).toBeLessThan(10 ** -7);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
     for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i)).toStrictEqual(0);
+      expect(instance.get(i + 1)).toStrictEqual(0);
     }
   });
 });
