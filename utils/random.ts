@@ -1,9 +1,8 @@
-// Number library snippets
-const MAX_INT = Number.MAX_SAFE_INTEGER;
-const MIN_INT = Number.MIN_SAFE_INTEGER;
+// Import
+import { MAX_DP_INT, MIN_DP_INT } from './limit';
 
 // Random integer function
-const random = (min: number = MIN_INT, max: number = MAX_INT, isInteger: boolean = false): number => {
+const random = (min: number = MIN_DP_INT, max: number = MAX_DP_INT, isInteger: boolean = false): number => {
   let value = min + Math.random() * (max - min);
   return isInteger ? Math.floor(value) : value;
 };
