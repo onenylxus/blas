@@ -26,6 +26,16 @@ class CCharacter {
   public clear(): void {
     this.set('');
   }
+
+  // Equal to
+  public eq(value: string): boolean {
+    return this.get() === value;
+  }
+
+  // Not equal to
+  public ne(value: string): boolean {
+    return this.get() !== value;
+  }
 }
 
 // Export
