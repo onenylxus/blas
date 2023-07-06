@@ -3,7 +3,7 @@ version: 2
 jobs:
   'node-14':
     docker:
-      - image: cimg/node:14.19
+      - image: cimg/node:14.21
     steps:
       - checkout
       - restore_cache:
@@ -19,7 +19,7 @@ jobs:
 
   'node-16':
     docker:
-      - image: cimg/node:lts
+      - image: cimg/node:16.19
     steps:
       - checkout
       - restore_cache:
@@ -33,9 +33,9 @@ jobs:
             - .yarn/unplugged
       - run: yarn ci
 
-  'node-latest':
+  'node-18':
     docker:
-      - image: cimg/node:current
+      - image: cimg/node:18.14
     steps:
       - checkout
       - restore_cache:
@@ -56,4 +56,4 @@ workflows:
     jobs:
       - 'node-14'
       - 'node-16'
-      - 'node-latest'
+      - 'node-18'
