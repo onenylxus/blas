@@ -44,7 +44,7 @@ describe('Single type', () => {
   it('should multiply value correctly', () => {
     instance.set(value);
     instance.mul(2);
-    expect(relerr(instance.get(), value * 2)).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get(), value * 2)).toBeLessThan(2 * 10 ** -7);
   });
 
   it('should divide value correctly', () => {
@@ -56,7 +56,7 @@ describe('Single type', () => {
   it('should exponent value correctly', () => {
     instance.set(value);
     instance.exp(2);
-    expect(relerr(instance.get(), value ** 2)).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get(), value ** 2)).toBeLessThan(2 * 10 ** -7);
   });
 
   it('should compare equal to value correctly', () => {

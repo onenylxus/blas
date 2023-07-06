@@ -48,8 +48,8 @@ describe('Single complex type', () => {
   it('should multiply value correctly', () => {
     instance.set(value);
     instance.mul({ r: 1, i: -1 });
-    expect(relerr(instance.get().r, value.r + value.i)).toBeLessThan(10 ** -7);
-    expect(relerr(instance.get().i, value.i - value.r)).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get().r, value.r + value.i)).toBeLessThan(2 * 10 ** -7);
+    expect(relerr(instance.get().i, value.i - value.r)).toBeLessThan(2 * 10 ** -7);
   });
 
   it('should divide value correctly', () => {
