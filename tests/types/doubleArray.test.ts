@@ -30,6 +30,11 @@ describe('Double array type', () => {
     expect(instance.get(index + 1)).toStrictEqual(values[index]);
   });
 
+  it('should get value array correctly', () => {
+    expect(instance.getAll().length).toStrictEqual(100);
+    expect(instance.getAll().every((v, i) => v === values[i])).toBeTruthy();
+  });
+
   it('should clear value to zero', () => {
     instance.clear();
     for (let i = 0; i < 100; ++i) {

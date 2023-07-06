@@ -31,6 +31,11 @@ describe('Integer array type', () => {
     expect(relerr(instance.get(index + 1)!, values[index])).toBeLessThan(1);
   });
 
+  it('should get value array correctly', () => {
+    expect(instance.getAll().length).toStrictEqual(100);
+    expect(instance.getAll().every((v, i) => relerr(v, values[i]) < 1)).toBeTruthy();
+  });
+
   it('should clear value to zero', () => {
     instance.clear();
     for (let i = 0; i < 100; ++i) {

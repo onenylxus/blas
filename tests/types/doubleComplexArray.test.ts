@@ -32,6 +32,12 @@ describe('Double complex array type', () => {
     expect(instance.get(index + 1)!.i).toStrictEqual(values[index].i);
   });
 
+  it('should get value array correctly', () => {
+    expect(instance.getAll().length).toStrictEqual(100);
+    expect(instance.getAll().every((v, i) => v.r === values[i].r)).toBeTruthy();
+    expect(instance.getAll().every((v, i) => v.i === values[i].i)).toBeTruthy();
+  });
+
   it('should clear value to zero', () => {
     instance.clear();
     for (let i = 0; i < 100; ++i) {
