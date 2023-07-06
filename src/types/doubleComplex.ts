@@ -1,5 +1,5 @@
 // Import
-import Complex from './complex';
+import Complex from '../structs/complex';
 import { Double, D } from './double';
 
 // Define type

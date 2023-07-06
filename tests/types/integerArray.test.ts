@@ -20,21 +20,26 @@ describe('Integer array type', () => {
 
   it('should get value correctly in constructor', () => {
     for (let i = 0; i < 100; ++i) {
-      expect(relerr(instance.get(i)!, values[i])).toBeLessThan(1);
+      expect(relerr(instance.get(i + 1)!, values[i])).toBeLessThan(1);
     }
   });
 
   it('should set and get value correctly', () => {
     index = random(0, 99, true);
     values[index] = random();
-    instance.set(index, values[index]);
-    expect(relerr(instance.get(index)!, values[index])).toBeLessThan(1);
+    instance.set(index + 1, values[index]);
+    expect(relerr(instance.get(index + 1)!, values[index])).toBeLessThan(1);
+  });
+
+  it('should get value array correctly', () => {
+    expect(instance.getAll().length).toStrictEqual(100);
+    expect(instance.getAll().every((v, i) => relerr(v, values[i]) < 1)).toBeTruthy();
   });
 
   it('should clear value to zero', () => {
     instance.clear();
     for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i)).toStrictEqual(0);
+      expect(instance.get(i + 1)).toStrictEqual(0);
     }
   });
 });

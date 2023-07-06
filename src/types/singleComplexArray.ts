@@ -1,5 +1,5 @@
 // Import
-import FortranArray from './fortranArray';
+import FortranArray from '../structs/fortranArray';
 import { SingleComplex, C } from './singleComplex';
 
 // Define type
@@ -18,24 +18,24 @@ class CSingleComplexArray extends FortranArray<C> {
 
   // Set value to store
   public set(index: number, value: Dual): void {
-    if (index < 0 || (this.size !== 0 && index >= this.size!)) {
+    if (index <= 0 || (this.size !== 0 && index > this.size!)) {
       return;
     }
-    if (this.size === 0 && index >= this.store!.length) {
-      this.store![index] = this.zero!;
+    if (this.size === 0 && index - 1 >= this.store!.length) {
+      this.store![index - 1] = this.zero!;
     }
-    this.store![index].set(value);
+    this.store![index - 1].set(value);
   }
 
   // Get value from store
   public get(index: number): Dual | undefined {
-    if (index < 0 || (this.size !== 0 && index >= this.size!)) {
+    if (index <= 0 || (this.size !== 0 && index > this.size!)) {
       return undefined;
     }
-    if (this.size === 0 && index >= this.store!.length) {
+    if (this.size === 0 && index - 1 >= this.store!.length) {
       return this.zero!.get();
     }
-    return this.store![index].get();
+    return this.store![index - 1].get();
   }
 
   // Get all values from store

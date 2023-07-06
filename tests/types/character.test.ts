@@ -26,4 +26,15 @@ describe('Character type', () => {
     instance.clear();
     expect(instance.get()).toStrictEqual('');
   });
+
+  it('should compare equal to value correctly', () => {
+    instance.set(value);
+    expect(instance.eq(value[0])).toBeTruthy();
+    expect(instance.eq('')).toBeFalsy();
+  });
+
+  it('should compare not equal to value correctly', () => {
+    expect(instance.ne('')).toBeTruthy();
+    expect(instance.ne(value[0])).toBeFalsy();
+  });
 });
