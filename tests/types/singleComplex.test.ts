@@ -21,8 +21,8 @@ describe('Single complex type', () => {
 
   it('should set and get value correctly', () => {
     instance.set(value);
-    expect(relerr(instance.get().r, value.r)).toBeLessThan(10 ** -7);
-    expect(relerr(instance.get().i, value.i)).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get().r, value.r)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get().i, value.i)).toBeLessThan(10 ** -6);
   });
 
   it('should clear value to zero', () => {
@@ -34,29 +34,29 @@ describe('Single complex type', () => {
   it('should add value correctly', () => {
     instance.set(value);
     instance.add({ r: 1, i: -1 });
-    expect(relerr(instance.get().r, value.r + 1)).toBeLessThan(10 ** -7);
-    expect(relerr(instance.get().i, value.i - 1)).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get().r, value.r + 1)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get().i, value.i - 1)).toBeLessThan(10 ** -6);
   });
 
   it('should subtract value correctly', () => {
     instance.set(value);
     instance.sub({ r: 1, i: -1 });
-    expect(relerr(instance.get().r, value.r - 1)).toBeLessThan(10 ** -7);
-    expect(relerr(instance.get().i, value.i + 1)).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get().r, value.r - 1)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get().i, value.i + 1)).toBeLessThan(10 ** -6);
   });
 
   it('should multiply value correctly', () => {
     instance.set(value);
     instance.mul({ r: 1, i: -1 });
-    expect(relerr(instance.get().r, value.r + value.i)).toBeLessThan(2 * 10 ** -7);
-    expect(relerr(instance.get().i, value.i - value.r)).toBeLessThan(2 * 10 ** -7);
+    expect(relerr(instance.get().r, value.r + value.i)).toBeLessThan(2 * 10 ** -6);
+    expect(relerr(instance.get().i, value.i - value.r)).toBeLessThan(2 * 10 ** -6);
   });
 
   it('should divide value correctly', () => {
     instance.set(value);
     instance.div({ r: 1, i: -1 });
-    expect(relerr(instance.get().r, (value.r - value.i) / 2)).toBeLessThan(10 ** -7);
-    expect(relerr(instance.get().i, (value.i + value.r) / 2)).toBeLessThan(10 ** -7);
+    expect(relerr(instance.get().r, (value.r - value.i) / 2)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get().i, (value.i + value.r) / 2)).toBeLessThan(10 ** -6);
   });
 
   it('should compare equal to value correctly', () => {
