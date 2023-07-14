@@ -14,3 +14,5 @@ type FInteger = number;
 type FReal = number;
 type FRealArray = FReal[];
 type FVoid = void;
+
+type FArguments = (FCharacter | FComplex | FComplexArray | FDouble | FDoubleArray | FDoubleComplex | FDoubleComplexArray | FEmpty | FInteger | FReal | FRealArray)[];
