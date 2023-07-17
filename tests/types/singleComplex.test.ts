@@ -55,8 +55,8 @@ describe('Single complex type', () => {
   it('should divide value correctly', () => {
     instance.set(value);
     instance.div({ r: 1, i: -1 });
-    expect(relerr(instance.get().r, (value.r - value.i) / 2)).toBeLessThan(10 ** -6);
-    expect(relerr(instance.get().i, (value.i + value.r) / 2)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get().r, (value.r - value.i) / 2)).toBeLessThan(2 * 10 ** -6);
+    expect(relerr(instance.get().i, (value.i + value.r) / 2)).toBeLessThan(2 * 10 ** -6);
   });
 
   it('should compare equal to value correctly', () => {

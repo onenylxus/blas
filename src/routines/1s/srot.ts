@@ -45,8 +45,8 @@ const srot = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy:
   }
   if (_incx.eq(1) && _incy.eq(1)) {
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      stemp.set(_c.get() * _sx.get(i.get())! + _s.get() * _sy.get(i.get())!);
-      _sy.set(i.get(), _c.get() * _sy.get(i.get())! - _s.get() * _sx.get(i.get())!);
+      stemp.set(_c.get() * _sx.get(i.get()) + _s.get() * _sy.get(i.get()));
+      _sy.set(i.get(), _c.get() * _sy.get(i.get()) - _s.get() * _sx.get(i.get()));
       _sx.set(i.get(), stemp.get());
     }
   } else {
@@ -59,8 +59,8 @@ const srot = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy:
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      stemp.set(_c.get() * _sx.get(ix.get())! + _s.get() * _sy.get(iy.get())!);
-      _sy.set(iy.get(), _c.get() * _sy.get(iy.get())! - _s.get() * _sx.get(ix.get())!);
+      stemp.set(_c.get() * _sx.get(ix.get()) + _s.get() * _sy.get(iy.get()));
+      _sy.set(iy.get(), _c.get() * _sy.get(iy.get()) - _s.get() * _sx.get(ix.get()));
       _sx.set(ix.get(), stemp.get());
       ix.add(_incx.get());
       iy.add(_incy.get());
