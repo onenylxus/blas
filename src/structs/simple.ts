@@ -51,7 +51,6 @@ class Simple {
 
   // Equal to
   public eq(value: number): boolean {
-    console.log([this.get(), value]);
     return this.get() === value;
   }
 

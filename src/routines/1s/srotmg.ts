@@ -20,6 +20,15 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
   const _sy1: S = new Single(sy1);
   const _sparam: SA = new SingleArray(sparam, 5);
 
+  // Resolve function
+  const resolve = (): void => {
+    sd1 = _sd1.get();
+    sd2 = _sd2.get();
+    sx1 = _sx1.get();
+    sy1 = _sy1.get();
+    sparam = _sparam.getAll();
+  };
+
   // Local variables
   const gam: S = new Single(4096);
   const gamsq: S = new Single(4096 ** 2);
@@ -35,15 +44,6 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
   const sq2: S = new Single();
   const stemp: S = new Single();
   const su: S = new Single();
-
-  // Resolve function
-  const resolve = (): void => {
-    sd1 = _sd1.get();
-    sd2 = _sd2.get();
-    sx1 = _sx1.get();
-    sy1 = _sy1.get();
-    sparam = _sparam.getAll();
-  };
 
   // Process
   if (_sd1.lt(0)) {
