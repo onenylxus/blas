@@ -7,5 +7,15 @@ const random = (min: number = MIN_DP_INT, max: number = MAX_DP_INT, isInteger: b
   return isInteger ? Math.floor(value) : value;
 };
 
+// Random string function
+const randstr = (length: number): string => {
+  const pool ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += pool.charAt(random(0, pool.length, true));
+  }
+  return result;
+};
+
 // Export
-export default random;
+export { random, randstr };

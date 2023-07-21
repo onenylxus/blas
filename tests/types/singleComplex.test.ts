@@ -1,6 +1,6 @@
 // Import
 import { SingleComplex, C } from '../../src/types/singleComplex';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 import relerr from '../../utils/relerr';
 
 // Define test variables

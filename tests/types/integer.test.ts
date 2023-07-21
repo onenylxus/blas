@@ -1,6 +1,6 @@
 // Import
 import { Integer, I } from '../../src/types/integer';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 import relerr from '../../utils/relerr';
 
 // Define test variables

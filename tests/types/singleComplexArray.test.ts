@@ -1,6 +1,6 @@
 // Import
 import { SingleComplexArray, CA } from '../../src/types/singleComplexArray';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 import relerr from '../../utils/relerr';
 
 // Define test variables

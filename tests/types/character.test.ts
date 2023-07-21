@@ -1,6 +1,6 @@
 // Import
 import { Character, H } from '../../src/types/character';
-import randstr from '../../utils/randstr';
+import { randstr } from '../../utils/random';
 
 // Define test variables
 let value: string;

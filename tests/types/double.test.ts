@@ -1,6 +1,6 @@
 // Import
 import { Double, D } from '../../src/types/double';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 
 // Define test variables
 let value: number;
