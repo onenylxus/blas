@@ -150,7 +150,7 @@ import ztrsv from './routines/2z/ztrsv';
 interface Routine {
   level: 1 | 2 | 3;
   type: 's' | 'd' | 'c' | 'z';
-  function: (...args: FArguments) => FVoid;
+  function: (...args: FDataType[]) => FDataType | FVoid;
 };
 
 // Package interface
