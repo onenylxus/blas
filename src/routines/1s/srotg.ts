@@ -12,14 +12,14 @@ const srotg = (a: FReal, b: FReal, c: FReal | FEmpty, s: FReal | FEmpty): FVoid 
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
   // Copyright (c) 2023      Nicholas Ng. All rights reserved.
 
-  // Scalar arguments
+  // Arguments
   const _a: S = new Single(a);
   const _b: S = new Single(b);
   const _c: S = new Single(c);
   const _s: S = new Single(s);
 
   // Resolve function
-  const resolve = (): void => {
+  const resolve = (): FVoid => {
     a = _a.get();
     b = _b.get();
     c = _c.get();
@@ -66,6 +66,8 @@ const srotg = (a: FReal, b: FReal, c: FReal | FEmpty, s: FReal | FEmpty): FVoid 
     _a.set(r.get());
     _b.set(z.get());
   }
+
+  // Output
   return resolve();
 };
 
