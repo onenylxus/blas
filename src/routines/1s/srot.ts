@@ -13,7 +13,7 @@ const srot = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy:
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
   // Copyright (c) 2023      Nicholas Ng. All rights reserved.
 
-  // Scalar arguments
+  // Arguments
   const _n: I = new Integer(n);
   const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
   const _incx: I = new Integer(incx);
@@ -23,7 +23,7 @@ const srot = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy:
   const _s: S = new Single(s);
 
   // Resolve function
-  const resolve = (): void => {
+  const resolve = (): FVoid => {
     n = _n.get();
     sx = _sx.getAll();
     incx = _incx.get();

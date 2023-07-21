@@ -13,7 +13,7 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
   // Copyright (c) 2023      Nicholas Ng. All rights reserved.
 
-  // Scalar arguments
+  // Arguments
   const _sd1: S = new Single(sd1);
   const _sd2: S = new Single(sd2);
   const _sx1: S = new Single(sx1);
@@ -21,7 +21,7 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
   const _sparam: SA = new SingleArray(sparam, 5);
 
   // Resolve function
-  const resolve = (): void => {
+  const resolve = (): FVoid => {
     sd1 = _sd1.get();
     sd2 = _sd2.get();
     sx1 = _sx1.get();
@@ -168,7 +168,7 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
   _sparam.set(1, sflag.get());
 
   // Output
-  resolve();
+  return resolve();
 };
 
 // Export

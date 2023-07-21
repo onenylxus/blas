@@ -13,7 +13,7 @@ const sswap = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
   // Copyright (c) 2023      Nicholas Ng. All rights reserved.
 
-  // Scalar arguments
+  // Arguments
   const _n: I = new Integer();
   const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
   const _incx: I = new Integer(incx);
@@ -21,7 +21,7 @@ const sswap = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy
   const _incy: I = new Integer(incy);
 
   // Resolve function
-  const resolve = (): void => {
+  const resolve = (): FVoid => {
     n = _n.get();
     sx = _sx.getAll();
     incx = _incx.get();
@@ -84,7 +84,7 @@ const sswap = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy
   }
 
   // Output
-  resolve();
+  return resolve();
 };
 
 // Export
