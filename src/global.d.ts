@@ -14,5 +14,16 @@ type FInteger = number;
 type FReal = number;
 type FRealArray = FReal[];
 type FVoid = void;
-
 type FDataType = FCharacter | FComplex | FComplexArray | FDouble | FDoubleArray | FDoubleComplex | FDoubleComplexArray | FEmpty | FInteger | FReal | FRealArray;
+
+// Routine interface
+interface Routine {
+  level: 1 | 2 | 3;
+  type: 's' | 'd' | 'c' | 'z';
+  function: (...args: FDataType[]) => FDataType | FVoid;
+}
+
+// Package interface
+interface Package {
+  [prop: string]: Routine;
+}
