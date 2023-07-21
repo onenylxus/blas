@@ -1,6 +1,6 @@
 // Import
 import { DoubleArray, DA } from '../../src/types/doubleArray';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 
 // Define test variables
 let values: number[];

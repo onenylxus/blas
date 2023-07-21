@@ -1,6 +1,6 @@
 // Import
 import { SingleArray, SA } from '../../src/types/singleArray';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 import relerr from '../../utils/relerr';
 
 // Define test variables

@@ -1,7 +1,7 @@
 // Import
 import { Single, S } from '../../src/types/single';
 import { MAX_SP_INT, MIN_SP_INT } from '../../utils/limit';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 import relerr from '../../utils/relerr';
 
 // Define test variables

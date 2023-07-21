@@ -1,6 +1,6 @@
 // Import
 import { DoubleComplex, Z } from '../../src/types/doubleComplex';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 
 // Define test variables
 let value: Dual;

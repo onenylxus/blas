@@ -1,6 +1,6 @@
 // Import
 import { DoubleComplexArray, ZA } from '../../src/types/doubleComplexArray';
-import random from '../../utils/random';
+import { random } from '../../utils/random';
 
 // Define test variables
 let values: Dual[];
