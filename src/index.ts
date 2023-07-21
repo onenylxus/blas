@@ -146,18 +146,6 @@ import ztrmv from './routines/2z/ztrmv';
 import ztrsm from './routines/3z/ztrsm';
 import ztrsv from './routines/2z/ztrsv';
 
-// Routine interface
-interface Routine {
-  level: 1 | 2 | 3;
-  type: 's' | 'd' | 'c' | 'z';
-  function: (...args: FDataType[]) => FDataType | FVoid;
-};
-
-// Package interface
-interface Package {
-  [prop: string]: Routine;
-}
-
 // Basic Linear Algebra Subprograms
 const blas: Package = {
   // Level 1 - Single
