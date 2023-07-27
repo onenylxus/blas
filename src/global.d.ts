@@ -11,10 +11,11 @@ type FDoubleComplex = Dual;
 type FDoubleComplexArray = FDoubleComplex[];
 type FEmpty = undefined;
 type FInteger = number;
+type FLogical = boolean;
 type FReal = number;
 type FRealArray = FReal[];
 type FVoid = void;
-type FDataType = FCharacter | FComplex | FComplexArray | FDouble | FDoubleArray | FDoubleComplex | FDoubleComplexArray | FEmpty | FInteger | FReal | FRealArray;
+type FDataType = FCharacter | FComplex | FComplexArray | FDouble | FDoubleArray | FDoubleComplex | FDoubleComplexArray | FEmpty | FInteger | FLogical | FReal | FRealArray;
 
 // Routine interface
 interface Routine {
