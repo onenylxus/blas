@@ -3,6 +3,7 @@ import { Integer, I } from '../../types/integer';
 import { Logical, L } from '../../types/logical';
 import { Single, S } from '../../types/single';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
+import { MAXN, SBIG, SSML, TBIG, TSML } from '../../../utils/constants';
 
 // Math library snippets
 const { abs, sqrt } = Math;
@@ -30,13 +31,6 @@ const scnrm2 = (n: FInteger, x: FComplexArray, incx: FInteger): FReal => {
     return _ret.get();
   };
 
-  // Constants
-  const __maxn: FReal = 2 ** 128;
-  const __tsml: FReal = 2 ** -63;
-  const __tbig: FReal = 2 ** 52;
-  const __ssml: FReal = 2 ** 75;
-  const __sbig: FReal = 2 ** -76;
-
   // Local variables
   const i: I = new Integer();
   const ix: I = new Integer();
@@ -61,23 +55,23 @@ const scnrm2 = (n: FInteger, x: FComplexArray, incx: FInteger): FReal => {
   }
   for (i.set(1); i.le(_n.get()); i.add(1)) {
     ax.set(sqrt(_x.get(ix.get()).r ** 2 + _x.get(ix.get()).i ** 2));
-    if (ax.gt(__tbig)) {
-      abig.add((ax.get() * __sbig) ** 2);
+    if (ax.gt(TBIG)) {
+      abig.add((ax.get() * SBIG) ** 2);
       notbig.set(false);
-    } else if (ax.lt(__tsml)) {
+    } else if (ax.lt(TSML)) {
       if (notbig.get()) {
-        asml.add((ax.get() * __ssml) ** 2);
+        asml.add((ax.get() * SSML) ** 2);
       }
     } else {
       amed.add(ax.get() ** 2);
     }
     ax.set(abs(_x.get(ix.get()).i));
-    if (ax.gt(__tbig)) {
-      abig.add((ax.get() * __sbig) ** 2);
+    if (ax.gt(TBIG)) {
+      abig.add((ax.get() * SBIG) ** 2);
       notbig.set(false);
-    } else if (ax.lt(__tsml)) {
+    } else if (ax.lt(TSML)) {
       if (notbig.get()) {
-        asml.add((ax.get() * __ssml) ** 2);
+        asml.add((ax.get() * SSML) ** 2);
       }
     } else {
       amed.add(ax.get() ** 2);
@@ -85,15 +79,15 @@ const scnrm2 = (n: FInteger, x: FComplexArray, incx: FInteger): FReal => {
     ix.add(_incx.get());
   }
   if (abig.gt(0)) {
-    if (amed.gt(0) || amed.gt(__maxn) || amed.ne(amed.get())) {
-      abig.add(amed.get() * __sbig ** 2);
+    if (amed.gt(0) || amed.gt(MAXN) || amed.ne(amed.get())) {
+      abig.add(amed.get() * SBIG ** 2);
     }
-    scl.set(1 / __sbig);
+    scl.set(1 / SBIG);
     sumsq.set(abig.get());
   } else if (asml.gt(0)) {
-    if (amed.gt(0) || amed.gt(__maxn) || amed.ne(amed.get())) {
+    if (amed.gt(0) || amed.gt(MAXN) || amed.ne(amed.get())) {
       amed.set(sqrt(amed.get()));
-      asml.set(sqrt(asml.get()) / __ssml);
+      asml.set(sqrt(asml.get()) / SSML);
       if (asml.gt(amed.get())) {
         ymin.set(amed.get());
         ymax.set(asml.get());
@@ -104,7 +98,7 @@ const scnrm2 = (n: FInteger, x: FComplexArray, incx: FInteger): FReal => {
       scl.set(1);
       sumsq.set(ymax.get() ** 2 * (1 + (ymin.get() / ymax.get()) ** 2));
     } else {
-      scl.set(1 / __ssml);
+      scl.set(1 / SSML);
       sumsq.set(asml.get());
     }
   } else {
