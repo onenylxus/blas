@@ -1,6 +1,6 @@
 // Import
 import { Single, S } from '../../src/types/single';
-import { MAX_SP_INT, MIN_SP_INT } from '../../utils/limit';
+import { MAXSPINT, MINSPINT } from '../../utils/constants';
 import { random } from '../../utils/random';
 import relerr from '../../utils/relerr';
 
@@ -11,7 +11,7 @@ let instance: S;
 // Single type test
 describe('Single type', () => {
   beforeAll(() => {
-    value = random(MIN_SP_INT, MAX_SP_INT);
+    value = random(MINSPINT, MAXSPINT);
     instance = new Single();
   });
 

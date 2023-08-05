@@ -1,6 +1,6 @@
 // Import
 import { Single, S } from '../../types/single';
-import { MAX_SP_INT, MIN_SP_INT } from '../../../utils/limit';
+import { MAXSPINT, MINSPINT } from '../../../utils/constants';
 
 // Math library snippets
 const { abs, sign, sqrt, max, min } = Math;
@@ -47,7 +47,7 @@ const srotg = (a: FReal, b: FReal, c: FReal | FEmpty, s: FReal | FEmpty): FVoid 
     _a.set(_b.get());
     _b.set(1);
   } else {
-    scl.set(min(MAX_SP_INT, max(MIN_SP_INT, anorm.get(), bnorm.get())));
+    scl.set(min(MAXSPINT, max(MINSPINT, anorm.get(), bnorm.get())));
     if (anorm.gt(bnorm.get())) {
       sigma.set(sign(anorm.get()));
     } else {

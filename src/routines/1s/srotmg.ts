@@ -2,6 +2,7 @@
 import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
+import { GAM, GAMSQ, RGAMSQ } from '../../../utils/constants';
 
 // Math library snippets
 const { abs } = Math;
@@ -30,9 +31,6 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
   };
 
   // Local variables
-  const gam: S = new Single(4096);
-  const gamsq: S = new Single(4096 ** 2);
-  const rgamsq: S = new Single(1 / (4096 ** 2));
   const sflag: I = new Integer();
   const sh11: S = new Single();
   const sh12: S = new Single();
@@ -107,7 +105,7 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
       }
     }
     if (_sd1.ne(0)) {
-      while (_sd1.le(rgamsq.get()) || _sd1.ge(gamsq.get())) {
+      while (_sd1.le(RGAMSQ) || _sd1.ge(GAMSQ)) {
         if (sflag.eq(0)) {
           sh11.set(1);
           sh22.set(1);
@@ -117,21 +115,21 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
           sh12.set(1);
           sflag.set(-1);
         }
-        if (_sd1.le(rgamsq.get())) {
-          _sd1.mul(gam.get() ** 2);
-          _sx1.div(gam.get());
-          sh11.div(gam.get());
-          sh12.div(gam.get());
+        if (_sd1.le(RGAMSQ)) {
+          _sd1.mul(GAMSQ);
+          _sx1.div(GAM);
+          sh11.div(GAM);
+          sh12.div(GAM);
         } else {
-          _sd1.div(gam.get() ** 2);
-          _sx1.mul(gam.get());
-          sh11.mul(gam.get());
-          sh12.mul(gam.get());
+          _sd1.div(GAMSQ);
+          _sx1.mul(GAM);
+          sh11.mul(GAM);
+          sh12.mul(GAM);
         }
       }
     }
     if (_sd2.get() !== 0) {
-      while (abs(_sd2.get()) <= rgamsq.get() || abs(_sd2.get()) >= gamsq.get()) {
+      while (abs(_sd2.get()) <= RGAMSQ || abs(_sd2.get()) >= GAMSQ) {
         if (sflag.eq(0)) {
           sh11.set(1);
           sh22.set(1);
@@ -141,14 +139,14 @@ const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArr
           sh12.set(1);
           sflag.set(-1);
         }
-        if (abs(_sd2.get()) <= rgamsq.get()) {
-          _sd2.mul(gam.get() ** 2);
-          sh21.div(gam.get());
-          sh22.div(gam.get());
+        if (abs(_sd2.get()) <= RGAMSQ) {
+          _sd2.mul(GAMSQ);
+          sh21.div(GAM);
+          sh22.div(GAM);
         } else {
-          _sd2.div(gam.get() ** 2);
-          sh21.mul(gam.get());
-          sh22.mul(gam.get());
+          _sd2.div(GAMSQ);
+          sh21.mul(GAM);
+          sh22.mul(GAM);
         }
       }
     }
