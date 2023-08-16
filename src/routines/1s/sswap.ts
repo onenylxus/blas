@@ -14,7 +14,7 @@ const sswap = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy
   // Copyright (c) 2023      Nicholas Ng. All rights reserved.
 
   // Arguments
-  const _n: I = new Integer();
+  const _n: I = new Integer(n);
   const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
   const _incx: I = new Integer(incx);
   const _sy: SA = new SingleArray(sy, 1 + (n - 1) * abs(incy));
