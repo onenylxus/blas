@@ -8,7 +8,7 @@ type TSingleArray = InstanceType<typeof CSingleArray>;
 // Single array class
 class CSingleArray extends FortranArray<S> {
   // Constructor
-  public constructor(values: number[] = [], size: number = 0) {
+  public constructor(values: readonly number[] = [], size: number = 0) {
     super();
     this.store = values.map((v) => new Single(v));
     this.size = Math.max(size, 0);

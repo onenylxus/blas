@@ -7,7 +7,13 @@ import { Integer, I } from '../../types/integer';
 const { abs } = Math;
 
 // DSWAP routine
-const dswap = (n: FInteger, dx: FDoubleArray, incx: FInteger, dy: FDoubleArray, incy: FInteger): FVoid => {
+const dswap = (
+  n: FInInteger,
+  dx: FInOutDoubleArray,
+  incx: FInInteger,
+  dy: FInOutDoubleArray,
+  incy: FInInteger,
+): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

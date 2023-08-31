@@ -8,7 +8,14 @@ import { SingleArray, SA } from '../../types/singleArray';
 const { abs } = Math;
 
 // SDSDOT routine
-const sdsdot = (n: FInteger, sb: FReal, sx: FRealArray, incx: FInteger, sy: FRealArray, incy: FInteger): FReal => {
+const sdsdot = (
+  n: FInInteger,
+  sb: FInReal,
+  sx: FInRealArray,
+  incx: FInInteger,
+  sy: FInRealArray,
+  incy: FInInteger,
+): FReal => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

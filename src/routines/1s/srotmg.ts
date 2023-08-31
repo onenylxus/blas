@@ -8,7 +8,13 @@ import { GAM, GAMSQ, RGAMSQ } from '../../../utils/constants';
 const { abs } = Math;
 
 // SROTMG routine
-const srotmg = (sd1: FReal, sd2: FReal, sx1: FReal, sy1: FReal, sparam: FRealArray | FEmpty): FVoid => {
+const srotmg = (
+  sd1: FInOutReal,
+  sd2: FInOutReal,
+  sx1: FInOutReal,
+  sy1: FInReal,
+  sparam: FOutRealArray,
+): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

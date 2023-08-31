@@ -8,7 +8,7 @@ type TDoubleComplexArray = InstanceType<typeof CDoubleComplexArray>;
 // Double complex array class
 class CDoubleComplexArray extends FortranArray<Z> {
   // Constructor
-  public constructor(values: Dual[] = [], size: number = 0) {
+  public constructor(values: readonly Dual[] = [], size: number = 0) {
     super();
     this.store = values.map((v) => new DoubleComplex(v));
     this.size = Math.max(size, 0);

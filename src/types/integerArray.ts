@@ -8,7 +8,7 @@ type TIntegerArray = InstanceType<typeof CIntegerArray>;
 // Integer array class
 class CIntegerArray extends FortranArray<I> {
   // Constructor
-  public constructor(values: number[] = [], size: number = 0) {
+  public constructor(values: readonly number[] = [], size: number = 0) {
     super();
     this.store = values.map((v) => new Integer(v));
     this.size = Math.max(size, 0);

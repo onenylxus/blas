@@ -7,7 +7,14 @@ import { SingleArray, SA } from '../../types/singleArray';
 const { abs } = Math;
 
 // SAXPY routine
-const saxpy = (n: FInteger, sa: FReal, sx: FRealArray, incx: FInteger, sy: FRealArray, incy: FInteger): FVoid => {
+const saxpy = (
+  n: FInInteger,
+  sa: FInReal,
+  sx: FInRealArray,
+  incx: FInInteger,
+  sy: FInOutRealArray,
+  incy: FInInteger,
+): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
