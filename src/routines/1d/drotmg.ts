@@ -8,7 +8,13 @@ import { GAM, GAMSQ, RGAMSQ } from '../../../utils/constants';
 const { abs } = Math;
 
 // DROTMG routine
-const drotmg = (dd1: FDouble, dd2: FDouble, dx1: FDouble, dy1: FDouble, dparam: FDoubleArray | FEmpty): FVoid => {
+const drotmg = (
+  dd1: FInOutDouble,
+  dd2: FInOutDouble,
+  dx1: FInOutDouble,
+  dy1: FInDouble,
+  dparam: FOutDoubleArray,
+): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

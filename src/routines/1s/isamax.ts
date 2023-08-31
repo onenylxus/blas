@@ -7,7 +7,11 @@ import { SingleArray, SA } from '../../types/singleArray';
 const { abs } = Math;
 
 // ISAMAX routine
-const isamax = (n: FInteger, sx: FRealArray, incx: FInteger): FInteger => {
+const isamax = (
+  n: FInInteger,
+  sx: FInRealArray,
+  incx: FInInteger,
+): FInteger => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

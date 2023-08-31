@@ -8,7 +8,7 @@ type TDoubleArray = InstanceType<typeof CDoubleArray>;
 // Double array class
 class CDoubleArray extends FortranArray<D> {
   // Constructor
-  public constructor(values: number[] = [], size: number = 0) {
+  public constructor(values: readonly number[] = [], size: number = 0) {
     super();
     this.store = values.map((v) => new Double(v));
     this.size = Math.max(size, 0);

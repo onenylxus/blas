@@ -7,7 +7,14 @@ import { SingleArray, SA } from '../../types/singleArray';
 const { abs } = Math;
 
 // SROTM routine
-const srotm = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy: FInteger, sparam: FRealArray): FVoid => {
+const srotm = (
+  n: FInInteger,
+  sx: FInOutRealArray,
+  incx: FInInteger,
+  sy: FInOutRealArray,
+  incy: FInInteger,
+  sparam: FInRealArray,
+): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

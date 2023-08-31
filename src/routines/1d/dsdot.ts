@@ -7,7 +7,13 @@ import { SingleArray, SA } from '../../types/singleArray';
 const { abs } = Math;
 
 // DSDOT routine
-const dsdot = (n: FInteger, sx: FRealArray, incx: FInteger, sy: FRealArray, incy: FInteger): FDouble => {
+const dsdot = (
+  n: FInInteger,
+  sx: FInRealArray,
+  incx: FInInteger,
+  sy: FInRealArray,
+  incy: FInInteger,
+): FDouble => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

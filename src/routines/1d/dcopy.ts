@@ -6,7 +6,13 @@ import { Integer, I } from '../../types/integer';
 const { abs } = Math;
 
 // DCOPY routine
-const dcopy = (n: FInteger, dx: FDoubleArray, incx: FInteger, dy: FDoubleArray | FEmpty, incy: FInteger): FVoid => {
+const dcopy = (
+  n: FInInteger,
+  dx: FInDoubleArray,
+  incx: FInInteger,
+  dy: FOutDoubleArray,
+  incy: FInInteger,
+): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

@@ -9,7 +9,11 @@ import { MAXN, SBIG, SSML, TBIG, TSML } from '../../../utils/constants';
 const { abs, sqrt } = Math;
 
 // SNRM2 routine
-const snrm2 = (n: FInteger, x: FRealArray, incx: FInteger): FReal => {
+const snrm2 = (
+  n: FInInteger,
+  x: FInRealArray,
+  incx: FInInteger,
+): FReal => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

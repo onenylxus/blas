@@ -9,7 +9,11 @@ import { MAXN, SBIG, SSML, TBIG, TSML } from '../../../utils/constants';
 const { abs, sqrt } = Math;
 
 // DZNRM2 routine
-const dznrm2 = (n: FInteger, x: FDoubleComplexArray, incx: FInteger): FDouble => {
+const dznrm2 = (
+  n: FInInteger,
+  x: FInDoubleComplexArray,
+  incx: FInInteger,
+): FDouble => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

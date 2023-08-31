@@ -7,7 +7,14 @@ import { Integer, I } from '../../types/integer';
 const { abs } = Math;
 
 // DAXPY routine
-const daxpy = (n: FInteger, da: FDouble, dx: FDoubleArray, incx: FInteger, dy: FDoubleArray, incy: FInteger): FVoid => {
+const daxpy = (
+  n: FInInteger,
+  da: FInDouble,
+  dx: FInDoubleArray,
+  incx: FInInteger,
+  dy: FInOutDoubleArray,
+  incy: FInInteger,
+): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.

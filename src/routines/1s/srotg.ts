@@ -6,7 +6,12 @@ import { MAXSPINT, MINSPINT } from '../../../utils/constants';
 const { abs, sign, sqrt, max, min } = Math;
 
 // SROTG routine
-const srotg = (a: FReal, b: FReal, c: FReal | FEmpty, s: FReal | FEmpty): FVoid => {
+const srotg = (
+  a: FInOutReal,
+  b: FInOutReal,
+  c: FOutReal,
+  s: FOutReal,
+): FVoid => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
