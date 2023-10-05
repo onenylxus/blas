@@ -1,5 +1,5 @@
 // Import
-import { MAXDPINT, MINDPINT } from './constants';
+import { MAXDPINT, MINDPINT } from './mathlib';
 
 // Random integer function
 const random = (min: number = MINDPINT, max: number = MAXDPINT, isInteger: boolean = false): number => {

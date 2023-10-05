@@ -1,6 +1,6 @@
 // Import
 import { Single, S } from '../../types/single';
-import { MAXSPINT, MINSPINT } from '../../../utils/constants';
+import { MAXSPINT, MINSPINT } from '../../../utils/mathlib';
 
 // Math library snippets
 const { abs, sign, sqrt, max, min } = Math;

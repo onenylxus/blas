@@ -2,7 +2,7 @@
 import { Double, D } from '../../types/double';
 import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
-import { GAM, GAMSQ, RGAMSQ } from '../../../utils/constants';
+import { GAM, GAMSQ, RGAMSQ } from '../../../utils/mathlib';
 
 // Math library snippets
 const { abs } = Math;
