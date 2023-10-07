@@ -1,9 +1,6 @@
 // Import
 import { Single, S } from '../../types/single';
-import { MAXSPINT, MINSPINT } from '../../../utils/mathlib';
-
-// Math library snippets
-const { abs, sign, sqrt, max, min } = Math;
+import { MAXSPINT, MINSPINT, abs, max, min, sign, sqrt } from '../../../utils/mathlib';
 
 // SROTG routine
 const srotg = (

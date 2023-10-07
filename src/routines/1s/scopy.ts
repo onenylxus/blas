@@ -1,9 +1,7 @@
 // Import
 import { Integer, I } from '../../types/integer';
 import { SingleArray, SA } from '../../types/singleArray';
-
-// Math library snippets
-const { abs } = Math;
+import { abs } from '../../../utils/mathlib';
 
 // SCOPY routine
 const scopy = (
