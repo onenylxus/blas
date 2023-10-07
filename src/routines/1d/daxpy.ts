@@ -2,9 +2,7 @@
 import { Double, D } from '../../types/double';
 import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
-
-// Math library snippets
-const { abs } = Math;
+import { abs } from '../../../utils/mathlib';
 
 // DAXPY routine
 const daxpy = (

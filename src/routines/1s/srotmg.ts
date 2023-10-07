@@ -2,10 +2,7 @@
 import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
-import { GAM, GAMSQ, RGAMSQ } from '../../../utils/mathlib';
-
-// Math library snippets
-const { abs } = Math;
+import { GAM, GAMSQ, RGAMSQ, abs } from '../../../utils/mathlib';
 
 // SROTMG routine
 const srotmg = (
