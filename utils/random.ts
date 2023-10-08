@@ -1,8 +1,5 @@
-// Import
-import { MAXDPINT, MINDPINT } from './constants';
-
 // Random integer function
-const random = (min: number = MINDPINT, max: number = MAXDPINT, isInteger: boolean = false): number => {
+const random = (min: number = Number.MIN_SAFE_INTEGER, max: number = Number.MAX_SAFE_INTEGER, isInteger: boolean = false): number => {
   let value = min + Math.random() * (max - min);
   return isInteger ? Math.floor(value) : value;
 };

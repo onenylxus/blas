@@ -3,10 +3,8 @@ import { Integer, I } from '../../types/integer';
 import { Logical, L } from '../../types/logical';
 import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
-import { MAXN, SBIG, SSML, TBIG, TSML } from '../../../utils/constants';
-
-// Math library snippets
-const { abs, sqrt } = Math;
+import { MAXN, SBIG, SSML, TBIG, TSML } from '../../mathlib';
+import { abs, sqrt } from '../../mathlib';
 
 // SNRM2 routine
 const snrm2 = (
