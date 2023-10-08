@@ -2,7 +2,7 @@
 import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
-import { abs } from '../../../utils/mathlib';
+import { abs } from '../../mathlib';
 
 // SSWAP routine
 const sswap = (

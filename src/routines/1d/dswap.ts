@@ -2,7 +2,7 @@
 import { Double, D } from '../../types/double';
 import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
-import { abs } from '../../../utils/mathlib';
+import { abs } from '../../mathlib';
 
 // DSWAP routine
 const dswap = (

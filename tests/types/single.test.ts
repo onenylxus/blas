@@ -1,6 +1,6 @@
 // Import
 import { Single, S } from '../../src/types/single';
-import { MAXSPINT, MINSPINT } from '../../utils/mathlib';
+import { MAXSPINT, MINSPINT } from '../../src/mathlib';
 import { random } from '../../utils/random';
 import relerr from '../../utils/relerr';
 

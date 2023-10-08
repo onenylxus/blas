@@ -3,7 +3,7 @@ import { Double, D } from '../../types/double';
 import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
 import { Integer, I } from '../../types/integer';
 import { Logical, L } from '../../types/logical';
-import { MAXN, SBIG, SSML, TBIG, TSML, abs, sqrt } from '../../../utils/mathlib';
+import { MAXN, SBIG, SSML, TBIG, TSML, abs, sqrt } from '../../mathlib';
 
 // DZNRM2 routine
 const dznrm2 = (
