@@ -1,7 +1,7 @@
 // Import
 import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
-import { abs } from '../../../utils/mathlib';
+import { abs } from '../../mathlib';
 
 // DCOPY routine
 const dcopy = (

@@ -3,7 +3,7 @@ import { Double, D } from '../../types/double';
 import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
-import { abs } from '../../../utils/mathlib';
+import { abs } from '../../mathlib';
 
 // SDSDOT routine
 const sdsdot = (

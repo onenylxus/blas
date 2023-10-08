@@ -1,6 +1,6 @@
 // Import
 import { Double, D } from '../../types/double';
-import { MAXDPINT, MINDPINT, abs, max, min, sign, sqrt } from '../../../utils/mathlib';
+import { MAXDPINT, MINDPINT, abs, max, min, sign, sqrt } from '../../mathlib';
 
 // DROTG routine
 const drotg = (

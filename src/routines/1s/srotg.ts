@@ -1,6 +1,6 @@
 // Import
 import { Single, S } from '../../types/single';
-import { MAXSPINT, MINSPINT, abs, max, min, sign, sqrt } from '../../../utils/mathlib';
+import { MAXSPINT, MINSPINT, abs, max, min, sign, sqrt } from '../../mathlib';
 
 // SROTG routine
 const srotg = (

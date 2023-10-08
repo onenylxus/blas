@@ -3,7 +3,7 @@ import { Integer, I } from '../../types/integer';
 import { Logical, L } from '../../types/logical';
 import { Single, S } from '../../types/single';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
-import { MAXN, SBIG, SSML, TBIG, TSML, abs, sqrt } from '../../../utils/mathlib';
+import { MAXN, SBIG, SSML, TBIG, TSML, abs, sqrt } from '../../mathlib';
 
 // SCNRM2 routine
 const scnrm2 = (
