@@ -4,14 +4,27 @@ import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
 import { GAM, GAMSQ, RGAMSQ, abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  sd1: FReal;
+  sd2: FReal;
+  sx1: FReal;
+  sy1: FReal;
+  sparam: FRealArray | FEmpty;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  sd1: FReal;
+  sd2: FReal;
+  sx1: FReal;
+  sy1: FReal | FEmpty;
+  sparam: FRealArray;
+}
+
 // SROTMG routine
-const srotmg = (
-  sd1: FInOutReal,
-  sd2: FInOutReal,
-  sx1: FInOutReal,
-  sy1: FInReal,
-  sparam: FOutRealArray,
-): FVoid => {
+const srotmg = ({ sd1, sd2, sx1, sy1, sparam }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -25,13 +38,14 @@ const srotmg = (
   const _sparam: SA = new SingleArray(sparam, 5);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    sd1 = _sd1.get();
-    sd2 = _sd2.get();
-    sx1 = _sx1.get();
-    sy1 = _sy1.get();
-    sparam = _sparam.getAll();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    sd1: _sd1.get(),
+    sd2: _sd2.get(),
+    sx1: _sx1.get(),
+    sy1: _sy1.get(),
+    sparam: _sparam.getAll(),
+  });
 
   // Local variables
   const sflag: I = new Integer();

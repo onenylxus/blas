@@ -2,13 +2,25 @@
 import { Double, D } from '../../types/double';
 import { MAXDPINT, MINDPINT, abs, max, min, sign, sqrt } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  a: FDouble;
+  b: FDouble;
+  c: FDouble | FEmpty;
+  s: FDouble | FEmpty;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  a: FDouble;
+  b: FDouble;
+  c: FDouble;
+  s: FDouble;
+}
+
 // DROTG routine
-const drotg = (
-  a: FInOutDouble,
-  b: FInOutDouble,
-  c: FOutDouble,
-  s: FOutDouble,
-): FVoid => {
+const drotg = ({ a, b, c, s }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -21,12 +33,13 @@ const drotg = (
   const _s: D = new Double(s);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    a = _a.get();
-    b = _b.get();
-    c = _c.get();
-    s = _s.get();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    a: _a.get(),
+    b: _b.get(),
+    c: _c.get(),
+    s: _s.get(),
+  });
 
   // Local scalars
   const anorm: D = new Double();

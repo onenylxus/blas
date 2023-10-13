@@ -4,12 +4,23 @@ import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
 import { abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  dx: FDoubleArray;
+  incx: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FInteger;
+  n: FInteger | FEmpty;
+  dx: FDoubleArray | FEmpty;
+  incx: FInteger | FEmpty;
+}
+
 // IDAMAX routine
-const idamax = (
-  n: FInInteger,
-  dx: FInDoubleArray,
-  incx: FInInteger,
-): FInteger => {
+const idamax = ({ n, dx, incx }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -24,12 +35,12 @@ const idamax = (
   const _ret: I = new Integer();
 
   // Resolve function
-  const resolve = (): FInteger => {
-    n = _n.get();
-    dx = _dx.getAll();
-    incx = _incx.get();
-    return _ret.get();
-  };
+  const resolve = (): Output => ({
+    _ret: _ret.get(),
+    n: _n.get(),
+    dx: _dx.getAll(),
+    incx: _incx.get(),
+  });
 
   // Local variables
   const dmax: D = new Double();

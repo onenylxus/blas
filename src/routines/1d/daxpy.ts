@@ -4,15 +4,29 @@ import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
 import { abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  da: FDouble;
+  dx: FDoubleArray;
+  incx: FInteger;
+  dy: FDoubleArray;
+  incy: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  n: FInteger | FEmpty;
+  da: FDouble | FEmpty;
+  dx: FDoubleArray | FEmpty;
+  incx: FInteger | FEmpty;
+  dy: FDoubleArray;
+  incy: FInteger | FEmpty;
+}
+
 // DAXPY routine
-const daxpy = (
-  n: FInInteger,
-  da: FInDouble,
-  dx: FInDoubleArray,
-  incx: FInInteger,
-  dy: FInOutDoubleArray,
-  incy: FInInteger,
-): FVoid => {
+const daxpy = ({ n, da, dx, incx, dy, incy }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -27,14 +41,15 @@ const daxpy = (
   const _incy: I = new Integer(incy);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    n = _n.get();
-    da = _da.get();
-    dx = _dx.getAll();
-    incx = _incx.get();
-    dy = _dy.getAll();
-    incy = _incy.get();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    n: _n.get(),
+    da: _da.get(),
+    dx: _dx.getAll(),
+    incx: _incx.get(),
+    dy: _dy.getAll(),
+    incy: _incy.get(),
+  });
 
   // Local variables
   const i: I = new Integer();
