@@ -4,12 +4,23 @@ import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
 import { abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  sx: FRealArray;
+  incx: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FInteger;
+  n: FInteger | FEmpty;
+  sx: FRealArray | FEmpty;
+  incx: FInteger | FEmpty;
+}
+
 // ISAMAX routine
-const isamax = (
-  n: FInInteger,
-  sx: FInRealArray,
-  incx: FInInteger,
-): FInteger => {
+const isamax = ({ n, sx, incx }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -24,12 +35,12 @@ const isamax = (
   const _ret: I = new Integer();
 
   // Resolve function
-  const resolve = (): FInteger => {
-    n = _n.get();
-    sx = _sx.getAll();
-    incx = _incx.get();
-    return _ret.get();
-  };
+  const resolve = (): Output => ({
+    _ret: _ret.get(),
+    n: _n.get(),
+    sx: _sx.getAll(),
+    incx: _incx.get(),
+  });
 
   // Local variables
   const smax: S = new Single();

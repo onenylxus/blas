@@ -4,13 +4,25 @@ import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
 import { abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  da: FDouble;
+  dx: FDoubleArray;
+  incx: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  n: FInteger | FEmpty;
+  da: FDouble | FEmpty;
+  dx: FDoubleArray;
+  incx: FInteger | FEmpty;
+}
+
 // DSCAL routine
-const dscal = (
-  n: FInInteger,
-  da: FInDouble,
-  dx: FInOutDoubleArray,
-  incx: FInInteger,
-): FVoid => {
+const dscal = ({ n, da, dx, incx }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -23,12 +35,13 @@ const dscal = (
   const _incx: I = new Integer(incx);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    n = _n.get();
-    da = _da.get();
-    dx = _dx.getAll();
-    incx = _incx.get();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    n: _n.get(),
+    da: _da.get(),
+    dx: _dx.getAll(),
+    incx: _incx.get(),
+  });
 
   // Local variables
   const i: I = new Integer();

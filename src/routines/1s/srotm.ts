@@ -4,15 +4,29 @@ import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
 import { abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  sx: FRealArray;
+  incx: FInteger;
+  sy: FRealArray;
+  incy: FInteger;
+  sparam: FRealArray;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  n: FInteger | FEmpty;
+  sx: FRealArray;
+  incx: FInteger | FEmpty;
+  sy: FRealArray;
+  incy: FInteger | FEmpty;
+  sparam: FRealArray | FEmpty;
+}
+
 // SROTM routine
-const srotm = (
-  n: FInInteger,
-  sx: FInOutRealArray,
-  incx: FInInteger,
-  sy: FInOutRealArray,
-  incy: FInInteger,
-  sparam: FInRealArray,
-): FVoid => {
+const srotm = ({ n, sx, incx, sy, incy, sparam }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -27,14 +41,15 @@ const srotm = (
   const _sparam: SA = new SingleArray(sparam, 5);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    n = _n.get();
-    sx = _sx.getAll();
-    incx = _incx.get();
-    sy = _sy.getAll();
-    incy = _incy.get();
-    sparam = _sparam.getAll();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    n: _n.get(),
+    sx: _sx.getAll(),
+    incx: _incx.get(),
+    sy: _sy.getAll(),
+    incy: _incy.get(),
+    sparam: _sparam.getAll(),
+  });
 
   // Local variables
   const sflag: I = new Integer();

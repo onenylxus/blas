@@ -4,14 +4,27 @@ import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
 import { GAM, GAMSQ, RGAMSQ, abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  dd1: FDouble;
+  dd2: FDouble;
+  dx1: FDouble;
+  dy1: FDouble;
+  dparam: FDoubleArray | FEmpty;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  dd1: FDouble;
+  dd2: FDouble;
+  dx1: FDouble;
+  dy1: FDouble | FEmpty;
+  dparam: FDoubleArray;
+}
+
 // DROTMG routine
-const drotmg = (
-  dd1: FInOutDouble,
-  dd2: FInOutDouble,
-  dx1: FInOutDouble,
-  dy1: FInDouble,
-  dparam: FOutDoubleArray,
-): FVoid => {
+const drotmg = ({ dd1, dd2, dx1, dy1, dparam }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -25,13 +38,14 @@ const drotmg = (
   const _dparam: DA = new DoubleArray(dparam, 5);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    dd1 = _dd1.get();
-    dd2 = _dd2.get();
-    dx1 = _dx1.get();
-    dy1 = _dy1.get();
-    dparam = _dparam.getAll();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    dd1: _dd1.get(),
+    dd2: _dd2.get(),
+    dx1: _dx1.get(),
+    dy1: _dy1.get(),
+    dparam: _dparam.getAll(),
+  });
 
   // Local variables
   const dflag: I = new Integer();
