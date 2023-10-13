@@ -6,12 +6,23 @@ import { SingleArray, SA } from '../../types/singleArray';
 import { MAXN, SBIG, SSML, TBIG, TSML } from '../../mathlib';
 import { abs, sqrt } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  x: FRealArray;
+  incx: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FReal;
+  n: FInteger | FEmpty;
+  x: FRealArray | FEmpty;
+  incx: FInteger | FEmpty;
+}
+
 // SNRM2 routine
-const snrm2 = (
-  n: FInInteger,
-  x: FInRealArray,
-  incx: FInInteger,
-): FReal => {
+const snrm2 = ({ n, x, incx }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -26,12 +37,12 @@ const snrm2 = (
   const _ret: S = new Single();
 
   // Resolve function
-  const resolve = (): FReal => {
-    n = _n.get();
-    x = _x.getAll();
-    incx = _incx.get();
-    return _ret.get();
-  };
+  const resolve = (): Output => ({
+    _ret: _ret.get(),
+    n: _n.get(),
+    x: _x.getAll(),
+    incx: _incx.get(),
+  });
 
   // Local variables
   const i: I = new Integer();

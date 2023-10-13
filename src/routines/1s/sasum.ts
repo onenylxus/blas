@@ -4,12 +4,23 @@ import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
 import { abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  sx: FRealArray;
+  incx: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FReal;
+  n: FInteger | FEmpty;
+  sx: FRealArray | FEmpty;
+  incx: FInteger | FEmpty;
+}
+
 // SASUM routine
-const sasum = (
-  n: FInInteger,
-  sx: FInRealArray,
-  incx: FInInteger,
-): FReal => {
+const sasum = ({ n, sx, incx}: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -24,12 +35,12 @@ const sasum = (
   const _ret: S = new Single();
 
   // Resolve function
-  const resolve = (): FReal => {
-    n = _n.get();
-    sx = _sx.getAll();
-    incx = _incx.get();
-    return _ret.get();
-  };
+  const resolve = (): Output => ({
+    _ret: _ret.get(),
+    n: _n.get(),
+    sx: _sx.getAll(),
+    incx: _incx.get(),
+  });
 
   // Local variables
   const stemp: S = new Single();

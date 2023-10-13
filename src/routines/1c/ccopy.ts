@@ -3,14 +3,27 @@ import { Integer, I } from '../../types/integer';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
 import { abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  cx: FComplexArray;
+  incx: FInteger
+  cy: FComplexArray | FEmpty;
+  incy: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  n: FInteger | FEmpty;
+  cx: FComplexArray | FEmpty;
+  incx: FInteger | FEmpty;
+  cy: FComplexArray;
+  incy: FInteger | FEmpty;
+}
+
 // CCOPY routine
-const ccopy = (
-  n: FInInteger,
-  cx: FInComplexArray,
-  incx: FInInteger,
-  cy: FOutComplexArray,
-  incy: FInInteger,
-): FVoid => {
+const ccopy = ({ n, cx, incx, cy, incy }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -24,13 +37,14 @@ const ccopy = (
   const _incy: I = new Integer(incy);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    n = _n.get();
-    cx = _cx.getAll();
-    incx = _incx.get();
-    cy = _cy.getAll();
-    incy = _incy.get();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    n: _n.get(),
+    cx: _cx.getAll(),
+    incx: _incx.get(),
+    cy: _cy.getAll(),
+    incy: _incy.get(),
+  });
 
   // Local variables
   const i: I = new Integer();

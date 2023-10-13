@@ -4,13 +4,25 @@ import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
 import { abs } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  sa: FReal;
+  sx: FRealArray;
+  incx: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  n: FInteger | FEmpty;
+  sa: FReal | FEmpty;
+  sx: FRealArray;
+  incx: FInteger | FEmpty;
+}
+
 // SSCAL routine
-const sscal = (
-  n: FInInteger,
-  sa: FInReal,
-  sx: FInOutRealArray,
-  incx: FInInteger,
-): FVoid => {
+const sscal = ({ n, sa, sx, incx }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -23,12 +35,13 @@ const sscal = (
   const _incx: I = new Integer(incx);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    n = _n.get();
-    sa = _sa.get();
-    sx = _sx.getAll();
-    incx = _incx.get();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    n: _n.get(),
+    sa: _sa.get(),
+    sx: _sx.getAll(),
+    incx: _incx.get(),
+  });
 
   // Local variables
   const i: I = new Integer();

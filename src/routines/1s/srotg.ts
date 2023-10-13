@@ -2,13 +2,25 @@
 import { Single, S } from '../../types/single';
 import { MAXSPINT, MINSPINT, abs, max, min, sign, sqrt } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  a: FReal;
+  b: FReal;
+  c: FReal | FEmpty;
+  s: FReal | FEmpty;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FEmpty;
+  a: FReal;
+  b: FReal;
+  c: FReal;
+  s: FReal;
+}
+
 // SROTG routine
-const srotg = (
-  a: FInOutReal,
-  b: FInOutReal,
-  c: FOutReal,
-  s: FOutReal,
-): FVoid => {
+const srotg = ({ a, b, c, s }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -21,12 +33,13 @@ const srotg = (
   const _s: S = new Single(s);
 
   // Resolve function
-  const resolve = (): FVoid => {
-    a = _a.get();
-    b = _b.get();
-    c = _c.get();
-    s = _s.get();
-  };
+  const resolve = (): Output => ({
+    _ret: undefined,
+    a: _a.get(),
+    b: _b.get(),
+    c: _c.get(),
+    s: _s.get(),
+  });
 
   // Local scalars
   const anorm: S = new Single();

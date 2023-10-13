@@ -40,7 +40,7 @@ class CSingleComplexArray extends FortranArray<C> {
 
   // Get all values from store
   public getAll(): Dual[] {
-    return (new Array(this.store!.length)).map((v, i) => this.store![i].get());
+    return (new Array(this.store!.length)).fill(0).map((v, i) => this.store![i].get());
   }
 }
 

@@ -5,12 +5,23 @@ import { Integer, I } from '../../types/integer';
 import { Logical, L } from '../../types/logical';
 import { MAXN, SBIG, SSML, TBIG, TSML, abs, sqrt } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  x: FDoubleArray;
+  incx: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FDouble;
+  n: FInteger | FEmpty;
+  x: FDoubleArray | FEmpty;
+  incx: FInteger | FEmpty;
+}
+
 // DNRM2 routine
-const dnrm2 = (
-  n: FInInteger,
-  x: FInDoubleArray,
-  incx: FInInteger,
-): FDouble => {
+const dnrm2 = ({ n, x, incx }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -25,12 +36,12 @@ const dnrm2 = (
   const _ret: D = new Double();
 
   // Resolve function
-  const resolve = (): FDouble => {
-    n = _n.get();
-    x = _x.getAll();
-    incx = _incx.get();
-    return _ret.get();
-  };
+  const resolve = (): Output => ({
+    _ret: _ret.get(),
+    n: _n.get(),
+    x: _x.getAll(),
+    incx: _incx.get(),
+  });
 
   // Local variables
   const i: I = new Integer();

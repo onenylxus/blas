@@ -5,12 +5,23 @@ import { Single, S } from '../../types/single';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
 import { MAXN, SBIG, SSML, TBIG, TSML, abs, sqrt } from '../../mathlib';
 
+// Input interface
+interface Input extends FParameters {
+  n: FInteger;
+  x: FComplexArray;
+  incx: FInteger;
+}
+
+// Output interface
+interface Output extends FParameters {
+  _ret: FReal;
+  n: FInteger | FEmpty;
+  x: FComplexArray | FEmpty;
+  incx: FInteger | FEmpty;
+}
+
 // SCNRM2 routine
-const scnrm2 = (
-  n: FInInteger,
-  x: FInComplexArray,
-  incx: FInInteger,
-): FReal => {
+const scnrm2 = ({ n, x, incx }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -25,12 +36,12 @@ const scnrm2 = (
   const _ret: S = new Single();
 
   // Resolve function
-  const resolve = (): FReal => {
-    n = _n.get();
-    x = _x.getAll();
-    incx = _incx.get();
-    return _ret.get();
-  };
+  const resolve = (): Output => ({
+    _ret: _ret.get(),
+    n: _n.get(),
+    x: _x.getAll(),
+    incx: _incx.get(),
+  });
 
   // Local variables
   const i: I = new Integer();
