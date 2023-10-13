@@ -1,6 +1,6 @@
 // Import
 import blas from '../src/index';
-import routines from './routines.json';
+import list from './list.json';
 
 // Define test variables
 let level: 1 | 2 | 3;
@@ -25,7 +25,7 @@ describe('Module test', () => {
       level = 1;
       type = 's';
     });
-    testRoutines(routines['1s']);
+    testRoutines(list['1s']);
   });
 
   describe('Level 1 - Double', () => {
@@ -33,7 +33,7 @@ describe('Module test', () => {
       level = 1;
       type = 'd';
     });
-    testRoutines(routines['1d']);
+    testRoutines(list['1d']);
   });
 
   describe('Level 1 - Complex', () => {
@@ -41,7 +41,7 @@ describe('Module test', () => {
       level = 1;
       type = 'c';
     });
-    testRoutines(routines['1c']);
+    testRoutines(list['1c']);
   });
 
   describe('Level 1 - Double Complex', () => {
@@ -49,7 +49,7 @@ describe('Module test', () => {
       level = 1;
       type = 'z';
     });
-    testRoutines(routines['1z']);
+    testRoutines(list['1z']);
   });
 
   describe('Level 2 - Single', () => {
@@ -57,7 +57,7 @@ describe('Module test', () => {
       level = 2;
       type = 's';
     });
-    testRoutines(routines['2s']);
+    testRoutines(list['2s']);
   });
 
   describe('Level 2 - Double', () => {
@@ -65,7 +65,7 @@ describe('Module test', () => {
       level = 2;
       type = 'd';
     });
-    testRoutines(routines['2d']);
+    testRoutines(list['2d']);
   });
 
   describe('Level 2 - Complex', () => {
@@ -73,7 +73,7 @@ describe('Module test', () => {
       level = 2;
       type = 'c';
     });
-    testRoutines(routines['2c']);
+    testRoutines(list['2c']);
   });
 
   describe('Level 2 - Double Complex', () => {
@@ -81,7 +81,7 @@ describe('Module test', () => {
       level = 2;
       type = 'z';
     });
-    testRoutines(routines['2z']);
+    testRoutines(list['2z']);
   });
 
   describe('Level 3 - Single', () => {
@@ -89,7 +89,7 @@ describe('Module test', () => {
       level = 3;
       type = 's';
     });
-    testRoutines(routines['3s']);
+    testRoutines(list['3s']);
   });
 
   describe('Level 3 - Double', () => {
@@ -97,7 +97,7 @@ describe('Module test', () => {
       level = 3;
       type = 'd';
     });
-    testRoutines(routines['3d']);
+    testRoutines(list['3d']);
   });
 
   describe('Level 3 - Complex', () => {
@@ -105,7 +105,7 @@ describe('Module test', () => {
       level = 3;
       type = 'c';
     });
-    testRoutines(routines['3c']);
+    testRoutines(list['3c']);
   });
 
   describe('Level 3 - Double Complex', () => {
@@ -113,6 +113,6 @@ describe('Module test', () => {
       level = 3;
       type = 'z';
     });
-    testRoutines(routines['3z']);
+    testRoutines(list['3z']);
   });
 });
