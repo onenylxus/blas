@@ -40,7 +40,7 @@ class CDoubleArray extends FortranArray<D> {
 
   // Get all values from store
   public getAll(): number[] {
-    return (new Array(this.store!.length)).map((v, i) => this.store![i].get());
+    return (new Array(this.store!.length)).fill(0).map((v, i) => this.store![i].get());
   }
 }
 
