@@ -31,9 +31,9 @@ const dcopy = ({ n, dx, incx, dy, incy }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _dx: DA = new DoubleArray(dx, 1 + (n - 1) * abs(incx));
+  const _dx: DA = new DoubleArray(dx);
   const _incx: I = new Integer(incx);
-  const _dy: DA = new DoubleArray(dy, 1 + (n - 1) * abs(incy));
+  const _dy: DA = new DoubleArray(dy);
   const _incy: I = new Integer(incy);
 
   // Resolve function
@@ -66,16 +66,16 @@ const dcopy = ({ n, dx, incx, dy, incy }: Input): Output => {
       if (_n.lt(7)) {
         return resolve();
       }
-      mp1.set(m.get() + 1);
-      for (i.set(mp1.get()); i.le(_n.get()); i.add(7)) {
-        _dy.set(i.get(), _dx.get(i.get()));
-        _dy.set(i.get() + 1, _dx.get(i.get() + 1));
-        _dy.set(i.get() + 2, _dx.get(i.get() + 2));
-        _dy.set(i.get() + 3, _dx.get(i.get() + 3));
-        _dy.set(i.get() + 4, _dx.get(i.get() + 4));
-        _dy.set(i.get() + 5, _dx.get(i.get() + 5));
-        _dy.set(i.get() + 6, _dx.get(i.get() + 6));
-      }
+    }
+    mp1.set(m.get() + 1);
+    for (i.set(mp1.get()); i.le(_n.get()); i.add(7)) {
+      _dy.set(i.get(), _dx.get(i.get()));
+      _dy.set(i.get() + 1, _dx.get(i.get() + 1));
+      _dy.set(i.get() + 2, _dx.get(i.get() + 2));
+      _dy.set(i.get() + 3, _dx.get(i.get() + 3));
+      _dy.set(i.get() + 4, _dx.get(i.get() + 4));
+      _dy.set(i.get() + 5, _dx.get(i.get() + 5));
+      _dy.set(i.get() + 6, _dx.get(i.get() + 6));
     }
   } else {
     ix.set(1);
@@ -87,7 +87,7 @@ const dcopy = ({ n, dx, incx, dy, incy }: Input): Output => {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _dy.set(i.get(), _dx.get(i.get()));
+      _dy.set(iy.get(), _dx.get(ix.get()));
       ix.add(_incx.get());
       iy.add(_incy.get());
     }
