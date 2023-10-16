@@ -2,6 +2,7 @@
 import { Integer, I } from '../../types/integer';
 import { SingleArray, SA } from '../../types/singleArray';
 import { abs } from '../../mathlib';
+import { symlinkSync } from 'fs';
 
 // Input interface
 interface Input extends FParameters {
@@ -31,9 +32,9 @@ const scopy = ({ n, sx, incx, sy, incy }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
+  const _sx: SA = new SingleArray(sx);
   const _incx: I = new Integer(incx);
-  const _sy: SA = new SingleArray(sy, 1 + (n - 1) * abs(incy));
+  const _sy: SA = new SingleArray(sy);
   const _incy: I = new Integer(incy);
 
   // Resolve function
@@ -66,16 +67,16 @@ const scopy = ({ n, sx, incx, sy, incy }: Input): Output => {
       if (_n.lt(7)) {
         return resolve();
       }
-      mp1.set(m.get() + 1);
-      for (i.set(mp1.get()); i.le(_n.get()); i.add(7)) {
-        _sy.set(i.get(), _sx.get(i.get()));
-        _sy.set(i.get() + 1, _sx.get(i.get() + 1));
-        _sy.set(i.get() + 2, _sx.get(i.get() + 2));
-        _sy.set(i.get() + 3, _sx.get(i.get() + 3));
-        _sy.set(i.get() + 4, _sx.get(i.get() + 4));
-        _sy.set(i.get() + 5, _sx.get(i.get() + 5));
-        _sy.set(i.get() + 6, _sx.get(i.get() + 6));
-      }
+    }
+    mp1.set(m.get() + 1);
+    for (i.set(mp1.get()); i.le(_n.get()); i.add(7)) {
+      _sy.set(i.get(), _sx.get(i.get()));
+      _sy.set(i.get() + 1, _sx.get(i.get() + 1));
+      _sy.set(i.get() + 2, _sx.get(i.get() + 2));
+      _sy.set(i.get() + 3, _sx.get(i.get() + 3));
+      _sy.set(i.get() + 4, _sx.get(i.get() + 4));
+      _sy.set(i.get() + 5, _sx.get(i.get() + 5));
+      _sy.set(i.get() + 6, _sx.get(i.get() + 6));
     }
   } else {
     ix.set(1);
@@ -87,7 +88,7 @@ const scopy = ({ n, sx, incx, sy, incy }: Input): Output => {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _sy.set(i.get(), _sx.get(i.get()));
+      _sy.set(iy.get(), _sx.get(ix.get()));
       ix.add(_incx.get());
       iy.add(_incy.get());
     }
