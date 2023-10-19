@@ -1,7 +1,6 @@
 // Import
 import { Integer, I } from '../../types/integer';
 import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
-import { abs } from '../../mathlib';
 
 // Input interface
 interface Input extends FParameters {
@@ -31,9 +30,9 @@ const zcopy = ({ n, cx, incx, cy, incy }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _cx: ZA = new DoubleComplexArray(cx, 1 + (n - 1) * abs(incx));
+  const _cx: ZA = new DoubleComplexArray(cx);
   const _incx: I = new Integer(incx);
-  const _cy: ZA = new DoubleComplexArray(cy, 1 + (n - 1) * abs(incy));
+  const _cy: ZA = new DoubleComplexArray(cy);
   const _incy: I = new Integer(incy);
 
   // Resolve function

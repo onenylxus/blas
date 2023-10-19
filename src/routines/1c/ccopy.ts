@@ -1,7 +1,6 @@
 // Import
 import { Integer, I } from '../../types/integer';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
-import { abs } from '../../mathlib';
 
 // Input interface
 interface Input extends FParameters {
@@ -31,9 +30,9 @@ const ccopy = ({ n, cx, incx, cy, incy }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _cx: CA = new SingleComplexArray(cx, 1 + (n - 1) * abs(incx));
+  const _cx: CA = new SingleComplexArray(cx);
   const _incx: I = new Integer(incx);
-  const _cy: CA = new SingleComplexArray(cy, 1 + (n - 1) * abs(incy));
+  const _cy: CA = new SingleComplexArray(cy);
   const _incy: I = new Integer(incy);
 
   // Resolve function

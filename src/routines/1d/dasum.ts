@@ -28,7 +28,7 @@ const dasum = ({ n, dx, incx }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _dx: DA = new DoubleArray(dx, 1 + (n - 1) * abs(incx));
+  const _dx: DA = new DoubleArray(dx);
   const _incx: I = new Integer(incx);
 
   // Return value

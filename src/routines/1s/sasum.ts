@@ -20,7 +20,7 @@ interface Output extends FParameters {
 }
 
 // SASUM routine
-const sasum = ({ n, sx, incx}: Input): Output => {
+const sasum = ({ n, sx, incx }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -28,7 +28,7 @@ const sasum = ({ n, sx, incx}: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
+  const _sx: SA = new SingleArray(sx);
   const _incx: I = new Integer(incx);
 
   // Return value
