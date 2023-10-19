@@ -22,7 +22,7 @@
   - [❌] DROTMG - setup modified Givens rotation
   - [❌] DROT - apply Givens rotation
   - [❌] DROTM - apply modified Givens rotation
-  - [❌] DSWAP - swap x and y
+  - [✔️] DSWAP - swap x and y
   - [❌] DSCAL - x = a\*x
   - [✔️] DCOPY - copy x into y
   - [❌] DAXPY - y = a\*x + y

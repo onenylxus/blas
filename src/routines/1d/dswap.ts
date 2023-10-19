@@ -92,9 +92,9 @@ const dswap = ({ n, dx, incx, dy, incy }: Input): Output => {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      dtemp.set(_dx.get(i.get()));
-      _dx.set(i.get(), _dy.get(i.get()));
-      _dy.set(i.get(), dtemp.get());
+      dtemp.set(_dx.get(ix.get()));
+      _dx.set(ix.get(), _dy.get(iy.get()));
+      _dy.set(iy.get(), dtemp.get());
       ix.add(_incx.get());
       iy.add(_incy.get());
     }
