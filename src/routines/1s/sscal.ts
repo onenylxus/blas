@@ -2,7 +2,6 @@
 import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
-import { abs } from '../../mathlib';
 
 // Input interface
 interface Input extends FParameters {
@@ -31,7 +30,7 @@ const sscal = ({ n, sa, sx, incx }: Input): Output => {
   // Arguments
   const _n: I = new Integer(n);
   const _sa: S = new Single(sa);
-  const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
+  const _sx: SA = new SingleArray(sx);
   const _incx: I = new Integer(incx);
 
   // Resolve function

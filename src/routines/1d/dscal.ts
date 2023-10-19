@@ -2,7 +2,6 @@
 import { Double, D } from '../../types/double';
 import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
-import { abs } from '../../mathlib';
 
 // Input interface
 interface Input extends FParameters {
@@ -31,7 +30,7 @@ const dscal = ({ n, da, dx, incx }: Input): Output => {
   // Arguments
   const _n: I = new Integer(n);
   const _da: D = new Double(da);
-  const _dx: DA = new DoubleArray(dx, 1 + (n - 1) * abs(incx));
+  const _dx: DA = new DoubleArray(dx);
   const _incx: I = new Integer(incx);
 
   // Resolve function

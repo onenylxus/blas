@@ -2,7 +2,6 @@
 import { Double, D } from '../../types/double';
 import { Integer, I } from '../../types/integer';
 import { SingleArray, SA } from '../../types/singleArray';
-import { abs } from '../../mathlib';
 
 // Input interface
 interface Input extends FParameters {
@@ -32,9 +31,9 @@ const dsdot = ({ n, sx, incx, sy, incy }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
+  const _sx: SA = new SingleArray(sx);
   const _incx: I = new Integer(incx);
-  const _sy: SA = new SingleArray(sy, 1 + (n - 1) * abs(incy));
+  const _sy: SA = new SingleArray(sy);
   const _incy: I = new Integer(incy);
 
   // Return

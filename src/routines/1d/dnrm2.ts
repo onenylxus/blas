@@ -29,7 +29,7 @@ const dnrm2 = ({ n, x, incx }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _x: DA = new DoubleArray(x, 1 + (n - 1) * abs(incx));
+  const _x: DA = new DoubleArray(x);
   const _incx: I = new Integer(incx);
 
   // Return value

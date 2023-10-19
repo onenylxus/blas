@@ -2,7 +2,6 @@
 import { Double, D } from '../../types/double';
 import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
-import { abs } from '../../mathlib';
 
 // Input interface
 interface Input extends FParameters {
@@ -34,9 +33,9 @@ const drotm = ({ n, dx, incx, dy, incy, dparam }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer();
-  const _dx: DA = new DoubleArray(dx, 1 + (n - 1) * abs(incx));
+  const _dx: DA = new DoubleArray(dx);
   const _incx: I = new Integer(incx);
-  const _dy: DA = new DoubleArray(dy, 1 + (n - 1) * abs(incy));
+  const _dy: DA = new DoubleArray(dy);
   const _incy: I = new Integer(incy);
   const _dparam: DA = new DoubleArray(dparam, 5);
 

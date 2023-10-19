@@ -28,7 +28,7 @@ const isamax = ({ n, sx, incx }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _sx: SA = new SingleArray(sx, 1 + (n - 1) * abs(incx));
+  const _sx: SA = new SingleArray(sx);
   const _incx: I = new Integer(incx);
 
   // Return value
