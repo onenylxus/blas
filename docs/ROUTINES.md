@@ -6,7 +6,7 @@
   - [❌] SROTMG - setup modified Givens rotation
   - [❌] SROT - apply Givens rotation
   - [❌] SROTM - apply modified Givens rotation
-  - [❌] SSWAP - swap x and y
+  - [✔️] SSWAP - swap x and y
   - [❌] SSCAL - x = a\*x
   - [✔️] SCOPY - copy x into y
   - [❌] SAXPY - y = a\*x + y
@@ -36,7 +36,7 @@
 - Complex
   - [❔] CROTG - setup Givens rotation
   - [❔] CSROT - apply Givens rotation
-  - [❔] CSWAP - swap x and y
+  - [❌] CSWAP - swap x and y
   - [❔] CSCAL - x = a\*x
   - [❔] CSSCAL - x = a\*x
   - [❌] CCOPY - copy x into y
@@ -49,7 +49,7 @@
 - Double Complex
   - [❔] ZROTG - setup Givens rotation
   - [❔] ZDROT - apply Givens rotation
-  - [❔] ZSWAP - swap x and y
+  - [❌] ZSWAP - swap x and y
   - [❔] ZSCAL - x = a\*x
   - [❔] ZDSCAL - x = a\*x
   - [❌] ZCOPY - copy x into y

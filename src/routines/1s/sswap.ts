@@ -92,9 +92,9 @@ const sswap = ({ n, sx, incx, sy, incy }: Input): Output => {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      stemp.set(_sx.get(i.get()));
-      _sx.set(i.get(), _sy.get(i.get()));
-      _sy.set(i.get(), stemp.get());
+      stemp.set(_sx.get(ix.get()));
+      _sx.set(ix.get(), _sy.get(iy.get()));
+      _sy.set(iy.get(), stemp.get());
       ix.add(_incx.get());
       iy.add(_incy.get());
     }
