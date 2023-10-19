@@ -34,7 +34,27 @@ describe('SSWAP routine test', () => {
     expect(result.incy).toStrictEqual(1);
   });
 
-  it('Case 2: n{4},sx[4],incx{-1},sy[4],incy{1}', () => {
+  it('Case 2: n{2},sx[2],incx{1},sy[2],incy{1}', () => {
+    // Input
+    n = 2;
+    sx = [1, 2];
+    incx = 1;
+    sy = [3, 4];
+    incy = 1;
+
+    // Apply routine
+    result = sswap({ n, sx, incx, sy, incy });
+
+    // Output
+    expect(result._ret).toBeUndefined();
+    expect(result.n).toStrictEqual(2);
+    expect(result.sx).toStrictEqual([3, 4]);
+    expect(result.incx).toStrictEqual(1);
+    expect(result.sy).toStrictEqual([1, 2]);
+    expect(result.incy).toStrictEqual(1);
+  });
+
+  it('Case 3: n{4},sx[4],incx{-1},sy[4],incy{1}', () => {
     // Input
     n = 4;
     sx = [1, 2, 3, 4];
@@ -54,7 +74,7 @@ describe('SSWAP routine test', () => {
     expect(result.incy).toStrictEqual(1);
   });
 
-  it('Case 3: n{4},sx[4],incx{1},sy[4],incy{-1}', () => {
+  it('Case 4: n{4},sx[4],incx{1},sy[4],incy{-1}', () => {
     // Input
     n = 4;
     sx = [1, 2, 3, 4];
@@ -74,7 +94,7 @@ describe('SSWAP routine test', () => {
     expect(result.incy).toStrictEqual(-1);
   });
 
-  it('Case 4: n{0},sx[4],incx{1},sy[4],incy{1}', () => {
+  it('Case 5: n{0},sx[4],incx{1},sy[4],incy{1}', () => {
     // Input
     n = 0;
     sx = [1, 2, 3, 4];
