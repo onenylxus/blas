@@ -1,7 +1,7 @@
 # Routines
 
 ## Level 1
-- Single
+- **Single**
   - [❌] SROTG - setup Givens rotation
   - [❌] SROTMG - setup modified Givens rotation
   - [❌] SROT - apply Givens rotation
@@ -17,7 +17,7 @@
   - [❌] SASUM - sum of absolute values
   - [❌] ISAMAX - index of max abs value
 
-- Double
+- **Double**
   - [❌] DROTG - setup Givens rotation
   - [❌] DROTMG - setup modified Givens rotation
   - [❌] DROT - apply Givens rotation
@@ -33,7 +33,7 @@
   - [❌] DASUM - sum of absolute values
   - [❌] IDAMAX - index of max abs value
 
-- Complex
+- **Complex**
   - [❔] CROTG - setup Givens rotation
   - [❔] CSROT - apply Givens rotation
   - [❌] CSWAP - swap x and y
@@ -46,7 +46,7 @@
   - [❔] SCASUM - sum of absolute values
   - [❔] ICAMAX - index of max abs value
 
-- Double Complex
+- **Double Complex**
   - [❔] ZROTG - setup Givens rotation
   - [❔] ZDROT - apply Givens rotation
   - [❌] ZSWAP - swap x and y
@@ -60,7 +60,7 @@
   - [❔] IZAMAX - index of max abs value
 
 ## Level 2
-- Single
+- **Single**
   - [❔] SGEMV - matrix vector multiply
   - [❔] SGBMV - banded matrix vector multiply
   - [❔] SSYMV - symmetric matrix vector multiply
@@ -78,7 +78,7 @@
   - [❔] SSYR2 - performs the symmetric rank 2 operation, A := alpha\*x\*y' + alpha\*y\*x' + A
   - [❔] SSPR2 - performs the symmetric packed rank 2 operation, A := alpha\*x\*y' + alpha\*y\*x' + A
 
-- Double
+- **Double**
   - [❔] DGEMV - matrix vector multiply
   - [❔] DGBMV - banded matrix vector multiply
   - [❔] DSYMV - symmetric matrix vector multiply
@@ -96,7 +96,7 @@
   - [❔] DSYR2 - performs the symmetric rank 2 operation, A := alpha\*x\*y' + alpha\*y\*x' + A
   - [❔] DSPR2 - performs the symmetric packed rank 2 operation, A := alpha\*x\*y' + alpha\*y\*x' + A
 
-- Complex
+- **Complex**
   - [❔] CGEMV - matrix vector multiply
   - [❔] CGBMV - banded matrix vector multiply
   - [❔] CHEMV - hermitian matrix vector multiply
@@ -115,7 +115,7 @@
   - [❔] CHER2 - hermitian rank 2 operation
   - [❔] CHPR2 - hermitian packed rank 2 operation
 
-- Double Complex
+- **Double Complex**
   - [❔] ZGEMV - matrix vector multiply
   - [❔] ZGBMV - banded matrix vector multiply
   - [❔] ZHEMV - hermitian matrix vector multiply
@@ -135,7 +135,7 @@
   - [❔] ZHPR2 - hermitian packed rank 2 operation
 
 ## Level 3
-- Single
+- **Single**
   - [❔] SGEMM - matrix matrix multiply
   - [❔] SSYMM - symmetric matrix matrix multiply
   - [❔] SSYRK - symmetric rank-k update to a matrix
@@ -143,7 +143,7 @@
   - [❔] STRMM - triangular matrix matrix multiply
   - [❔] STRSM - solving triangular matrix with multiple right hand sides
 
-- Double
+- **Double**
   - [❔] DGEMM - matrix matrix multiply
   - [❔] DSYMM - symmetric matrix matrix multiply
   - [❔] DSYRK - symmetric rank-k update to a matrix
@@ -151,7 +151,7 @@
   - [❔] DTRMM - triangular matrix matrix multiply
   - [❔] DTRSM - solving triangular matrix with multiple right hand sides
 
-- Complex
+- **Complex**
   - [❔] CGEMM - matrix matrix multiply
   - [❔] CSYMM - symmetric matrix matrix multiply
   - [❔] CHEMM - hermitian matrix matrix multiply
@@ -162,7 +162,7 @@
   - [❔] CTRMM - triangular matrix matrix multiply
   - [❔] CTRSM - solving triangular matrix with multiple right hand sides
 
-- Double Complex
+- **Double Complex**
   - [❔] ZGEMM - matrix matrix multiply
   - [❔] ZSYMM - symmetric matrix matrix multiply
   - [❔] ZHEMM - hermitian matrix matrix multiply

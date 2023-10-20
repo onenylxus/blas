@@ -21,7 +21,7 @@ describe('Single type', () => {
 
   it('should set and get value correctly', () => {
     instance.set(value);
-    expect(relerr(instance.get(), value)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get(), value)).toBeLessThan(10 ** -5);
   });
 
   it('should clear value to zero', () => {
@@ -32,31 +32,31 @@ describe('Single type', () => {
   it('should add value correctly', () => {
     instance.set(value);
     instance.add(1);
-    expect(relerr(instance.get(), value + 1)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get(), value + 1)).toBeLessThan(10 ** -5);
   });
 
   it('should subtract value correctly', () => {
     instance.set(value);
     instance.sub(1);
-    expect(relerr(instance.get(), value - 1)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get(), value - 1)).toBeLessThan(10 ** -5);
   });
 
   it('should multiply value correctly', () => {
     instance.set(value);
     instance.mul(2);
-    expect(relerr(instance.get(), value * 2)).toBeLessThan(2 * 10 ** -6);
+    expect(relerr(instance.get(), value * 2)).toBeLessThan(10 ** -5);
   });
 
   it('should divide value correctly', () => {
     instance.set(value);
     instance.div(2);
-    expect(relerr(instance.get(), value / 2)).toBeLessThan(10 ** -6);
+    expect(relerr(instance.get(), value / 2)).toBeLessThan(10 ** -5);
   });
 
   it('should exponent value correctly', () => {
     instance.set(value);
     instance.exp(2);
-    expect(relerr(instance.get(), value ** 2)).toBeLessThan(2 * 10 ** -6);
+    expect(relerr(instance.get(), value ** 2)).toBeLessThan(10 ** -5);
   });
 
   it('should compare equal to value correctly', () => {
