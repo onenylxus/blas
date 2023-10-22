@@ -1,6 +1,3 @@
-// Import
-import isdual from '../utils/isdual';
-
 // Math object constants
 // export const E: number = Math.E;
 // export const LN10: number = Math.LN10;
@@ -31,13 +28,10 @@ export const SBIG: number = 2 ** -76;
 
 // Absolute function
 export const abs = (x: number | Dual): number => {
-  if (isdual(x)) {
-    const d: Dual = x as Dual;
-    return sqrt(d.r ** 2 + d.i ** 2);
-  }
   if (typeof x === 'number') {
     return Math.abs(x);
   }
+  return sqrt(x.r ** 2 + x.i ** 2);
 };
 
 // Inverse cosine function
@@ -72,13 +66,10 @@ export const abs = (x: number | Dual): number => {
 
 // Conjugate function
 export const conjg = (x: number | Dual): number | Dual => {
-  if (isdual(x)) {
-    const d: Dual = x as Dual;
-    return { r: d.r, i: -d.i };
-  }
   if (typeof x === 'number') {
     return x;
   }
+  return { r: x.r, i: -x.i };
 };
 
 // Cosine function
