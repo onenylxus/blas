@@ -1,5 +1,6 @@
 // Import
 import blas from '../../../src/index';
+import compare from '../../../utils/compare';
 
 // Routine snippet
 const { dswap } = blas;
@@ -26,12 +27,12 @@ describe('SSWAP routine test', () => {
     result = dswap({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(4);
-    expect(result.dx).toStrictEqual([5, 6, 7, 8]);
-    expect(result.incx).toStrictEqual(1);
-    expect(result.dy).toStrictEqual([1, 2, 3, 4]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 4)).toBeTruthy();
+    expect(compare(result.dx, [5, 6, 7, 8])).toBeTruthy();
+    expect(compare(result.incx, 1)).toBeTruthy();
+    expect(compare(result.dy, [1, 2, 3, 4])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 
   it('Case 2: n{2},sx[2],incx{1},sy[2],incy{1}', () => {
@@ -46,12 +47,12 @@ describe('SSWAP routine test', () => {
     result = dswap({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(2);
-    expect(result.dx).toStrictEqual([3, 4]);
-    expect(result.incx).toStrictEqual(1);
-    expect(result.dy).toStrictEqual([1, 2]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 2)).toBeTruthy();
+    expect(compare(result.dx, [3, 4])).toBeTruthy();
+    expect(compare(result.incx, 1)).toBeTruthy();
+    expect(compare(result.dy, [1, 2])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 
   it('Case 3: n{4},sx[4],incx{-1},sy[4],incy{1}', () => {
@@ -66,12 +67,12 @@ describe('SSWAP routine test', () => {
     result = dswap({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(4);
-    expect(result.dx).toStrictEqual([8, 7, 6, 5]);
-    expect(result.incx).toStrictEqual(-1);
-    expect(result.dy).toStrictEqual([4, 3, 2, 1]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 4)).toBeTruthy();
+    expect(compare(result.dx, [8, 7, 6, 5])).toBeTruthy();
+    expect(compare(result.incx, -1)).toBeTruthy();
+    expect(compare(result.dy, [4, 3, 2, 1])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 
   it('Case 4: n{4},sx[4],incx{1},sy[4],incy{-1}', () => {
@@ -86,12 +87,12 @@ describe('SSWAP routine test', () => {
     result = dswap({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(4);
-    expect(result.dx).toStrictEqual([8, 7, 6, 5]);
-    expect(result.incx).toStrictEqual(1);
-    expect(result.dy).toStrictEqual([4, 3, 2, 1]);
-    expect(result.incy).toStrictEqual(-1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 4)).toBeTruthy();
+    expect(compare(result.dx, [8, 7, 6, 5])).toBeTruthy();
+    expect(compare(result.incx, 1)).toBeTruthy();
+    expect(compare(result.dy, [4, 3, 2, 1])).toBeTruthy();
+    expect(compare(result.incy, -1)).toBeTruthy();
   });
 
   it('Case 5: n{0},sx[4],incx{1},sy[4],incy{1}', () => {
@@ -106,11 +107,11 @@ describe('SSWAP routine test', () => {
     result = dswap({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(0);
-    expect(result.dx).toStrictEqual([1, 2, 3, 4]);
-    expect(result.incx).toStrictEqual(1);
-    expect(result.dy).toStrictEqual([5, 6, 7, 8]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 0)).toBeTruthy();
+    expect(compare(result.dx, [1, 2, 3, 4])).toBeTruthy();
+    expect(compare(result.incx, 1)).toBeTruthy();
+    expect(compare(result.dy, [5, 6, 7, 8])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 });

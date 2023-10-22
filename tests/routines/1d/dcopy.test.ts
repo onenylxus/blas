@@ -1,5 +1,6 @@
 // Import
 import blas from '../../../src/index';
+import compare from '../../../utils/compare';
 
 // Routine snippet
 const { dcopy } = blas;
@@ -26,12 +27,12 @@ describe('DCOPY routine test', () => {
     result = dcopy({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(4);
-    expect(result.dx).toStrictEqual([1, 2, 3, 4]);
-    expect(result.incx).toStrictEqual(1);
-    expect(result.dy).toStrictEqual([1, 2, 3, 4]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 4)).toBeTruthy();
+    expect(compare(result.dx, [1, 2, 3, 4])).toBeTruthy();
+    expect(compare(result.incx, 1)).toBeTruthy();
+    expect(compare(result.dy, [1, 2, 3, 4])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 
   it('Case 2: n{10},dx[10],incx{1},dy[10],incy{1}', () => {
@@ -46,12 +47,12 @@ describe('DCOPY routine test', () => {
     result = dcopy({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(10);
-    expect(result.dx).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-    expect(result.incx).toStrictEqual(1);
-    expect(result.dy).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 10)).toBeTruthy();
+    expect(compare(result.dx, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])).toBeTruthy();
+    expect(compare(result.incx, 1)).toBeTruthy();
+    expect(compare(result.dy, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 
   it('Case 3: n{7},dx[7],incx{1},dy[7],incy{1}', () => {
@@ -66,12 +67,12 @@ describe('DCOPY routine test', () => {
     result = dcopy({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(7);
-    expect(result.dx).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
-    expect(result.incx).toStrictEqual(1);
-    expect(result.dy).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 7)).toBeTruthy();
+    expect(compare(result.dx, [1, 2, 3, 4, 5, 6, 7])).toBeTruthy();
+    expect(compare(result.incx, 1)).toBeTruthy();
+    expect(compare(result.dy, [1, 2, 3, 4, 5, 6, 7])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 
   it('Case 4: n{5},dx[9],incx{2},dy[9],incy{2}', () => {
@@ -86,12 +87,12 @@ describe('DCOPY routine test', () => {
     result = dcopy({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(5);
-    expect(result.dx).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    expect(result.incx).toStrictEqual(2);
-    expect(result.dy).toStrictEqual([1, 0, 3, 0, 5, 0, 7, 0, 9]);
-    expect(result.incy).toStrictEqual(2);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 5)).toBeTruthy();
+    expect(compare(result.dx, [1, 2, 3, 4, 5, 6, 7, 8, 9])).toBeTruthy();
+    expect(compare(result.incx, 2)).toBeTruthy();
+    expect(compare(result.dy, [1, 0, 3, 0, 5, 0, 7, 0, 9])).toBeTruthy();
+    expect(compare(result.incy, 2)).toBeTruthy();
   });
 
   it('Case 5: n{5},dx[9],incx{2},dy[9],incy{-1}', () => {
@@ -106,12 +107,12 @@ describe('DCOPY routine test', () => {
     result = dcopy({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(5);
-    expect(result.dx).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    expect(result.incx).toStrictEqual(2);
-    expect(result.dy).toStrictEqual([9, 7, 5, 3, 1, 0, 0, 0, 0]);
-    expect(result.incy).toStrictEqual(-1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 5)).toBeTruthy();
+    expect(compare(result.dx, [1, 2, 3, 4, 5, 6, 7, 8, 9])).toBeTruthy();
+    expect(compare(result.incx, 2)).toBeTruthy();
+    expect(compare(result.dy, [9, 7, 5, 3, 1, 0, 0, 0, 0])).toBeTruthy();
+    expect(compare(result.incy, -1)).toBeTruthy();
   });
 
   it('Case 6: n{5},dx[9],incx{-2},dy[9],incy{1}', () => {
@@ -126,12 +127,12 @@ describe('DCOPY routine test', () => {
     result = dcopy({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(5);
-    expect(result.dx).toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    expect(result.incx).toStrictEqual(-2);
-    expect(result.dy).toStrictEqual([9, 7, 5, 3, 1, 0, 0, 0, 0]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 5)).toBeTruthy();
+    expect(compare(result.dx, [1, 2, 3, 4, 5, 6, 7, 8, 9])).toBeTruthy();
+    expect(compare(result.incx, -2)).toBeTruthy();
+    expect(compare(result.dy, [9, 7, 5, 3, 1, 0, 0, 0, 0])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 
   it('Case 7: n{0},dx[4],incx{1},dy[4],incy{1}', () => {
@@ -146,11 +147,11 @@ describe('DCOPY routine test', () => {
     result = dcopy({ n, dx, incx, dy, incy });
 
     // Output
-    expect(result._ret).toBeUndefined();
-    expect(result.n).toStrictEqual(0);
-    expect(result.dx).toStrictEqual([1, 2, 3, 4]);
-    expect(result.incx).toStrictEqual(1);
-    expect(result.dy).toStrictEqual([0, 0, 0, 0]);
-    expect(result.incy).toStrictEqual(1);
+    expect(compare(result._ret, undefined)).toBeTruthy();
+    expect(compare(result.n, 0)).toBeTruthy();
+    expect(compare(result.dx, [1, 2, 3, 4])).toBeTruthy();
+    expect(compare(result.incx, 1)).toBeTruthy();
+    expect(compare(result.dy, [0, 0, 0, 0])).toBeTruthy();
+    expect(compare(result.incy, 1)).toBeTruthy();
   });
 });

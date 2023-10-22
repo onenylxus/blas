@@ -1,26 +1,27 @@
 // Import
 import * as matl from '../src/mathlib';
+import compare from '../utils/compare';
 
 // Absolute function
 describe('Absolute function', () => {
   it ('should calculate real number correctly', () => {
-    expect(matl.abs(0)).toStrictEqual(0);
-    expect(matl.abs(2)).toStrictEqual(2);
-    expect(matl.abs(-2)).toStrictEqual(2);
+    expect(compare(matl.abs(0), 0)).toBeTruthy();
+    expect(compare(matl.abs(2), 2)).toBeTruthy();
+    expect(compare(matl.abs(-2), 2)).toBeTruthy();
   });
 
   it('should calculate complex number correctly', () => {
-    expect(matl.abs({ r: 3, i: -4 })).toStrictEqual(5);
+    expect(compare(matl.abs({ r: 3, i: -4 }), 5)).toBeTruthy();
   });
 });
 
 // Conjugate function
 describe('Conjugate function', () => {
   it ('should calculate real number correctly', () => {
-    expect(matl.conjg(2)).toStrictEqual(2);
+    expect(compare(matl.conjg(2), 2)).toBeTruthy();
   });
 
   it('should calculate complex number correctly', () => {
-    expect(matl.conjg({ r: 3, i: -4 })).toStrictEqual({ r: 3, i: 4 });
+    expect(compare(matl.conjg({ r: 3, i: -4 }), { r: 3, i: 4 })).toBeTruthy();
   });
 });
