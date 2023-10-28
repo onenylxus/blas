@@ -1,24 +1,25 @@
 // Import
 import { Integer, I } from '../../types/integer';
+import { SingleComplex, C } from '../../types/singleComplex';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
 
 // Input interface
 interface Input extends FParameters {
-  n: FInteger,
-  cx: FComplexArray,
-  incx: FInteger,
-  cy: FComplexArray,
-  incy: FInteger,
+  n: FInteger;
+  cx: FComplexArray;
+  incx: FInteger;
+  cy: FComplexArray;
+  incy: FInteger;
 }
 
 // Output interface
 interface Output extends FParameters {
   _ret: FEmpty;
-  n: FInteger | FEmpty,
-  cx: FComplexArray,
-  incx: FInteger | FEmpty,
-  cy: FComplexArray,
-  incy: FInteger | FEmpty,
+  n: FInteger | FEmpty;
+  cx: FComplexArray;
+  incx: FInteger | FEmpty;
+  cy: FComplexArray;
+  incy: FInteger | FEmpty;
 }
 
 // CSWAP routine
@@ -46,6 +47,7 @@ const cswap = ({ n, cx, incx, cy, incy }: Input): Output => {
   });
 
   // Local variables
+  const ctemp: C = new SingleComplex();
   const i: I = new Integer();
   const ix: I = new Integer();
   const iy: I = new Integer();
@@ -56,7 +58,9 @@ const cswap = ({ n, cx, incx, cy, incy }: Input): Output => {
   }
   if (_incx.eq(1) && _incy.eq(1)) {
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _cy.set(i.get(), _cx.get(i.get()));
+      ctemp.set(_cx.get(i.get()));
+      _cx.set(i.get(), _cy.get(i.get()));
+      _cy.set(i.get(), ctemp.get());
     }
   } else {
     ix.set(1);
@@ -68,7 +72,9 @@ const cswap = ({ n, cx, incx, cy, incy }: Input): Output => {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _cy.set(i.get(), _cx.get(i.get()));
+      ctemp.set(_cx.get(ix.get()));
+      _cx.set(ix.get(), _cy.get(iy.get()));
+      _cy.set(iy.get(), ctemp.get());
       ix.add(_incx.get());
       iy.add(_incy.get());
     }

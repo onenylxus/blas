@@ -5,9 +5,9 @@ import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
 // Input interface
 interface Input extends FParameters {
   n: FInteger;
-  cx: FDoubleComplexArray;
+  zx: FDoubleComplexArray;
   incx: FInteger;
-  cy: FDoubleComplexArray | FEmpty;
+  zy: FDoubleComplexArray | FEmpty;
   incy: FInteger;
 }
 
@@ -15,14 +15,14 @@ interface Input extends FParameters {
 interface Output extends FParameters {
   _ret: FEmpty;
   n: FInteger | FEmpty;
-  cx: FDoubleComplexArray | FEmpty;
+  zx: FDoubleComplexArray | FEmpty;
   incx: FInteger | FEmpty;
-  cy: FDoubleComplexArray;
+  zy: FDoubleComplexArray;
   incy: FInteger | FEmpty;
 }
 
 // ZCOPY routine
-const zcopy = ({ n, cx, incx, cy, incy }: Input): Output => {
+const zcopy = ({ n, zx, incx, zy, incy }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
@@ -30,18 +30,18 @@ const zcopy = ({ n, cx, incx, cy, incy }: Input): Output => {
 
   // Arguments
   const _n: I = new Integer(n);
-  const _cx: ZA = new DoubleComplexArray(cx);
+  const _zx: ZA = new DoubleComplexArray(zx);
   const _incx: I = new Integer(incx);
-  const _cy: ZA = new DoubleComplexArray(cy);
+  const _zy: ZA = new DoubleComplexArray(zy);
   const _incy: I = new Integer(incy);
 
   // Resolve function
   const resolve = (): Output => ({
     _ret: undefined,
     n: _n.get(),
-    cx: _cx.getAll(),
+    zx: _zx.getAll(),
     incx: _incx.get(),
-    cy: _cy.getAll(),
+    zy: _zy.getAll(),
     incy: _incy.get(),
   });
 
@@ -56,7 +56,7 @@ const zcopy = ({ n, cx, incx, cy, incy }: Input): Output => {
   }
   if (_incx.eq(1) && _incy.eq(1)) {
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _cy.set(i.get(), _cx.get(i.get()));
+      _zy.set(i.get(), _zx.get(i.get()));
     }
   } else {
     ix.set(1);
@@ -68,7 +68,7 @@ const zcopy = ({ n, cx, incx, cy, incy }: Input): Output => {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _cy.set(i.get(), _cx.get(i.get()));
+      _zy.set(i.get(), _zx.get(i.get()));
       ix.add(_incx.get());
       iy.add(_incy.get());
     }
