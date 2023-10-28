@@ -1,5 +1,6 @@
 // Import
 import { DoubleComplexArray, ZA } from '../../src/types/doubleComplexArray';
+import { isEqual } from '../testers';
 import { random } from '../../utils/random';
 
 // Define test variables
@@ -19,8 +20,7 @@ describe('Double complex array type', () => {
 
   it('should get value correctly in constructor', () => {
     for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i + 1)!.r).toStrictEqual(values[i].r);
-      expect(instance.get(i + 1)!.i).toStrictEqual(values[i].i);
+      isEqual(instance.get(i + 1), values[i]);
     }
   });
 
@@ -28,21 +28,15 @@ describe('Double complex array type', () => {
     index = random(0, 99, true);
     values[index] = { r: random(), i: random() };
     instance.set(index + 1, values[index]);
-    expect(instance.get(index + 1)!.r).toStrictEqual(values[index].r);
-    expect(instance.get(index + 1)!.i).toStrictEqual(values[index].i);
+    isEqual(instance.get(index + 1), values[index]);
   });
 
   it('should get value array correctly', () => {
-    expect(instance.getAll().length).toStrictEqual(100);
-    expect(instance.getAll().every((v, i) => v.r === values[i].r)).toBeTruthy();
-    expect(instance.getAll().every((v, i) => v.i === values[i].i)).toBeTruthy();
+    isEqual(instance.getAll(), values);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
-    for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i + 1)!.r).toStrictEqual(0);
-      expect(instance.get(i + 1)!.i).toStrictEqual(0);
-    }
+    isEqual(instance.getAll(), values.fill({ r: 0, i: 0 }));
   });
 });

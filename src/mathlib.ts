@@ -1,5 +1,7 @@
-// Import
-import isdual from '../utils/isdual';
+// Dual type check
+const isDual = (value: number | Dual): boolean => {
+  return typeof value === 'object' && typeof value.r === 'number' && typeof value.i === 'number';
+};
 
 // Math object constants
 // export const E: number = Math.E;
@@ -31,7 +33,7 @@ export const SBIG: number = 2 ** -76;
 
 // Absolute function
 export const abs = (x: number | Dual): number => {
-  if (isdual(x)) {
+  if (isDual(x)) {
     const d: Dual = x as Dual;
     return sqrt(d.r ** 2 + d.i ** 2);
   }
@@ -72,7 +74,7 @@ export const abs = (x: number | Dual): number => {
 
 // Conjugate function
 export const conjg = (x: number | Dual): number | Dual => {
-  if (isdual(x)) {
+  if (isDual(x)) {
     const d: Dual = x as Dual;
     return { r: d.r, i: -d.i };
   }
