@@ -1,0 +1,21 @@
+[
+  "mathlib.test.ts",
+  "types/single.test.ts",
+  "types/double.test.ts",
+  "types/integer.test.ts",
+  "types/singleComplex.test.ts",
+  "types/doubleComplex.test.ts",
+  "types/logical.test.ts",
+  "types/character.test.ts",
+  "types/singleArray.test.ts",
+  "types/doubleArray.test.ts",
+  "types/integerArray.test.ts",
+  "types/singleComplexArray.test.ts",
+  "types/doubleComplexArray.test.ts",
+  "module.test.ts",
+  "routines/1s/srotg.test.ts",
+  "routines/1s/sswap.test.ts",
+  "routines/1s/scopy.test.ts",
+  "routines/1d/dswap.test.ts",
+  "routines/1d/dcopy.test.ts"
+]
