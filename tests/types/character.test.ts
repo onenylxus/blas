@@ -1,5 +1,6 @@
 // Import
 import { Character, H } from '../../src/types/character';
+import { isStrictEqual, isFalse, isTrue } from '../testers';
 import { randstr } from '../../utils/random';
 
 // Define test variables
@@ -14,27 +15,27 @@ describe('Character type', () => {
   });
 
   it('should get value correctly in constructor', () => {
-    expect(instance.get()).toStrictEqual('');
+    isStrictEqual(instance.get(), '');
   });
 
   it('should set and get value correctly', () => {
     instance.set(value);
-    expect(instance.get()).toStrictEqual(value[0]);
+    isStrictEqual(instance.get(), value[0]);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
-    expect(instance.get()).toStrictEqual('');
+    isStrictEqual(instance.get(), '');
   });
 
   it('should compare equal to value correctly', () => {
     instance.set(value);
-    expect(instance.eq(value[0])).toBeTruthy();
-    expect(instance.eq('')).toBeFalsy();
+    isTrue(instance.eq(value[0]));
+    isFalse(instance.eq(''));
   });
 
   it('should compare not equal to value correctly', () => {
-    expect(instance.ne('')).toBeTruthy();
-    expect(instance.ne(value[0])).toBeFalsy();
+    isTrue(instance.ne(''));
+    isFalse(instance.ne(value[0]));
   });
 });

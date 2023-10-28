@@ -1,5 +1,6 @@
 // Import
 import { Logical, L } from '../../src/types/logical';
+import { isStrictEqual } from '../testers';
 
 // Define test variables
 let value: boolean;
@@ -13,11 +14,11 @@ describe('Logical type', () => {
   });
 
   it('should get value correctly in constructor', () => {
-    expect(instance.get()).toStrictEqual(true);
+    isStrictEqual(instance.get(), true);
   });
 
   it('should set and get value correctly', () => {
     instance.set(value);
-    expect(instance.get()).toStrictEqual(value);
+    isStrictEqual(instance.get(), value);
   });
 });
