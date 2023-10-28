@@ -1,7 +1,7 @@
 // Import
 import { SingleArray, SA } from '../../src/types/singleArray';
+import { isClose, isEqual } from '../testers';
 import { random } from '../../utils/random';
-import relerr from '../../utils/relerr';
 
 // Define test variables
 let values: number[];
@@ -20,7 +20,7 @@ describe('Single array type', () => {
 
   it('should get value correctly in constructor', () => {
     for (let i = 0; i < 100; ++i) {
-      expect(relerr(instance.get(i + 1)!, values[i])).toBeLessThan(10 ** -6);
+      isClose(instance.get(i + 1)!, values[i]);
     }
   });
 
@@ -28,18 +28,15 @@ describe('Single array type', () => {
     index = random(0, 99, true);
     values[index] = random();
     instance.set(index + 1, values[index]);
-    expect(relerr(instance.get(index + 1)!, values[index])).toBeLessThan(10 ** -6);
+    isClose(instance.get(index + 1)!, values[index]);
   });
 
   it('should get value array correctly', () => {
-    expect(instance.getAll().length).toStrictEqual(100);
-    expect(instance.getAll().every((v, i) => relerr(v, values[i]) < 10 ** -6)).toBeTruthy();
+    isClose(instance.getAll(), values);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
-    for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i + 1)).toStrictEqual(0);
-    }
+    isEqual(instance.getAll(), values.fill(0));
   });
 });

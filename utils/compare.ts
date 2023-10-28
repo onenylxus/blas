@@ -1,5 +1,5 @@
 // Compare function
-const compare = (left: any, right: any, precision: number = 10e-5): boolean => {
+const compare = (left: any, right: any, precision: number): boolean => {
   // Array iteration
   if (left instanceof Array && right instanceof Array) {
     return left.length === right.length && left.every((v, i) => compare(v, right[i], precision));

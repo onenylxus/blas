@@ -1,7 +1,7 @@
 // Import
 import { SingleComplexArray, CA } from '../../src/types/singleComplexArray';
+import { isClose, isEqual } from '../testers';
 import { random } from '../../utils/random';
-import relerr from '../../utils/relerr';
 
 // Define test variables
 let values: Dual[];
@@ -20,8 +20,7 @@ describe('Single complex array type', () => {
 
   it('should get value correctly in constructor', () => {
     for (let i = 0; i < 100; ++i) {
-      expect(relerr(instance.get(i + 1)!.r, values[i].r)).toBeLessThan(10 ** -6);
-      expect(relerr(instance.get(i + 1)!.i, values[i].i)).toBeLessThan(10 ** -6);
+      isClose(instance.get(i + 1)!, values[i]);
     }
   });
 
@@ -29,21 +28,15 @@ describe('Single complex array type', () => {
     index = random(0, 99, true);
     values[index] = { r: random(), i: random() };
     instance.set(index + 1, values[index]);
-    expect(relerr(instance.get(index + 1)!.r, values[index].r)).toBeLessThan(10 ** -6);
-    expect(relerr(instance.get(index + 1)!.i, values[index].i)).toBeLessThan(10 ** -6);
+    isClose(instance.get(index + 1), values[index]);
   });
 
   it('should get value array correctly', () => {
-    expect(instance.getAll().length).toStrictEqual(100);
-    expect(instance.getAll().every((v, i) => relerr(v.r, values[i].r) < 10 ** -6)).toBeTruthy();
-    expect(instance.getAll().every((v, i) => relerr(v.i, values[i].i) < 10 ** -6)).toBeTruthy();
+    isClose(instance.getAll(), values);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
-    for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i + 1)!.r).toStrictEqual(0);
-      expect(instance.get(i + 1)!.i).toStrictEqual(0);
-    }
+    isEqual(instance.getAll(), values.fill({ r: 0, i: 0 }));
   });
 });

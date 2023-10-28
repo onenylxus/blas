@@ -1,5 +1,6 @@
 // Import
 import { DoubleArray, DA } from '../../src/types/doubleArray';
+import { isEqual } from '../testers';
 import { random } from '../../utils/random';
 
 // Define test variables
@@ -19,7 +20,7 @@ describe('Double array type', () => {
 
   it('should get value correctly in constructor', () => {
     for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i + 1)).toStrictEqual(values[i]);
+      isEqual(instance.get(i + 1), values[i]);
     }
   });
 
@@ -27,18 +28,15 @@ describe('Double array type', () => {
     index = random(0, 99, true);
     values[index] = random();
     instance.set(index + 1, values[index]);
-    expect(instance.get(index + 1)).toStrictEqual(values[index]);
+    isEqual(instance.get(index + 1), values[index]);
   });
 
   it('should get value array correctly', () => {
-    expect(instance.getAll().length).toStrictEqual(100);
-    expect(instance.getAll().every((v, i) => v === values[i])).toBeTruthy();
+    isEqual(instance.getAll(), values);
   });
 
   it('should clear value to zero', () => {
     instance.clear();
-    for (let i = 0; i < 100; ++i) {
-      expect(instance.get(i + 1)).toStrictEqual(0);
-    }
+    isEqual(instance.getAll(), values.fill(0));
   });
 });
