@@ -1,5 +1,6 @@
 {
   "collectCoverage": true,
   "collectCoverageFrom": ["src/**/*.ts"],
-  "preset": "ts-jest"
+  "preset": "ts-jest",
+  "testSequencer": "./tests/sequencer.js"
 }

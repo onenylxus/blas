@@ -1,6 +1,6 @@
 // Import
 import blas from '../src/index';
-import list from './list.json';
+import library from './data/library.json';
 
 // Test routines function
 const testRoutines = (routines: string[]): void => {
@@ -15,50 +15,50 @@ const testRoutines = (routines: string[]): void => {
 // Module test
 describe('Module test', () => {
   describe('Level 1 - Single', () => {
-    testRoutines(list['1s']);
+    testRoutines(library['1s']);
   });
 
   describe('Level 1 - Double', () => {
-    testRoutines(list['1d']);
+    testRoutines(library['1d']);
   });
 
   describe('Level 1 - Complex', () => {
-    testRoutines(list['1c']);
+    testRoutines(library['1c']);
   });
 
   describe('Level 1 - Double Complex', () => {
-    testRoutines(list['1z']);
+    testRoutines(library['1z']);
   });
 
   describe('Level 2 - Single', () => {
-    testRoutines(list['2s']);
+    testRoutines(library['2s']);
   });
 
   describe('Level 2 - Double', () => {
-    testRoutines(list['2d']);
+    testRoutines(library['2d']);
   });
 
   describe('Level 2 - Complex', () => {
-    testRoutines(list['2c']);
+    testRoutines(library['2c']);
   });
 
   describe('Level 2 - Double Complex', () => {
-    testRoutines(list['2z']);
+    testRoutines(library['2z']);
   });
 
   describe('Level 3 - Single', () => {
-    testRoutines(list['3s']);
+    testRoutines(library['3s']);
   });
 
   describe('Level 3 - Double', () => {
-    testRoutines(list['3d']);
+    testRoutines(library['3d']);
   });
 
   describe('Level 3 - Complex', () => {
-    testRoutines(list['3c']);
+    testRoutines(library['3c']);
   });
 
   describe('Level 3 - Double Complex', () => {
-    testRoutines(list['3z']);
+    testRoutines(library['3z']);
   });
 });
