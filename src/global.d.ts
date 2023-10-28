@@ -27,7 +27,7 @@ type FDataType =
   | FInteger
   | FLogical
   | FReal
-  | FRealArray
+  | FRealArray;
 
 // Parameters type
 interface FParameters {
