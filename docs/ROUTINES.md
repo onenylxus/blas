@@ -46,7 +46,7 @@
 🔴 **CSWAP** - swap x and y\
 ⚫ **CSCAL** - x = a\*x\
 ⚫ **CSSCAL** - x = a\*x\
-🔴 **CCOPY** - copy x into y\
+🟢 **CCOPY** - copy x into y\
 ⚫ **CAXPY** - y = a\*x + y\
 ⚫ **CDOTU** - dot product\
 ⚫ **CDOTC** - dot product, conjugating the first vector\

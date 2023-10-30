@@ -6,7 +6,7 @@ import { SingleComplexArray, CA } from '../../types/singleComplexArray';
 interface Input extends FParameters {
   n: FInteger;
   cx: FComplexArray;
-  incx: FInteger
+  incx: FInteger;
   cy: FComplexArray | FEmpty;
   incy: FInteger;
 }
