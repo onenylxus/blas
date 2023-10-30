@@ -17,5 +17,6 @@
   "routines/1s/sswap.test.ts",
   "routines/1s/scopy.test.ts",
   "routines/1d/dswap.test.ts",
-  "routines/1d/dcopy.test.ts"
+  "routines/1d/dcopy.test.ts",
+  "routines/1c/ccopy.test.ts"
 ]
