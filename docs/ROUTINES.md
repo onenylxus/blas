@@ -20,7 +20,7 @@
 🔴 **SDOT** - dot product\
 🔴 **SDSDOT** - dot product with extended precision accumulation\
 🔴 **SNRM2** - Euclidean norm\
-🔴 SCNRM2- Euclidean norm\
+🔴 **SCNRM2** - Euclidean norm\
 🔴 **SASUM** - sum of absolute values\
 🔴 **ISAMAX** - index of max abs value
 
@@ -59,7 +59,7 @@
 🔴 **ZSWAP** - swap x and y\
 ⚫ **ZSCAL** - x = a\*x\
 ⚫ **ZDSCAL** - x = a\*x\
-🔴 **ZCOPY** - copy x into y\
+🟢 **ZCOPY** - copy x into y\
 ⚫ **ZAXPY** - y = a\*x + y\
 ⚫ **ZDOTU** - dot product\
 ⚫ **ZDOTC** - dot product, conjugating the first vector\
