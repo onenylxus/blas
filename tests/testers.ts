@@ -37,7 +37,7 @@ const isClose = (left: any, right: any, precision: number = 10e-5): void => {
   if (test) {
     expect(test).toBeTruthy();
   } else {
-    expect(left).toBeCloseTo(right, -Math.ceil(Math.log10(precision)));
+    expect(left).toEqual(right);
   }
 }
 

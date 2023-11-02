@@ -1,4 +1,4 @@
-// Random integer function
+// Random number function
 const random = (min: number = Number.MIN_SAFE_INTEGER, max: number = Number.MAX_SAFE_INTEGER, isInteger: boolean = false): number => {
   let value = min + Math.random() * (max - min);
   return isInteger ? Math.floor(value) : value;
