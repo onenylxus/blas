@@ -14,7 +14,7 @@
 🔴 **SROT** - apply Givens rotation\
 🔴 **SROTM** - apply modified Givens rotation\
 🟢 **SSWAP** - swap x and y\
-🔴 **SSCAL** - x = a\*x\
+🟢 **SSCAL** - x = a\*x\
 🟢 **SCOPY** - copy x into y\
 🔴 **SAXPY** - y = a\*x + y\
 🔴 **SDOT** - dot product\
@@ -30,7 +30,7 @@
 🔴 **DROT** - apply Givens rotation\
 🔴 **DROTM** - apply modified Givens rotation\
 🟢 **DSWAP** - swap x and y\
-🔴 **DSCAL** - x = a\*x\
+🟢 **DSCAL** - x = a\*x\
 🟢 **DCOPY** - copy x into y\
 🔴 **DAXPY** - y = a\*x + y\
 🔴 **DDOT** - dot product\
