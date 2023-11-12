@@ -14,7 +14,7 @@ let result: any;
 
 // DSCAL routine test
 describe('DSCAL routine test', () => {
-  it('Case 1: n{4},da={1},dx[4],incx{1}', () => {
+  it('Case 1: n{4},da{1},dx[4],incx{1}', () => {
     // Input
     n = 4;
     da = 1;
@@ -32,7 +32,7 @@ describe('DSCAL routine test', () => {
     isEqual(result.incx, 1);
   });
 
-  it('Case 2: n{4},da={2},dx[4],incx{1}', () => {
+  it('Case 2: n{4},da{2},dx[4],incx{1}', () => {
     // Input
     n = 4;
     da = 2;
@@ -50,7 +50,7 @@ describe('DSCAL routine test', () => {
     isEqual(result.incx, 1);
   });
 
-  it('Case 3: n{5},da={2},dx[5],incx{1}', () => {
+  it('Case 3: n{5},da{2},dx[5],incx{1}', () => {
     // Input
     n = 5;
     da = 2;
@@ -68,7 +68,7 @@ describe('DSCAL routine test', () => {
     isEqual(result.incx, 1);
   });
 
-  it('Case 4: n{7},da={2},dx[5],incx{1}', () => {
+  it('Case 4: n{7},da{2},dx[5],incx{1}', () => {
     // Input
     n = 7;
     da = 2;
@@ -86,7 +86,7 @@ describe('DSCAL routine test', () => {
     isEqual(result.incx, 1);
   });
 
-  it('Case 5: n{4},da={-2},dx[7],incx{2}', () => {
+  it('Case 5: n{4},da{-2},dx[7],incx{2}', () => {
     // Input
     n = 4;
     da = -2;
@@ -104,7 +104,7 @@ describe('DSCAL routine test', () => {
     isEqual(result.incx, 2);
   });
 
-  it('Case 6: n{4},da={-2},dx[7],incx{-2}', () => {
+  it('Case 6: n{4},da{-2},dx[7],incx{-2}', () => {
     // Input
     n = 4;
     da = -2;
@@ -122,7 +122,7 @@ describe('DSCAL routine test', () => {
     isEqual(result.incx, -2);
   });
 
-  it('Case 7: n{0},da={1},dx[4],incx{1}', () => {
+  it('Case 7: n{0},da{1},dx[4],incx{1}', () => {
     // Input
     n = 0;
     da = 1;
