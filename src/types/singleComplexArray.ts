@@ -1,6 +1,7 @@
 // Import
 import FortranArray from '../structs/fortranArray';
 import { SingleComplex, C } from './singleComplex';
+import _C from '../../utils/complex';
 
 // Define type
 type TSingleComplexArray = InstanceType<typeof CSingleComplexArray>;
@@ -12,7 +13,7 @@ class CSingleComplexArray extends FortranArray<C> {
     super();
     this.store = values.map((v) => new SingleComplex(v));
     this.size = Math.max(size, 0);
-    this.zero = new SingleComplex({ r: 0, i: 0 });
+    this.zero = new SingleComplex(_C(0, 0));
     this.resize();
   }
 

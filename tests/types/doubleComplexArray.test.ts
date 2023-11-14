@@ -2,6 +2,7 @@
 import { DoubleComplexArray, ZA } from '../../src/types/doubleComplexArray';
 import { isEqual } from '../testers';
 import { random } from '../../utils/random';
+import _C from '../../utils/complex';
 
 // Define test variables
 let values: Dual[];
@@ -13,7 +14,7 @@ describe('Double complex array type', () => {
   beforeAll(() => {
     values = new Array(100);
     for (let i = 0; i < 100; ++i) {
-      values[i] = { r: random(), i: random() };
+      values[i] = _C(random(), random());
     }
     instance = new DoubleComplexArray(values);
   });
@@ -26,7 +27,7 @@ describe('Double complex array type', () => {
 
   it('should set and get value correctly', () => {
     index = random(0, 99, true);
-    values[index] = { r: random(), i: random() };
+    values[index] = _C(random(), random());
     instance.set(index + 1, values[index]);
     isEqual(instance.get(index + 1), values[index]);
   });
@@ -37,6 +38,6 @@ describe('Double complex array type', () => {
 
   it('should clear value to zero', () => {
     instance.clear();
-    isEqual(instance.getAll(), values.fill({ r: 0, i: 0 }));
+    isEqual(instance.getAll(), values.fill(_C(0, 0)));
   });
 });
