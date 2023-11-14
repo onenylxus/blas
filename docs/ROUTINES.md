@@ -22,7 +22,7 @@
 🔴 **SNRM2** - Euclidean norm\
 🔴 **SCNRM2** - Euclidean norm\
 🔴 **SASUM** - sum of absolute values\
-🔴 **ISAMAX** - index of max abs value
+🟢 **ISAMAX** - index of max abs value
 
 ### Double
 🔴 **DROTG** - setup Givens rotation\
