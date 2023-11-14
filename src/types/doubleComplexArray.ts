@@ -1,6 +1,7 @@
 // Import
 import FortranArray from '../structs/fortranArray';
 import { DoubleComplex, Z } from './doubleComplex';
+import _C from '../../utils/complex';
 
 // Define type
 type TDoubleComplexArray = InstanceType<typeof CDoubleComplexArray>;
@@ -12,7 +13,7 @@ class CDoubleComplexArray extends FortranArray<Z> {
     super();
     this.store = values.map((v) => new DoubleComplex(v));
     this.size = Math.max(size, 0);
-    this.zero = new DoubleComplex({ r: 0, i: 0 });
+    this.zero = new DoubleComplex(_C(0, 0));
     this.resize();
   }
 

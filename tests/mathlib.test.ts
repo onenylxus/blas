@@ -1,6 +1,7 @@
 // Import
 import * as matl from '../src/mathlib';
 import { isEqual } from './testers';
+import _C from '../utils/complex';
 
 // Absolute function
 describe('Absolute function', () => {
@@ -11,7 +12,7 @@ describe('Absolute function', () => {
   });
 
   it('should calculate complex number correctly', () => {
-    isEqual(matl.abs({ r: 3, i: -4 }), 5);
+    isEqual(matl.abs(_C(3, -4)), 5);
   });
 });
 
@@ -22,6 +23,6 @@ describe('Conjugate function', () => {
   });
 
   it('should calculate complex number correctly', () => {
-    isEqual(matl.conjg({ r: 3, i: -4 }), { r: 3, i: 4 });
+    isEqual(matl.conjg(_C(3, -4)), _C(3, 4));
   });
 });

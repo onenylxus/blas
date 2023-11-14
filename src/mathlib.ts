@@ -1,3 +1,6 @@
+// Import
+import _C from '../utils/complex';
+
 // Math object constants
 // export const E: number = Math.E;
 // export const LN10: number = Math.LN10;
@@ -69,7 +72,7 @@ export const conjg = (x: number | Dual): number | Dual => {
   if (typeof x === 'number') {
     return x;
   }
-  return { r: x.r, i: -x.i };
+  return _C(x.r, -x.i);
 };
 
 // Cosine function
