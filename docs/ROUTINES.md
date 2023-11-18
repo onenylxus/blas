@@ -38,7 +38,7 @@
 🔴 **DNRM2** - Euclidean norm\
 🔴 **DZNRM2** - Euclidean norm\
 🔴 **DASUM** - sum of absolute values\
-🔴 **IDAMAX** - index of max abs value
+🟢 **IDAMAX** - index of max abs value
 
 ### Complex
 ⚫ **CROTG** - setup Givens rotation\
