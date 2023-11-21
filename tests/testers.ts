@@ -19,11 +19,7 @@ const isFalse = (value: any): void => {
 // Equal test function
 const isEqual = (left: any, right: any): void => {
   let test: boolean = compare(left, right, 0);
-  if (test) {
-    expect(test).toBeTruthy();
-  } else {
-    expect(left).toEqual(right);
-  }
+  test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
 };
 
 // Strict equal test function
@@ -34,11 +30,7 @@ const isStrictEqual = (left: any, right: any): void => {
 // Close test function
 const isClose = (left: any, right: any, precision: number = 10e-5): void => {
   let test: boolean = compare(left, right, precision);
-  if (test) {
-    expect(test).toBeTruthy();
-  } else {
-    expect(left).toEqual(right);
-  }
+  test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
 }
 
 // Export

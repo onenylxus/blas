@@ -64,9 +64,9 @@ const srotg = ({ a, b, c, s }: Input): Output => {
   } else {
     scl.set(min(MAXSPINT, max(MINSPINT, anorm.get(), bnorm.get())));
     if (anorm.gt(bnorm.get())) {
-      sigma.set(sign(anorm.get()));
+      sigma.set(sign(_a.get()));
     } else {
-      sigma.set(sign(bnorm.get()));
+      sigma.set(sign(_b.get()));
     }
     r.set(sigma.get() * (scl.get() * sqrt((_a.get() / scl.get()) ** 2 + (_b.get() / scl.get()) ** 2)));
     _c.set(_a.get() / r.get());
