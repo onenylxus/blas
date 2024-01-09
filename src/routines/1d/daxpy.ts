@@ -87,11 +87,11 @@ const daxpy = ({ n, da, dx, incx, dy, incy }: Input): Output => {
     if (_incx.lt(0)) {
       ix.set((-_n.get() + 1) * _incx.get() + 1);
       iy.set((-_n.get() + 1) * _incy.get() + 1);
-      for (i.set(1); i.le(_n.get()); i.add(1)) {
-        _dy.set(iy.get(), _dy.get(iy.get()) + _da.get() * _dx.get(ix.get()));
-        ix.add(_incx.get());
-        iy.add(_incy.get());
-      }
+    }
+    for (i.set(1); i.le(_n.get()); i.add(1)) {
+      _dy.set(iy.get(), _dy.get(iy.get()) + _da.get() * _dx.get(ix.get()));
+      ix.add(_incx.get());
+      iy.add(_incy.get());
     }
   }
 
