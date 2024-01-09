@@ -32,7 +32,7 @@
 🟢 **DSWAP** - swap x and y\
 🟢 **DSCAL** - x = a\*x\
 🟢 **DCOPY** - copy x into y\
-🔴 **DAXPY** - y = a\*x + y\
+🟢 **DAXPY** - y = a\*x + y\
 🔴 **DDOT** - dot product\
 🔴 **DSDOT** - dot product with extended precision accumulation\
 🔴 **DNRM2** - Euclidean norm\
