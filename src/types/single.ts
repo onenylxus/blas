@@ -33,57 +33,112 @@ class CSingle extends Simple {
     this.store = Math.fround(value);
   }
 
-  // Addition
+  // Local addition
+  public add(value: Dynamic): void {
+    this.set(CSingle.add(this, value).get());
+  }
+
+  // Local subtraction
+  public sub(value: Dynamic): void {
+    this.set(CSingle.sub(this, value).get());
+  }
+
+  // Local multiplication
+  public mul(value: Dynamic): void {
+    this.set(CSingle.mul(this, value).get());
+  }
+
+  // Local division
+  public div(value: Dynamic): void {
+    this.set(CSingle.div(this, value).get());
+  }
+
+  // Local exponentation
+  public exp(value: Dynamic): void {
+    this.set(CSingle.exp(this, value).get());
+  }
+
+  // Local equal to
+  public eq(value: Dynamic): boolean {
+    return CSingle.eq(this, value);
+  }
+
+  // Local not equal to
+  public ne(value: Dynamic): boolean {
+    return CSingle.ne(this, value);
+  }
+
+  // Local greater than
+  public gt(value: Dynamic): boolean {
+    return CSingle.gt(this, value);
+  }
+
+  // Local less than
+  public lt(value: Dynamic): boolean {
+    return CSingle.lt(this, value);
+  }
+
+  // Local greater than or equal to
+  public ge(value: Dynamic): boolean {
+    return CSingle.ge(this, value);
+  }
+
+  // Local less than or equal to
+  public le(value: Dynamic): boolean {
+    return CSingle.le(this, value);
+  }
+
+  // Global addition
   public static add(left: Dynamic, right: Dynamic): CSingle {
     return new CSingle(reduce(left) + reduce(right));
   }
 
-  // Subtraction
+  // Global subtraction
   public static sub(left: Dynamic, right: Dynamic): CSingle {
     return new CSingle(reduce(left) - reduce(right));
   }
 
-  // Multiplication
+  // Global multiplication
   public static mul(left: Dynamic, right: Dynamic): CSingle {
     return new CSingle(reduce(left) * reduce(right));
   }
 
-  // Division
+  // Global division
   public static div(left: Dynamic, right: Dynamic): CSingle {
     return new CSingle(reduce(left) / reduce(right));
   }
 
-  // Exponentation
+  // Global exponentation
   public static exp(left: Dynamic, right: Dynamic): CSingle {
     return new CSingle(reduce(left) ** reduce(right));
   }
 
-  // Equal to
+  // Global equal to
   public static eq(left: Dynamic, right: Dynamic): boolean {
     return process(left) === process(right);
   }
 
-  // Not equal to
+  // Global not equal to
   public static ne(left: Dynamic, right: Dynamic): boolean {
     return process(left) !== process(right);
   }
 
-  // Greater than
+  // Global greater than
   public static gt(left: Dynamic, right: Dynamic): boolean {
     return process(left) > process(right);
   }
 
-  // Less than
+  // Global less than
   public static lt(left: Dynamic, right: Dynamic): boolean {
     return process(left) < process(right);
   }
 
-  // Greater than or equal to
+  // Global greater than or equal to
   public static ge(left: Dynamic, right: Dynamic): boolean {
     return process(left) >= process(right);
   }
 
-  // Less than or equal to
+  // Global less than or equal to
   public static le(left: Dynamic, right: Dynamic): boolean {
     return process(left) <= process(right);
   }
