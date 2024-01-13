@@ -1,6 +1,6 @@
 // Import
-import FortranArray from '../structs/fortranArray';
 import { Integer, I } from './integer';
+import FortranArray from '../structs/fortranArray';
 
 // Define type
 type TIntegerArray = InstanceType<typeof CIntegerArray>;

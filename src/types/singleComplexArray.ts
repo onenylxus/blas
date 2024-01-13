@@ -1,6 +1,6 @@
 // Import
-import FortranArray from '../structs/fortranArray';
 import { SingleComplex, C } from './singleComplex';
+import FortranArray from '../structs/fortranArray';
 import _C from '../../utils/complex';
 
 // Define type

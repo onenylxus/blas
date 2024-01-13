@@ -1,6 +1,6 @@
 // Import
-import FortranArray from '../structs/fortranArray';
 import { Single, S } from './single';
+import FortranArray from '../structs/fortranArray';
 
 // Define type
 type TSingleArray = InstanceType<typeof CSingleArray>;
