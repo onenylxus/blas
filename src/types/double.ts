@@ -8,7 +8,7 @@ type TDouble = InstanceType<typeof CDouble>;
 // Dynamic type handling
 type Dynamic = number | Dual | Simple | Complex<any>;
 const reduce = (value: Dynamic): number => {
-  let result = value;
+  let result: Dynamic = value;
   if (result instanceof Simple || result instanceof Complex) {
       result = result.get();
     }
