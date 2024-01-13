@@ -7,12 +7,14 @@ import _C from '../../utils/complex';
 // Define test variables
 let value: Dual;
 let instance: C;
+let reference: C;
 
 // Single complex type test
 describe('Single complex type', () => {
   beforeAll(() => {
     value = _C(random(), random());
     instance = new SingleComplex();
+    reference = new SingleComplex();
   });
 
   it('should get value correctly in constructor', () => {
@@ -55,14 +57,20 @@ describe('Single complex type', () => {
 
   it('should compare equal to value correctly', () => {
     instance.set(value);
-    isEqual(instance.eq(_C(value.r, value.i)), instance.get().r === value.r && instance.get().i === value.i);
-    isEqual(instance.eq(_C(value.r + 1, value.i)), instance.get().r === value.r + 1 && instance.get().i === value.i);
-    isEqual(instance.eq(_C(value.r, value.i + 1)), instance.get().r === value.r && instance.get().i === value.i + 1);
+    reference.set(_C(value.r, value.i));
+    isEqual(instance.eq(_C(value.r, value.i)), instance.get().r === reference.get().r && instance.get().i === reference.get().i);
+    reference.set(_C(value.r + 1, value.i));
+    isEqual(instance.eq(_C(value.r + 1, value.i)), instance.get().r === reference.get().r && instance.get().i === reference.get().i);
+    reference.set(_C(value.r, value.i + 1));
+    isEqual(instance.eq(_C(value.r, value.i + 1)), instance.get().r === reference.get().r && instance.get().i === reference.get().i);
   });
 
   it('should compare not equal to value correctly', () => {
-    isEqual(instance.ne(_C(value.r, value.i)), instance.get().r !== value.r || instance.get().i !== value.i);
-    isEqual(instance.ne(_C(value.r + 1, value.i)), instance.get().r !== value.r + 1 || instance.get().i !== value.i);
-    isEqual(instance.ne(_C(value.r, value.i + 1)), instance.get().r !== value.r || instance.get().i !== value.i + 1);
+    reference.set(_C(value.r, value.i));
+    isEqual(instance.ne(_C(value.r, value.i)), instance.get().r !== reference.get().r || instance.get().i !== reference.get().i);
+    reference.set(_C(value.r + 1, value.i));
+    isEqual(instance.ne(_C(value.r + 1, value.i)), instance.get().r !== reference.get().r || instance.get().i !== reference.get().i);
+    reference.set(_C(value.r, value.i + 1));
+    isEqual(instance.ne(_C(value.r, value.i + 1)), instance.get().r !== reference.get().r || instance.get().i !== reference.get().i);
   });
 });

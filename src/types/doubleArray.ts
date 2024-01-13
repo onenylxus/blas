@@ -1,6 +1,6 @@
 // Import
-import FortranArray from '../structs/fortranArray';
 import { Double, D } from './double';
+import FortranArray from '../structs/fortranArray';
 
 // Define type
 type TDoubleArray = InstanceType<typeof CDoubleArray>;
