@@ -1,6 +1,6 @@
 // Import
 import { SingleComplexArray, CA } from '../../src/types/singleComplexArray';
-import { isClose, isEqual } from '../testers';
+import { isClose, isEqual, isUndefined } from '../testers';
 import { random } from '../../utils/random';
 import _C from '../../utils/complex';
 
@@ -39,5 +39,12 @@ describe('Single complex array type', () => {
   it('should clear value to zero', () => {
     instance.clear();
     isEqual(instance.getAll(), values.fill(_C(0, 0)));
+  });
+
+  it('should resize value array correctly in constructor', () => {
+    instance = new SingleComplexArray(values, 101);
+    isEqual(instance.get(101), _C(0, 0));
+    instance = new SingleComplexArray(values, 99);
+    isUndefined(instance.get(100));
   });
 });

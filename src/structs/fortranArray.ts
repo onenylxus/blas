@@ -8,9 +8,9 @@ import { Z } from '../types/doubleComplex';
 // Fortran array class
 class FortranArray<T extends S | D | I | C | Z> {
   // Properties
-  protected size: number | undefined;
-  protected store: T[] | undefined;
-  protected zero: T | undefined;
+  protected size: number;
+  protected store: T[];
+  protected zero: T;
 
   // Clear value from store
   public clear(): void {
@@ -26,7 +26,7 @@ class FortranArray<T extends S | D | I | C | Z> {
       this.store!.pop();
     }
     while (this.store!.length < this.size!) {
-      this.store!.push(this.zero!);
+      this.store!.push(this.zero);
     }
   }
 }
