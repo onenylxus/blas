@@ -1,6 +1,6 @@
 // Import
 import { DoubleComplexArray, ZA } from '../../src/types/doubleComplexArray';
-import { isEqual } from '../testers';
+import { isEqual, isUndefined } from '../testers';
 import { random } from '../../utils/random';
 import _C from '../../utils/complex';
 
@@ -39,5 +39,12 @@ describe('Double complex array type', () => {
   it('should clear value to zero', () => {
     instance.clear();
     isEqual(instance.getAll(), values.fill(_C(0, 0)));
+  });
+
+  it('should resize value array correctly in constructor', () => {
+    instance = new DoubleComplexArray(values, 101);
+    isEqual(instance.get(101), _C(0, 0));
+    instance = new DoubleComplexArray(values, 99);
+    isUndefined(instance.get(100));
   });
 });

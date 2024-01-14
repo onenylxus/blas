@@ -1,6 +1,6 @@
 // Import
 import { SingleArray, SA } from '../../src/types/singleArray';
-import { isClose, isEqual } from '../testers';
+import { isClose, isEqual, isUndefined } from '../testers';
 import { random } from '../../utils/random';
 
 // Define test variables
@@ -38,5 +38,12 @@ describe('Single array type', () => {
   it('should clear value to zero', () => {
     instance.clear();
     isEqual(instance.getAll(), values.fill(0));
+  });
+
+  it('should resize value array correctly in constructor', () => {
+    instance = new SingleArray(values, 101);
+    isEqual(instance.get(101), 0);
+    instance = new SingleArray(values, 99);
+    isUndefined(instance.get(100));
   });
 });

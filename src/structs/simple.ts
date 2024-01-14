@@ -4,7 +4,7 @@ class Simple {
   protected store: number;
 
   // Constructor
-  public constructor(value: number = 0) {
+  public constructor(value: number) {
     this.store = 0;
     this.set(value);
   }

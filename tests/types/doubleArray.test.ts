@@ -1,6 +1,6 @@
 // Import
 import { DoubleArray, DA } from '../../src/types/doubleArray';
-import { isEqual } from '../testers';
+import { isEqual, isUndefined } from '../testers';
 import { random } from '../../utils/random';
 
 // Define test variables
@@ -38,5 +38,12 @@ describe('Double array type', () => {
   it('should clear value to zero', () => {
     instance.clear();
     isEqual(instance.getAll(), values.fill(0));
+  });
+
+  it('should resize value array correctly in constructor', () => {
+    instance = new DoubleArray(values, 101);
+    isEqual(instance.get(101), 0);
+    instance = new DoubleArray(values, 99);
+    isUndefined(instance.get(100));
   });
 });
