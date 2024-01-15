@@ -10,11 +10,11 @@ type Dynamic = number | Dual | Simple | Complex<any>;
 const reduce = (value: Dynamic): number => {
   let result: Dynamic = value;
   if (result instanceof Simple || result instanceof Complex) {
-      result = result.get();
-    }
-    if (typeof result == 'object') {
-      result = result.r;
-    }
+    result = result.get();
+  }
+  if (typeof result == 'object') {
+    result = result.r;
+  }
   return result;
 };
 const process = (value: Dynamic): number => {
@@ -24,13 +24,13 @@ const process = (value: Dynamic): number => {
 // Single class
 class CSingle extends Simple {
   // Constructor
-  public constructor(value: number = 0) {
+  public constructor(value: Dynamic = 0) {
     super(value);
   }
 
   // Set value to store
-  public set(value: number): void {
-    this.store = Math.fround(value);
+  public set(value: Dynamic): void {
+    this.store = Math.fround(reduce(value));
   }
 
   // Local addition

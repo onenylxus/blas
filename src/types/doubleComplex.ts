@@ -26,10 +26,18 @@ const process = (value: Dynamic): Dual => {
 // Double complex class
 class CDoubleComplex extends Complex<D> {
   // Constructor
-  public constructor(value: Dual = _C(0, 0)) {
+  public constructor(value: Dynamic = _C(0, 0)) {
     super();
-    this.rstore = new Double(value.r);
-    this.istore = new Double(value.i);
+    let v: Dual = reduce(value);
+    this.rstore = new Double(v.r);
+    this.istore = new Double(v.i);
+  }
+
+  // Set value to store
+  public set(value: Dynamic): void {
+    let v: Dual = reduce(value);
+    this.rstore.set(v.r);
+    this.istore.set(v.i);
   }
 
   // Local addition
