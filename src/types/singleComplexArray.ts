@@ -1,10 +1,20 @@
 // Import
+import { Integer } from './integer';
 import { SingleComplex, C } from './singleComplex';
 import FortranArray from '../structs/fortranArray';
 import _C from '../../utils/complex';
 
 // Define type
 type TSingleComplexArray = InstanceType<typeof CSingleComplexArray>;
+
+// Index type handling
+type Index = number | Integer;
+const reduce = (value: Index): number => {
+  if (value instanceof Integer) {
+    return value.get();
+  }
+  return value;
+};
 
 // Single complex array class
 class CSingleComplexArray extends FortranArray<C> {
@@ -18,30 +28,32 @@ class CSingleComplexArray extends FortranArray<C> {
   }
 
   // Set value to store
-  public set(index: number, value: Dual): void {
-    if (index <= 0 || (this.size !== 0 && index > this.size!)) {
+  public set(index: Index, value: Dual): void {
+    let i: number = reduce(index);
+    if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return;
     }
-    if (this.size === 0 && index - 1 >= this.store!.length) {
-      this.store![index - 1] = this.zero!;
+    if (this.size === 0 && i - 1 >= this.store.length) {
+      this.store[i - 1] = this.zero;
     }
-    this.store![index - 1].set(value);
+    this.store[i - 1].set(value);
   }
 
   // Get value from store
-  public get(index: number): Dual | undefined {
-    if (index <= 0 || (this.size !== 0 && index > this.size!)) {
+  public get(index: Index): Dual | undefined {
+    let i: number = reduce(index);
+    if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return undefined;
     }
-    if (this.size === 0 && index - 1 >= this.store!.length) {
-      return this.zero!.get();
+    if (this.size === 0 && i - 1 >= this.store.length) {
+      return this.zero.get();
     }
-    return this.store![index - 1].get();
+    return this.store[i - 1].get();
   }
 
   // Get all values from store
   public getAll(): Dual[] {
-    return (new Array(this.store!.length)).fill(0).map((v, i) => this.store![i].get());
+    return (new Array(this.store.length)).fill(0).map((v, i) => this.store[i].get());
   }
 }
 

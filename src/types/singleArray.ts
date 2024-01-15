@@ -1,9 +1,19 @@
 // Import
+import { Integer } from './integer';
 import { Single, S } from './single';
 import FortranArray from '../structs/fortranArray';
 
 // Define type
 type TSingleArray = InstanceType<typeof CSingleArray>;
+
+// Index type handling
+type Index = number | Integer;
+const reduce = (value: Index): number => {
+  if (value instanceof Integer) {
+    return value.get();
+  }
+  return value;
+};
 
 // Single array class
 class CSingleArray extends FortranArray<S> {
@@ -17,30 +27,32 @@ class CSingleArray extends FortranArray<S> {
   }
 
   // Set value to store
-  public set(index: number, value: number): void {
-    if (index <= 0 || (this.size !== 0 && index > this.size!)) {
+  public set(index: Index, value: number): void {
+    let i: number = reduce(index);
+    if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return;
     }
-    if (this.size === 0 && index - 1 >= this.store!.length) {
-      this.store![index - 1] = this.zero!;
+    if (this.size === 0 && i - 1 >= this.store.length) {
+      this.store[i - 1] = this.zero;
     }
-    this.store![index - 1].set(value);
+    this.store[i - 1].set(value);
   }
 
   // Get value from store
-  public get(index: number): number | undefined {
-    if (index <= 0 || (this.size !== 0 && index > this.size!)) {
+  public get(index: Index): number | undefined {
+    let i: number = reduce(index);
+    if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return undefined;
     }
-    if (this.size === 0 && index - 1 >= this.store!.length) {
-      return this.zero!.get();
+    if (this.size === 0 && i - 1 >= this.store.length) {
+      return this.zero.get();
     }
-    return this.store![index - 1].get();
+    return this.store[i - 1].get();
   }
 
   // Get all values from store
   public getAll(): number[] {
-    return (new Array(this.store!.length)).fill(0).map((v, i) => this.store![i].get());
+    return (new Array(this.store.length)).fill(0).map((v, i) => this.store[i].get());
   }
 }
 
