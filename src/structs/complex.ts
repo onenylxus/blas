@@ -8,12 +8,6 @@ class Complex<T extends S | D> {
   protected rstore: T;
   protected istore: T;
 
-  // Set value to store
-  public set(value: Dual): void {
-    this.rstore.set(value.r);
-    this.istore.set(value.i);
-  }
-
   // Get value from store
   public get(): Dual {
     return {

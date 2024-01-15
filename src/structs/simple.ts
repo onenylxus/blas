@@ -1,16 +1,22 @@
+// Import
+import Complex from './complex';
+
+// Dynamic type handling
+type Dynamic = number | Dual | Simple | Complex<any>;
+
 // Simple class
 class Simple {
   // Properties
   protected store: number;
 
   // Constructor
-  public constructor(value: number) {
+  public constructor(value: Dynamic) {
     this.store = 0;
     this.set(value);
   }
 
   // Set value to store
-  public set(value: number): void {
+  public set(value: Dynamic): void {
 
   }
 
