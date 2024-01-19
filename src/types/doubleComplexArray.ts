@@ -1,11 +1,16 @@
 // Import
 import { DoubleComplex, Z } from './doubleComplex';
 import { Integer } from './integer';
+import Complex from '../structs/complex';
 import FortranArray from '../structs/fortranArray';
+import Simple from '../structs/simple';
 import _C from '../../utils/complex';
 
 // Define type
 type TDoubleComplexArray = InstanceType<typeof CDoubleComplexArray>;
+
+// Dynamic type
+type Dynamic = number | Dual | Simple | Complex<any>;
 
 // Index type handling
 type Index = number | Integer;
@@ -19,7 +24,7 @@ const reduce = (value: Index): number => {
 // Double complex array class
 class CDoubleComplexArray extends FortranArray<Z> {
   // Constructor
-  public constructor(values: readonly Dual[] = [], size: number = 0) {
+  public constructor(values: readonly Dynamic[] = [], size: number = 0) {
     super();
     this.store = values.map((v) => new DoubleComplex(v));
     this.size = Math.max(size, 0);
@@ -28,7 +33,7 @@ class CDoubleComplexArray extends FortranArray<Z> {
   }
 
   // Set value to store
-  public set(index: Index, value: Dual): void {
+  public set(index: Index, value: Dynamic): void {
     let i: number = reduce(index);
     if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return;
