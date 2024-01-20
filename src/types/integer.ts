@@ -53,6 +53,11 @@ class CInteger extends Simple {
     this.set(CInteger.div(this, value).get());
   }
 
+  // Local modulo
+  public mod(value: Dynamic): void {
+    this.set(CInteger.mod(this, value).get());
+  }
+
   // Local exponentation
   public exp(value: Dynamic): void {
     this.set(CInteger.exp(this, value).get());
@@ -106,6 +111,11 @@ class CInteger extends Simple {
   // Global division
   public static div(left: Dynamic, right: Dynamic): CInteger {
     return new CInteger(reduce(left) / reduce(right));
+  }
+
+  // Global modulo
+  public static mod(left: Dynamic, right: Dynamic): CInteger {
+    return new CInteger(reduce(left) % reduce(right));
   }
 
   // Global exponentation

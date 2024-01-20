@@ -52,6 +52,12 @@ describe('Integer type', () => {
     isClose(instance.get(), value / 2);
   });
 
+  it('should module value correctly', () => {
+    instance.set(value);
+    instance.mod(2);
+    isClose(instance.get(), value % 2);
+  });
+
   it('should exponent value correctly', () => {
     instance.set(value);
     instance.exp(2);
