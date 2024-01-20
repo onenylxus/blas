@@ -28,7 +28,7 @@ const drotmg = ({ dd1, dd2, dx1, dy1, dparam }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023      Nicholas Ng. All rights reserved.
+  // Copyright (c) 2023-2024 Nicholas Ng. All rights reserved.
 
   // Arguments
   const _dd1: D = new Double(dd1);
