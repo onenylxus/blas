@@ -19,9 +19,9 @@ describe('CCOPY routine test', () => {
   it('Case 1: n{4},cx[4],incx{1},cy[4],incy{1}', () => {
     // Input
     n = 4;
-    cx = [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)],
+    cx = [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)];
     incx = 1;
-    cy = [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)],
+    cy = [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)];
     incy = 1;
 
     // Apply routine
@@ -39,9 +39,9 @@ describe('CCOPY routine test', () => {
   it('Case 2: n{4},cx[4],incx{-1},cy[4],incy{-1}', () => {
     // Input
     n = 4;
-    cx = [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)],
+    cx = [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)];
     incx = -1;
-    cy = [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)],
+    cy = [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)];
     incy = -1;
 
     // Apply routine
@@ -59,9 +59,9 @@ describe('CCOPY routine test', () => {
   it('Case 3: n{0},cx[4],incx{1},cy[4],incy{1}', () => {
     // Input
     n = 0;
-    cx = [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)],
+    cx = [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)];
     incx = 1;
-    cy = [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)],
+    cy = [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)];
     incy = 1;
 
     // Apply routine
