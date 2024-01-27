@@ -56,7 +56,7 @@
 ### Double Complex
 ⚫ **ZROTG** - setup Givens rotation\
 ⚫ **ZDROT** - apply Givens rotation\
-🔴 **ZSWAP** - swap x and y\
+🟢 **ZSWAP** - swap x and y\
 ⚫ **ZSCAL** - x = a\*x\
 ⚫ **ZDSCAL** - x = a\*x\
 🟢 **ZCOPY** - copy x into y\
