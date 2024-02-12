@@ -86,7 +86,7 @@ const sdot = ({ n, sx, incx, sy, incy }: Input): Output => {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
     for (i.set(1); i.le(_n.get()); i.add(1)) {
-      stemp.add(_sx.get(i.get()) * _sy.get(i.get()));
+      stemp.add(_sx.get(ix.get()) * _sy.get(iy.get()));
       ix.add(_incx.get());
       iy.add(_incy.get());
     }

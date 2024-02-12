@@ -17,7 +17,7 @@
 🟢 **SSCAL** - x = a\*x\
 🟢 **SCOPY** - copy x into y\
 🟢 **SAXPY** - y = a\*x + y\
-🔴 **SDOT** - dot product\
+🟢 **SDOT** - dot product\
 🔴 **SDSDOT** - dot product with extended precision accumulation\
 🔴 **SNRM2** - Euclidean norm\
 🔴 **SCNRM2** - Euclidean norm\
