@@ -32,7 +32,7 @@ const drotm = ({ n, dx, incx, dy, incy, dparam }: Input): Output => {
   // Copyright (c) 2023-2024 Nicholas Ng. All rights reserved.
 
   // Arguments
-  const _n: I = new Integer();
+  const _n: I = new Integer(n);
   const _dx: DA = new DoubleArray(dx);
   const _incx: I = new Integer(incx);
   const _dy: DA = new DoubleArray(dy);

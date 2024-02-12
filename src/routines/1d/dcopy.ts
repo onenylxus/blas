@@ -1,7 +1,6 @@
 // Import
 import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
-import { abs } from '../../mathlib';
 
 // Input interface
 interface Input extends FParameters {

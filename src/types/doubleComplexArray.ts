@@ -10,6 +10,7 @@ import _C from '../../utils/complex';
 type TDoubleComplexArray = InstanceType<typeof CDoubleComplexArray>;
 
 // Dynamic type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 
 // Index type handling
@@ -34,7 +35,7 @@ class CDoubleComplexArray extends FortranArray<Z> {
 
   // Set value to store
   public set(index: Index, value: Dynamic): void {
-    let i: number = reduce(index);
+    const i: number = reduce(index);
     if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return;
     }
@@ -46,7 +47,7 @@ class CDoubleComplexArray extends FortranArray<Z> {
 
   // Get value from store
   public get(index: Index): Dual | undefined {
-    let i: number = reduce(index);
+    const i: number = reduce(index);
     if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return undefined;
     }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // Compare function
 const compare = (left: any, right: any, precision: number): boolean => {
   // Array iteration

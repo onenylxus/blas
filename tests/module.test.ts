@@ -6,7 +6,7 @@ import library from './data/library.json';
 const testRoutines = (routines: string[]): void => {
   routines.forEach((routine) => {
     it(`should contain correct ${routine.toUpperCase()} routine`, () => {
-      expect(blas.hasOwnProperty(routine)).toBeTruthy();
+      expect(Object.prototype.hasOwnProperty.call(blas, routine)).toBeTruthy();
       expect(blas[routine].name).toStrictEqual(routine);
     });
   });

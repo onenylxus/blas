@@ -27,7 +27,7 @@ class CustomSequencer extends TestSequencer.default {
       return l < r ? -1 : 1;
     });
   }
-};
+}
 
 // Export
 export default CustomSequencer;

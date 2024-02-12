@@ -8,6 +8,7 @@ import Simple from '../structs/simple';
 type TIntegerArray = InstanceType<typeof CIntegerArray>;
 
 // Dynamic type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 
 // Index type handling
@@ -32,7 +33,7 @@ class CIntegerArray extends FortranArray<I> {
 
   // Set value to store
   public set(index: Index, value: Dynamic): void {
-    let i: number = reduce(index);
+    const i: number = reduce(index);
     if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return;
     }
@@ -44,7 +45,7 @@ class CIntegerArray extends FortranArray<I> {
 
   // Get value from store
   public get(index: Index): number | undefined {
-    let i: number = reduce(index);
+    const i: number = reduce(index);
     if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return undefined;
     }

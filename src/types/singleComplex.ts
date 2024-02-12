@@ -8,6 +8,7 @@ import _C from '../../utils/complex';
 type TSingleComplex = InstanceType<typeof CSingleComplex>;
 
 // Dynamic type handling
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 const reduce = (value: Dynamic): Dual => {
   let result: Dynamic = value;
@@ -28,14 +29,14 @@ class CSingleComplex extends Complex<S> {
   // Constructor
   public constructor(value: Dynamic = _C(0, 0)) {
     super();
-    let v: Dual = reduce(value);
+    const v: Dual = reduce(value);
     this.rstore = new Single(v.r);
     this.istore = new Single(v.i);
   }
 
   // Set value to store
   public set(value: Dynamic): void {
-    let v: Dual = reduce(value);
+    const v: Dual = reduce(value);
     this.rstore.set(v.r);
     this.istore.set(v.i);
   }
@@ -72,43 +73,43 @@ class CSingleComplex extends Complex<S> {
 
   // Global addition
   public static add(left: Dynamic, right: Dynamic): CSingleComplex {
-    let l: Dual = process(left);
-    let r: Dual = process(right);
+    const l: Dual = process(left);
+    const r: Dual = process(right);
     return new CSingleComplex(_C(l.r + r.r, l.i + r.i));
   }
 
   // Global subtraction
   public static sub(left: Dynamic, right: Dynamic): CSingleComplex {
-    let l: Dual = process(left);
-    let r: Dual = process(right);
+    const l: Dual = process(left);
+    const r: Dual = process(right);
     return new CSingleComplex(_C(l.r - r.r, l.i - r.i));
   }
 
   // Global multiplication
   public static mul(left: Dynamic, right: Dynamic): CSingleComplex {
-    let l: Dual = process(left);
-    let r: Dual = process(right);
+    const l: Dual = process(left);
+    const r: Dual = process(right);
     return new CSingleComplex(_C(l.r * r.r - l.i * r.i, l.r * r.i + l.i * r.r));
   }
 
   // Global division
   public static div(left: Dynamic, right: Dynamic): CSingleComplex {
-    let l: Dual = process(left);
-    let r: Dual = process(right);
+    const l: Dual = process(left);
+    const r: Dual = process(right);
     return new CSingleComplex(_C((l.r * r.r + l.i * r.i) / (r.r ** 2 + r.i ** 2), (l.i * r.r - l.r * r.i) / (r.r ** 2 + r.i ** 2)));
   }
 
   // Global equal to
   public static eq(left: Dynamic, right: Dynamic): boolean {
-    let l: Dual = process(left);
-    let r: Dual = process(right);
+    const l: Dual = process(left);
+    const r: Dual = process(right);
     return l.r === r.r && l.i === r.i;
   }
 
   // Global not equal to
   public static ne(left: Dynamic, right: Dynamic): boolean {
-    let l: Dual = process(left);
-    let r: Dual = process(right);
+    const l: Dual = process(left);
+    const r: Dual = process(right);
     return l.r !== r.r || l.i !== r.i;
   }
 }

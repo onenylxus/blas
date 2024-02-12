@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // Import
 import compare from '../utils/compare';
 
@@ -18,7 +20,7 @@ const isFalse = (value: any): void => {
 
 // Equal test function
 const isEqual = (left: any, right: any): void => {
-  let test: boolean = compare(left, right, 0);
+  const test: boolean = compare(left, right, 0);
   test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
 };
 
@@ -29,7 +31,7 @@ const isStrictEqual = (left: any, right: any): void => {
 
 // Close test function
 const isClose = (left: any, right: any, precision: number = 10e-5): void => {
-  let test: boolean = compare(left, right, precision);
+  const test: boolean = compare(left, right, precision);
   test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
 }
 

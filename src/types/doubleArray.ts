@@ -9,6 +9,7 @@ import Simple from '../structs/simple';
 type TDoubleArray = InstanceType<typeof CDoubleArray>;
 
 // Dynamic type
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 
 // Index type handling
@@ -33,7 +34,7 @@ class CDoubleArray extends FortranArray<D> {
 
   // Set value to store
   public set(index: Index, value: Dynamic): void {
-    let i: number = reduce(index);
+    const i: number = reduce(index);
     if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return;
     }
@@ -45,7 +46,7 @@ class CDoubleArray extends FortranArray<D> {
 
   // Get value from store
   public get(index: Index): number | undefined {
-    let i: number = reduce(index);
+    const i: number = reduce(index);
     if (i <= 0 || (this.size !== 0 && i > this.size)) {
       return undefined;
     }

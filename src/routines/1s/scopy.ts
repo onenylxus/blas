@@ -1,8 +1,6 @@
 // Import
 import { Integer, I } from '../../types/integer';
 import { SingleArray, SA } from '../../types/singleArray';
-import { abs } from '../../mathlib';
-import { symlinkSync } from 'fs';
 
 // Input interface
 interface Input extends FParameters {
