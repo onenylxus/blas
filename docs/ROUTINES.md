@@ -34,7 +34,7 @@
 🟢 **DCOPY** - copy x into y\
 🟢 **DAXPY** - y = a\*x + y\
 🟢 **DDOT** - dot product\
-🔴 **DSDOT** - dot product with extended precision accumulation\
+🟢 **DSDOT** - dot product with extended precision accumulation\
 🔴 **DNRM2** - Euclidean norm\
 🔴 **DZNRM2** - Euclidean norm\
 🔴 **DASUM** - sum of absolute values\
