@@ -1,6 +1,7 @@
 // Import
+import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
-import { isClose, isEqual, isUndefined } from '../../testers';
+import perf from '../../../utils/performance';
 
 // Routine snippet
 const { sscal } = blas;
@@ -10,7 +11,6 @@ let n: number;
 let sa: number;
 let sx: number[];
 let incx: number;
-let result: any;
 
 // SSCAL routine test
 describe('SSCAL routine test', () => {
@@ -22,7 +22,7 @@ describe('SSCAL routine test', () => {
     incx = 1;
 
     // Apply routine
-    result = sscal({ n, sa, sx, incx });
+    const { result, time } = perf(sscal, { n, sa, sx, incx });
 
     // Output
     isUndefined(result._ret);
@@ -30,6 +30,7 @@ describe('SSCAL routine test', () => {
     isEqual(result.sa, 1);
     isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
+    isPerf(time);
   });
 
   it('Case 2: n{4},sa{2},sx[4],incx{1}', () => {
@@ -40,7 +41,7 @@ describe('SSCAL routine test', () => {
     incx = 1;
 
     // Apply routine
-    result = sscal({ n, sa, sx, incx });
+    const { result, time } = perf(sscal, { n, sa, sx, incx });
 
     // Output
     isUndefined(result._ret);
@@ -48,6 +49,7 @@ describe('SSCAL routine test', () => {
     isEqual(result.sa, 2);
     isClose(result.sx, [2, 4, 6, 8]);
     isEqual(result.incx, 1);
+    isPerf(time);
   });
 
   it('Case 3: n{5},sa{2},sx[5],incx{1}', () => {
@@ -58,7 +60,7 @@ describe('SSCAL routine test', () => {
     incx = 1;
 
     // Apply routine
-    result = sscal({ n, sa, sx, incx });
+    const { result, time } = perf(sscal, { n, sa, sx, incx });
 
     // Output
     isUndefined(result._ret);
@@ -66,6 +68,7 @@ describe('SSCAL routine test', () => {
     isEqual(result.sa, 2);
     isClose(result.sx, [2, 4, 6, 8, 10]);
     isEqual(result.incx, 1);
+    isPerf(time);
   });
 
   it('Case 4: n{7},sa{2},sx[5],incx{1}', () => {
@@ -76,7 +79,7 @@ describe('SSCAL routine test', () => {
     incx = 1;
 
     // Apply routine
-    result = sscal({ n, sa, sx, incx });
+    const { result, time } = perf(sscal, { n, sa, sx, incx });
 
     // Output
     isUndefined(result._ret);
@@ -84,6 +87,7 @@ describe('SSCAL routine test', () => {
     isEqual(result.sa, 2);
     isClose(result.sx, [2, 4, 6, 8, 10, 12, 14]);
     isEqual(result.incx, 1);
+    isPerf(time);
   });
 
   it('Case 5: n{4},sa{-2},sx[7],incx{2}', () => {
@@ -94,7 +98,7 @@ describe('SSCAL routine test', () => {
     incx = 2;
 
     // Apply routine
-    result = sscal({ n, sa, sx, incx });
+    const { result, time } = perf(sscal, { n, sa, sx, incx });
 
     // Output
     isUndefined(result._ret);
@@ -102,6 +106,7 @@ describe('SSCAL routine test', () => {
     isEqual(result.sa, -2);
     isClose(result.sx, [-2, 2, -6, 4, -10, 6, -14]);
     isEqual(result.incx, 2);
+    isPerf(time);
   });
 
   it('Case 6: n{4},sa{-2},sx[7],incx{-2}', () => {
@@ -112,7 +117,7 @@ describe('SSCAL routine test', () => {
     incx = -2;
 
     // Apply routine
-    result = sscal({ n, sa, sx, incx });
+    const { result, time } = perf(sscal, { n, sa, sx, incx });
 
     // Output
     isUndefined(result._ret);
@@ -120,6 +125,7 @@ describe('SSCAL routine test', () => {
     isEqual(result.sa, -2);
     isClose(result.sx, [1, 2, 3, 4, 5, 6, 7]);
     isEqual(result.incx, -2);
+    isPerf(time);
   });
 
   it('Case 7: n{0},sa{1},sx[4],incx{1}', () => {
@@ -130,7 +136,7 @@ describe('SSCAL routine test', () => {
     incx = 1;
 
     // Apply routine
-    result = sscal({ n, sa, sx, incx });
+    const { result, time } = perf(sscal, { n, sa, sx, incx });
 
     // Output
     isUndefined(result._ret);
@@ -138,5 +144,6 @@ describe('SSCAL routine test', () => {
     isEqual(result.sa, 1);
     isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
+    isPerf(time);
   });
 });

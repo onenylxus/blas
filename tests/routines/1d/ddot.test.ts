@@ -1,6 +1,7 @@
 // Import
+import { isEqual, isPerf } from '../../testers';
 import blas from '../../../src/index';
-import { isEqual } from '../../testers';
+import perf from '../../../utils/performance';
 
 // Routine snippet
 const { ddot } = blas;
@@ -11,7 +12,6 @@ let dx: number[];
 let incx: number;
 let dy: number[];
 let incy: number;
-let result: any;
 
 // DDOT routine test
 describe('DDOT routine test', () => {
@@ -24,7 +24,7 @@ describe('DDOT routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = ddot({ n, dx, incx, dy, incy });
+    const { result, time } = perf(ddot, { n, dx, incx, dy, incy });
 
     // Output
     isEqual(result._ret, 70);
@@ -33,6 +33,7 @@ describe('DDOT routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.dy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 2: n{7},dx[7],incx{1},dy[7],incy{1}', () => {
@@ -44,7 +45,7 @@ describe('DDOT routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = ddot({ n, dx, incx, dy, incy });
+    const { result, time } = perf(ddot, { n, dx, incx, dy, incy });
 
     // Output
     isEqual(result._ret, 79);
@@ -53,6 +54,7 @@ describe('DDOT routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.dy, [7, 6, 5, 4, 3, 2, 1]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 3: n{10},dx[10],incx{1},dy[10],incy{1}', () => {
@@ -64,7 +66,7 @@ describe('DDOT routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = ddot({ n, dx, incx, dy, incy });
+    const { result, time } = perf(ddot, { n, dx, incx, dy, incy });
 
     // Output
     isEqual(result._ret, 9);
@@ -73,6 +75,7 @@ describe('DDOT routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.dy, [1, -1, 1, -1, 1, 2, -2, 2, -2, 2]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 4: n{0},dx[4],incx{1},dy[4],incy{1}', () => {
@@ -84,7 +87,7 @@ describe('DDOT routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = ddot({ n, dx, incx, dy, incy });
+    const { result, time } = perf(ddot, { n, dx, incx, dy, incy });
 
     // Output
     isEqual(result._ret, 0);
@@ -93,6 +96,7 @@ describe('DDOT routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.dy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 5: n{10},dx[10],incx{2},dy[10],incy{2}', () => {
@@ -104,7 +108,7 @@ describe('DDOT routine test', () => {
     incy = 2;
 
     // Apply routine
-    result = ddot({ n, dx, incx, dy, incy });
+    const { result, time } = perf(ddot, { n, dx, incx, dy, incy });
 
     // Output
     isEqual(result._ret, -3);
@@ -113,6 +117,7 @@ describe('DDOT routine test', () => {
     isEqual(result.incx, 2);
     isEqual(result.dy, [1, -1, 1, -1, 1, 2, -2, 2, -2, 2]);
     isEqual(result.incy, 2);
+    isPerf(time);
   });
 
   it('Case 6: n{10},dx[10],incx{-2},dy[10],incy{-2}', () => {
@@ -124,7 +129,7 @@ describe('DDOT routine test', () => {
     incy = -2;
 
     // Apply routine
-    result = ddot({ n, dx, incx, dy, incy });
+    const { result, time } = perf(ddot, { n, dx, incx, dy, incy });
 
     // Output
     isEqual(result._ret, -3);
@@ -133,5 +138,6 @@ describe('DDOT routine test', () => {
     isEqual(result.incx, -2);
     isEqual(result.dy, [1, -1, 1, -1, 1, 2, -2, 2, -2, 2]);
     isEqual(result.incy, -2);
+    isPerf(time);
   });
 });

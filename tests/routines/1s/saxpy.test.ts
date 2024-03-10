@@ -1,6 +1,7 @@
 // Import
+import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
-import { isClose, isEqual, isUndefined } from '../../testers';
+import perf from '../../../utils/performance';
 
 // Routine snippet
 const { saxpy } = blas;
@@ -12,7 +13,6 @@ let sx: number[];
 let incx: number;
 let sy: number[];
 let incy: number;
-let result: any;
 
 // SAXPY routine test
 describe('SAXPY routine test', () => {
@@ -48,7 +48,7 @@ describe('SAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = saxpy({ n, sa, sx, incx, sy, incy });
+    const { result, time } = perf(saxpy, { n, sa, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -80,6 +80,7 @@ describe('SAXPY routine test', () => {
       54.861365973632914,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 2: n{3},sa{23},sx[3],incx{1},sy[3],incy{1}', () => {
@@ -100,7 +101,7 @@ describe('SAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = saxpy({ n, sa, sx, incx, sy, incy });
+    const { result, time } = perf(saxpy, { n, sa, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -118,6 +119,7 @@ describe('SAXPY routine test', () => {
       32.14409136136664,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 3: n{8},sa{23},sx[8],incx{1},sy[8],incy{1}', () => {
@@ -148,7 +150,7 @@ describe('SAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = saxpy({ n, sa, sx, incx, sy, incy });
+    const { result, time } = perf(saxpy, { n, sa, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -176,6 +178,7 @@ describe('SAXPY routine test', () => {
       -8.04363151078942,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 4: n{5},sa{23},sx[10],incx{2},sy[10],incy{2}', () => {
@@ -210,7 +213,7 @@ describe('SAXPY routine test', () => {
     incy = 2;
 
     // Apply routine
-    result = saxpy({ n, sa, sx, incx, sy, incy });
+    const { result, time } = perf(saxpy, { n, sa, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -242,6 +245,7 @@ describe('SAXPY routine test', () => {
       -0.44566197009995806,
     ]);
     isEqual(result.incy, 2);
+    isPerf(time);
   });
 
   it('Case 5: n{10},sa{0},sx[10],incx{1},sy[10],incy{1}', () => {
@@ -276,7 +280,7 @@ describe('SAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = saxpy({ n, sa, sx, incx, sy, incy });
+    const { result, time } = perf(saxpy, { n, sa, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -308,6 +312,7 @@ describe('SAXPY routine test', () => {
       -0.44566197009995806,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 6: n{0},sa{23},sx[10],incx{1},sy[10],incy{1}', () => {
@@ -342,7 +347,7 @@ describe('SAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = saxpy({ n, sa, sx, incx, sy, incy });
+    const { result, time } = perf(saxpy, { n, sa, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -374,6 +379,7 @@ describe('SAXPY routine test', () => {
       -0.44566197009995806,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 7: n{5},sa{23},sx[10],incx{-2},sy[10],incy{-2}', () => {
@@ -408,7 +414,7 @@ describe('SAXPY routine test', () => {
     incy = -2;
 
     // Apply routine
-    result = saxpy({ n, sa, sx, incx, sy, incy });
+    const { result, time } = perf(saxpy, { n, sa, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -440,5 +446,6 @@ describe('SAXPY routine test', () => {
       -0.44566197009995806,
     ]);
     isEqual(result.incy, -2);
+    isPerf(time);
   });
 });

@@ -1,6 +1,7 @@
 // Import
+import { isClose, isEqual, isPerf } from '../../testers';
 import blas from '../../../src/index';
-import { isClose, isEqual } from '../../testers';
+import perf from '../../../utils/performance';
 
 // Routine snippet
 const { dsdot } = blas;
@@ -11,7 +12,6 @@ let sx: number[];
 let incx: number;
 let sy: number[];
 let incy: number;
-let result: any;
 
 // DSDOT routine test
 describe('DSDOT routine test', () => {
@@ -24,7 +24,7 @@ describe('DSDOT routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = dsdot({ n, sx, incx, sy, incy });
+    const { result, time } = perf(dsdot, { n, sx, incx, sy, incy });
 
     // Output
     isClose(result._ret, 70);
@@ -33,6 +33,7 @@ describe('DSDOT routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 2: n{0},sx[4],incx{1},sy[4],incy{1}', () => {
@@ -44,7 +45,7 @@ describe('DSDOT routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = dsdot({ n, sx, incx, sy, incy });
+    const { result, time } = perf(dsdot, { n, sx, incx, sy, incy });
 
     // Output
     isClose(result._ret, 0);
@@ -53,6 +54,7 @@ describe('DSDOT routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 3: n{4},sx[4],incx{2},sy[4],incy{2}', () => {
@@ -64,7 +66,7 @@ describe('DSDOT routine test', () => {
     incy = 2;
 
     // Apply routine
-    result = dsdot({ n, sx, incx, sy, incy });
+    const { result, time } = perf(dsdot, { n, sx, incx, sy, incy });
 
     // Output
     isClose(result._ret, 26);
@@ -73,6 +75,7 @@ describe('DSDOT routine test', () => {
     isEqual(result.incx, 2);
     isEqual(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 2);
+    isPerf(time);
   });
 
   it('Case 4: n{2},sx[4],incx{-1},sy[4],incy{-1}', () => {
@@ -84,7 +87,7 @@ describe('DSDOT routine test', () => {
     incy = -1;
 
     // Apply routine
-    result = dsdot({ n, sx, incx, sy, incy });
+    const { result, time } = perf(dsdot, { n, sx, incx, sy, incy });
 
     // Output
     isClose(result._ret, 17);
@@ -93,6 +96,7 @@ describe('DSDOT routine test', () => {
     isEqual(result.incx, -1);
     isEqual(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, -1);
+    isPerf(time);
   });
 
   it('Case 5: n{2},sx[4],incx{-1},sy[4],incy{1}', () => {
@@ -104,7 +108,7 @@ describe('DSDOT routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = dsdot({ n, sx, incx, sy, incy });
+    const { result, time } = perf(dsdot, { n, sx, incx, sy, incy });
 
     // Output
     isClose(result._ret, 16);
@@ -113,5 +117,6 @@ describe('DSDOT routine test', () => {
     isEqual(result.incx, -1);
     isEqual(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 });

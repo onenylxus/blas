@@ -1,6 +1,7 @@
 // Import
+import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
-import { isClose, isEqual, isUndefined } from '../../testers';
+import perf from '../../../utils/performance';
 
 // Routine snippet
 const { daxpy } = blas;
@@ -12,7 +13,6 @@ let dx: number[];
 let incx: number;
 let dy: number[];
 let incy: number;
-let result: any;
 
 // DAXPY routine test
 describe('DAXPY routine test', () => {
@@ -48,7 +48,7 @@ describe('DAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = daxpy({ n, da, dx, incx, dy, incy });
+    const { result, time } = perf(daxpy, { n, da, dx, incx, dy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -80,6 +80,7 @@ describe('DAXPY routine test', () => {
       54.861365973632914,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 2: n{3},da{23},dx[3],incx{1},dy[3],incy{1}', () => {
@@ -100,7 +101,7 @@ describe('DAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = daxpy({ n, da, dx, incx, dy, incy });
+    const { result, time } = perf(daxpy, { n, da, dx, incx, dy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -118,6 +119,7 @@ describe('DAXPY routine test', () => {
       32.14409136136664,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 3: n{8},da{23},dx[8],incx{1},dy[8],incy{1}', () => {
@@ -148,7 +150,7 @@ describe('DAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = daxpy({ n, da, dx, incx, dy, incy });
+    const { result, time } = perf(daxpy, { n, da, dx, incx, dy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -176,6 +178,7 @@ describe('DAXPY routine test', () => {
       -8.04363151078942,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 4: n{5},da{23},dx[10],incx{2},dy[10],incy{2}', () => {
@@ -210,7 +213,7 @@ describe('DAXPY routine test', () => {
     incy = 2;
 
     // Apply routine
-    result = daxpy({ n, da, dx, incx, dy, incy });
+    const { result, time } = perf(daxpy, { n, da, dx, incx, dy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -242,6 +245,7 @@ describe('DAXPY routine test', () => {
       -0.44566197009995806,
     ]);
     isEqual(result.incy, 2);
+    isPerf(time);
   });
 
   it('Case 5: n{10},da{0},dx[10],incx{1},dy[10],incy{1}', () => {
@@ -276,7 +280,7 @@ describe('DAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = daxpy({ n, da, dx, incx, dy, incy });
+    const { result, time } = perf(daxpy, { n, da, dx, incx, dy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -308,6 +312,7 @@ describe('DAXPY routine test', () => {
       -0.44566197009995806,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 6: n{0},da{23},dx[10],incx{1},dy[10],incy{1}', () => {
@@ -342,7 +347,7 @@ describe('DAXPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = daxpy({ n, da, dx, incx, dy, incy });
+    const { result, time } = perf(daxpy, { n, da, dx, incx, dy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -374,6 +379,7 @@ describe('DAXPY routine test', () => {
       -0.44566197009995806,
     ]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 7: n{5},da{23},dx[10],incx{-2},dy[10],incy{-2}', () => {
@@ -408,7 +414,7 @@ describe('DAXPY routine test', () => {
     incy = -2;
 
     // Apply routine
-    result = daxpy({ n, da, dx, incx, dy, incy });
+    const { result, time } = perf(daxpy, { n, da, dx, incx, dy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -440,5 +446,6 @@ describe('DAXPY routine test', () => {
       -0.44566197009995806,
     ]);
     isEqual(result.incy, -2);
+    isPerf(time);
   });
 });

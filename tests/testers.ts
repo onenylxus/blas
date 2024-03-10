@@ -35,5 +35,11 @@ const isClose = (left: any, right: any, precision: number = 10e-5): void => {
   test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
 }
 
+// Performance test function
+const isPerf = (time: number, limit: number = 100): void => {
+  const test: boolean = time <= limit;
+  test ? expect(test).toBeTruthy() : expect(time).toBeLessThanOrEqual(limit);
+};
+
 // Export
-export { isUndefined, isTrue, isFalse, isEqual, isStrictEqual, isClose };
+export { isUndefined, isTrue, isFalse, isEqual, isStrictEqual, isClose, isPerf };

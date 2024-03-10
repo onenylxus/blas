@@ -1,6 +1,7 @@
 // Import
+import { isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
-import { isEqual, isUndefined } from '../../testers';
+import perf from '../../../utils/performance';
 import _C from '../../../utils/complex';
 
 // Routine snippet
@@ -12,7 +13,6 @@ let zx: Dual[];
 let incx: number;
 let zy: Dual[];
 let incy: number;
-let result: any;
 
 // ZSWAP routine test
 describe('ZSWAP routine test', () => {
@@ -25,7 +25,7 @@ describe('ZSWAP routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = zswap({ n, zx, incx, zy, incy });
+    const { result, time } = perf(zswap, { n, zx, incx, zy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -34,7 +34,9 @@ describe('ZSWAP routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.zy, [_C(1, 7), _C(2, 8), _C(3, 9), _C(4, 10), _C(5, 11), _C(6, 12)]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
+
   it('Case 2: n{6},zx[6],incx{-1},zy[6],incy{1}', () => {
     // Input
     n = 6;
@@ -44,7 +46,7 @@ describe('ZSWAP routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = zswap({ n, zx, incx, zy, incy });
+    const { result, time } = perf(zswap, { n, zx, incx, zy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -53,7 +55,9 @@ describe('ZSWAP routine test', () => {
     isEqual(result.incx, -1);
     isEqual(result.zy, [_C(6, 12), _C(5, 11), _C(4, 10), _C(3, 9), _C(2, 8), _C(1, 7)]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
+
   it('Case 3: n{6},zx[6],incx{1},zy[6],incy{-1}', () => {
     // Input
     n = 6;
@@ -63,7 +67,7 @@ describe('ZSWAP routine test', () => {
     incy = -1;
 
     // Apply routine
-    result = zswap({ n, zx, incx, zy, incy });
+    const { result, time } = perf(zswap, { n, zx, incx, zy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -72,7 +76,9 @@ describe('ZSWAP routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.zy, [_C(6, 12), _C(5, 11), _C(4, 10), _C(3, 9), _C(2, 8), _C(1, 7)]);
     isEqual(result.incy, -1);
+    isPerf(time);
   });
+
   it('Case 4: n{0},zx[6],incx{1},zy[6],incy{1}', () => {
     // Input
     n = 0;
@@ -82,7 +88,7 @@ describe('ZSWAP routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = zswap({ n, zx, incx, zy, incy });
+    const { result, time } = perf(zswap, { n, zx, incx, zy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -91,5 +97,6 @@ describe('ZSWAP routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.zy, [_C(13, 19), _C(14, 20), _C(15, 21), _C(16, 22), _C(17, 23), _C(18, 24)]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 });

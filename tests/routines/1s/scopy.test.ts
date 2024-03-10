@@ -1,6 +1,7 @@
 // Import
+import { isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
-import { isEqual, isUndefined } from '../../testers';
+import perf from '../../../utils/performance';
 
 // Routine snippet
 const { scopy } = blas;
@@ -11,7 +12,6 @@ let sx: number[];
 let incx: number;
 let sy: number[];
 let incy: number;
-let result: any;
 
 // SCOPY routine test
 describe('SCOPY routine test', () => {
@@ -24,7 +24,7 @@ describe('SCOPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = scopy({ n, sx, incx, sy, incy });
+    const { result, time } = perf(scopy, { n, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -33,6 +33,7 @@ describe('SCOPY routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.sy, [1, 2, 3, 4]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 2: n{10},sx[10],incx{1},sy[10],incy{1}', () => {
@@ -44,7 +45,7 @@ describe('SCOPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = scopy({ n, sx, incx, sy, incy });
+    const { result, time } = perf(scopy, { n, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -53,6 +54,7 @@ describe('SCOPY routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.sy, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 3: n{7},sx[7],incx{1},sy[7],incy{1}', () => {
@@ -64,7 +66,7 @@ describe('SCOPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = scopy({ n, sx, incx, sy, incy });
+    const { result, time } = perf(scopy, { n, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -73,6 +75,7 @@ describe('SCOPY routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.sy, [1, 2, 3, 4, 5, 6, 7]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 4: n{5},sx[9],incx{2},sy[9],incy{2}', () => {
@@ -84,7 +87,7 @@ describe('SCOPY routine test', () => {
     incy = 2;
 
     // Apply routine
-    result = scopy({ n, sx, incx, sy, incy });
+    const { result, time } = perf(scopy, { n, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -93,6 +96,7 @@ describe('SCOPY routine test', () => {
     isEqual(result.incx, 2);
     isEqual(result.sy, [1, 0, 3, 0, 5, 0, 7, 0, 9]);
     isEqual(result.incy, 2);
+    isPerf(time);
   });
 
   it('Case 5: n{5},sx[9],incx{2},sy[9],incy{-1}', () => {
@@ -104,7 +108,7 @@ describe('SCOPY routine test', () => {
     incy = -1;
 
     // Apply routine
-    result = scopy({ n, sx, incx, sy, incy });
+    const { result, time } = perf(scopy, { n, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -113,6 +117,7 @@ describe('SCOPY routine test', () => {
     isEqual(result.incx, 2);
     isEqual(result.sy, [9, 7, 5, 3, 1, 0, 0, 0, 0]);
     isEqual(result.incy, -1);
+    isPerf(time);
   });
 
   it('Case 6: n{5},sx[9],incx{-2},sy[9],incy{1}', () => {
@@ -124,7 +129,7 @@ describe('SCOPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = scopy({ n, sx, incx, sy, incy });
+    const { result, time } = perf(scopy, { n, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -133,6 +138,7 @@ describe('SCOPY routine test', () => {
     isEqual(result.incx, -2);
     isEqual(result.sy, [9, 7, 5, 3, 1, 0, 0, 0, 0]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 7: n{0},sx[4],incx{1},sy[4],incy{1}', () => {
@@ -144,7 +150,7 @@ describe('SCOPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = scopy({ n, sx, incx, sy, incy });
+    const { result, time } = perf(scopy, { n, sx, incx, sy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -153,5 +159,6 @@ describe('SCOPY routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.sy, [0, 0, 0, 0]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 });

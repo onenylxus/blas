@@ -1,6 +1,7 @@
 // Import
+import { isEqual, isPerf } from '../../testers';
 import blas from '../../../src/index';
-import { isEqual } from '../../testers';
+import perf from '../../../utils/performance';
 
 // Routine snippet
 const { idamax } = blas;
@@ -9,7 +10,6 @@ const { idamax } = blas;
 let n: number;
 let dx: number[];
 let incx: number;
-let result: any;
 
 // IDAMAX routine test
 describe('IDAMAX routine test', () => {
@@ -20,13 +20,14 @@ describe('IDAMAX routine test', () => {
     incx = 1;
 
     // Apply routine
-    result = idamax({ n, dx, incx });
+    const { result, time } = perf(idamax, { n, dx, incx });
 
     // Output
     isEqual(result._ret, 6);
     isEqual(result.n, 6);
     isEqual(result.dx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 1);
+    isPerf(time);
   });
 
   it('Case 2: n{3},sx[6],incx{2}', () => {
@@ -36,13 +37,14 @@ describe('IDAMAX routine test', () => {
     incx = 2;
 
     // Apply routine
-    result = idamax({ n, dx, incx });
+    const { result, time } = perf(idamax, { n, dx, incx });
 
     // Output
     isEqual(result._ret, 3);
     isEqual(result.n, 3);
     isEqual(result.dx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 2);
+    isPerf(time);
   });
 
   it('Case 3: n{6},sx[6],incx{-1}', () => {
@@ -52,13 +54,14 @@ describe('IDAMAX routine test', () => {
     incx = -1;
 
     // Apply routine
-    result = idamax({ n, dx, incx });
+    const { result, time } = perf(idamax, { n, dx, incx });
 
     // Output
     isEqual(result._ret, 0);
     isEqual(result.n, 6);
     isEqual(result.dx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, -1);
+    isPerf(time);
   });
 
   it('Case 4: n{0},sx[6],incx{1}', () => {
@@ -68,13 +71,14 @@ describe('IDAMAX routine test', () => {
     incx = 1;
 
     // Apply routine
-    result = idamax({ n, dx, incx });
+    const { result, time } = perf(idamax, { n, dx, incx });
 
     // Output
     isEqual(result._ret, 0);
     isEqual(result.n, 0);
     isEqual(result.dx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 1);
+    isPerf(time);
   });
 
   it('Case 5: n{1},sx[6],incx{1}', () => {
@@ -84,12 +88,13 @@ describe('IDAMAX routine test', () => {
     incx = 1;
 
     // Apply routine
-    result = idamax({ n, dx, incx });
+    const { result, time } = perf(idamax, { n, dx, incx });
 
     // Output
     isEqual(result._ret, 1);
     isEqual(result.n, 1);
     isEqual(result.dx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 1);
+    isPerf(time);
   });
 });

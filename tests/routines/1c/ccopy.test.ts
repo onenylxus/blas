@@ -1,6 +1,7 @@
 // Import
+import { isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
-import { isEqual, isUndefined } from '../../testers';
+import perf from '../../../utils/performance';
 import _C from '../../../utils/complex';
 
 // Routine snippet
@@ -12,7 +13,6 @@ let cx: Dual[];
 let incx: number;
 let cy: Dual[];
 let incy: number;
-let result: any;
 
 // CCOPY routine test
 describe('CCOPY routine test', () => {
@@ -25,7 +25,7 @@ describe('CCOPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = ccopy({ n, cx, incx, cy, incy });
+    const { result, time } = perf(ccopy, { n, cx, incx, cy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -34,6 +34,7 @@ describe('CCOPY routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.cy, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 
   it('Case 2: n{4},cx[4],incx{-1},cy[4],incy{-1}', () => {
@@ -45,7 +46,7 @@ describe('CCOPY routine test', () => {
     incy = -1;
 
     // Apply routine
-    result = ccopy({ n, cx, incx, cy, incy });
+    const { result, time } = perf(ccopy, { n, cx, incx, cy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -54,6 +55,7 @@ describe('CCOPY routine test', () => {
     isEqual(result.incx, -1);
     isEqual(result.cy, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
     isEqual(result.incy, -1);
+    isPerf(time);
   });
 
   it('Case 3: n{0},cx[4],incx{1},cy[4],incy{1}', () => {
@@ -65,7 +67,7 @@ describe('CCOPY routine test', () => {
     incy = 1;
 
     // Apply routine
-    result = ccopy({ n, cx, incx, cy, incy });
+    const { result, time } = perf(ccopy, { n, cx, incx, cy, incy });
 
     // Output
     isUndefined(result._ret);
@@ -74,5 +76,6 @@ describe('CCOPY routine test', () => {
     isEqual(result.incx, 1);
     isEqual(result.cy, [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)]);
     isEqual(result.incy, 1);
+    isPerf(time);
   });
 });
