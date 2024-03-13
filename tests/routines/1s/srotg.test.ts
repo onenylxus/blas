@@ -43,7 +43,7 @@ describe('SROTG routine test', () => {
     isClose(result.b, 0.4472135954999579);
     isClose(result.c, 0.8944271909999159);
     isClose(result.s, 0.4472135954999579);
-    isPerf
+    isPerf(time);
   });
 
   it('Case 3: a{-2},b{-4}', () => {
@@ -60,6 +60,6 @@ describe('SROTG routine test', () => {
     isClose(result.b, 2.2360679774997898);
     isClose(result.c, 0.4472135954999579);
     isClose(result.s, 0.8944271909999159);
-    isPerf
+    isPerf(time);
   });
 });
