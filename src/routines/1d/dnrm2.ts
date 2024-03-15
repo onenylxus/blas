@@ -57,6 +57,9 @@ const dnrm2 = ({ n, x, incx }: Input): Output => {
   const ymin: D = new Double();
 
   // Process
+  if (_n.le(0)) {
+    return resolve();
+  }
   ix.set(1);
   if (_incx.lt(0)) {
     ix.set((-_n.get() + 1) * _incx.get() + 1);

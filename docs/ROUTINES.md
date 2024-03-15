@@ -35,7 +35,7 @@
 🟢 **DAXPY** - y = a\*x + y\
 🟢 **DDOT** - dot product\
 🟢 **DSDOT** - dot product with extended precision accumulation\
-🔴 **DNRM2** - Euclidean norm\
+🟡 **DNRM2** - Euclidean norm\
 🔴 **DZNRM2** - Euclidean norm\
 🔴 **DASUM** - sum of absolute values\
 🟢 **IDAMAX** - index of max abs value
