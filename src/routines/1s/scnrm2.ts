@@ -66,7 +66,7 @@ const scnrm2 = ({ n, x, incx }: Input): Output => {
     ix.set((-_n.get() + 1) * _incx.get() + 1);
   }
   for (i.set(1); i.le(_n.get()); i.add(1)) {
-    ax.set(sqrt(_x.get(ix.get()).r ** 2 + _x.get(ix.get()).i ** 2));
+    ax.set(abs(_x.get(ix.get()).r));
     if (ax.gt(TBIG)) {
       abig.add((ax.get() * SBIG) ** 2);
       notbig.set(false);
