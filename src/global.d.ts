@@ -29,7 +29,7 @@ type FDataType =
   | FReal
   | FRealArray;
 
-// Parameters type
+// Parameters interface
 interface FParameters {
   [prop: string]: FDataType;
 }
