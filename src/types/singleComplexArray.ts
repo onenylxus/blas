@@ -40,7 +40,9 @@ class CSingleComplexArray extends FortranArray<C> {
       return;
     }
     if (this.size === 0 && i - 1 >= this.store.length) {
-      this.store[i - 1] = this.zero;
+      for (let j = this.store.length; j < i; j++) {
+        this.store[j] = this.zero;
+      }
     }
     this.store[i - 1].set(value);
   }

@@ -12,14 +12,14 @@ let instance: IA;
 describe('Integer array type', () => {
   beforeAll(() => {
     values = new Array(100);
-    for (let i = 0; i < 100; ++i) {
+    for (let i = 0; i < 100; i++) {
       values[i] = random();
     }
     instance = new IntegerArray(values);
   });
 
   it('should get value correctly in constructor', () => {
-    for (let i = 0; i < 100; ++i) {
+    for (let i = 0; i < 100; i++) {
       isClose(instance.get(i + 1), values[i]);
     }
   });

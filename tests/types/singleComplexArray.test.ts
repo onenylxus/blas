@@ -13,14 +13,14 @@ let instance: CA;
 describe('Single complex array type', () => {
   beforeAll(() => {
     values = new Array(100);
-    for (let i = 0; i < 100; ++i) {
+    for (let i = 0; i < 100; i++) {
       values[i] = _C(random(), random());
     }
     instance = new SingleComplexArray(values);
   });
 
   it('should get value correctly in constructor', () => {
-    for (let i = 0; i < 100; ++i) {
+    for (let i = 0; i < 100; i++) {
       isClose(instance.get(i + 1)!, values[i]);
     }
   });

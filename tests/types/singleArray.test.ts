@@ -12,14 +12,14 @@ let instance: SA;
 describe('Single array type', () => {
   beforeAll(() => {
     values = new Array(100);
-    for (let i = 0; i < 100; ++i) {
+    for (let i = 0; i < 100; i++) {
       values[i] = random();
     }
     instance = new SingleArray(values);
   });
 
   it('should get value correctly in constructor', () => {
-    for (let i = 0; i < 100; ++i) {
+    for (let i = 0; i < 100; i++) {
       isClose(instance.get(i + 1)!, values[i]);
     }
   });
