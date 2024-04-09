@@ -44,7 +44,7 @@
 ⚫ **CROTG** - setup Givens rotation\
 ⚫ **CSROT** - apply Givens rotation\
 🟢 **CSWAP** - swap x and y\
-⚫ **CSCAL** - x = a\*x\
+🟢 **CSCAL** - x = a\*x\
 ⚫ **CSSCAL** - x = a\*x\
 🟢 **CCOPY** - copy x into y\
 ⚫ **CAXPY** - y = a\*x + y\
