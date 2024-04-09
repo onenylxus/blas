@@ -37,6 +37,22 @@ export const abs = (x: number | Dual): number => {
   return sqrt(x.r ** 2 + x.i ** 2);
 };
 
+// Add function
+export const add = (x: number | Dual, y: number | Dual): number | Dual => {
+  if (typeof x === 'number' && typeof y === 'number') {
+    return x + y;
+  }
+  if (typeof x === 'number' && typeof y !== 'number') {
+    return _C(x + y.r, y.i);
+  }
+  if (typeof x !== 'number' && typeof y === 'number') {
+    return _C(x.r + y, x.i);
+  }
+  if (typeof x !== 'number' && typeof y !== 'number') {
+    return _C(x.r + y.r, x.i + y.i);
+  }
+}
+
 // Inverse cosine function
 // export const acos: (x: number) => number = Math.acos;
 
@@ -81,6 +97,22 @@ export const conjg = (x: number | Dual): number | Dual => {
 // Hyperbolic cosine function
 // export const cosh: (x: number) => number = Math.cosh;
 
+// Divide function
+export const div = (x: number | Dual, y: number | Dual): number | Dual => {
+  if (typeof x === 'number' && typeof y === 'number') {
+    return x / y;
+  }
+  if (typeof x === 'number' && typeof y !== 'number') {
+    return _C(x * y.r / (y.r ** 2 + y.i ** 2), -x * y.i / (y.r ** 2 + y.i ** 2));
+  }
+  if (typeof x !== 'number' && typeof y === 'number') {
+    return _C(x.r / y, x.i / y);
+  }
+  if (typeof x !== 'number' && typeof y !== 'number') {
+    return _C((x.r * y.r + x.i * y.i) / (y.r ** 2 + y.i ** 2), (x.i * y.r - x.r * y.i) / (y.r ** 2 + y.i ** 2));
+  }
+}
+
 // Exponent function
 // export const exp: (x: number) => number = Math.exp;
 
@@ -117,6 +149,22 @@ export const max: (...values: number[]) => number = Math.max;
 // Minimum function
 export const min: (...values: number[]) => number = Math.min;
 
+// Multiply function
+export const mul = (x: number | Dual, y: number | Dual): number | Dual => {
+  if (typeof x === 'number' && typeof y === 'number') {
+    return x * y;
+  }
+  if (typeof x === 'number' && typeof y !== 'number') {
+    return _C(x * y.r, x * y.i);
+  }
+  if (typeof x !== 'number' && typeof y === 'number') {
+    return _C(x.r * y, x.i * y);
+  }
+  if (typeof x !== 'number' && typeof y !== 'number') {
+    return _C(x.r * y.r - x.i * y.i, x.r * y.i + x.i * y.r);
+  }
+}
+
 // Power function
 // export const pow: (x: number, y: number) => number = Math.pow;
 
@@ -137,6 +185,22 @@ export const sign: (x: number) => number = Math.sign;
 
 // Square root function
 export const sqrt: (x: number) => number = Math.sqrt;
+
+// Subtract function
+export const sub = (x: number | Dual, y: number | Dual): number | Dual => {
+  if (typeof x === 'number' && typeof y === 'number') {
+    return x - y;
+  }
+  if (typeof x === 'number' && typeof y !== 'number') {
+    return _C(x - y.r, y.i);
+  }
+  if (typeof x !== 'number' && typeof y === 'number') {
+    return _C(x.r - y, x.i);
+  }
+  if (typeof x !== 'number' && typeof y !== 'number') {
+    return _C(x.r - y.r, x.i - y.i);
+  }
+}
 
 // Tangent function
 // export const tan: (x: number) => number = Math.tan;
