@@ -31,7 +31,7 @@
   "scripts": {
     "build": "yarn clean && yarn lint && yarn tsc && yarn rollup",
     "start": "node .",
-    "clean": "rimraf dist && rimraf out-tsc",
+    "clean": "rimraf dist/* --glob && rimraf out-tsc/* --glob",
     "tsc": "tsc",
     "rollup": "rollup -c rollup.config.js",
     "lint": "eslint . --fix",
