@@ -64,17 +64,17 @@ const sdot = ({ n, sx, incx, sy, incy }: Input): Output => {
   if (_incx.eq(1) && _incy.eq(1)) {
     m.set(_n.get() % 5);
     if (m.ne(0)) {
-      for (i.set(1); i.le(m.get()); i.add(1)) {
-        stemp.add(_sx.get(i.get()) * _sy.get(i.get()));
+      for (i.set(1); i.le(m); i.add(1)) {
+        stemp.add(_sx.get(i) * _sy.get(i));
       }
       if (_n.lt(5)) {
-        _ret.set(stemp.get());
+        _ret.set(stemp);
         return resolve();
       }
     }
     mp1.set(m.get() + 1);
-    for (i.set(mp1.get()); i.le(_n.get()); i.add(5)) {
-      stemp.add(_sx.get(i.get()) * _sy.get(i.get()) + _sx.get(i.get() + 1) * _sy.get(i.get() + 1) + _sx.get(i.get() + 2) * _sy.get(i.get() + 2) + _sx.get(i.get() + 3) * _sy.get(i.get() + 3) + _sx.get(i.get() + 4) * _sy.get(i.get() + 4));
+    for (i.set(mp1); i.le(_n); i.add(5)) {
+      stemp.add(_sx.get(i) * _sy.get(i) + _sx.get(i.get() + 1) * _sy.get(i.get() + 1) + _sx.get(i.get() + 2) * _sy.get(i.get() + 2) + _sx.get(i.get() + 3) * _sy.get(i.get() + 3) + _sx.get(i.get() + 4) * _sy.get(i.get() + 4));
     }
   } else {
     ix.set(1);
@@ -85,13 +85,13 @@ const sdot = ({ n, sx, incx, sy, incy }: Input): Output => {
     if (_incy.lt(0)) {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      stemp.add(_sx.get(ix.get()) * _sy.get(iy.get()));
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      stemp.add(_sx.get(ix) * _sy.get(iy));
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
-  _ret.set(stemp.get());
+  _ret.set(stemp);
 
   // Output
   return resolve();

@@ -62,15 +62,15 @@ const sdsdot = ({ n, sb, sx, incx, sy, incy }: Input): Output => {
   const ns: I = new Integer();
 
   // Process
-  dsdot.set(_sb.get());
+  dsdot.set(_sb);
   if (_n.le(0)) {
-    _ret.set(dsdot.get());
+    _ret.set(dsdot);
     return resolve();
   }
-  if (_incx.eq(_incy.get()) && _incx.gt(0)) {
+  if (_incx.eq(_incy) && _incx.gt(0)) {
     ns.set(_n.get() * _incx.get());
-    for (i.set(1); i.le(ns.get()); i.add(_incx.get())) {
-      dsdot.add(_sx.get(i.get()) * _sy.get(i.get()));
+    for (i.set(1); i.le(ns); i.add(_incx)) {
+      dsdot.add(_sx.get(i) * _sy.get(i));
     }
   } else {
     kx.set(1);
@@ -81,13 +81,13 @@ const sdsdot = ({ n, sb, sx, incx, sy, incy }: Input): Output => {
     if (_incy.lt(0)) {
       ky.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      dsdot.add(_sx.get(kx.get()) * _sy.get(ky.get()));
-      kx.add(_incx.get());
-      ky.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      dsdot.add(_sx.get(kx) * _sy.get(ky));
+      kx.add(_incx);
+      ky.add(_incy);
     }
   }
-  _ret.set(dsdot.get());
+  _ret.set(dsdot);
 
   // Output
   return resolve();

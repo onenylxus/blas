@@ -75,7 +75,7 @@ const drotmg = ({ dd1, dd2, dx1, dy1, dparam }: Input): Output => {
     dp2.set(_dd2.get() * _dy1.get());
     if (dp2.eq(0)) {
       dflag.set(-2);
-      _dparam.set(1, dflag.get());
+      _dparam.set(1, dflag);
       return resolve();
     }
     dp1.set(_dd1.get() * _dx1.get());
@@ -87,9 +87,9 @@ const drotmg = ({ dd1, dd2, dx1, dy1, dparam }: Input): Output => {
       du.set(1 - dh12.get() / dh21.get());
       if (du.gt(0)) {
         dflag.set(0);
-        _dd1.div(du.get());
-        _dd2.div(du.get());
-        _dx1.mul(du.get());
+        _dd1.div(du);
+        _dd2.div(du);
+        _dx1.mul(du);
       } else {
         dflag.set(-1);
         dh11.set(0);
@@ -117,7 +117,7 @@ const drotmg = ({ dd1, dd2, dx1, dy1, dparam }: Input): Output => {
         du.set(1 + dh11.get() * dh22.get());
         dtemp.set(_dd2.get() / du.get());
         _dd2.set(_dd1.get() / du.get());
-        _dd1.set(dtemp.get());
+        _dd1.set(dtemp);
         _dx1.set(_dy1.get() * du.get());
       }
     }
@@ -169,18 +169,18 @@ const drotmg = ({ dd1, dd2, dx1, dy1, dparam }: Input): Output => {
     }
   }
   if (dflag.lt(0)) {
-    _dparam.set(2, dh11.get());
-    _dparam.set(3, dh21.get());
-    _dparam.set(4, dh12.get());
-    _dparam.set(5, dh22.get());
+    _dparam.set(2, dh11);
+    _dparam.set(3, dh21);
+    _dparam.set(4, dh12);
+    _dparam.set(5, dh22);
   } else if (dflag.eq(0)) {
-    _dparam.set(3, dh21.get());
-    _dparam.set(4, dh12.get());
+    _dparam.set(3, dh21);
+    _dparam.set(4, dh12);
   } else {
-    _dparam.set(2, dh11.get());
-    _dparam.set(5, dh22.get());
+    _dparam.set(2, dh11);
+    _dparam.set(5, dh22);
   }
-  _dparam.set(1, dflag.get());
+  _dparam.set(1, dflag);
 
   // Output
   return resolve();

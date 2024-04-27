@@ -57,22 +57,22 @@ const isamax = ({ n, sx, incx }: Input): Output => {
   }
   if (_incx.eq(1)) {
     smax.set(abs(_sx.get(1)));
-    for (i.set(2); i.le(_n.get()); i.add(1)) {
-      if (abs(_sx.get(i.get())) > smax.get()) {
-        _ret.set(i.get());
-        smax.set(abs(_sx.get(i.get())));
+    for (i.set(2); i.le(_n); i.add(1)) {
+      if (abs(_sx.get(i)) > smax.get()) {
+        _ret.set(i);
+        smax.set(abs(_sx.get(i)));
       }
     }
   } else {
     ix.set(1);
     smax.set(abs(_sx.get(1)));
-    ix.add(_incx.get());
-    for (i.set(2); i.le(_n.get()); i.add(1)) {
-      if (abs(_sx.get(ix.get())) > smax.get()) {
-        _ret.set(i.get());
-        smax.set(abs(_sx.get(ix.get())));
+    ix.add(_incx);
+    for (i.set(2); i.le(_n); i.add(1)) {
+      if (abs(_sx.get(ix)) > smax.get()) {
+        _ret.set(i);
+        smax.set(abs(_sx.get(ix)));
       }
-      ix.add(_incx.get());
+      ix.add(_incx);
     }
   }
 

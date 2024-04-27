@@ -75,7 +75,7 @@ const srotmg = ({ sd1, sd2, sx1, sy1, sparam }: Input): Output => {
     sp2.set(_sd2.get() * _sy1.get());
     if (sp2.eq(0)) {
       sflag.set(-2);
-      _sparam.set(1, sflag.get());
+      _sparam.set(1, sflag);
       return resolve();
     }
     sp1.set(_sd1.get() * _sx1.get());
@@ -87,9 +87,9 @@ const srotmg = ({ sd1, sd2, sx1, sy1, sparam }: Input): Output => {
       su.set(1 - sh12.get() / sh21.get());
       if (su.gt(0)) {
         sflag.set(0);
-        _sd1.div(su.get());
-        _sd2.div(su.get());
-        _sx1.mul(su.get());
+        _sd1.div(su);
+        _sd2.div(su);
+        _sx1.mul(su);
       } else {
         sflag.set(-1);
         sh11.set(0);
@@ -117,7 +117,7 @@ const srotmg = ({ sd1, sd2, sx1, sy1, sparam }: Input): Output => {
         su.set(1 + sh11.get() * sh22.get());
         stemp.set(_sd2.get() / su.get());
         _sd2.set(_sd1.get() / su.get());
-        _sd1.set(stemp.get());
+        _sd1.set(stemp);
         _sx1.set(_sy1.get() * su.get());
       }
     }
@@ -169,18 +169,18 @@ const srotmg = ({ sd1, sd2, sx1, sy1, sparam }: Input): Output => {
     }
   }
   if (sflag.lt(0)) {
-    _sparam.set(2, sh11.get());
-    _sparam.set(3, sh21.get());
-    _sparam.set(4, sh12.get());
-    _sparam.set(5, sh22.get());
+    _sparam.set(2, sh11);
+    _sparam.set(3, sh21);
+    _sparam.set(4, sh12);
+    _sparam.set(5, sh22);
   } else if (sflag.eq(0)) {
-    _sparam.set(3, sh21.get());
-    _sparam.set(4, sh12.get());
+    _sparam.set(3, sh21);
+    _sparam.set(4, sh12);
   } else {
-    _sparam.set(2, sh11.get());
-    _sparam.set(5, sh22.get());
+    _sparam.set(2, sh11);
+    _sparam.set(5, sh22);
   }
-  _sparam.set(1, sflag.get());
+  _sparam.set(1, sflag);
 
   // Output
   return resolve();

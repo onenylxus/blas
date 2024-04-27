@@ -61,26 +61,26 @@ const sswap = ({ n, sx, incx, sy, incy }: Input): Output => {
   if (_incx.eq(1) && _incy.eq(1)) {
     m.set(_n.get() % 3);
     if (m.ne(0)) {
-      for (i.set(1); i.le(m.get()); i.add(1)) {
-        stemp.set(_sx.get(i.get()));
-        _sx.set(i.get(), _sy.get(i.get()));
-        _sy.set(i.get(), stemp.get());
+      for (i.set(1); i.le(m); i.add(1)) {
+        stemp.set(_sx.get(i));
+        _sx.set(i, _sy.get(i));
+        _sy.set(i, stemp);
       }
       if (_n.lt(3)) {
         return resolve();
       }
     }
     mp1.set(m.get() + 1);
-    for (i.set(mp1.get()); i.le(_n.get()); i.add(3)) {
-      stemp.set(_sx.get(i.get()));
-      _sx.set(i.get(), _sy.get(i.get()));
-      _sy.set(i.get(), stemp.get());
+    for (i.set(mp1); i.le(_n); i.add(3)) {
+      stemp.set(_sx.get(i));
+      _sx.set(i, _sy.get(i));
+      _sy.set(i, stemp);
       stemp.set(_sx.get(i.get() + 1));
       _sx.set(i.get() + 1, _sy.get(i.get() + 1));
-      _sy.set(i.get() + 1, stemp.get());
+      _sy.set(i.get() + 1, stemp);
       stemp.set(_sx.get(i.get() + 2));
       _sx.set(i.get() + 2, _sy.get(i.get() + 2));
-      _sy.set(i.get() + 2, stemp.get());
+      _sy.set(i.get() + 2, stemp);
     }
   } else {
     ix.set(1);
@@ -91,12 +91,12 @@ const sswap = ({ n, sx, incx, sy, incy }: Input): Output => {
     if (_incy.lt(0)) {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      stemp.set(_sx.get(ix.get()));
-      _sx.set(ix.get(), _sy.get(iy.get()));
-      _sy.set(iy.get(), stemp.get());
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      stemp.set(_sx.get(ix));
+      _sx.set(ix, _sy.get(iy));
+      _sy.set(iy, stemp);
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
 

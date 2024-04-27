@@ -53,12 +53,12 @@ const cscal = ({ n, ca, cx, incx }: Input): Output => {
   }
   if (_incx.eq(1)) {
     for (i.set(1); i.le(_n); i.add(1)) {
-      _cx.set(i, mul(_ca.get(), _cx.get(i.get())));
+      _cx.set(i, mul(_ca.get(), _cx.get(i)));
     }
   } else {
     nincx.set(_n.get() * _incx.get());
     for (i.set(1); i.le(nincx); i.add(_incx)) {
-      _cx.set(i, mul(_ca.get(), _cx.get(i.get())));
+      _cx.set(i, mul(_ca.get(), _cx.get(i)));
     }
   }
 

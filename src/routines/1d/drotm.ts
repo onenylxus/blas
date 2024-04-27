@@ -68,36 +68,36 @@ const drotm = ({ n, dx, incx, dy, incy, dparam }: Input): Output => {
   if (_n.le(0) || dflag.get() + 2 === 0) {
     return resolve();
   }
-  if (_incx.eq(_incy.get()) && _incx.gt(0)) {
+  if (_incx.eq(_incy) && _incx.gt(0)) {
     nsteps.set(_n.get() * _incx.get());
     if (dflag.lt(0)) {
       dh11.set(_dparam.get(2));
       dh12.set(_dparam.get(4));
       dh21.set(_dparam.get(3));
       dh22.set(_dparam.get(5));
-      for (i.set(1); i.le(nsteps.get()); i.add(_incx.get())) {
-        w.set(_dx.get(i.get()));
-        z.set(_dy.get(i.get()));
-        _dx.set(i.get(), w.get() * dh11.get() + z.get() * dh12.get());
-        _dy.set(i.get(), w.get() * dh21.get() + z.get() * dh22.get());
+      for (i.set(1); i.le(nsteps); i.add(_incx)) {
+        w.set(_dx.get(i));
+        z.set(_dy.get(i));
+        _dx.set(i, w.get() * dh11.get() + z.get() * dh12.get());
+        _dy.set(i, w.get() * dh21.get() + z.get() * dh22.get());
       }
     } else if (dflag.eq(0)) {
       dh12.set(_dparam.get(4));
       dh21.set(_dparam.get(3));
-      for (i.set(1); i.le(nsteps.get()); i.add(_incx.get())) {
-        w.set(_dx.get(i.get()));
-        z.set(_dy.get(i.get()));
-        _dx.set(i.get(), w.get() + z.get() * dh12.get());
-        _dy.set(i.get(), w.get() * dh21.get() + z.get());
+      for (i.set(1); i.le(nsteps); i.add(_incx)) {
+        w.set(_dx.get(i));
+        z.set(_dy.get(i));
+        _dx.set(i, w.get() + z.get() * dh12.get());
+        _dy.set(i, w.get() * dh21.get() + z.get());
       }
     } else {
       dh11.set(_dparam.get(2));
       dh22.set(_dparam.get(5));
-      for (i.set(1); i.le(nsteps.get()); i.add(_incx.get())) {
-        w.set(_dx.get(i.get()));
-        z.set(_dy.get(i.get()));
-        _dx.set(i.get(), w.get() * dh11.get() + z.get());
-        _dy.set(i.get(), -w.get() + z.get() * dh22.get());
+      for (i.set(1); i.le(nsteps); i.add(_incx)) {
+        w.set(_dx.get(i));
+        z.set(_dy.get(i));
+        _dx.set(i, w.get() * dh11.get() + z.get());
+        _dy.set(i, -w.get() + z.get() * dh22.get());
       }
     }
   } else {
@@ -108,35 +108,35 @@ const drotm = ({ n, dx, incx, dy, incy, dparam }: Input): Output => {
       dh12.set(_dparam.get(4));
       dh21.set(_dparam.get(3));
       dh22.set(_dparam.get(5));
-      for (i.set(1); i.le(_n.get()); i.add(1)) {
-        w.set(_dx.get(kx.get()));
-        z.set(_dy.get(ky.get()));
-        _dx.set(kx.get(), w.get() * dh11.get() + z.get() * dh12.get());
-        _dy.set(ky.get(), w.get() * dh21.get() + z.get() * dh22.get());
-        kx.add(_incx.get());
-        ky.add(_incy.get());
+      for (i.set(1); i.le(_n); i.add(1)) {
+        w.set(_dx.get(kx));
+        z.set(_dy.get(ky));
+        _dx.set(kx, w.get() * dh11.get() + z.get() * dh12.get());
+        _dy.set(ky, w.get() * dh21.get() + z.get() * dh22.get());
+        kx.add(_incx);
+        ky.add(_incy);
       }
     } else if (dflag.eq(0)) {
       dh12.set(_dparam.get(4));
       dh21.set(_dparam.get(3));
-      for (i.set(1); i.le(_n.get()); i.add(1)) {
-        w.set(_dx.get(kx.get()));
-        z.set(_dy.get(ky.get()));
-        _dx.set(kx.get(), w.get() + z.get() * dh12.get());
-        _dy.set(ky.get(), w.get() * dh21.get() + z.get());
-        kx.add(_incx.get());
-        ky.add(_incy.get());
+      for (i.set(1); i.le(_n); i.add(1)) {
+        w.set(_dx.get(kx));
+        z.set(_dy.get(ky));
+        _dx.set(kx, w.get() + z.get() * dh12.get());
+        _dy.set(ky, w.get() * dh21.get() + z.get());
+        kx.add(_incx);
+        ky.add(_incy);
       }
     } else {
       dh11.set(_dparam.get(2));
       dh22.set(_dparam.get(5));
-      for (i.set(1); i.le(_n.get()); i.add(1)) {
-        w.set(_dx.get(kx.get()));
-        z.set(_dy.get(ky.get()));
-        _dx.set(kx.get(), w.get() * dh11.get() + z.get());
-        _dy.set(ky.get(), -w.get() + z.get() * dh22.get());
-        kx.add(_incx.get());
-        ky.add(_incy.get());
+      for (i.set(1); i.le(_n); i.add(1)) {
+        w.set(_dx.get(kx));
+        z.set(_dy.get(ky));
+        _dx.set(kx, w.get() * dh11.get() + z.get());
+        _dy.set(ky, -w.get() + z.get() * dh22.get());
+        kx.add(_incx);
+        ky.add(_incy);
       }
     }
   }

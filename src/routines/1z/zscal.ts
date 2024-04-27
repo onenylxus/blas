@@ -53,12 +53,12 @@ const zscal = ({ n, za, zx, incx }: Input): Output => {
   }
   if (_incx.eq(1)) {
     for (i.set(1); i.le(_n); i.add(1)) {
-      _zx.set(i, mul(_za.get(), _zx.get(i.get())));
+      _zx.set(i, mul(_za.get(), _zx.get(i)));
     }
   } else {
     nincx.set(_n.get() * _incx.get());
     for (i.set(1); i.le(nincx); i.add(_incx)) {
-      _zx.set(i, mul(_za.get(), _zx.get(i.get())));
+      _zx.set(i, mul(_za.get(), _zx.get(i)));
     }
   }
 

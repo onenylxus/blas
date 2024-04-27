@@ -67,16 +67,16 @@ const saxpy = ({ n, sa, sx, incx, sy, incy }: Input): Output => {
   if (_incx.eq(1) && _incy.eq(1)) {
     m.set(_n.get() % 4);
     if (m.ne(0)) {
-      for (i.set(1); i.le(m.get()); i.add(1)) {
-        _sy.set(i.get(), _sy.get(i.get()) + _sa.get() * _sx.get(i.get()));
+      for (i.set(1); i.le(m); i.add(1)) {
+        _sy.set(i, _sy.get(i) + _sa.get() * _sx.get(i));
       }
     }
     if (_n.lt(4)) {
       return resolve();
     }
     mp1.set(m.get() + 1);
-    for (i.set(mp1.get()); i.le(_n.get()); i.add(4)) {
-      _sy.set(i.get(), _sy.get(i.get()) + _sa.get() * _sx.get(i.get()));
+    for (i.set(mp1); i.le(_n); i.add(4)) {
+      _sy.set(i, _sy.get(i) + _sa.get() * _sx.get(i));
       _sy.set(i.get() + 1, _sy.get(i.get() + 1) + _sa.get() * _sx.get(i.get() + 1));
       _sy.set(i.get() + 2, _sy.get(i.get() + 2) + _sa.get() * _sx.get(i.get() + 2));
       _sy.set(i.get() + 3, _sy.get(i.get() + 3) + _sa.get() * _sx.get(i.get() + 3));
@@ -88,10 +88,10 @@ const saxpy = ({ n, sa, sx, incx, sy, incy }: Input): Output => {
       ix.set((-_n.get() + 1) * _incx.get() + 1);
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _sy.set(iy.get(), _sy.get(iy.get()) + _sa.get() * _sx.get(ix.get()));
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      _sy.set(iy, _sy.get(iy) + _sa.get() * _sx.get(ix));
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
 

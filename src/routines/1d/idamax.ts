@@ -57,22 +57,22 @@ const idamax = ({ n, dx, incx }: Input): Output => {
   }
   if (_incx.eq(1)) {
     dmax.set(abs(_dx.get(1)));
-    for (i.set(2); i.le(_n.get()); i.add(1)) {
-      if (abs(_dx.get(i.get())) > dmax.get()) {
-        _ret.set(i.get());
-        dmax.set(abs(_dx.get(i.get())));
+    for (i.set(2); i.le(_n); i.add(1)) {
+      if (abs(_dx.get(i)) > dmax.get()) {
+        _ret.set(i);
+        dmax.set(abs(_dx.get(i)));
       }
     }
   } else {
     ix.set(1);
     dmax.set(abs(_dx.get(1)));
     ix.add(_incx.get());
-    for (i.set(2); i.le(_n.get()); i.add(1)) {
-      if (abs(_dx.get(ix.get())) > dmax.get()) {
-        _ret.set(i.get());
-        dmax.set(abs(_dx.get(ix.get())));
+    for (i.set(2); i.le(_n); i.add(1)) {
+      if (abs(_dx.get(ix)) > dmax.get()) {
+        _ret.set(i);
+        dmax.set(abs(_dx.get(ix)));
       }
-      ix.add(_incx.get());
+      ix.add(_incx);
     }
   }
 

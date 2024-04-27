@@ -57,10 +57,10 @@ const zswap = ({ n, zx, incx, zy, incy }: Input): Output => {
     return resolve();
   }
   if (_incx.eq(1) && _incy.eq(1)) {
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      ztemp.set(_zx.get(i.get()));
-      _zx.set(i.get(), _zy.get(i.get()));
-      _zy.set(i.get(), ztemp.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      ztemp.set(_zx.get(i));
+      _zx.set(i, _zy.get(i));
+      _zy.set(i, ztemp);
     }
   } else {
     ix.set(1);
@@ -71,12 +71,12 @@ const zswap = ({ n, zx, incx, zy, incy }: Input): Output => {
     if (_incy.lt(0)) {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      ztemp.set(_zx.get(ix.get()));
-      _zx.set(ix.get(), _zy.get(iy.get()));
-      _zy.set(iy.get(), ztemp.get());
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      ztemp.set(_zx.get(ix));
+      _zx.set(ix, _zy.get(iy));
+      _zy.set(iy, ztemp);
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
 

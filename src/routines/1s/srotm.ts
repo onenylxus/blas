@@ -68,36 +68,36 @@ const srotm = ({ n, sx, incx, sy, incy, sparam }: Input): Output => {
   if (_n.le(0) || sflag.get() + 2 === 0) {
     return resolve();
   }
-  if (_incx.eq(_incy.get()) && _incx.gt(0)) {
+  if (_incx.eq(_incy) && _incx.gt(0)) {
     nsteps.set(_n.get() * _incx.get());
     if (sflag.lt(0)) {
       sh11.set(_sparam.get(2));
       sh12.set(_sparam.get(4));
       sh21.set(_sparam.get(3));
       sh22.set(_sparam.get(5));
-      for (i.set(1); i.le(nsteps.get()); i.add(_incx.get())) {
-        w.set(_sx.get(i.get()));
-        z.set(_sy.get(i.get()));
-        _sx.set(i.get(), w.get() * sh11.get() + z.get() * sh12.get());
-        _sy.set(i.get(), w.get() * sh21.get() + z.get() * sh22.get());
+      for (i.set(1); i.le(nsteps); i.add(_incx)) {
+        w.set(_sx.get(i));
+        z.set(_sy.get(i));
+        _sx.set(i, w.get() * sh11.get() + z.get() * sh12.get());
+        _sy.set(i, w.get() * sh21.get() + z.get() * sh22.get());
       }
     } else if (sflag.eq(0)) {
       sh12.set(_sparam.get(4));
       sh21.set(_sparam.get(3));
-      for (i.set(1); i.le(nsteps.get()); i.add(_incx.get())) {
-        w.set(_sx.get(i.get()));
-        z.set(_sy.get(i.get()));
-        _sx.set(i.get(), w.get() + z.get() * sh12.get());
-        _sy.set(i.get(), w.get() * sh21.get() + z.get());
+      for (i.set(1); i.le(nsteps); i.add(_incx)) {
+        w.set(_sx.get(i));
+        z.set(_sy.get(i));
+        _sx.set(i, w.get() + z.get() * sh12.get());
+        _sy.set(i, w.get() * sh21.get() + z.get());
       }
     } else {
       sh11.set(_sparam.get(2));
       sh22.set(_sparam.get(5));
-      for (i.set(1); i.le(nsteps.get()); i.add(_incx.get())) {
-        w.set(_sx.get(i.get()));
-        z.set(_sy.get(i.get()));
-        _sx.set(i.get(), w.get() * sh11.get() + z.get());
-        _sy.set(i.get(), -w.get() + z.get() * sh22.get());
+      for (i.set(1); i.le(nsteps); i.add(_incx)) {
+        w.set(_sx.get(i));
+        z.set(_sy.get(i));
+        _sx.set(i, w.get() * sh11.get() + z.get());
+        _sy.set(i, -w.get() + z.get() * sh22.get());
       }
     }
   } else {
@@ -108,35 +108,35 @@ const srotm = ({ n, sx, incx, sy, incy, sparam }: Input): Output => {
       sh12.set(_sparam.get(4));
       sh21.set(_sparam.get(3));
       sh22.set(_sparam.get(5));
-      for (i.set(1); i.le(_n.get()); i.add(1)) {
-        w.set(_sx.get(kx.get()));
-        z.set(_sy.get(ky.get()));
-        _sx.set(kx.get(), w.get() * sh11.get() + z.get() * sh12.get());
-        _sy.set(ky.get(), w.get() * sh21.get() + z.get() * sh22.get());
-        kx.add(_incx.get());
-        ky.add(_incy.get());
+      for (i.set(1); i.le(_n); i.add(1)) {
+        w.set(_sx.get(kx));
+        z.set(_sy.get(ky));
+        _sx.set(kx, w.get() * sh11.get() + z.get() * sh12.get());
+        _sy.set(ky, w.get() * sh21.get() + z.get() * sh22.get());
+        kx.add(_incx);
+        ky.add(_incy);
       }
     } else if (sflag.eq(0)) {
       sh12.set(_sparam.get(4));
       sh21.set(_sparam.get(3));
-      for (i.set(1); i.le(_n.get()); i.add(1)) {
-        w.set(_sx.get(kx.get()));
-        z.set(_sy.get(ky.get()));
-        _sx.set(kx.get(), w.get() + z.get() * sh12.get());
-        _sy.set(ky.get(), w.get() * sh21.get() + z.get());
-        kx.add(_incx.get());
-        ky.add(_incy.get());
+      for (i.set(1); i.le(_n); i.add(1)) {
+        w.set(_sx.get(kx));
+        z.set(_sy.get(ky));
+        _sx.set(kx, w.get() + z.get() * sh12.get());
+        _sy.set(ky, w.get() * sh21.get() + z.get());
+        kx.add(_incx);
+        ky.add(_incy);
       }
     } else {
       sh11.set(_sparam.get(2));
       sh22.set(_sparam.get(5));
-      for (i.set(1); i.le(_n.get()); i.add(1)) {
-        w.set(_sx.get(kx.get()));
-        z.set(_sy.get(ky.get()));
-        _sx.set(kx.get(), w.get() * sh11.get() + z.get());
-        _sy.set(ky.get(), -w.get() + z.get() * sh22.get());
-        kx.add(_incx.get());
-        ky.add(_incy.get());
+      for (i.set(1); i.le(_n); i.add(1)) {
+        w.set(_sx.get(kx));
+        z.set(_sy.get(ky));
+        _sx.set(kx, w.get() * sh11.get() + z.get());
+        _sy.set(ky, -w.get() + z.get() * sh22.get());
+        kx.add(_incx);
+        ky.add(_incy);
       }
     }
   }

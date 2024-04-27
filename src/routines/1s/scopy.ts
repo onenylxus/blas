@@ -59,16 +59,16 @@ const scopy = ({ n, sx, incx, sy, incy }: Input): Output => {
   if (_incx.eq(1) && _incy.eq(1)) {
     m.set(_n.get() % 7);
     if (m.ne(0)) {
-      for (i.set(1); i.le(m.get()); i.add(1)) {
-        _sy.set(i.get(), _sx.get(i.get()));
+      for (i.set(1); i.le(m); i.add(1)) {
+        _sy.set(i, _sx.get(i));
       }
       if (_n.lt(7)) {
         return resolve();
       }
     }
     mp1.set(m.get() + 1);
-    for (i.set(mp1.get()); i.le(_n.get()); i.add(7)) {
-      _sy.set(i.get(), _sx.get(i.get()));
+    for (i.set(mp1); i.le(_n); i.add(7)) {
+      _sy.set(i, _sx.get(i));
       _sy.set(i.get() + 1, _sx.get(i.get() + 1));
       _sy.set(i.get() + 2, _sx.get(i.get() + 2));
       _sy.set(i.get() + 3, _sx.get(i.get() + 3));
@@ -85,10 +85,10 @@ const scopy = ({ n, sx, incx, sy, incy }: Input): Output => {
     if (_incy.lt(0)) {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _sy.set(iy.get(), _sx.get(ix.get()));
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      _sy.set(iy, _sx.get(ix));
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
 

@@ -56,25 +56,25 @@ const sasum = ({ n, sx, incx }: Input): Output => {
   if (_incx.eq(1)) {
     m.set(_n.get() % 6);
     if (m.ne(0)) {
-      for (i.set(1); i.le(m.get()); i.add(1)) {
-        stemp.add(abs(_sx.get(i.get())));
+      for (i.set(1); i.le(m); i.add(1)) {
+        stemp.add(abs(_sx.get(i)));
       }
       if (_n.lt(6)) {
-        _ret.set(stemp.get());
+        _ret.set(stemp);
         return resolve();
       }
     }
     mp1.set(m.get() + 1);
-    for (i.set(mp1.get()); i.le(_n.get()); i.add(6)) {
-      stemp.add(abs(_sx.get(i.get())) + abs(_sx.get(i.get() + 1)) + abs(_sx.get(i.get() + 2)) + abs(_sx.get(i.get() + 3)) + abs(_sx.get(i.get() + 4)) + abs(_sx.get(i.get() + 5)));
+    for (i.set(mp1); i.le(_n); i.add(6)) {
+      stemp.add(abs(_sx.get(i)) + abs(_sx.get(i.get() + 1)) + abs(_sx.get(i.get() + 2)) + abs(_sx.get(i.get() + 3)) + abs(_sx.get(i.get() + 4)) + abs(_sx.get(i.get() + 5)));
     }
   } else {
     nincx.set(_n.get() * _incx.get());
-    for (i.set(1); i.le(nincx.get()); i.add(_incx.get())) {
-      stemp.add(abs(_sx.get(i.get())));
+    for (i.set(1); i.le(nincx); i.add(_incx)) {
+      stemp.add(abs(_sx.get(i)));
     }
   }
-  _ret.set(stemp.get());
+  _ret.set(stemp);
 
   // Output
   return resolve();

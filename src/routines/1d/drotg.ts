@@ -59,11 +59,11 @@ const drotg = ({ a, b, c, s }: Input): Output => {
   } else if (anorm.eq(0)) {
     _c.set(0);
     _s.set(1);
-    _a.set(_b.get());
+    _a.set(_b);
     _b.set(1);
   } else {
     scl.set(min(MAXDPINT, max(MINDPINT, anorm.get(), bnorm.get())));
-    if (anorm.gt(bnorm.get())) {
+    if (anorm.gt(bnorm)) {
       sigma.set(sign(anorm.get()));
     } else {
       sigma.set(sign(bnorm.get()));
@@ -71,15 +71,15 @@ const drotg = ({ a, b, c, s }: Input): Output => {
     r.set(sigma.get() * (scl.get() * sqrt((_a.get() / scl.get()) ** 2 + (_b.get() / scl.get()) ** 2)));
     _c.set(_a.get() / r.get());
     _s.set(_b.get() / r.get());
-    if (anorm.gt(bnorm.get())) {
-      z.set(_s.get());
+    if (anorm.gt(bnorm)) {
+      z.set(_s);
     } else if (_c.ne(0)) {
       z.set(1 / _c.get());
     } else {
       z.set(1);
     }
-    _a.set(r.get());
-    _b.set(z.get());
+    _a.set(r);
+    _b.set(z);
   }
 
   // Output

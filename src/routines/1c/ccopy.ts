@@ -55,8 +55,8 @@ const ccopy = ({ n, cx, incx, cy, incy }: Input): Output => {
     return resolve();
   }
   if (_incx.eq(1) && _incy.eq(1)) {
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _cy.set(i.get(), _cx.get(i.get()));
+    for (i.set(1); i.le(_n); i.add(1)) {
+      _cy.set(i, _cx.get(i));
     }
   } else {
     ix.set(1);
@@ -67,10 +67,10 @@ const ccopy = ({ n, cx, incx, cy, incy }: Input): Output => {
     if (_incy.lt(0)) {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      _cy.set(i.get(), _cx.get(i.get()));
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      _cy.set(i, _cx.get(i));
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
 

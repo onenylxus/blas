@@ -57,10 +57,10 @@ const cswap = ({ n, cx, incx, cy, incy }: Input): Output => {
     return resolve();
   }
   if (_incx.eq(1) && _incy.eq(1)) {
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      ctemp.set(_cx.get(i.get()));
-      _cx.set(i.get(), _cy.get(i.get()));
-      _cy.set(i.get(), ctemp.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      ctemp.set(_cx.get(i));
+      _cx.set(i, _cy.get(i));
+      _cy.set(i, ctemp);
     }
   } else {
     ix.set(1);
@@ -71,12 +71,12 @@ const cswap = ({ n, cx, incx, cy, incy }: Input): Output => {
     if (_incy.lt(0)) {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      ctemp.set(_cx.get(ix.get()));
-      _cx.set(ix.get(), _cy.get(iy.get()));
-      _cy.set(iy.get(), ctemp.get());
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      ctemp.set(_cx.get(ix));
+      _cx.set(ix, _cy.get(iy));
+      _cy.set(iy, ctemp);
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
 

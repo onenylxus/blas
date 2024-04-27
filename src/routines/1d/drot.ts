@@ -65,10 +65,10 @@ const drot = ({ n, dx, incx, dy, incy, c, s }: Input): Output => {
     return resolve();
   }
   if (_incx.eq(1) && _incy.eq(1)) {
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      dtemp.set(_c.get() * _dx.get(i.get()) + _s.get() * _dy.get(i.get()));
-      _dy.set(i.get(), _c.get() * _dy.get(i.get()) - _s.get() * _dx.get(i.get()));
-      _dx.set(i.get(), dtemp.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      dtemp.set(_c.get() * _dx.get(i) + _s.get() * _dy.get(i));
+      _dy.set(i, _c.get() * _dy.get(i) - _s.get() * _dx.get(i));
+      _dx.set(i, dtemp);
     }
   } else {
     ix.set(0);
@@ -79,12 +79,12 @@ const drot = ({ n, dx, incx, dy, incy, c, s }: Input): Output => {
     if (_incy.lt(0)) {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      dtemp.set(_c.get() * _dx.get(ix.get()) + _s.get() * _dy.get(iy.get()));
-      _dy.set(iy.get(), _c.get() * _dy.get(iy.get()) - _s.get() * _dx.get(ix.get()));
-      _dx.set(ix.get(), dtemp.get());
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      dtemp.set(_c.get() * _dx.get(ix) + _s.get() * _dy.get(iy));
+      _dy.set(iy, _c.get() * _dy.get(iy) - _s.get() * _dx.get(ix));
+      _dx.set(ix, dtemp);
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
 

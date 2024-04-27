@@ -65,10 +65,10 @@ const srot = ({ n, sx, incx, sy, incy, c, s }: Input): Output => {
     return resolve();
   }
   if (_incx.eq(1) && _incy.eq(1)) {
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      stemp.set(_c.get() * _sx.get(i.get()) + _s.get() * _sy.get(i.get()));
-      _sy.set(i.get(), _c.get() * _sy.get(i.get()) - _s.get() * _sx.get(i.get()));
-      _sx.set(i.get(), stemp.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      stemp.set(_c.get() * _sx.get(i) + _s.get() * _sy.get(i));
+      _sy.set(i, _c.get() * _sy.get(i) - _s.get() * _sx.get(i));
+      _sx.set(i, stemp);
     }
   } else {
     ix.set(0);
@@ -79,12 +79,12 @@ const srot = ({ n, sx, incx, sy, incy, c, s }: Input): Output => {
     if (_incy.lt(0)) {
       iy.set((-_n.get() + 1) * _incy.get() + 1);
     }
-    for (i.set(1); i.le(_n.get()); i.add(1)) {
-      stemp.set(_c.get() * _sx.get(ix.get()) + _s.get() * _sy.get(iy.get()));
-      _sy.set(iy.get(), _c.get() * _sy.get(iy.get()) - _s.get() * _sx.get(ix.get()));
-      _sx.set(ix.get(), stemp.get());
-      ix.add(_incx.get());
-      iy.add(_incy.get());
+    for (i.set(1); i.le(_n); i.add(1)) {
+      stemp.set(_c.get() * _sx.get(ix) + _s.get() * _sy.get(iy));
+      _sy.set(iy, _c.get() * _sy.get(iy) - _s.get() * _sx.get(ix));
+      _sx.set(ix, stemp);
+      ix.add(_incx);
+      iy.add(_incy);
     }
   }
 

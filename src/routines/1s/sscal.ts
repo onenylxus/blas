@@ -55,16 +55,16 @@ const sscal = ({ n, sa, sx, incx }: Input): Output => {
   if (_incx.eq(1)) {
     m.set(_n.get() % 5);
     if (m.ne(0)) {
-      for (i.set(1); i.le(m.get()); i.add(1)) {
-        _sx.set(i.get(), _sa.get() * _sx.get(i.get()));
+      for (i.set(1); i.le(m); i.add(1)) {
+        _sx.set(i, _sa.get() * _sx.get(i));
       }
       if (_n.lt(5)) {
         return resolve();
       }
     }
     mp1.set(m.get() + 1);
-    for (i.set(mp1.get()); i.le(_n.get()); i.add(5)) {
-      _sx.set(i.get(), _sa.get() * _sx.get(i.get()));
+    for (i.set(mp1.get()); i.le(_n); i.add(5)) {
+      _sx.set(i, _sa.get() * _sx.get(i));
       _sx.set(i.get() + 1, _sa.get() * _sx.get(i.get() + 1));
       _sx.set(i.get() + 2, _sa.get() * _sx.get(i.get() + 2));
       _sx.set(i.get() + 3, _sa.get() * _sx.get(i.get() + 3));
@@ -72,8 +72,8 @@ const sscal = ({ n, sa, sx, incx }: Input): Output => {
     }
   } else {
     nincx.set(_n.get() * _incx.get());
-    for (i.set(1); i.le(nincx.get()); i.add(_incx.get())) {
-      _sx.set(i.get(), _sa.get() * _sx.get(i.get()));
+    for (i.set(1); i.le(nincx); i.add(_incx)) {
+      _sx.set(i, _sa.get() * _sx.get(i));
     }
   }
 

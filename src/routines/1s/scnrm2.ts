@@ -65,8 +65,8 @@ const scnrm2 = ({ n, x, incx }: Input): Output => {
   if (_incx.lt(0)) {
     ix.set((-_n.get() + 1) * _incx.get() + 1);
   }
-  for (i.set(1); i.le(_n.get()); i.add(1)) {
-    ax.set(abs(_x.get(ix.get()).r));
+  for (i.set(1); i.le(_n); i.add(1)) {
+    ax.set(abs(_x.get(ix).r));
     if (ax.gt(TBIG)) {
       abig.add((ax.get() * SBIG) ** 2);
       notbig.set(false);
@@ -77,7 +77,7 @@ const scnrm2 = ({ n, x, incx }: Input): Output => {
     } else {
       amed.add(ax.get() ** 2);
     }
-    ax.set(abs(_x.get(ix.get()).i));
+    ax.set(abs(_x.get(ix).i));
     if (ax.gt(TBIG)) {
       abig.add((ax.get() * SBIG) ** 2);
       notbig.set(false);
@@ -88,34 +88,34 @@ const scnrm2 = ({ n, x, incx }: Input): Output => {
     } else {
       amed.add(ax.get() ** 2);
     }
-    ix.add(_incx.get());
+    ix.add(_incx);
   }
   if (abig.gt(0)) {
-    if (amed.gt(0) || amed.gt(MAXN) || amed.ne(amed.get())) {
+    if (amed.gt(0) || amed.gt(MAXN) || amed.ne(amed)) {
       abig.add(amed.get() * SBIG ** 2);
     }
     scl.set(1 / SBIG);
-    sumsq.set(abig.get());
+    sumsq.set(abig);
   } else if (asml.gt(0)) {
-    if (amed.gt(0) || amed.gt(MAXN) || amed.ne(amed.get())) {
+    if (amed.gt(0) || amed.gt(MAXN) || amed.ne(amed)) {
       amed.set(sqrt(amed.get()));
       asml.set(sqrt(asml.get()) / SSML);
-      if (asml.gt(amed.get())) {
-        ymin.set(amed.get());
-        ymax.set(asml.get());
+      if (asml.gt(amed)) {
+        ymin.set(amed);
+        ymax.set(asml);
       } else {
-        ymin.set(asml.get());
-        ymax.set(amed.get());
+        ymin.set(asml);
+        ymax.set(amed);
       }
       scl.set(1);
       sumsq.set(ymax.get() ** 2 * (1 + (ymin.get() / ymax.get()) ** 2));
     } else {
       scl.set(1 / SSML);
-      sumsq.set(asml.get());
+      sumsq.set(asml);
     }
   } else {
     scl.set(1);
-    sumsq.set(amed.get());
+    sumsq.set(amed);
   }
   _ret.set(scl.get() * sqrt(sumsq.get()));
 
