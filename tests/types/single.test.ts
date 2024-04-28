@@ -55,7 +55,7 @@ describe('Single type', () => {
 
   it('should exponent value correctly', () => {
     instance.set(value);
-    instance.exp(2);
+    instance.pow(2);
     isClose(instance.get(), value ** 2);
   });
 

@@ -174,6 +174,13 @@ export const min =(...values: (number | Simple)[]): number => {
   return Math.min(...values as number[]);
 }
 
+// Modulo function
+export const mod = (x: number | Simple, y: number | Simple): number => {
+  x = reduce(x) as number;
+  y = reduce(y) as number;
+  return x % y;
+};
+
 // Multiply function
 export const mul = (x: Dynamic, y: Dynamic): number | Dual => {
   x = reduce(x);
@@ -194,6 +201,11 @@ export const mul = (x: Dynamic, y: Dynamic): number | Dual => {
 
 // Power function
 // export const pow: (x: number, y: number) => number = Math.pow;
+export const pow = (x: number | Simple, y: number | Simple): number => {
+  x = reduce(x) as number;
+  y = reduce(y) as number;
+  return Math.pow(x, y);
+};
 
 // Random function
 // export const random: () => number = Math.random;

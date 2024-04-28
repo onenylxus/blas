@@ -1,4 +1,5 @@
 // Import
+import { add, div, mod, mul, pow, sub } from '../mathlib';
 import Complex from '../structs/complex';
 import Simple from '../structs/simple';
 
@@ -19,7 +20,7 @@ const reduce = (value: Dynamic): number => {
   return result;
 };
 const process = (value: Dynamic): number => {
-  return (new CInteger(reduce(value))).get();
+  return (new CInteger(value)).get();
 };
 
 // Integer class
@@ -36,32 +37,32 @@ class CInteger extends Simple {
 
   // Local addition
   public add(value: Dynamic): void {
-    this.set(CInteger.add(this, value).get());
+    this.set(add(this, value));
   }
 
   // Local subtraction
   public sub(value: Dynamic): void {
-    this.set(CInteger.sub(this, value).get());
+    this.set(sub(this, value));
   }
 
   // Local multiplication
   public mul(value: Dynamic): void {
-    this.set(CInteger.mul(this, value).get());
+    this.set(mul(this, value));
   }
 
   // Local division
   public div(value: Dynamic): void {
-    this.set(CInteger.div(this, value).get());
+    this.set(div(this, value));
   }
 
   // Local modulo
   public mod(value: Dynamic): void {
-    this.set(CInteger.mod(this, value).get());
+    this.set(mod(this, reduce(value)));
   }
 
   // Local exponentation
-  public exp(value: Dynamic): void {
-    this.set(CInteger.exp(this, value).get());
+  public pow(value: Dynamic): void {
+    this.set(pow(this, reduce(value)));
   }
 
   // Local equal to
@@ -96,32 +97,32 @@ class CInteger extends Simple {
 
   // Global addition
   public static add(left: Dynamic, right: Dynamic): CInteger {
-    return new CInteger(reduce(left) + reduce(right));
+    return new CInteger(add(left, right));
   }
 
   // Global subtraction
   public static sub(left: Dynamic, right: Dynamic): CInteger {
-    return new CInteger(reduce(left) - reduce(right));
+    return new CInteger(sub(left, right));
   }
 
   // Global multiplication
   public static mul(left: Dynamic, right: Dynamic): CInteger {
-    return new CInteger(reduce(left) * reduce(right));
+    return new CInteger(mul(left, right));
   }
 
   // Global division
   public static div(left: Dynamic, right: Dynamic): CInteger {
-    return new CInteger(reduce(left) / reduce(right));
+    return new CInteger(div(left, right));
   }
 
   // Global modulo
   public static mod(left: Dynamic, right: Dynamic): CInteger {
-    return new CInteger(reduce(left) % reduce(right));
+    return new CInteger(mod(reduce(left), reduce(right)));
   }
 
   // Global exponentation
-  public static exp(left: Dynamic, right: Dynamic): CInteger {
-    return new CInteger(reduce(left) ** reduce(right));
+  public static pow(left: Dynamic, right: Dynamic): CInteger {
+    return new CInteger(pow(reduce(left), reduce(right)));
   }
 
   // Global equal to

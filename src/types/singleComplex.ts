@@ -1,5 +1,6 @@
 // Import
 import { Single, S } from './single';
+import { add, div, mul, sub } from '../mathlib';
 import Complex from '../structs/complex';
 import Simple from '../structs/simple';
 import _C from '../../utils/complex';
@@ -43,22 +44,22 @@ class CSingleComplex extends Complex<S> {
 
   // Local addition
   public add(value: Dynamic): void {
-    this.set(CSingleComplex.add(this, value).get());
+    this.set(add(this, value));
   }
 
   // Local subtraction
   public sub(value: Dynamic): void {
-    this.set(CSingleComplex.sub(this, value).get());
+    this.set(sub(this, value));
   }
 
   // Local multiplication
   public mul(value: Dynamic): void {
-    this.set(CSingleComplex.mul(this, value).get());
+    this.set(mul(this, value));
   }
 
   // Local division
   public div(value: Dynamic): void {
-    this.set(CSingleComplex.div(this, value).get());
+    this.set(div(this, value));
   }
 
   // Local equal to
@@ -73,30 +74,22 @@ class CSingleComplex extends Complex<S> {
 
   // Global addition
   public static add(left: Dynamic, right: Dynamic): CSingleComplex {
-    const l: Dual = process(left);
-    const r: Dual = process(right);
-    return new CSingleComplex(_C(l.r + r.r, l.i + r.i));
+    return new CSingleComplex(add(left, right));
   }
 
   // Global subtraction
   public static sub(left: Dynamic, right: Dynamic): CSingleComplex {
-    const l: Dual = process(left);
-    const r: Dual = process(right);
-    return new CSingleComplex(_C(l.r - r.r, l.i - r.i));
+    return new CSingleComplex(sub(left, right));
   }
 
   // Global multiplication
   public static mul(left: Dynamic, right: Dynamic): CSingleComplex {
-    const l: Dual = process(left);
-    const r: Dual = process(right);
-    return new CSingleComplex(_C(l.r * r.r - l.i * r.i, l.r * r.i + l.i * r.r));
+    return new CSingleComplex(mul(left, right));
   }
 
   // Global division
   public static div(left: Dynamic, right: Dynamic): CSingleComplex {
-    const l: Dual = process(left);
-    const r: Dual = process(right);
-    return new CSingleComplex(_C((l.r * r.r + l.i * r.i) / (r.r ** 2 + r.i ** 2), (l.i * r.r - l.r * r.i) / (r.r ** 2 + r.i ** 2)));
+    return new CSingleComplex(div(left, right));
   }
 
   // Global equal to
