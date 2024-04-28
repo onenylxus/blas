@@ -42,13 +42,13 @@ export const add = (x: number | Dual, y: number | Dual): number | Dual => {
   if (typeof x === 'number' && typeof y === 'number') {
     return x + y;
   }
-  if (typeof x === 'number' && typeof y !== 'number') {
+  if (typeof x === 'number' && typeof y === 'object') {
     return _C(x + y.r, y.i);
   }
-  if (typeof x !== 'number' && typeof y === 'number') {
+  if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r + y, x.i);
   }
-  if (typeof x !== 'number' && typeof y !== 'number') {
+  if (typeof x === 'object' && typeof y === 'object') {
     return _C(x.r + y.r, x.i + y.i);
   }
 }
@@ -102,13 +102,13 @@ export const div = (x: number | Dual, y: number | Dual): number | Dual => {
   if (typeof x === 'number' && typeof y === 'number') {
     return x / y;
   }
-  if (typeof x === 'number' && typeof y !== 'number') {
+  if (typeof x === 'number' && typeof y === 'object') {
     return _C(x * y.r / (y.r ** 2 + y.i ** 2), -x * y.i / (y.r ** 2 + y.i ** 2));
   }
-  if (typeof x !== 'number' && typeof y === 'number') {
+  if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r / y, x.i / y);
   }
-  if (typeof x !== 'number' && typeof y !== 'number') {
+  if (typeof x === 'object' && typeof y === 'object') {
     return _C((x.r * y.r + x.i * y.i) / (y.r ** 2 + y.i ** 2), (x.i * y.r - x.r * y.i) / (y.r ** 2 + y.i ** 2));
   }
 }
@@ -154,13 +154,13 @@ export const mul = (x: number | Dual, y: number | Dual): number | Dual => {
   if (typeof x === 'number' && typeof y === 'number') {
     return x * y;
   }
-  if (typeof x === 'number' && typeof y !== 'number') {
+  if (typeof x === 'number' && typeof y === 'object') {
     return _C(x * y.r, x * y.i);
   }
-  if (typeof x !== 'number' && typeof y === 'number') {
+  if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r * y, x.i * y);
   }
-  if (typeof x !== 'number' && typeof y !== 'number') {
+  if (typeof x === 'object' && typeof y === 'object') {
     return _C(x.r * y.r - x.i * y.i, x.r * y.i + x.i * y.r);
   }
 }
@@ -191,13 +191,13 @@ export const sub = (x: number | Dual, y: number | Dual): number | Dual => {
   if (typeof x === 'number' && typeof y === 'number') {
     return x - y;
   }
-  if (typeof x === 'number' && typeof y !== 'number') {
+  if (typeof x === 'number' && typeof y === 'object') {
     return _C(x - y.r, y.i);
   }
-  if (typeof x !== 'number' && typeof y === 'number') {
+  if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r - y, x.i);
   }
-  if (typeof x !== 'number' && typeof y !== 'number') {
+  if (typeof x === 'object' && typeof y === 'object') {
     return _C(x.r - y.r, x.i - y.i);
   }
 }
