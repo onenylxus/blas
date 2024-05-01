@@ -1,4 +1,5 @@
 // Import
+import { add, div, mul, pow, sub } from '../mathlib';
 import Complex from '../structs/complex';
 import Simple from '../structs/simple';
 
@@ -19,7 +20,7 @@ const reduce = (value: Dynamic): number => {
   return result;
 };
 const process = (value: Dynamic): number => {
-  return (new CDouble(reduce(value))).get();
+  return (new CDouble(value)).get();
 };
 
 // Double class
@@ -36,27 +37,27 @@ class CDouble extends Simple {
 
   // Local addition
   public add(value: Dynamic): void {
-    this.set(CDouble.add(this, value).get());
+    this.set(add(this, value));
   }
 
   // Local subtraction
   public sub(value: Dynamic): void {
-    this.set(CDouble.sub(this, value).get());
+    this.set(sub(this, value));
   }
 
   // Local multiplication
   public mul(value: Dynamic): void {
-    this.set(CDouble.mul(this, value).get());
+    this.set(mul(this, value));
   }
 
   // Local division
   public div(value: Dynamic): void {
-    this.set(CDouble.div(this, value).get());
+    this.set(div(this, value));
   }
 
   // Local exponentation
-  public exp(value: Dynamic): void {
-    this.set(CDouble.exp(this, value).get());
+  public pow(value: Dynamic): void {
+    this.set(pow(this, reduce(value)));
   }
 
   // Local equal to
@@ -91,27 +92,27 @@ class CDouble extends Simple {
 
   // Global addition
   public static add(left: Dynamic, right: Dynamic): CDouble {
-    return new CDouble(reduce(left) + reduce(right));
+    return new CDouble(add(left, right));
   }
 
   // Global subtraction
   public static sub(left: Dynamic, right: Dynamic): CDouble {
-    return new CDouble(reduce(left) - reduce(right));
+    return new CDouble(sub(left, right));
   }
 
   // Global multiplication
   public static mul(left: Dynamic, right: Dynamic): CDouble {
-    return new CDouble(reduce(left) * reduce(right));
+    return new CDouble(mul(left, right));
   }
 
   // Global division
   public static div(left: Dynamic, right: Dynamic): CDouble {
-    return new CDouble(reduce(left) / reduce(right));
+    return new CDouble(div(left, right));
   }
 
   // Global exponentation
-  public static exp(left: Dynamic, right: Dynamic): CDouble {
-    return new CDouble(reduce(left) ** reduce(right));
+  public static pow(left: Dynamic, right: Dynamic): CDouble {
+    return new CDouble(pow(reduce(left), reduce(right)));
   }
 
   // Global equal to

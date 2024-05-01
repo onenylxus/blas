@@ -1,5 +1,18 @@
 // Import
+import Complex from './structs/complex';
+import Simple from './structs/simple';
 import _C from '../utils/complex';
+
+// Dynamic type handling
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Dynamic = number | Dual | Simple | Complex<any>;
+const reduce = (value: Dynamic): number | Dual => {
+  let result: Dynamic = value;
+  if (result instanceof Simple || result instanceof Complex) {
+    result = result.get();
+  }
+  return result;
+};
 
 // Math object constants
 // export const E: number = Math.E;
@@ -30,7 +43,8 @@ export const SSML: number = 2 ** 75;
 export const SBIG: number = 2 ** -76;
 
 // Absolute function
-export const abs = (x: number | Dual): number => {
+export const abs = (x: Dynamic): number => {
+  x = reduce(x);
   if (typeof x === 'number') {
     return Math.abs(x);
   }
@@ -38,17 +52,19 @@ export const abs = (x: number | Dual): number => {
 };
 
 // Add function
-export const add = (x: number | Dual, y: number | Dual): number | Dual => {
+export const add = (x: Dynamic, y: Dynamic): number | Dual => {
+  x = reduce(x);
+  y = reduce(y);
   if (typeof x === 'number' && typeof y === 'number') {
     return x + y;
   }
-  if (typeof x === 'number' && typeof y !== 'number') {
+  if (typeof x === 'number' && typeof y === 'object') {
     return _C(x + y.r, y.i);
   }
-  if (typeof x !== 'number' && typeof y === 'number') {
+  if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r + y, x.i);
   }
-  if (typeof x !== 'number' && typeof y !== 'number') {
+  if (typeof x === 'object' && typeof y === 'object') {
     return _C(x.r + y.r, x.i + y.i);
   }
 }
@@ -84,7 +100,8 @@ export const add = (x: number | Dual, y: number | Dual): number | Dual => {
 // export const clz32: (x: number) => number = Math.clz32;
 
 // Conjugate function
-export const conjg = (x: number | Dual): number | Dual => {
+export const conjg = (x: Dynamic): number | Dual => {
+  x = reduce(x);
   if (typeof x === 'number') {
     return x;
   }
@@ -98,17 +115,19 @@ export const conjg = (x: number | Dual): number | Dual => {
 // export const cosh: (x: number) => number = Math.cosh;
 
 // Divide function
-export const div = (x: number | Dual, y: number | Dual): number | Dual => {
+export const div = (x: Dynamic, y: Dynamic): number | Dual => {
+  x = reduce(x);
+  y = reduce(y);
   if (typeof x === 'number' && typeof y === 'number') {
     return x / y;
   }
-  if (typeof x === 'number' && typeof y !== 'number') {
+  if (typeof x === 'number' && typeof y === 'object') {
     return _C(x * y.r / (y.r ** 2 + y.i ** 2), -x * y.i / (y.r ** 2 + y.i ** 2));
   }
-  if (typeof x !== 'number' && typeof y === 'number') {
+  if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r / y, x.i / y);
   }
-  if (typeof x !== 'number' && typeof y !== 'number') {
+  if (typeof x === 'object' && typeof y === 'object') {
     return _C((x.r * y.r + x.i * y.i) / (y.r ** 2 + y.i ** 2), (x.i * y.r - x.r * y.i) / (y.r ** 2 + y.i ** 2));
   }
 }
@@ -144,29 +163,49 @@ export const div = (x: number | Dual, y: number | Dual): number | Dual => {
 // export const log2: (x: number) => number = Math.log2;
 
 // Maximum function
-export const max: (...values: number[]) => number = Math.max;
+export const max = (...values: (number | Simple)[]): number => {
+  values = values.map(x => reduce(x) as number);
+  return Math.max(...values as number[]);
+};
 
 // Minimum function
-export const min: (...values: number[]) => number = Math.min;
+export const min =(...values: (number | Simple)[]): number => {
+  values = values.map(x => reduce(x) as number);
+  return Math.min(...values as number[]);
+}
+
+// Modulo function
+export const mod = (x: number | Simple, y: number | Simple): number => {
+  x = reduce(x) as number;
+  y = reduce(y) as number;
+  return x % y;
+};
 
 // Multiply function
-export const mul = (x: number | Dual, y: number | Dual): number | Dual => {
+export const mul = (x: Dynamic, y: Dynamic): number | Dual => {
+  x = reduce(x);
+  y = reduce(y);
   if (typeof x === 'number' && typeof y === 'number') {
     return x * y;
   }
-  if (typeof x === 'number' && typeof y !== 'number') {
+  if (typeof x === 'number' && typeof y === 'object') {
     return _C(x * y.r, x * y.i);
   }
-  if (typeof x !== 'number' && typeof y === 'number') {
+  if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r * y, x.i * y);
   }
-  if (typeof x !== 'number' && typeof y !== 'number') {
+  if (typeof x === 'object' && typeof y === 'object') {
     return _C(x.r * y.r - x.i * y.i, x.r * y.i + x.i * y.r);
   }
 }
 
 // Power function
 // export const pow: (x: number, y: number) => number = Math.pow;
+export const pow = (x: number | Simple, y: number | Simple): number => {
+  x = reduce(x) as number;
+  y = reduce(y) as number;
+  return Math.pow(x, y);
+};
 
 // Random function
 // export const random: () => number = Math.random;
@@ -175,7 +214,10 @@ export const mul = (x: number | Dual, y: number | Dual): number | Dual => {
 // export const round: (x: number) => number = Math.round;
 
 // Sign function
-export const sign: (x: number) => number = Math.sign;
+export const sign = (x: number | Simple): number => {
+  x = reduce(x) as number;
+  return Math.sign(x);
+};
 
 // Sine function
 // export const sin: (x: number) => number = Math.sin;
@@ -184,20 +226,25 @@ export const sign: (x: number) => number = Math.sign;
 // export const sinh: (x: number) => number = Math.sinh;
 
 // Square root function
-export const sqrt: (x: number) => number = Math.sqrt;
+export const sqrt = (x: number | Simple): number => {
+  x = reduce(x) as number;
+  return Math.sqrt(x);
+};
 
 // Subtract function
-export const sub = (x: number | Dual, y: number | Dual): number | Dual => {
+export const sub = (x: Dynamic, y: Dynamic): number | Dual => {
+  x = reduce(x);
+  y = reduce(y);
   if (typeof x === 'number' && typeof y === 'number') {
     return x - y;
   }
-  if (typeof x === 'number' && typeof y !== 'number') {
+  if (typeof x === 'number' && typeof y === 'object') {
     return _C(x - y.r, y.i);
   }
-  if (typeof x !== 'number' && typeof y === 'number') {
+  if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r - y, x.i);
   }
-  if (typeof x !== 'number' && typeof y !== 'number') {
+  if (typeof x === 'object' && typeof y === 'object') {
     return _C(x.r - y.r, x.i - y.i);
   }
 }
