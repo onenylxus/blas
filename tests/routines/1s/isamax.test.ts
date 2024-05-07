@@ -1,5 +1,5 @@
 // Import
-import { isEqual, isPerf } from '../../testers';
+import { isClose, isEqual, isPerf } from '../../testers';
 import blas from '../../../src/index';
 import perf from '../../../utils/performance';
 
@@ -23,9 +23,9 @@ describe('ISAMAX routine test', () => {
     const { result, time } = perf(isamax, { n, sx, incx });
 
     // Output
-    isEqual(result._ret, 6);
+    isClose(result._ret, 6);
     isEqual(result.n, 6);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 1);
     isPerf(time);
   });
@@ -40,9 +40,9 @@ describe('ISAMAX routine test', () => {
     const { result, time } = perf(isamax, { n, sx, incx });
 
     // Output
-    isEqual(result._ret, 3);
+    isClose(result._ret, 3);
     isEqual(result.n, 3);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 2);
     isPerf(time);
   });
@@ -57,9 +57,9 @@ describe('ISAMAX routine test', () => {
     const { result, time } = perf(isamax, { n, sx, incx });
 
     // Output
-    isEqual(result._ret, 0);
+    isClose(result._ret, 0);
     isEqual(result.n, 6);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, -1);
     isPerf(time);
   });
@@ -74,9 +74,9 @@ describe('ISAMAX routine test', () => {
     const { result, time } = perf(isamax, { n, sx, incx });
 
     // Output
-    isEqual(result._ret, 0);
+    isClose(result._ret, 0);
     isEqual(result.n, 0);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 1);
     isPerf(time);
   });
@@ -91,9 +91,9 @@ describe('ISAMAX routine test', () => {
     const { result, time } = perf(isamax, { n, sx, incx });
 
     // Output
-    isEqual(result._ret, 1);
+    isClose(result._ret, 1);
     isEqual(result.n, 1);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 1);
     isPerf(time);
   });

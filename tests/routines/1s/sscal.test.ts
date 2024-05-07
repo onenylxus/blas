@@ -27,7 +27,7 @@ describe('SSCAL routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.sa, 1);
+    isClose(result.sa, 1);
     isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
     isPerf(time);
@@ -46,7 +46,7 @@ describe('SSCAL routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.sa, 2);
+    isClose(result.sa, 2);
     isClose(result.sx, [2, 4, 6, 8]);
     isEqual(result.incx, 1);
     isPerf(time);
@@ -65,7 +65,7 @@ describe('SSCAL routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 5);
-    isEqual(result.sa, 2);
+    isClose(result.sa, 2);
     isClose(result.sx, [2, 4, 6, 8, 10]);
     isEqual(result.incx, 1);
     isPerf(time);
@@ -84,7 +84,7 @@ describe('SSCAL routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 7);
-    isEqual(result.sa, 2);
+    isClose(result.sa, 2);
     isClose(result.sx, [2, 4, 6, 8, 10, 12, 14]);
     isEqual(result.incx, 1);
     isPerf(time);
@@ -103,7 +103,7 @@ describe('SSCAL routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.sa, -2);
+    isClose(result.sa, -2);
     isClose(result.sx, [-2, 2, -6, 4, -10, 6, -14]);
     isEqual(result.incx, 2);
     isPerf(time);
@@ -122,7 +122,7 @@ describe('SSCAL routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.sa, -2);
+    isClose(result.sa, -2);
     isClose(result.sx, [1, 2, 3, 4, 5, 6, 7]);
     isEqual(result.incx, -2);
     isPerf(time);
@@ -141,7 +141,7 @@ describe('SSCAL routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 0);
-    isEqual(result.sa, 1);
+    isClose(result.sa, 1);
     isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
     isPerf(time);

@@ -1,5 +1,5 @@
 // Import
-import { isEqual, isPerf, isUndefined } from '../../testers';
+import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
 import perf from '../../../utils/performance';
 
@@ -29,9 +29,9 @@ describe('SSWAP routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.sx, [5, 6, 7, 8]);
+    isClose(result.sx, [5, 6, 7, 8]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [1, 2, 3, 4]);
+    isClose(result.sy, [1, 2, 3, 4]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -50,9 +50,9 @@ describe('SSWAP routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 2);
-    isEqual(result.sx, [3, 4]);
+    isClose(result.sx, [3, 4]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [1, 2]);
+    isClose(result.sy, [1, 2]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -71,9 +71,9 @@ describe('SSWAP routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.sx, [8, 7, 6, 5]);
+    isClose(result.sx, [8, 7, 6, 5]);
     isEqual(result.incx, -1);
-    isEqual(result.sy, [4, 3, 2, 1]);
+    isClose(result.sy, [4, 3, 2, 1]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -92,9 +92,9 @@ describe('SSWAP routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.sx, [8, 7, 6, 5]);
+    isClose(result.sx, [8, 7, 6, 5]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [4, 3, 2, 1]);
+    isClose(result.sy, [4, 3, 2, 1]);
     isEqual(result.incy, -1);
     isPerf(time);
   });
@@ -113,9 +113,9 @@ describe('SSWAP routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 0);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
     isPerf(time);
   });

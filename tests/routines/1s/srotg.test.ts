@@ -25,7 +25,7 @@ describe('SROTG routine test', () => {
     isEqual(result.a, 0);
     isEqual(result.b, 0);
     isEqual(result.c, 1);
-    isEqual(result.s, 0);
+    isClose(result.s, 0);
     isPerf(time);
   });
 

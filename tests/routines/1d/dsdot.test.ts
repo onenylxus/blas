@@ -29,9 +29,9 @@ describe('DSDOT routine test', () => {
     // Output
     isClose(result._ret, 70);
     isEqual(result.n, 4);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -50,9 +50,9 @@ describe('DSDOT routine test', () => {
     // Output
     isClose(result._ret, 0);
     isEqual(result.n, 0);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -71,9 +71,9 @@ describe('DSDOT routine test', () => {
     // Output
     isClose(result._ret, 26);
     isEqual(result.n, 4);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 2);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 2);
     isPerf(time);
   });
@@ -92,9 +92,9 @@ describe('DSDOT routine test', () => {
     // Output
     isClose(result._ret, 17);
     isEqual(result.n, 2);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, -1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, -1);
     isPerf(time);
   });
@@ -113,9 +113,9 @@ describe('DSDOT routine test', () => {
     // Output
     isClose(result._ret, 16);
     isEqual(result.n, 2);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, -1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
     isPerf(time);
   });

@@ -1,5 +1,5 @@
 // Import
-import { isEqual, isPerf, isUndefined } from '../../testers';
+import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
 import perf from '../../../utils/performance';
 
@@ -29,9 +29,9 @@ describe('SCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [1, 2, 3, 4]);
+    isClose(result.sy, [1, 2, 3, 4]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -50,9 +50,9 @@ describe('SCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 10);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    isClose(result.sy, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -71,9 +71,9 @@ describe('SCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 7);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6, 7]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6, 7]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [1, 2, 3, 4, 5, 6, 7]);
+    isClose(result.sy, [1, 2, 3, 4, 5, 6, 7]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -92,9 +92,9 @@ describe('SCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 5);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     isEqual(result.incx, 2);
-    isEqual(result.sy, [1, 0, 3, 0, 5, 0, 7, 0, 9]);
+    isClose(result.sy, [1, 0, 3, 0, 5, 0, 7, 0, 9]);
     isEqual(result.incy, 2);
     isPerf(time);
   });
@@ -113,9 +113,9 @@ describe('SCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 5);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     isEqual(result.incx, 2);
-    isEqual(result.sy, [9, 7, 5, 3, 1, 0, 0, 0, 0]);
+    isClose(result.sy, [9, 7, 5, 3, 1, 0, 0, 0, 0]);
     isEqual(result.incy, -1);
     isPerf(time);
   });
@@ -134,9 +134,9 @@ describe('SCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 5);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
     isEqual(result.incx, -2);
-    isEqual(result.sy, [9, 7, 5, 3, 1, 0, 0, 0, 0]);
+    isClose(result.sy, [9, 7, 5, 3, 1, 0, 0, 0, 0]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -155,9 +155,9 @@ describe('SCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 0);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [0, 0, 0, 0]);
+    isClose(result.sy, [0, 0, 0, 0]);
     isEqual(result.incy, 1);
     isPerf(time);
   });

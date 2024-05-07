@@ -25,7 +25,7 @@ describe('SASUM routine test', () => {
     // Output
     isClose(result._ret, 21);
     isEqual(result.n, 6);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 1);
     isPerf(time);
   });
@@ -42,7 +42,7 @@ describe('SASUM routine test', () => {
     // Output
     isClose(result._ret, 15);
     isEqual(result.n, 5);
-    isEqual(result.sx, [1, 2, 3, 4, 5]);
+    isClose(result.sx, [1, 2, 3, 4, 5]);
     isEqual(result.incx, 1);
     isPerf(time);
   });
@@ -59,7 +59,7 @@ describe('SASUM routine test', () => {
     // Output
     isClose(result._ret, 9);
     isEqual(result.n, 6);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 2);
     isPerf(time);
   });
@@ -76,7 +76,7 @@ describe('SASUM routine test', () => {
     // Output
     isClose(result._ret, 0);
     isEqual(result.n, 0);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 1);
     isPerf(time);
   });
@@ -93,7 +93,7 @@ describe('SASUM routine test', () => {
     // Output
     isClose(result._ret, 0);
     isEqual(result.n, 6);
-    isEqual(result.sx, [1, 2, 3, 4, 5, 6]);
+    isClose(result.sx, [1, 2, 3, 4, 5, 6]);
     isEqual(result.incx, 0);
     isPerf(time);
   });

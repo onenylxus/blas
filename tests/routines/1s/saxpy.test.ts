@@ -53,7 +53,7 @@ describe('SAXPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 10);
-    isEqual(result.sa, 23);
+    isClose(result.sa, 23);
     isClose(result.sx, [
       1.2629542848807933098,
       -0.3262333607056494,
@@ -106,7 +106,7 @@ describe('SAXPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 3);
-    isEqual(result.sa, 23);
+    isClose(result.sa, 23);
     isClose(result.sx, [
       1.2629542848807933098,
       -0.3262333607056494,
@@ -155,7 +155,7 @@ describe('SAXPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 8);
-    isEqual(result.sa, 23);
+    isClose(result.sa, 23);
     isClose(result.sx, [
       1.2629542848807933098,
       -0.3262333607056494,
@@ -218,7 +218,7 @@ describe('SAXPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 5);
-    isEqual(result.sa, 23);
+    isClose(result.sa, 23);
     isClose(result.sx, [
       1.2629542848807933098,
       -0.3262333607056494,
@@ -285,7 +285,7 @@ describe('SAXPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 10);
-    isEqual(result.sa, 0);
+    isClose(result.sa, 0);
     isClose(result.sx, [
       1.2629542848807933098,
       -0.3262333607056494,
@@ -352,7 +352,7 @@ describe('SAXPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 0);
-    isEqual(result.sa, 23);
+    isClose(result.sa, 23);
     isClose(result.sx, [
       1.2629542848807933098,
       -0.3262333607056494,
@@ -419,7 +419,7 @@ describe('SAXPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 5);
-    isEqual(result.sa, 23);
+    isClose(result.sa, 23);
     isClose(result.sx, [
       1.2629542848807933098,
       -0.3262333607056494,

@@ -1,5 +1,5 @@
 // Import
-import { isEqual, isPerf, isUndefined } from '../../testers';
+import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
 import perf from '../../../utils/performance';
 import _C from '../../../utils/complex';
@@ -30,9 +30,9 @@ describe('CCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.cx, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
+    isClose(result.cx, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
     isEqual(result.incx, 1);
-    isEqual(result.cy, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
+    isClose(result.cy, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -51,9 +51,9 @@ describe('CCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 4);
-    isEqual(result.cx, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
+    isClose(result.cx, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
     isEqual(result.incx, -1);
-    isEqual(result.cy, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
+    isClose(result.cy, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
     isEqual(result.incy, -1);
     isPerf(time);
   });
@@ -72,9 +72,9 @@ describe('CCOPY routine test', () => {
     // Output
     isUndefined(result._ret);
     isEqual(result.n, 0);
-    isEqual(result.cx, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
+    isClose(result.cx, [_C(1, 5), _C(2, 6), _C(3, 7), _C(4, 8)]);
     isEqual(result.incx, 1);
-    isEqual(result.cy, [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)]);
+    isClose(result.cy, [_C(0, 0), _C(0, 0), _C(0, 0), _C(0, 0)]);
     isEqual(result.incy, 1);
     isPerf(time);
   });

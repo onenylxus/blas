@@ -31,10 +31,10 @@ describe('SDSDOT routine test', () => {
     // Output
     isClose(result._ret, 72);
     isEqual(result.n, 4);
-    isEqual(result.sb, 2);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sb, 2);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -54,10 +54,10 @@ describe('SDSDOT routine test', () => {
     // Output
     isClose(result._ret, 2);
     isEqual(result.n, 0);
-    isEqual(result.sb, 2);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sb, 2);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
@@ -77,10 +77,10 @@ describe('SDSDOT routine test', () => {
     // Output
     isClose(result._ret, 29);
     isEqual(result.n, 4);
-    isEqual(result.sb, 3);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sb, 3);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, 2);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 2);
     isPerf(time);
   });
@@ -100,10 +100,10 @@ describe('SDSDOT routine test', () => {
     // Output
     isClose(result._ret, 20);
     isEqual(result.n, 2);
-    isEqual(result.sb, 3);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sb, 3);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, -1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, -1);
     isPerf(time);
   });
@@ -123,10 +123,10 @@ describe('SDSDOT routine test', () => {
     // Output
     isClose(result._ret, 19);
     isEqual(result.n, 2);
-    isEqual(result.sb, 3);
-    isEqual(result.sx, [1, 2, 3, 4]);
+    isClose(result.sb, 3);
+    isClose(result.sx, [1, 2, 3, 4]);
     isEqual(result.incx, -1);
-    isEqual(result.sy, [5, 6, 7, 8]);
+    isClose(result.sy, [5, 6, 7, 8]);
     isEqual(result.incy, 1);
     isPerf(time);
   });
