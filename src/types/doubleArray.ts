@@ -28,8 +28,12 @@ class CDoubleArray extends FortranArray<D> {
     super();
     this.store = values.map((v) => new Double(v));
     this.size = Math.max(size, 0);
-    this.zero = new Double(0);
     this.resize();
+  }
+
+  // Get zero value
+  public get zero(): D {
+    return new Double(0);
   }
 
   // Set value to store

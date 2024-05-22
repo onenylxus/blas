@@ -29,8 +29,12 @@ class CSingleComplexArray extends FortranArray<C> {
     super();
     this.store = values.map((v) => new SingleComplex(v));
     this.size = Math.max(size, 0);
-    this.zero = new SingleComplex(_C(0, 0));
     this.resize();
+  }
+
+  // Get zero value
+  public get zero(): C {
+    return new SingleComplex(_C(0, 0));
   }
 
   // Set value to store

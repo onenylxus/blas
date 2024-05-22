@@ -28,8 +28,12 @@ class CSingleArray extends FortranArray<S> {
     super();
     this.store = values.map((v) => new Single(v));
     this.size = Math.max(size, 0);
-    this.zero = new Single(0);
     this.resize();
+  }
+
+  // Get zero value
+  public get zero(): S {
+    return new Single(0);
   }
 
   // Set value to store

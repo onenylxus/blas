@@ -10,7 +10,11 @@ class FortranArray<T extends S | D | I | C | Z> {
   // Properties
   protected size: number;
   protected store: T[];
-  protected zero: T;
+
+  // Get zero value
+  public get zero(): T {
+    return;
+  }
 
   // Clear value from store
   public clear(): void {

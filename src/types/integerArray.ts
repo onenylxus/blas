@@ -27,8 +27,12 @@ class CIntegerArray extends FortranArray<I> {
     super();
     this.store = values.map((v) => new Integer(v));
     this.size = Math.max(size, 0);
-    this.zero = new Integer(0);
     this.resize();
+  }
+
+  // Get zero value
+  public get zero(): I {
+    return new Integer(0);
   }
 
   // Set value to store

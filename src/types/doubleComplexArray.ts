@@ -29,8 +29,12 @@ class CDoubleComplexArray extends FortranArray<Z> {
     super();
     this.store = values.map((v) => new DoubleComplex(v));
     this.size = Math.max(size, 0);
-    this.zero = new DoubleComplex(_C(0, 0));
     this.resize();
+  }
+
+  // Get zero value
+  public get zero(): Z {
+    return new DoubleComplex(_C(0, 0));
   }
 
   // Set value to store
