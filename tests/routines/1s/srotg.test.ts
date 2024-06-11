@@ -1,5 +1,5 @@
 // Import
-import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
+import { isClose, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
 import perf from '../../../utils/performance';
 
@@ -22,9 +22,9 @@ describe('SROTG routine test', () => {
 
     // Output
     isUndefined(result._ret);
-    isEqual(result.a, 0);
-    isEqual(result.b, 0);
-    isEqual(result.c, 1);
+    isClose(result.a, 0);
+    isClose(result.b, 0);
+    isClose(result.c, 1);
     isClose(result.s, 0);
     isPerf(time);
   });

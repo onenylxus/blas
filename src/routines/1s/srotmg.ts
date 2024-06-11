@@ -145,7 +145,7 @@ const srotmg = ({ sd1, sd2, sx1, sy1, sparam }: Input): Output => {
         }
       }
     }
-    if (_sd2.get() !== 0) {
+    if (_sd2.ne(0)) {
       while (abs(_sd2.get()) <= RGAMSQ || abs(_sd2.get()) >= GAMSQ) {
         if (sflag.eq(0)) {
           sh11.set(1);
