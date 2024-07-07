@@ -58,7 +58,7 @@
 ⚫ **ZDROT** - apply Givens rotation\
 🟢 **ZSWAP** - swap x and y\
 🟢 **ZSCAL** - x = a\*x\
-⚫ **ZDSCAL** - x = a\*x\
+🟢 **ZDSCAL** - x = a\*x\
 🟢 **ZCOPY** - copy x into y\
 ⚫ **ZAXPY** - y = a\*x + y\
 ⚫ **ZDOTU** - dot product\
