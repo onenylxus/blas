@@ -31,9 +31,9 @@ export const MAXSPINT: number = 2 ** 31 - 1;
 export const MINSPINT: number = -(2 ** 31) + 1;
 
 // GAM scaling constants
-export const GAM: number = 4096;
-export const GAMSQ: number = 4096 ** 2;
-export const RGAMSQ: number = 1 / (4096 ** 2);
+export const GAM: number = 2 ** 12;
+export const GAMSQ: number = 2 ** 24;
+export const RGAMSQ: number = 2 ** -24;
 
 // Blue's scaling constants
 export const MAXN: number = 2 ** 128;
@@ -200,7 +200,6 @@ export const mul = (x: Dynamic, y: Dynamic): number | Dual => {
 }
 
 // Power function
-// export const pow: (x: number, y: number) => number = Math.pow;
 export const pow = (x: number | Simple, y: number | Simple): number => {
   x = reduce(x) as number;
   y = reduce(y) as number;

@@ -1,7 +1,7 @@
 # Routines
 
 > **Labels**\
-> ⚫ - Invalid\
+> ⚫ - Invalid or not implemented\
 > 🔴 - Test failed or zero coverage\
 > 🟡 - Test passed without full coverage\
 > 🟢 - Test passed with full coverage

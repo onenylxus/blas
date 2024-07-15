@@ -1,7 +1,7 @@
 // Import
 import { URL } from 'url';
-import path from 'path';
 import TestSequencer from '@jest/test-sequencer';
+import path from 'path';
 import sequence from './data/sequence.json' assert { type: 'json' };
 
 // Modify sequence with relative paths
