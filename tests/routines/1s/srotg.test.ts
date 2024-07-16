@@ -2,64 +2,30 @@
 import { isClose, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
 import perf from '../../../utils/performance';
-
-// Routine snippet
-const { srotg } = blas;
-
-// Define test variables
-let a: number;
-let b: number;
+import data from '../../data/1s/srotg.json';
 
 // SROTG routine test
 describe('SROTG routine test', () => {
-  it('Case 1: a{0},b{0}', () => {
-    // Input
-    a = 0;
-    b = 0;
+  let count = 1;
 
-    // Apply routine
-    const { result, time } = perf(srotg, { a, b });
+  data.forEach((node) => {
+    const a = node.input.a;
+    const b = node.input.b;
 
-    // Output
-    isUndefined(result._ret);
-    isClose(result.a, 0);
-    isClose(result.b, 0);
-    isClose(result.c, 1);
-    isClose(result.s, 0);
-    isPerf(time);
-  });
+    const _a = node.output.a;
+    const _b = node.output.b;
+    const _c = node.output.c;
+    const _s = node.output.s;
 
-  it('Case 2: a{4},b{2}', () => {
-    // Input
-    a = 4;
-    b = 2;
+    const { result, time } = perf(blas.srotg, { a, b });
 
-    // Apply routine
-    const { result, time } = perf(srotg, { a, b });
-
-    // Output
-    isUndefined(result._ret);
-    isClose(result.a, 4.47213595499958);
-    isClose(result.b, 0.4472135954999579);
-    isClose(result.c, 0.8944271909999159);
-    isClose(result.s, 0.4472135954999579);
-    isPerf(time);
-  });
-
-  it('Case 3: a{-2},b{-4}', () => {
-    // Input
-    a = -2;
-    b = -4;
-
-    // Apply routine
-    const { result, time } = perf(srotg, { a, b });
-
-    // Output
-    isUndefined(result._ret);
-    isClose(result.a, -4.47213595499958);
-    isClose(result.b, 2.2360679774997898);
-    isClose(result.c, 0.4472135954999579);
-    isClose(result.s, 0.8944271909999159);
-    isPerf(time);
+    // Run test
+    it(`Case ${count++}: a{${a}},b{${b}}`, () => {
+      isUndefined(result._ret);
+      isClose(result.a, _a);
+      isClose(result.b, _b);
+      isClose(result.c, _c);
+      isClose(result.s, _s);
+    });
   });
 });
