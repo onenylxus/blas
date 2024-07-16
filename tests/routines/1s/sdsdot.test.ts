@@ -1,14 +1,12 @@
 // Import
 import { isClose, isEqual, isPerf } from '../../testers';
 import blas from '../../../src/index';
-import perf from '../../../utils/performance';
 import data from '../../data/1s/sdsdot.json';
+import perf from '../../../utils/performance';
 
 // SDSDOT routine test
 describe('SDSDOT routine test', () => {
-  let count = 1;
-
-  data.forEach((node) => {
+  data.forEach((node, i) => {
     const n = node.input.n;
     const sb = node.input.sb;
     const sx = node.input.sx;
@@ -21,7 +19,7 @@ describe('SDSDOT routine test', () => {
     const { result, time } = perf(blas.sdsdot, { n, sb, sx, incx, sy, incy });
 
     // Run test
-    it(`Case ${count++}: n{${n}},sb{${sb}},sx[${sx.length}],incx{${incx}},sy[${sy.length}],incy{${incy}}`, () => {
+    it(`Case ${++i}: n{${n}},sb{${sb}},sx[${sx.length}],incx{${incx}},sy[${sy.length}],incy{${incy}}`, () => {
       isClose(result._ret, _ret);
       isEqual(result.n, n);
       isClose(result.sb, sb);

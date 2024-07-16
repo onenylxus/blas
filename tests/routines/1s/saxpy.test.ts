@@ -1,14 +1,12 @@
 // Import
 import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
-import perf from '../../../utils/performance';
 import data from '../../data/1s/saxpy.json';
+import perf from '../../../utils/performance';
 
 // SAXPY routine test
 describe('SAXPY routine test', () => {
-  let count = 1;
-
-  data.forEach((node) => {
+  data.forEach((node, i) => {
     const n = node.input.n;
     const sa = node.input.sa;
     const sx = node.input.sx;
@@ -21,7 +19,7 @@ describe('SAXPY routine test', () => {
     const { result, time } = perf(blas.saxpy, { n, sa, sx, incx, sy, incy });
 
     // Run test
-    it(`Case ${count++}: n{${n}},sa{${sa}},sx[${sx.length}],incx{${incx}},sy[${sy.length}],incy{${incy}}`, () => {
+    it(`Case ${++i}: n{${n}},sa{${sa}},sx[${sx.length}],incx{${incx}},sy[${sy.length}],incy{${incy}}`, () => {
       isUndefined(result._ret);
       isEqual(result.n, n);
       isClose(result.sa, sa);
