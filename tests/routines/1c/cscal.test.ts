@@ -1,4 +1,5 @@
 // Import
+import { _pC } from '../../../utils/complex';
 import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src';
 import data from '../../data/1c/cscal.json';
@@ -17,7 +18,7 @@ describe('CSCAL routine test', () => {
     const { result, time } = perf(blas.cscal, { n, ca, cx, incx });
 
     // Run test
-    it(`Case ${++i}: n{${n}},ca{(${ca.r},${ca.i})},cx[${cx.length}],incx{${incx}}`, () => {
+    it(`Case ${++i}: n{${n}},ca{${_pC(ca)}},cx[${cx.length}],incx{${incx}}`, () => {
       isUndefined(result._ret);
       isEqual(result.n, n);
       isClose(result.ca, ca);

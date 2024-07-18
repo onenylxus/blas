@@ -1,4 +1,5 @@
 // Import
+import { _pC } from '../../../utils/complex';
 import { isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src';
 import data from '../../data/1z/zscal.json';
@@ -17,7 +18,7 @@ describe('ZSCAL routine test', () => {
     const { result, time } = perf(blas.zscal, { n, za, zx, incx });
 
     // Run test
-    it(`Case ${++i}: n{${n}},za{(${za.r},${za.i})},zx[${zx.length}],incx{${incx}}`, () => {
+    it(`Case ${++i}: n{${n}},za{${_pC(za)}},zx[${zx.length}],incx{${incx}}`, () => {
       isUndefined(result._ret);
       isEqual(result.n, n);
       isEqual(result.za, za);

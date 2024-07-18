@@ -17,7 +17,7 @@ describe('CSWAP routine test', () => {
     const _cx = node.output.cx;
     const _cy = node.output.cy;
 
-    const { result, time } = perf(blas.cswap, { n, cx, cy, incx, incy });
+    const { result, time } = perf(blas.cswap, { n, cx, incx, cy, incy });
 
     // Run test
     it(`Case ${++i}: n{${n}},cx[${cx.length}],incx{${incx}},cy[${cy.length}],incy{${incy}}`, () => {

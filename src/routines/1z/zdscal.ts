@@ -1,8 +1,8 @@
 // Import
+import { _C } from '../../../utils/complex';
 import { Integer, I } from '../../types/integer';
 import { Double, D } from '../../types/double';
 import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
-import _C from '../../../utils/complex';
 
 // Input interface
 interface Input extends FParameters {

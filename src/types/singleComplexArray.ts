@@ -1,10 +1,10 @@
 // Import
+import { _C } from '../../utils/complex';
 import { Integer } from './integer';
 import { SingleComplex, C } from './singleComplex';
 import Complex from '../structs/complex';
 import FortranArray from '../structs/fortranArray';
 import Simple from '../structs/simple';
-import _C from '../../utils/complex';
 
 // Define type
 type TSingleComplexArray = InstanceType<typeof CSingleComplexArray>;
