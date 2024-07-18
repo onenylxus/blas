@@ -2,6 +2,7 @@
 import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
+import { vsize } from '../../macro';
 
 // Input interface
 interface Input extends FParameters {
@@ -74,10 +75,10 @@ const srot = ({ n, sx, incx, sy, incy, c, s }: Input): Output => {
     ix.set(0);
     iy.set(0);
     if (_incx.lt(0)) {
-      ix.set((-_n.get() + 1) * _incx.get() + 1);
+      ix.set(vsize(_n, _incx));
     }
     if (_incy.lt(0)) {
-      iy.set((-_n.get() + 1) * _incy.get() + 1);
+      iy.set(vsize(_n, _incy));
     }
     for (i.set(1); i.le(_n); i.add(1)) {
       stemp.set(_c.get() * _sx.get(ix) + _s.get() * _sy.get(iy));

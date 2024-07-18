@@ -2,6 +2,7 @@
 import { Double, D } from '../../types/double';
 import { Integer, I } from '../../types/integer';
 import { SingleArray, SA } from '../../types/singleArray';
+import { vsize } from '../../macro';
 
 // Input interface
 interface Input extends FParameters {
@@ -68,10 +69,10 @@ const dsdot = ({ n, sx, incx, sy, incy }: Input): Output => {
     kx.set(1);
     ky.set(1);
     if (_incx.lt(0)) {
-      kx.set((-_n.get() + 1) * _incx.get() + 1);
+      kx.set(vsize(_n, _incx));
     }
     if (_incy.lt(0)) {
-      ky.set((-_n.get() + 1) * _incy.get() + 1);
+      ky.set(vsize(_n, _incy));
     }
     for (i.set(1); i.le(_n); i.add(1)) {
       _ret.add(_sx.get(kx) * _sy.get(ky));

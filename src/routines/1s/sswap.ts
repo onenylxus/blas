@@ -2,6 +2,7 @@
 import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleArray, SA } from '../../types/singleArray';
+import { vsize } from '../../macro';
 
 // Input interface
 interface Input extends FParameters {
@@ -86,10 +87,10 @@ const sswap = ({ n, sx, incx, sy, incy }: Input): Output => {
     ix.set(1);
     iy.set(1);
     if (_incx.lt(0)) {
-      ix.set((-_n.get() + 1) * _incx.get() + 1);
+      ix.set(vsize(_n, _incx));
     }
     if (_incy.lt(0)) {
-      iy.set((-_n.get() + 1) * _incy.get() + 1);
+      iy.set(vsize(_n, _incy));
     }
     for (i.set(1); i.le(_n); i.add(1)) {
       stemp.set(_sx.get(ix));

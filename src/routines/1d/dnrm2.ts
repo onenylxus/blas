@@ -4,6 +4,7 @@ import { DoubleArray, DA } from '../../types/doubleArray';
 import { Integer, I } from '../../types/integer';
 import { Logical, L } from '../../types/logical';
 import { MAXN, SBIG, SSML, TBIG, TSML, abs, sqrt } from '../../mathlib';
+import { vsize } from '../../macro';
 
 // Input interface
 interface Input extends FParameters {
@@ -62,7 +63,7 @@ const dnrm2 = ({ n, x, incx }: Input): Output => {
   }
   ix.set(1);
   if (_incx.lt(0)) {
-    ix.set((-_n.get() + 1) * _incx.get() + 1);
+    ix.set(vsize(_n, _incx));
   }
   for (i.set(1); i.le(_n); i.add(1)) {
     ax.set(abs(_x.get(ix)));
