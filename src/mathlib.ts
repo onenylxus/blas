@@ -1,7 +1,7 @@
 // Import
+import { _C } from '../utils/complex';
 import Complex from './structs/complex';
 import Simple from './structs/simple';
-import _C from '../utils/complex';
 
 // Dynamic type handling
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

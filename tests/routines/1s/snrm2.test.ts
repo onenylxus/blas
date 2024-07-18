@@ -1,66 +1,27 @@
 // Import
 import { isClose, isEqual, isPerf } from '../../testers';
 import blas from '../../../src/index';
+import data from '../../data/1s/snrm2.json';
 import perf from '../../../utils/performance';
-
-// Routine snippet
-const { snrm2 } = blas;
-
-// Define test variables
-let n: number;
-let x: number[];
-let incx: number;
 
 // SNRM2 routine test
 describe('SNRM2 routine test', () => {
-  it('Case 1: n{4},x[4],incx{1}', () => {
-    // Input
-    n = 4;
-    x = [3, 2, 3, 0];
-    incx = 1;
+  data.forEach((node, i) => {
+    const n = node.input.n;
+    const x = node.input.x;
+    const incx = node.input.incx;
 
-    // Apply routine
-    const { result, time } = perf(snrm2, { n, x, incx });
+    const _ret = node.output._ret;
 
-    // Output
-    isClose(result._ret, 4.69041575982343);
-    isEqual(result.n, 4);
-    isEqual(result.x, [3, 2, 3, 0]);
-    isEqual(result.incx, 1);
-    isPerf(time);
-  });
+    const { result, time } = perf(blas.snrm2, { n, x, incx });
 
-  it('Case 2: n{4},x[4],incx{-1}', () => {
-    // Input
-    n = 4;
-    x = [3, 2, 3, 0];
-    incx = -1;
-
-    // Apply routine
-    const { result, time } = perf(snrm2, { n, x, incx });
-
-    // Output
-    isClose(result._ret, 4.69041575982343);
-    isEqual(result.n, 4);
-    isEqual(result.x, [3, 2, 3, 0]);
-    isEqual(result.incx, -1);
-    isPerf(time);
-  });
-
-  it('Case 3: n{1},x[4],incx{1}', () => {
-    // Input
-    n = 1;
-    x = [3, 2, 3, 0];
-    incx = 1;
-
-    // Apply routine
-    const { result, time } = perf(snrm2, { n, x, incx });
-
-    // Output
-    isClose(result._ret, 3);
-    isEqual(result.n, 1);
-    isEqual(result.x, [3, 2, 3, 0]);
-    isEqual(result.incx, 1);
-    isPerf(time);
+    // Run test
+    it(`Case ${++i}: n{${n}},x[${x.length}],incx{${incx}}`, () => {
+      isClose(result._ret, _ret);
+      isEqual(result.n, n);
+      isClose(result.x, x);
+      isEqual(result.incx, incx);
+      isPerf(time);
+    });
   });
 });

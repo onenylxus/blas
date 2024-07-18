@@ -1,8 +1,8 @@
 // Import
+import { _C } from '../../utils/complex';
 import { SingleComplex, C } from '../../src/types/singleComplex';
 import { isClose, isEqual } from '../testers';
 import { random } from '../../utils/random';
-import _C from '../../utils/complex';
 
 // Define test variables
 let value: Dual;

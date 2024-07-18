@@ -1,122 +1,32 @@
 // Import
 import { isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
+import data from '../../data/1d/dswap.json';
 import perf from '../../../utils/performance';
 
-// Routine snippet
-const { dswap } = blas;
+// DSWAP routine test
+describe('DSWAP routine test', () => {
+  data.forEach((node, i) => {
+    const n = node.input.n;
+    const dx = node.input.dx;
+    const incx = node.input.incx;
+    const dy = node.input.dy;
+    const incy = node.input.incy;
 
-// Define test variables
-let n: number;
-let dx: number[];
-let incx: number;
-let dy: number[];
-let incy: number;
+    const _dx = node.output.dx;
+    const _dy = node.output.dy;
 
-// SSWAP routine test
-describe('SSWAP routine test', () => {
-  it('Case 1: n{4},sx[4],incx{1},sy[4],incy{1}', () => {
-    // Input
-    n = 4;
-    dx = [1, 2, 3, 4];
-    incx = 1;
-    dy = [5, 6, 7, 8];
-    incy = 1;
+    const { result, time } = perf(blas.dswap, { n, dx, incx, dy, incy });
 
-    // Apply routine
-    const { result, time } = perf(dswap, { n, dx, incx, dy, incy });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 4);
-    isEqual(result.dx, [5, 6, 7, 8]);
-    isEqual(result.incx, 1);
-    isEqual(result.dy, [1, 2, 3, 4]);
-    isEqual(result.incy, 1);
-    isPerf(time);
-  });
-
-  it('Case 2: n{2},sx[2],incx{1},sy[2],incy{1}', () => {
-    // Input
-    n = 2;
-    dx = [1, 2];
-    incx = 1;
-    dy = [3, 4];
-    incy = 1;
-
-    // Apply routine
-    const { result, time } = perf(dswap, { n, dx, incx, dy, incy });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 2);
-    isEqual(result.dx, [3, 4]);
-    isEqual(result.incx, 1);
-    isEqual(result.dy, [1, 2]);
-    isEqual(result.incy, 1);
-    isPerf(time);
-  });
-
-  it('Case 3: n{4},sx[4],incx{-1},sy[4],incy{1}', () => {
-    // Input
-    n = 4;
-    dx = [1, 2, 3, 4];
-    incx = -1;
-    dy = [5, 6, 7, 8];
-    incy = 1;
-
-    // Apply routine
-    const { result, time } = perf(dswap, { n, dx, incx, dy, incy });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 4);
-    isEqual(result.dx, [8, 7, 6, 5]);
-    isEqual(result.incx, -1);
-    isEqual(result.dy, [4, 3, 2, 1]);
-    isEqual(result.incy, 1);
-    isPerf(time);
-  });
-
-  it('Case 4: n{4},sx[4],incx{1},sy[4],incy{-1}', () => {
-    // Input
-    n = 4;
-    dx = [1, 2, 3, 4];
-    incx = 1;
-    dy = [5, 6, 7, 8];
-    incy = -1;
-
-    // Apply routine
-    const { result, time } = perf(dswap, { n, dx, incx, dy, incy });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 4);
-    isEqual(result.dx, [8, 7, 6, 5]);
-    isEqual(result.incx, 1);
-    isEqual(result.dy, [4, 3, 2, 1]);
-    isEqual(result.incy, -1);
-    isPerf(time);
-  });
-
-  it('Case 5: n{0},sx[4],incx{1},sy[4],incy{1}', () => {
-    // Input
-    n = 0;
-    dx = [1, 2, 3, 4];
-    incx = 1;
-    dy = [5, 6, 7, 8];
-    incy = 1;
-
-    // Apply routine
-    const { result, time } = perf(dswap, { n, dx, incx, dy, incy });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 0);
-    isEqual(result.dx, [1, 2, 3, 4]);
-    isEqual(result.incx, 1);
-    isEqual(result.dy, [5, 6, 7, 8]);
-    isEqual(result.incy, 1);
-    isPerf(time);
+    // Run test
+    it(`Case ${++i}: n{${n}},dx[${dx.length}],incx{${incx}},dy[${dy.length}],incy{${incy}}`, () => {
+      isUndefined(result._ret);
+      isEqual(result.n, n);
+      isEqual(result.dx, _dx);
+      isEqual(result.incx, incx);
+      isEqual(result.dy, _dy);
+      isEqual(result.incy, incy);
+      isPerf(time);
+    });
   });
 });

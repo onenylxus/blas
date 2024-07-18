@@ -1,10 +1,10 @@
 // Import
+import { _C } from '../../utils/complex';
 import { DoubleComplex, Z } from './doubleComplex';
 import { Integer } from './integer';
 import Complex from '../structs/complex';
 import FortranArray from '../structs/fortranArray';
 import Simple from '../structs/simple';
-import _C from '../../utils/complex';
 
 // Define type
 type TDoubleComplexArray = InstanceType<typeof CDoubleComplexArray>;

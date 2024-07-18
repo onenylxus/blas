@@ -1,9 +1,9 @@
 // Import
+import { _C } from '../../utils/complex';
 import { Single, S } from './single';
 import { add, div, mul, sub } from '../mathlib';
 import Complex from '../structs/complex';
 import Simple from '../structs/simple';
-import _C from '../../utils/complex';
 
 // Define type
 type TSingleComplex = InstanceType<typeof CSingleComplex>;

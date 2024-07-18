@@ -1,102 +1,33 @@
 // Import
 import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
+import data from '../../data/1c/cswap.json';
 import perf from '../../../utils/performance';
-import _C from '../../../utils/complex';
 
-// Routine snippet
-const { cswap } = blas;
-
-// Define test variables
-let n: number;
-let cx: Dual[];
-let incx: number;
-let cy: Dual[];
-let incy: number;
 
 // CSWAP routine test
 describe('CSWAP routine test', () => {
-  it('Case 1: n{6},cx[6],incx{1},cy[6],incy{1}', () => {
-    // Input
-    n = 6;
-    cx = [_C(1, 7), _C(2, 8), _C(3, 9), _C(4, 10), _C(5, 11), _C(6, 12)];
-    incx = 1;
-    cy = [_C(13, 19), _C(14, 20), _C(15, 21), _C(16, 22), _C(17, 23), _C(18, 24)];
-    incy = 1;
+  data.forEach((node, i) => {
+    const n = node.input.n;
+    const cx = node.input.cx;
+    const incx = node.input.incx;
+    const cy = node.input.cy;
+    const incy = node.input.incy;
 
-    // Apply routine
-    const { result, time } = perf(cswap, { n, cx, incx, cy, incy });
+    const _cx = node.output.cx;
+    const _cy = node.output.cy;
 
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 6);
-    isClose(result.cx, [_C(13, 19), _C(14, 20), _C(15, 21), _C(16, 22), _C(17, 23), _C(18, 24)]);
-    isEqual(result.incx, 1);
-    isClose(result.cy, [_C(1, 7), _C(2, 8), _C(3, 9), _C(4, 10), _C(5, 11), _C(6, 12)]);
-    isEqual(result.incy, 1);
-    isPerf(time);
-  });
+    const { result, time } = perf(blas.cswap, { n, cx, incx, cy, incy });
 
-  it('Case 2: n{6},cx[6],incx{-1},cy[6],incy{1}', () => {
-    // Input
-    n = 6;
-    cx = [_C(1, 7), _C(2, 8), _C(3, 9), _C(4, 10), _C(5, 11), _C(6, 12)];
-    incx = -1;
-    cy = [_C(13, 19), _C(14, 20), _C(15, 21), _C(16, 22), _C(17, 23), _C(18, 24)];
-    incy = 1;
-
-    // Apply routine
-    const { result, time } = perf(cswap, { n, cx, incx, cy, incy });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 6);
-    isClose(result.cx, [_C(18, 24), _C(17, 23), _C(16, 22), _C(15, 21), _C(14, 20), _C(13, 19)]);
-    isEqual(result.incx, -1);
-    isClose(result.cy, [_C(6, 12), _C(5, 11), _C(4, 10), _C(3, 9), _C(2, 8), _C(1, 7)]);
-    isEqual(result.incy, 1);
-    isPerf(time);
-  });
-
-  it('Case 3: n{6},cx[6],incx{1},cy[6],incy{-1}', () => {
-    // Input
-    n = 6;
-    cx = [_C(1, 7), _C(2, 8), _C(3, 9), _C(4, 10), _C(5, 11), _C(6, 12)];
-    incx = 1;
-    cy = [_C(13, 19), _C(14, 20), _C(15, 21), _C(16, 22), _C(17, 23), _C(18, 24)];
-    incy = -1;
-
-    // Apply routine
-    const { result, time } = perf(cswap, { n, cx, incx, cy, incy });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 6);
-    isClose(result.cx, [_C(18, 24), _C(17, 23), _C(16, 22), _C(15, 21), _C(14, 20), _C(13, 19)]);
-    isEqual(result.incx, 1);
-    isClose(result.cy, [_C(6, 12), _C(5, 11), _C(4, 10), _C(3, 9), _C(2, 8), _C(1, 7)]);
-    isEqual(result.incy, -1);
-    isPerf(time);
-  });
-
-  it('Case 4: n{0},cx[6],incx{1},cy[6],incy{1}', () => {
-    // Input
-    n = 0;
-    cx = [_C(1, 7), _C(2, 8), _C(3, 9), _C(4, 10), _C(5, 11), _C(6, 12)];
-    incx = 1;
-    cy = [_C(13, 19), _C(14, 20), _C(15, 21), _C(16, 22), _C(17, 23), _C(18, 24)];
-    incy = 1;
-
-    // Apply routine
-    const { result, time } = perf(cswap, { n, cx, incx, cy, incy });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 0);
-    isClose(result.cx, [_C(1, 7), _C(2, 8), _C(3, 9), _C(4, 10), _C(5, 11), _C(6, 12)]);
-    isEqual(result.incx, 1);
-    isClose(result.cy, [_C(13, 19), _C(14, 20), _C(15, 21), _C(16, 22), _C(17, 23), _C(18, 24)]);
-    isEqual(result.incy, 1);
-    isPerf(time);
+    // Run test
+    it(`Case ${++i}: n{${n}},cx[${cx.length}],incx{${incx}},cy[${cy.length}],incy{${incy}}`, () => {
+      isUndefined(result._ret);
+      isEqual(result.n, n);
+      isClose(result.cx, _cx);
+      isEqual(result.incx, incx);
+      isClose(result.cy, _cy);
+      isEqual(result.incy, incy);
+      isPerf(time);
+    });
   });
 });

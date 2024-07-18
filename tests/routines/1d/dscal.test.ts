@@ -1,149 +1,29 @@
 // Import
-import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
+import { isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src/index';
+import data from '../../data/1d/dscal.json';
 import perf from '../../../utils/performance';
-
-// Routine snippet
-const { dscal } = blas;
-
-// Define test variables
-let n: number;
-let da: number;
-let dx: number[];
-let incx: number;
 
 // DSCAL routine test
 describe('DSCAL routine test', () => {
-  it('Case 1: n{4},da{1},dx[4],incx{1}', () => {
-    // Input
-    n = 4;
-    da = 1;
-    dx = [1, 2, 3, 4];
-    incx = 1;
+  data.forEach((node, i) => {
+    const n = node.input.n;
+    const da = node.input.da;
+    const dx = node.input.dx;
+    const incx = node.input.incx;
 
-    // Apply routine
-    const { result, time } = perf(dscal, { n, da, dx, incx });
+    const _dx = node.output.dx;
 
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 4);
-    isEqual(result.da, 1);
-    isClose(result.dx, [1, 2, 3, 4]);
-    isEqual(result.incx, 1);
-    isPerf(time);
-  });
+    const { result, time } = perf(blas.dscal, { n, da, dx, incx });
 
-  it('Case 2: n{4},da{2},dx[4],incx{1}', () => {
-    // Input
-    n = 4;
-    da = 2;
-    dx = [1, 2, 3, 4];
-    incx = 1;
-
-    // Apply routine
-    const { result, time } = perf(dscal, { n, da, dx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 4);
-    isEqual(result.da, 2);
-    isClose(result.dx, [2, 4, 6, 8]);
-    isEqual(result.incx, 1);
-    isPerf(time);
-  });
-
-  it('Case 3: n{5},da{2},dx[5],incx{1}', () => {
-    // Input
-    n = 5;
-    da = 2;
-    dx = [1, 2, 3, 4, 5];
-    incx = 1;
-
-    // Apply routine
-    const { result, time } = perf(dscal, { n, da, dx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 5);
-    isEqual(result.da, 2);
-    isClose(result.dx, [2, 4, 6, 8, 10]);
-    isEqual(result.incx, 1);
-    isPerf(time);
-  });
-
-  it('Case 4: n{7},da{2},dx[5],incx{1}', () => {
-    // Input
-    n = 7;
-    da = 2;
-    dx = [1, 2, 3, 4, 5, 6, 7];
-    incx = 1;
-
-    // Apply routine
-    const { result, time } = perf(dscal, { n, da, dx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 7);
-    isEqual(result.da, 2);
-    isClose(result.dx, [2, 4, 6, 8, 10, 12, 14]);
-    isEqual(result.incx, 1);
-    isPerf(time);
-  });
-
-  it('Case 5: n{4},da{-2},dx[7],incx{2}', () => {
-    // Input
-    n = 4;
-    da = -2;
-    dx = [1, 2, 3, 4, 5, 6, 7];
-    incx = 2;
-
-    // Apply routine
-    const { result, time } = perf(dscal, { n, da, dx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 4);
-    isEqual(result.da, -2);
-    isClose(result.dx, [-2, 2, -6, 4, -10, 6, -14]);
-    isEqual(result.incx, 2);
-    isPerf(time);
-  });
-
-  it('Case 6: n{4},da{-2},dx[7],incx{-2}', () => {
-    // Input
-    n = 4;
-    da = -2;
-    dx = [1, 2, 3, 4, 5, 6, 7];
-    incx = -2;
-
-    // Apply routine
-    const { result, time } = perf(dscal, { n, da, dx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 4);
-    isEqual(result.da, -2);
-    isClose(result.dx, [1, 2, 3, 4, 5, 6, 7]);
-    isEqual(result.incx, -2);
-    isPerf(time);
-  });
-
-  it('Case 7: n{0},da{1},dx[4],incx{1}', () => {
-    // Input
-    n = 0;
-    da = 1;
-    dx = [1, 2, 3, 4];
-    incx = 1;
-
-    // Apply routine
-    const { result, time } = perf(dscal, { n, da, dx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 0);
-    isEqual(result.da, 1);
-    isClose(result.dx, [1, 2, 3, 4]);
-    isEqual(result.incx, 1);
-    isPerf(time);
+    // Run test
+    it(`Case ${++i}: n{${n}},da{${da}},dx[${dx.length}],incx{${incx}}`, () => {
+      isUndefined(result._ret);
+      isEqual(result.n, n);
+      isEqual(result.da, da);
+      isEqual(result.dx, _dx);
+      isEqual(result.incx, incx);
+      isPerf(time);
+    });
   });
 });

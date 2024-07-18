@@ -1,8 +1,8 @@
 // Import
+import { _C } from '../../utils/complex';
 import { DoubleComplexArray, ZA } from '../../src/types/doubleComplexArray';
 import { isEqual, isUndefined } from '../testers';
 import { random } from '../../utils/random';
-import _C from '../../utils/complex';
 
 // Define test variables
 let values: Dual[];
