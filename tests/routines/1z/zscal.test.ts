@@ -1,149 +1,29 @@
 // Import
 import { isEqual, isPerf, isUndefined } from '../../testers';
 import blas from '../../../src';
+import data from '../../data/1z/zscal.json';
 import perf from '../../../utils/performance';
-import _C from '../../../utils/complex';
-
-// Routine snippet
-const { zscal } = blas;
-
-// Define test variables
-let n: number;
-let za: Dual;
-let zx: Dual[];
-let incx: number;
 
 // ZSCAL routine test
 describe('ZSCAL routine test', () => {
-  it('Case 1: n{6},za{2+4i},zx[6],incx{1}', () => {
-    // Input
-    n = 6;
-    za = _C(2, 4);
-    zx = [
-      _C(1.26295428488079331, -0.9285670347135380753),
-      _C(-0.3262333607056494, -0.2947204467905601977),
-      _C(1.32979926292250061, -0.0057671727475369552),
-      _C(1.27242932142940468, 2.4046533888579508798),
-      _C(0.41464143445640822, 0.7635934611404595618),
-      _C(-1.53995004190370954, -0.7990092489893682037),
-    ];
-    incx = 1;
+  data.forEach((node, i) => {
+    const n = node.input.n;
+    const za = node.input.za;
+    const zx = node.input.zx;
+    const incx = node.input.incx;
 
-    // Apply routine
-    const { result, time } = perf(zscal, { n, za, zx, incx });
+    const _zx = node.output.zx;
 
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 6);
-    isEqual(result.za, _C(2, 4));
-    isEqual(result.zx, [
-      _C(6.24017670861573848, 3.1946830700960973),
-      _C(0.52641506575094199, -1.894374336403718),
-      _C(2.68266721683514886, 5.3076627061949289),
-      _C(-7.07375491257299416, 9.8990240634335205),
-      _C(-2.22509097564902181, 3.185752660106552),
-      _C(0.11613691215005373, -7.7578186655935744),
-    ]);
-    isEqual(result.incx, 1);
-    isPerf(time);
-  });
+    const { result, time } = perf(blas.zscal, { n, za, zx, incx });
 
-  it('Case 2: n{3},za{2+4i},zx[6],incx{2}', () => {
-    // Input
-    n = 3;
-    za = _C(2, 4);
-    zx = [
-      _C(1.26295428488079331, -0.9285670347135380753),
-      _C(-0.3262333607056494, -0.2947204467905601977),
-      _C(1.32979926292250061, -0.0057671727475369552),
-      _C(1.27242932142940468, 2.4046533888579508798),
-      _C(0.41464143445640822, 0.7635934611404595618),
-      _C(-1.53995004190370954, -0.7990092489893682037),
-    ];
-    incx = 2;
-
-    // Apply routine
-    const { result, time } = perf(zscal, { n, za, zx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 3);
-    isEqual(result.za, _C(2, 4));
-    isEqual(result.zx, [
-      _C(6.24017670861573848, 3.1946830700960973),
-      _C(-0.3262333607056494, -0.2947204467905601977),
-      _C(2.68266721683514886, 5.3076627061949289),
-      _C(1.27242932142940468, 2.4046533888579508798),
-      _C(-2.22509097564902181, 3.185752660106552),
-      _C(-1.53995004190370954, -0.7990092489893682037),
-    ]);
-    isEqual(result.incx, 2);
-    isPerf(time);
-  });
-
-  it('Case 3: n{0},za{2+4i},zx[6],incx{1}', () => {
-    // Input
-    n = 0;
-    za = _C(2, 4);
-    zx = [
-      _C(1.26295428488079331, -0.9285670347135380753),
-      _C(-0.3262333607056494, -0.2947204467905601977),
-      _C(1.32979926292250061, -0.0057671727475369552),
-      _C(1.27242932142940468, 2.4046533888579508798),
-      _C(0.41464143445640822, 0.7635934611404595618),
-      _C(-1.53995004190370954, -0.7990092489893682037),
-    ];
-    incx = 1;
-
-    // Apply routine
-    const { result, time } = perf(zscal, { n, za, zx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 0);
-    isEqual(result.za, _C(2, 4));
-    isEqual(result.zx, [
-      _C(1.26295428488079331, -0.9285670347135380753),
-      _C(-0.3262333607056494, -0.2947204467905601977),
-      _C(1.32979926292250061, -0.0057671727475369552),
-      _C(1.27242932142940468, 2.4046533888579508798),
-      _C(0.41464143445640822, 0.7635934611404595618),
-      _C(-1.53995004190370954, -0.7990092489893682037),
-    ]);
-    isEqual(result.incx, 1);
-    isPerf(time);
-  });
-
-  it('Case 4: n{6},za{2+4i},zx[6],incx{0}', () => {
-    // Input
-    n = 6;
-    za = _C(2, 4);
-    zx = [
-      _C(1.26295428488079331, -0.9285670347135380753),
-      _C(-0.3262333607056494, -0.2947204467905601977),
-      _C(1.32979926292250061, -0.0057671727475369552),
-      _C(1.27242932142940468, 2.4046533888579508798),
-      _C(0.41464143445640822, 0.7635934611404595618),
-      _C(-1.53995004190370954, -0.7990092489893682037),
-    ];
-    incx = 0;
-
-    // Apply routine
-    const { result, time } = perf(zscal, { n, za, zx, incx });
-
-    // Output
-    isUndefined(result._ret);
-    isEqual(result.n, 6);
-    isEqual(result.za, _C(2, 4));
-    isEqual(result.zx, [
-      _C(1.26295428488079331, -0.9285670347135380753),
-      _C(-0.3262333607056494, -0.2947204467905601977),
-      _C(1.32979926292250061, -0.0057671727475369552),
-      _C(1.27242932142940468, 2.4046533888579508798),
-      _C(0.41464143445640822, 0.7635934611404595618),
-      _C(-1.53995004190370954, -0.7990092489893682037),
-    ]);
-    isEqual(result.incx, 0);
-    isPerf(time);
+    // Run test
+    it(`Case ${++i}: n{${n}},za{(${za.r},${za.i})},zx[${zx.length}],incx{${incx}}`, () => {
+      isUndefined(result._ret);
+      isEqual(result.n, n);
+      isEqual(result.za, za);
+      isEqual(result.zx, _zx);
+      isEqual(result.incx, incx);
+      isPerf(time);
+    });
   });
 });
