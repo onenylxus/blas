@@ -122,13 +122,15 @@ export const div = (x: Dynamic, y: Dynamic): number | Dual => {
     return x / y;
   }
   if (typeof x === 'number' && typeof y === 'object') {
-    return _C(x * y.r / (y.r ** 2 + y.i ** 2), -x * y.i / (y.r ** 2 + y.i ** 2));
+    const q = y.r ** 2 + y.i ** 2;
+    return _C(x * y.r / q, -x * y.i / q);
   }
   if (typeof x === 'object' && typeof y === 'number') {
     return _C(x.r / y, x.i / y);
   }
   if (typeof x === 'object' && typeof y === 'object') {
-    return _C((x.r * y.r + x.i * y.i) / (y.r ** 2 + y.i ** 2), (x.i * y.r - x.r * y.i) / (y.r ** 2 + y.i ** 2));
+    const q = y.r ** 2 + y.i ** 2;
+    return _C((x.r * y.r + x.i * y.i) / q, (x.i * y.r - x.r * y.i) / q);
   }
 }
 
@@ -176,9 +178,7 @@ export const min =(...values: (number | Simple)[]): number => {
 
 // Modulo function
 export const mod = (x: number | Simple, y: number | Simple): number => {
-  x = reduce(x) as number;
-  y = reduce(y) as number;
-  return x % y;
+  return (reduce(x) as number) % (reduce(y) as number);
 };
 
 // Multiply function
@@ -199,11 +199,18 @@ export const mul = (x: Dynamic, y: Dynamic): number | Dual => {
   }
 }
 
+// Negative function
+export const neg = (x: Dynamic): number | Dual => {
+  x = reduce(x);
+  if (typeof x === 'number') {
+    return -x;
+  }
+  return _C(-x.r, -x.i);
+};
+
 // Power function
 export const pow = (x: number | Simple, y: number | Simple): number => {
-  x = reduce(x) as number;
-  y = reduce(y) as number;
-  return Math.pow(x, y);
+  return Math.pow(reduce(x) as number, reduce(y) as number);
 };
 
 // Random function
@@ -214,8 +221,7 @@ export const pow = (x: number | Simple, y: number | Simple): number => {
 
 // Sign function
 export const sign = (x: number | Simple): number => {
-  x = reduce(x) as number;
-  return Math.sign(x);
+  return Math.sign(reduce(x) as number);
 };
 
 // Sine function
@@ -226,8 +232,7 @@ export const sign = (x: number | Simple): number => {
 
 // Square root function
 export const sqrt = (x: number | Simple): number => {
-  x = reduce(x) as number;
-  return Math.sqrt(x);
+  return Math.sqrt(reduce(x) as number);
 };
 
 // Subtract function
