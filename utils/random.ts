@@ -1,11 +1,11 @@
 // Random number function
-const random = (min: number = Number.MIN_SAFE_INTEGER, max: number = Number.MAX_SAFE_INTEGER, isInteger: boolean = false): number => {
+export const random = (min: number = Number.MIN_SAFE_INTEGER, max: number = Number.MAX_SAFE_INTEGER, isInteger: boolean = false): number => {
   const value = min + Math.random() * (max - min);
   return isInteger ? Math.floor(value) : value;
 };
 
 // Random string function
-const randstr = (length: number): string => {
+export const randstr = (length: number): string => {
   const pool ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
   for (let i = 0; i < length; i++) {
@@ -13,6 +13,3 @@ const randstr = (length: number): string => {
   }
   return result;
 };
-
-// Export
-export { random, randstr };

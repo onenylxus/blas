@@ -1,7 +1,7 @@
 // Import
 import { _C } from '../../utils/complex';
 import { DoubleComplex, Z } from '../../src/types/doubleComplex';
-import { isEqual } from '../testers';
+import { isEqual } from '../testfn';
 import { random } from '../../utils/random';
 
 // Define test variables

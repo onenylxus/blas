@@ -1,6 +1,6 @@
 // Import
 import { Logical, L } from '../../src/types/logical';
-import { isStrictEqual } from '../testers';
+import { isStrictEqual } from '../testfn';
 
 // Define test variables
 let value: boolean;

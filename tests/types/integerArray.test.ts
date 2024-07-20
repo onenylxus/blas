@@ -1,6 +1,6 @@
 // Import
 import { IntegerArray, IA } from '../../src/types/integerArray';
-import { isClose, isEqual, isUndefined } from '../testers';
+import { isClose, isEqual, isUndefined } from '../testfn';
 import { random } from '../../utils/random';
 
 // Define test variables

@@ -1,7 +1,7 @@
 // Import
 import * as ml from '../src/mathlib';
 import { _C } from '../utils/complex';
-import { isEqual } from './testers';
+import { isEqual } from './testfn';
 
 // Absolute function
 describe('Absolute function', () => {

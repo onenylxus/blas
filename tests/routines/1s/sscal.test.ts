@@ -1,5 +1,5 @@
 // Import
-import { isClose, isEqual, isPerf, isUndefined } from '../../testers';
+import { isClose, isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/sscal.json';
 import perf from '../../../utils/performance';

@@ -1,6 +1,6 @@
 // Import
 import { Integer, I } from '../../src/types/integer';
-import { isClose, isEqual } from '../testers';
+import { isClose, isEqual } from '../testfn';
 import { random } from '../../utils/random';
 
 // Define test variables

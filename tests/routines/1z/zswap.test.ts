@@ -1,5 +1,5 @@
 // Import
-import { isEqual, isPerf, isUndefined } from '../../testers';
+import { isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1z/zswap.json';
 import perf from '../../../utils/performance';

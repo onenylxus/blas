@@ -1,7 +1,7 @@
 // Import
 import { Single, S } from '../../src/types/single';
 import { MAXSPINT, MINSPINT } from '../../src/mathlib';
-import { isClose, isEqual } from '../testers';
+import { isClose, isEqual } from '../testfn';
 import { random } from '../../utils/random';
 
 // Define test variables

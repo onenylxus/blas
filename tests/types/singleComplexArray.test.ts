@@ -1,7 +1,7 @@
 // Import
 import { _C } from '../../utils/complex';
 import { SingleComplexArray, CA } from '../../src/types/singleComplexArray';
-import { isClose, isEqual, isUndefined } from '../testers';
+import { isClose, isEqual, isUndefined } from '../testfn';
 import { random } from '../../utils/random';
 
 // Define test variables

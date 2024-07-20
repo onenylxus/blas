@@ -1,6 +1,6 @@
 // Import
 import { SingleArray, SA } from '../../src/types/singleArray';
-import { isClose, isEqual, isUndefined } from '../testers';
+import { isClose, isEqual, isUndefined } from '../testfn';
 import { random } from '../../utils/random';
 
 // Define test variables

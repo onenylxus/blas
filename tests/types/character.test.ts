@@ -1,6 +1,6 @@
 // Import
 import { Character, H } from '../../src/types/character';
-import { isStrictEqual, isFalse, isTrue } from '../testers';
+import { isStrictEqual, isFalse, isTrue } from '../testfn';
 import { randstr } from '../../utils/random';
 
 // Define test variables

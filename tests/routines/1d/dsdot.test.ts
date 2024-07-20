@@ -1,5 +1,5 @@
 // Import
-import { isEqual, isPerf } from '../../testers';
+import { isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dsdot.json';
 import perf from '../../../utils/performance';

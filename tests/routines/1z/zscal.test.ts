@@ -1,6 +1,6 @@
 // Import
 import { _pC } from '../../../utils/complex';
-import { isEqual, isPerf, isUndefined } from '../../testers';
+import { isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src';
 import data from '../../data/1z/zscal.json';
 import perf from '../../../utils/performance';

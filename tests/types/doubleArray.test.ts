@@ -1,6 +1,6 @@
 // Import
 import { DoubleArray, DA } from '../../src/types/doubleArray';
-import { isEqual, isUndefined } from '../testers';
+import { isEqual, isUndefined } from '../testfn';
 import { random } from '../../utils/random';
 
 // Define test variables

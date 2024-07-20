@@ -1,7 +1,7 @@
 // Import
 import { _C } from '../../utils/complex';
 import { SingleComplex, C } from '../../src/types/singleComplex';
-import { isClose, isEqual } from '../testers';
+import { isClose, isEqual } from '../testfn';
 import { random } from '../../utils/random';
 
 // Define test variables
