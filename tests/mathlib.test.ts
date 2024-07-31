@@ -29,6 +29,19 @@ describe('Add function', () => {
   });
 });
 
+// Complex absolute function
+describe('Complex absolute function', () => {
+  it('should calculate real number correctly', () => {
+    isEqual(ml.cabs(0), 0);
+    isEqual(ml.cabs(2), 2);
+    isEqual(ml.cabs(-2), 2);
+  });
+
+  it('should calculate complex number correctly', () => {
+    isEqual(ml.cabs(_C(3, -4)), 7);
+  });
+});
+
 // Conjugate function
 describe('Conjugate function', () => {
   it ('should calculate real number correctly', () => {

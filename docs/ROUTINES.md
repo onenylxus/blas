@@ -51,7 +51,7 @@
 ⚫ **CDOTU** - dot product\
 ⚫ **CDOTC** - dot product, conjugating the first vector\
 ⚫ **SCASUM** - sum of absolute values\
-⚫ **ICAMAX** - index of max abs value
+🟢 **ICAMAX** - index of max abs value
 
 ### Double Complex
 ⚫ **ZROTG** - setup Givens rotation\

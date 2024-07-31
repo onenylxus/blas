@@ -90,6 +90,16 @@ export const add = (x: Dynamic, y: Dynamic): number | Dual => {
 // Inverse hyperbolic tangent function
 // export const atanh: (x: number) => number = Math.atanh;
 
+// Complex absolute function
+export const cabs = (x: Dynamic): number => {
+  x = reduce(x);
+  if (typeof x === 'number')
+  {
+    return Math.abs(x);
+  }
+  return Math.abs(x.r) + Math.abs(x.i);
+};
+
 // Cubic root function
 // export const cbrt: (x: number) => number = Math.cbrt;
 
