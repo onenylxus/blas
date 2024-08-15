@@ -3,6 +3,7 @@ import { isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dsdot.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // DSDOT routine test
 describe('DSDOT routine test', () => {
@@ -26,6 +27,7 @@ describe('DSDOT routine test', () => {
       isEqual(result.sy, sy);
       isEqual(result.incy, incy);
       isPerf(time);
+      report('DSDOT', i, time);
     });
   });
 });

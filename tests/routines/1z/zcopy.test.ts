@@ -3,6 +3,7 @@ import { isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1z/zcopy.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // ZCOPY routine test
 describe('ZCOPY routine test', () => {
@@ -26,6 +27,7 @@ describe('ZCOPY routine test', () => {
       isEqual(result.zy, _zy);
       isEqual(result.incy, incy);
       isPerf(time);
+      report('ZCOPY', i, time);
     });
   });
 });

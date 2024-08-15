@@ -3,6 +3,7 @@ import { isClose, isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/scnrm2.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // SCNRM2 routine test
 describe('SCNRM2 routine test', () => {
@@ -22,6 +23,7 @@ describe('SCNRM2 routine test', () => {
       isClose(result.x, x);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('SCNRM2', i, time);
     });
   });
 });

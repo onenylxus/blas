@@ -3,6 +3,7 @@ import { isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dscal.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // DSCAL routine test
 describe('DSCAL routine test', () => {
@@ -24,6 +25,7 @@ describe('DSCAL routine test', () => {
       isEqual(result.dx, _dx);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('DSCAL', i, time);
     });
   });
 });

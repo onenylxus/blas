@@ -3,6 +3,7 @@ import { isClose, isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1c/icamax.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // ICAMAX routine test
 describe('ICAMAX routine test', () => {
@@ -22,6 +23,7 @@ describe('ICAMAX routine test', () => {
       isClose(result.cx, cx);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('ICAMAX', i, time);
     });
   });
 });

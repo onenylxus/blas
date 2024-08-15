@@ -3,6 +3,7 @@ import { isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/daxpy.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // DAXPY routine test
 describe('DAXPY routine test', () => {
@@ -28,6 +29,7 @@ describe('DAXPY routine test', () => {
       isEqual(result.dy, _dy);
       isEqual(result.incy, incy);
       isPerf(time);
+      report('DAXPY', i, time);
     });
   });
 });

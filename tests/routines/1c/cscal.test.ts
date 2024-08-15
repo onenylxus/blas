@@ -4,6 +4,7 @@ import { isClose, isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src';
 import data from '../../data/1c/cscal.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // CSCAL routine test
 describe('CSCAL routine test', () => {
@@ -25,6 +26,7 @@ describe('CSCAL routine test', () => {
       isClose(result.cx, _cx);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('CSCAL', i, time);
     });
   });
 });

@@ -3,6 +3,7 @@ import { isClose, isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/sswap.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // SSWAP routine test
 describe('SSWAP routine test', () => {
@@ -27,6 +28,7 @@ describe('SSWAP routine test', () => {
       isClose(result.sy, _sy);
       isEqual(result.incy, incy);
       isPerf(time);
+      report('SSWAP', i, time);
     });
   });
 });

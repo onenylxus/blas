@@ -3,6 +3,7 @@ import { isClose, isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src';
 import data from '../../data/1c/csscal.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // CSSCAL routine test
 describe('CSSCAL routine test', () => {
@@ -24,6 +25,7 @@ describe('CSSCAL routine test', () => {
       isClose(result.cx, _cx);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('CSSCAL', i, time);
     });
   });
 });

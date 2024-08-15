@@ -3,6 +3,7 @@ import { isClose, isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/sasum.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // SASUM routine test
 describe('SASUM routine test', () => {
@@ -22,6 +23,7 @@ describe('SASUM routine test', () => {
       isClose(result.sx, sx);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('SASUM', i, time);
     });
   });
 });

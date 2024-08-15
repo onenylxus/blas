@@ -3,6 +3,7 @@ import { isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dasum.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // DASUM routine test
 describe('DASUM routine test', () => {
@@ -22,6 +23,7 @@ describe('DASUM routine test', () => {
       isEqual(result.dx, dx);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('DASUM', i, time);
     });
   });
 });

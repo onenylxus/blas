@@ -3,6 +3,7 @@ import { isClose, isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1c/ccopy.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // CCOPY routine test
 describe('CCOPY routine test', () => {
@@ -26,6 +27,7 @@ describe('CCOPY routine test', () => {
       isClose(result.cy, _cy);
       isEqual(result.incy, incy);
       isPerf(time);
+      report('CCOPY', i, time);
     });
   });
 });

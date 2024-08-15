@@ -3,6 +3,7 @@ import { isClose, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/srotg.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // SROTG routine test
 describe('SROTG routine test', () => {
@@ -25,6 +26,7 @@ describe('SROTG routine test', () => {
       isClose(result.c, _c);
       isClose(result.s, _s);
       isPerf(time);
+      report('SROTG', i, time);
     });
   });
 });

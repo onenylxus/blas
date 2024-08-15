@@ -3,6 +3,7 @@ import { isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/idamax.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // IDAMAX routine test
 describe('IDAMAX routine test', () => {
@@ -22,6 +23,7 @@ describe('IDAMAX routine test', () => {
       isEqual(result.dx, dx);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('IDAMAX', i, time);
     });
   });
 });

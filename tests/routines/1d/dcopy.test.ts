@@ -3,6 +3,7 @@ import { isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dcopy.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // DCOPY routine test
 describe('DCOPY routine test', () => {
@@ -26,6 +27,7 @@ describe('DCOPY routine test', () => {
       isEqual(result.dy, _dy);
       isEqual(result.incy, incy);
       isPerf(time);
+      report('DCOPY', i, time);
     });
   });
 });

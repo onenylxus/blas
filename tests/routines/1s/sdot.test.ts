@@ -3,6 +3,7 @@ import { isClose, isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/sdot.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // SDOT routine test
 describe('SDOT routine test', () => {
@@ -26,6 +27,7 @@ describe('SDOT routine test', () => {
       isClose(result.sy, sy);
       isEqual(result.incy, incy);
       isPerf(time);
+      report('SDOT', i, time);
     });
   });
 });

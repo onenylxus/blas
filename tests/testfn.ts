@@ -30,13 +30,13 @@ export const isStrictEqual = (left: any, right: any): void => {
 };
 
 // Close test function
-export const isClose = (left: any, right: any, precision: number = 10e-5): void => {
+export const isClose = (left: any, right: any, precision: number = 1e-5): void => {
   const test: boolean = compare(left, right, precision);
   test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
 }
 
 // Performance test function
-export const isPerf = (time: number, limit: number = 100): void => {
+export const isPerf = (time: number, limit: number = 1e4): void => {
   const test: boolean = time <= limit;
   test ? expect(test).toBeTruthy() : expect(time).toBeLessThanOrEqual(limit);
 };

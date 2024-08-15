@@ -4,6 +4,7 @@ import { isEqual, isPerf, isUndefined } from '../../testfn';
 import blas from '../../../src';
 import data from '../../data/1z/zscal.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // ZSCAL routine test
 describe('ZSCAL routine test', () => {
@@ -25,6 +26,7 @@ describe('ZSCAL routine test', () => {
       isEqual(result.zx, _zx);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('ZSCAL', i, time);
     });
   });
 });

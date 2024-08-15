@@ -3,6 +3,7 @@ import { isEqual, isPerf } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dnrm2.json';
 import perf from '../../../utils/performance';
+import report from '../../../utils/report';
 
 // DNRM2 routine test
 describe('DNRM2 routine test', () => {
@@ -22,6 +23,7 @@ describe('DNRM2 routine test', () => {
       isEqual(result.x, x);
       isEqual(result.incx, incx);
       isPerf(time);
+      report('DNRM2', i, time);
     });
   });
 });
