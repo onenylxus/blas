@@ -25,7 +25,7 @@
 🟢 **ISAMAX** - index of max abs value
 
 ### Double
-🔴 **DROTG** - setup Givens rotation\
+🟡 **DROTG** - setup Givens rotation\
 🔴 **DROTMG** - setup modified Givens rotation\
 🔴 **DROT** - apply Givens rotation\
 🔴 **DROTM** - apply modified Givens rotation\
