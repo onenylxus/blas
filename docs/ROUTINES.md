@@ -9,6 +9,7 @@
 ## Level 1
 
 ### Single
+
 🟡 **SROTG** - setup Givens rotation\
 🔴 **SROTMG** - setup modified Givens rotation\
 🔴 **SROT** - apply Givens rotation\
@@ -25,6 +26,7 @@
 🟢 **ISAMAX** - index of max abs value
 
 ### Double
+
 🟡 **DROTG** - setup Givens rotation\
 🔴 **DROTMG** - setup modified Givens rotation\
 🔴 **DROT** - apply Givens rotation\
@@ -41,6 +43,7 @@
 🟢 **IDAMAX** - index of max abs value
 
 ### Complex
+
 ⚫ **CROTG** - setup Givens rotation\
 ⚫ **CSROT** - apply Givens rotation\
 🟢 **CSWAP** - swap x and y\
@@ -54,6 +57,7 @@
 🟢 **ICAMAX** - index of max abs value
 
 ### Double Complex
+
 ⚫ **ZROTG** - setup Givens rotation\
 ⚫ **ZDROT** - apply Givens rotation\
 🟢 **ZSWAP** - swap x and y\
@@ -69,6 +73,7 @@
 ## Level 2
 
 ### Single
+
 ⚫ **SGEMV** - matrix vector multiply\
 ⚫ **SGBMV** - banded matrix vector multiply\
 ⚫ **SSYMV** - symmetric matrix vector multiply\
@@ -87,6 +92,7 @@
 ⚫ **SSPR2** - performs the symmetric packed rank 2 operation, A := alpha\*x\*y' + alpha\*y\*x' + A
 
 ### Double
+
 ⚫ **DGEMV** - matrix vector multiply\
 ⚫ **DGBMV** - banded matrix vector multiply\
 ⚫ **DSYMV** - symmetric matrix vector multiply\
@@ -105,6 +111,7 @@
 ⚫ **DSPR2** - performs the symmetric packed rank 2 operation, A := alpha\*x\*y' + alpha\*y\*x' + A
 
 ### Complex
+
 ⚫ **CGEMV** - matrix vector multiply\
 ⚫ **CGBMV** - banded matrix vector multiply\
 ⚫ **CHEMV** - hermitian matrix vector multiply\
@@ -124,6 +131,7 @@
 ⚫ **CHPR2** - hermitian packed rank 2 operation
 
 ### Double Complex
+
 ⚫ **ZGEMV** - matrix vector multiply\
 ⚫ **ZGBMV** - banded matrix vector multiply\
 ⚫ **ZHEMV** - hermitian matrix vector multiply\
@@ -145,6 +153,7 @@
 ## Level 3
 
 ### Single
+
 ⚫ **SGEMM** - matrix matrix multiply\
 ⚫ **SSYMM** - symmetric matrix matrix multiply\
 ⚫ **SSYRK** - symmetric rank-k update to a matrix\
@@ -153,6 +162,7 @@
 ⚫ **STRSM** - solving triangular matrix with multiple right hand sides
 
 ### Double
+
 ⚫ **DGEMM** - matrix matrix multiply\
 ⚫ **DSYMM** - symmetric matrix matrix multiply\
 ⚫ **DSYRK** - symmetric rank-k update to a matrix\
@@ -161,6 +171,7 @@
 ⚫ **DTRSM** - solving triangular matrix with multiple right hand sides
 
 ### Complex
+
 ⚫ **CGEMM** - matrix matrix multiply\
 ⚫ **CSYMM** - symmetric matrix matrix multiply\
 ⚫ **CHEMM** - hermitian matrix matrix multiply\
@@ -172,6 +183,7 @@
 ⚫ **CTRSM** - solving triangular matrix with multiple right hand sides
 
 ### Double Complex
+
 ⚫ **ZGEMM** - matrix matrix multiply\
 ⚫ **ZSYMM** - symmetric matrix matrix multiply\
 ⚫ **ZHEMM** - hermitian matrix matrix multiply\
