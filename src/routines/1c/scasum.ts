@@ -1,7 +1,7 @@
 // Import
+import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
-import { Integer, I } from '../../types/integer';
 import { cabs, mul } from '../../mathlib';
 
 // Input interface

@@ -43,7 +43,7 @@ const dasum = ({ n, dx, incx }: Input): Output => {
   });
 
   // Local variables
-  const stemp: D = new Double();
+  const dtemp: D = new Double();
   const i: I = new Integer();
   const m: I = new Integer();
   const mp1: I = new Integer();
@@ -57,24 +57,24 @@ const dasum = ({ n, dx, incx }: Input): Output => {
     m.set(_n.get() % 6);
     if (m.ne(0)) {
       for (i.set(1); i.le(m); i.add(1)) {
-        stemp.add(abs(_dx.get(i)));
+        dtemp.add(abs(_dx.get(i)));
       }
       if (_n.lt(6)) {
-        _ret.set(stemp);
+        _ret.set(dtemp);
         return resolve();
       }
     }
     mp1.set(m.get() + 1);
     for (i.set(mp1); i.le(_n); i.add(6)) {
-      stemp.add(abs(_dx.get(i)) + abs(_dx.get(i.get() + 1)) + abs(_dx.get(i.get() + 2)) + abs(_dx.get(i.get() + 3)) + abs(_dx.get(i.get() + 4)) + abs(_dx.get(i.get() + 5)));
+      dtemp.add(abs(_dx.get(i)) + abs(_dx.get(i.get() + 1)) + abs(_dx.get(i.get() + 2)) + abs(_dx.get(i.get() + 3)) + abs(_dx.get(i.get() + 4)) + abs(_dx.get(i.get() + 5)));
     }
   } else {
     nincx.set(_n.get() * _incx.get());
     for (i.set(1); i.le(nincx); i.add(_incx)) {
-      stemp.add(abs(_dx.get(i)));
+      dtemp.add(abs(_dx.get(i)));
     }
   }
-  _ret.set(stemp);
+  _ret.set(dtemp);
 
   // Output
   return resolve();
