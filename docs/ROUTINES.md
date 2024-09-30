@@ -53,7 +53,7 @@
 🔴 **CAXPY** - y = a\*x + y\
 ⚫ **CDOTU** - dot product\
 ⚫ **CDOTC** - dot product, conjugating the first vector\
-⚫ **SCASUM** - sum of absolute values\
+🔴 **SCASUM** - sum of absolute values\
 🟢 **ICAMAX** - index of max abs value
 
 ### Double Complex
