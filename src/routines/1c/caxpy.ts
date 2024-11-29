@@ -1,7 +1,7 @@
 // Import
+import { Integer, I } from '../../types/integer';
 import { SingleComplex, C } from '../../types/singleComplex';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
-import { Integer, I } from '../../types/integer';
 import { add, cabs, mul } from '../../mathlib';
 import { vsize } from '../../macro';
 
@@ -61,7 +61,7 @@ const caxpy = ({ n, ca, cx, incx, cy, incy }: Input): Output => {
   if (_n.le(0)) {
     return resolve();
   }
-  if (cabs(_ca) == 0) {
+  if (cabs(_ca) === 0) {
     return resolve();
   }
   if (_incx.eq(1) && _incy.eq(1)) {

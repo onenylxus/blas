@@ -50,7 +50,7 @@
 🟢 **CSCAL** - x = a\*x\
 🟢 **CSSCAL** - x = a\*x\
 🟢 **CCOPY** - copy x into y\
-🔴 **CAXPY** - y = a\*x + y\
+🟢 **CAXPY** - y = a\*x + y\
 ⚫ **CDOTU** - dot product\
 ⚫ **CDOTC** - dot product, conjugating the first vector\
 🔴 **SCASUM** - sum of absolute values\
@@ -64,7 +64,7 @@
 🟢 **ZSCAL** - x = a\*x\
 🟢 **ZDSCAL** - x = a\*x\
 🟢 **ZCOPY** - copy x into y\
-🔴 **ZAXPY** - y = a\*x + y\
+🟢 **ZAXPY** - y = a\*x + y\
 ⚫ **ZDOTU** - dot product\
 ⚫ **ZDOTC** - dot product, conjugating the first vector\
 🔴 **DZASUM** - sum of absolute values\
