@@ -63,7 +63,7 @@ class CIntegerArray extends FortranArray<I> {
 
   // Get all values from store
   public getAll(): number[] {
-    return (new Array(this.store.length)).fill(0).map((v, i) => this.store[i].get());
+    return this.store.map((v) => v.get());
   }
 }
 

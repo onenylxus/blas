@@ -31,7 +31,7 @@ const sdsdot = ({ n, sb, sx, incx, sy, incy }: Input): Output => {
   // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
   // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
   // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2024 Nicholas Ng. All rights reserved.
+  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
 
   // Arguments
   const _n: I = new Integer(n);

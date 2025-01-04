@@ -65,7 +65,7 @@ class CDoubleComplexArray extends FortranArray<Z> {
 
   // Get all values from store
   public getAll(): Dual[] {
-    return (new Array(this.store.length)).fill(0).map((v, i) => this.store[i].get());
+    return this.store.map((v) => v.get());
   }
 }
 
