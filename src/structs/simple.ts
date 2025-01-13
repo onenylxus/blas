@@ -2,11 +2,10 @@
 import Complex from './complex';
 
 // Dynamic type handling
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 
 // Simple class
-class Simple {
+abstract class Simple {
   // Properties
   protected store: number;
 
@@ -17,10 +16,7 @@ class Simple {
   }
 
   // Set value to store
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public set(value: Dynamic): void {
-
-  }
+  public abstract set(_value: Dynamic): void
 
   // Get value from store
   public get(): number {

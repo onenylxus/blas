@@ -7,7 +7,6 @@ import Simple from '../structs/simple';
 type TDouble = InstanceType<typeof CDouble>;
 
 // Dynamic type handling
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 const reduce = (value: Dynamic): number => {
   let result: Dynamic = value;

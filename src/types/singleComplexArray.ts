@@ -10,7 +10,6 @@ import Simple from '../structs/simple';
 type TSingleComplexArray = InstanceType<typeof CSingleComplexArray>;
 
 // Dynamic type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 
 // Index type handling

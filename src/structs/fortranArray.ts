@@ -6,15 +6,13 @@ import { S } from '../types/single';
 import { Z } from '../types/doubleComplex';
 
 // Fortran array class
-class FortranArray<T extends S | D | I | C | Z> {
+abstract class FortranArray<T extends S | D | I | C | Z> {
   // Properties
   protected size: number;
   protected store: T[];
 
   // Get zero value
-  public get zero(): T {
-    return;
-  }
+  public abstract get zero(): T;
 
   // Clear value from store
   public clear(): void {

@@ -3,7 +3,7 @@ import { D } from '../types/double';
 import { S } from '../types/single';
 
 // Complex class
-class Complex<T extends S | D> {
+abstract class Complex<T extends S | D> {
   // Properties
   protected rstore: T;
   protected istore: T;

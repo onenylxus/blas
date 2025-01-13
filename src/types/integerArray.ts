@@ -8,7 +8,6 @@ import Simple from '../structs/simple';
 type TIntegerArray = InstanceType<typeof CIntegerArray>;
 
 // Dynamic type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 
 // Index type handling

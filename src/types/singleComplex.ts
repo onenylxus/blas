@@ -9,7 +9,6 @@ import Simple from '../structs/simple';
 type TSingleComplex = InstanceType<typeof CSingleComplex>;
 
 // Dynamic type handling
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 const reduce = (value: Dynamic): Dual => {
   let result: Dynamic = value;

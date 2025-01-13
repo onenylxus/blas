@@ -4,7 +4,6 @@ import Complex from './structs/complex';
 import Simple from './structs/simple';
 
 // Dynamic type handling
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Dynamic = number | Dual | Simple | Complex<any>;
 const reduce = (value: Dynamic): number | Dual => {
   let result: Dynamic = value;
