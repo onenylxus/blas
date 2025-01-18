@@ -1,42 +1,26 @@
 // Import
+import { Complex } from '../structs/complex';
+import { add, div, mul, sub } from '../mathlib';
+import { dreduce, Dynamic } from '../structs/dynamic';
 import { toDual } from '../../utils/complex';
 import { Double, D } from './double';
-import { add, div, mul, sub } from '../mathlib';
-import Complex from '../structs/complex';
-import Simple from '../structs/simple';
 
-// Define type
-type TDoubleComplex = InstanceType<typeof CDoubleComplex>;
-
-// Dynamic type handling
-type Dynamic = number | Dual | Simple | Complex<any>;
-const reduce = (value: Dynamic): Dual => {
-  let result: Dynamic = value;
-  if (result instanceof Simple || result instanceof Complex) {
-    result = result.get();
-  }
-  if (typeof result === 'number') {
-    result = toDual(result, 0);
-  }
-  return result;
-};
-const process = (value: Dynamic): Dual => {
-  return new CDoubleComplex(reduce(value)).get();
-};
+// Fortran type convention
+export type Z = DoubleComplex;
 
 // Double complex class
-class CDoubleComplex extends Complex<D> {
+export class DoubleComplex extends Complex<D> {
   // Constructor
   public constructor(value: Dynamic = toDual(0, 0)) {
     super();
-    const v: Dual = reduce(value);
+    const v: Dual = dreduce(value);
     this.rstore = new Double(v.r);
     this.istore = new Double(v.i);
   }
 
   // Set value to store
   public set(value: Dynamic): void {
-    const v: Dual = reduce(value);
+    const v: Dual = dreduce(value);
     this.rstore.set(v.r);
     this.istore.set(v.i);
   }
@@ -63,48 +47,45 @@ class CDoubleComplex extends Complex<D> {
 
   // Local equal to
   public eq(value: Dynamic): boolean {
-    return CDoubleComplex.eq(this, value);
+    return DoubleComplex.eq(this, value);
   }
 
   // Local not equal to
   public ne(value: Dynamic): boolean {
-    return CDoubleComplex.ne(this, value);
+    return DoubleComplex.ne(this, value);
   }
 
   // Global addition
-  public static add(left: Dynamic, right: Dynamic): CDoubleComplex {
-    return new CDoubleComplex(add(left, right));
+  public static add(left: Dynamic, right: Dynamic): DoubleComplex {
+    return new DoubleComplex(add(left, right));
   }
 
   // Global subtraction
-  public static sub(left: Dynamic, right: Dynamic): CDoubleComplex {
-    return new CDoubleComplex(sub(left, right));
+  public static sub(left: Dynamic, right: Dynamic): DoubleComplex {
+    return new DoubleComplex(sub(left, right));
   }
 
   // Global multiplication
-  public static mul(left: Dynamic, right: Dynamic): CDoubleComplex {
-    return new CDoubleComplex(mul(left, right));
+  public static mul(left: Dynamic, right: Dynamic): DoubleComplex {
+    return new DoubleComplex(mul(left, right));
   }
 
   // Global division
-  public static div(left: Dynamic, right: Dynamic): CDoubleComplex {
-    return new CDoubleComplex(div(left, right));
+  public static div(left: Dynamic, right: Dynamic): DoubleComplex {
+    return new DoubleComplex(div(left, right));
   }
 
   // Global equal to
   public static eq(left: Dynamic, right: Dynamic): boolean {
-    const l: Dual = process(left);
-    const r: Dual = process(right);
+    const l: Dual = new DoubleComplex(left).get();
+    const r: Dual = new DoubleComplex(right).get();
     return l.r === r.r && l.i === r.i;
   }
 
   // Global not equal to
   public static ne(left: Dynamic, right: Dynamic): boolean {
-    const l: Dual = process(left);
-    const r: Dual = process(right);
+    const l: Dual = new DoubleComplex(left).get();
+    const r: Dual = new DoubleComplex(right).get();
     return l.r !== r.r || l.i !== r.i;
   }
 }
-
-// Export
-export { CDoubleComplex as DoubleComplex, TDoubleComplex as Z };

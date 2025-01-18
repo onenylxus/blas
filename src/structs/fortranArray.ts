@@ -6,7 +6,7 @@ import { S } from '../types/single';
 import { Z } from '../types/doubleComplex';
 
 // Fortran array class
-abstract class FortranArray<T extends S | D | I | C | Z> {
+export abstract class FortranArray<T extends S | D | I | C | Z> {
   // Properties
   protected size: number;
   protected store: T[];
@@ -32,6 +32,3 @@ abstract class FortranArray<T extends S | D | I | C | Z> {
     }
   }
 }
-
-// Export
-export default FortranArray;

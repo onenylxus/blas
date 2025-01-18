@@ -1,8 +1,8 @@
-// Define type
-type TLogical = InstanceType<typeof CLogical>;
+// Fortran type convention
+export type L = Logical;
 
 // Logical class
-class CLogical {
+export class Logical {
   // Properties
   private store: boolean;
 
@@ -21,6 +21,3 @@ class CLogical {
     return this.store;
   }
 }
-
-// Export
-export { CLogical as Logical, TLogical as L };

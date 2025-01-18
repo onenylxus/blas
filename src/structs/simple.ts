@@ -1,11 +1,8 @@
 // Import
-import Complex from './complex';
-
-// Dynamic type handling
-type Dynamic = number | Dual | Simple | Complex<any>;
+import { Dynamic } from './dynamic';
 
 // Simple class
-abstract class Simple {
+export abstract class Simple {
   // Properties
   protected store: number;
 
@@ -28,6 +25,3 @@ abstract class Simple {
     this.set(0);
   }
 }
-
-// Export
-export default Simple;

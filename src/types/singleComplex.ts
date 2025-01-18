@@ -1,42 +1,26 @@
 // Import
+import { Complex } from '../structs/complex';
+import { add, div, mul, sub } from '../mathlib';
+import { dreduce, Dynamic } from '../structs/dynamic';
 import { toDual } from '../../utils/complex';
 import { Single, S } from './single';
-import { add, div, mul, sub } from '../mathlib';
-import Complex from '../structs/complex';
-import Simple from '../structs/simple';
 
-// Define type
-type TSingleComplex = InstanceType<typeof CSingleComplex>;
-
-// Dynamic type handling
-type Dynamic = number | Dual | Simple | Complex<any>;
-const reduce = (value: Dynamic): Dual => {
-  let result: Dynamic = value;
-  if (result instanceof Simple || result instanceof Complex) {
-    result = result.get();
-  }
-  if (typeof result === 'number') {
-    result = toDual(result, 0);
-  }
-  return result;
-};
-const process = (value: Dynamic): Dual => {
-  return new CSingleComplex(reduce(value)).get();
-};
+// Fortran type convention
+export type C = SingleComplex;
 
 // Single complex class
-class CSingleComplex extends Complex<S> {
+export class SingleComplex extends Complex<S> {
   // Constructor
   public constructor(value: Dynamic = toDual(0, 0)) {
     super();
-    const v: Dual = reduce(value);
+    const v: Dual = dreduce(value);
     this.rstore = new Single(v.r);
     this.istore = new Single(v.i);
   }
 
   // Set value to store
   public set(value: Dynamic): void {
-    const v: Dual = reduce(value);
+    const v: Dual = dreduce(value);
     this.rstore.set(v.r);
     this.istore.set(v.i);
   }
@@ -63,48 +47,45 @@ class CSingleComplex extends Complex<S> {
 
   // Local equal to
   public eq(value: Dynamic): boolean {
-    return CSingleComplex.eq(this, value);
+    return SingleComplex.eq(this, value);
   }
 
   // Local not equal to
   public ne(value: Dynamic): boolean {
-    return CSingleComplex.ne(this, value);
+    return SingleComplex.ne(this, value);
   }
 
   // Global addition
-  public static add(left: Dynamic, right: Dynamic): CSingleComplex {
-    return new CSingleComplex(add(left, right));
+  public static add(left: Dynamic, right: Dynamic): SingleComplex {
+    return new SingleComplex(add(left, right));
   }
 
   // Global subtraction
-  public static sub(left: Dynamic, right: Dynamic): CSingleComplex {
-    return new CSingleComplex(sub(left, right));
+  public static sub(left: Dynamic, right: Dynamic): SingleComplex {
+    return new SingleComplex(sub(left, right));
   }
 
   // Global multiplication
-  public static mul(left: Dynamic, right: Dynamic): CSingleComplex {
-    return new CSingleComplex(mul(left, right));
+  public static mul(left: Dynamic, right: Dynamic): SingleComplex {
+    return new SingleComplex(mul(left, right));
   }
 
   // Global division
-  public static div(left: Dynamic, right: Dynamic): CSingleComplex {
-    return new CSingleComplex(div(left, right));
+  public static div(left: Dynamic, right: Dynamic): SingleComplex {
+    return new SingleComplex(div(left, right));
   }
 
   // Global equal to
   public static eq(left: Dynamic, right: Dynamic): boolean {
-    const l: Dual = process(left);
-    const r: Dual = process(right);
+    const l: Dual = new SingleComplex(left).get();
+    const r: Dual = new SingleComplex(right).get();
     return l.r === r.r && l.i === r.i;
   }
 
   // Global not equal to
   public static ne(left: Dynamic, right: Dynamic): boolean {
-    const l: Dual = process(left);
-    const r: Dual = process(right);
+    const l: Dual = new SingleComplex(left).get();
+    const r: Dual = new SingleComplex(right).get();
     return l.r !== r.r || l.i !== r.i;
   }
 }
-
-// Export
-export { CSingleComplex as SingleComplex, TSingleComplex as C };

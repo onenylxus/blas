@@ -1,8 +1,8 @@
-// Define type
-type TCharacter = InstanceType<typeof CCharacter>;
+// Fortran type convention
+export type H = Character;
 
 // Character class
-class CCharacter {
+export class Character {
   // Properties
   private store: string;
 
@@ -37,6 +37,3 @@ class CCharacter {
     return this.get() !== value;
   }
 }
-
-// Export
-export { CCharacter as Character, TCharacter as H };

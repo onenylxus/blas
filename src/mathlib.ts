@@ -1,7 +1,7 @@
 // Import
+import { Complex } from './structs/complex';
+import { Simple } from './structs/simple';
 import { toDual } from '../utils/complex';
-import Complex from './structs/complex';
-import Simple from './structs/simple';
 
 // Dynamic type handling
 type Dynamic = number | Dual | Simple | Complex<any>;
