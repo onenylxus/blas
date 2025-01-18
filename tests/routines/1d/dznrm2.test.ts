@@ -1,9 +1,7 @@
 // Import
-import { isEqual, isPerf } from '../../testfn';
+import { isEqual, isFast, perf, report } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dznrm2.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // DZNRM2 routine test
 describe('DZNRM2 routine test', () => {
@@ -22,7 +20,7 @@ describe('DZNRM2 routine test', () => {
       isEqual(result.n, n);
       isEqual(result.x, x);
       isEqual(result.incx, incx);
-      isPerf(time);
+      isFast(time);
       report('DZNRM2', i, time);
     });
   });

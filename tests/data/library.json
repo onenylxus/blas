@@ -131,22 +131,8 @@
     "zher2",
     "zhpr2"
   ],
-  "3s": [
-    "sgemm",
-    "ssymm",
-    "ssyrk",
-    "ssyr2k",
-    "strmm",
-    "strsm"
-  ],
-  "3d": [
-    "dgemm",
-    "dsymm",
-    "dsyrk",
-    "dsyr2k",
-    "dtrmm",
-    "dtrsm"
-  ],
+  "3s": ["sgemm", "ssymm", "ssyrk", "ssyr2k", "strmm", "strsm"],
+  "3d": ["dgemm", "dsymm", "dsyrk", "dsyr2k", "dtrmm", "dtrsm"],
   "3c": [
     "cgemm",
     "csymm",

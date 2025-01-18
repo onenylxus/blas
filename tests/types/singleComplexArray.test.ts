@@ -1,8 +1,8 @@
 // Import
-import { _C } from '../../utils/complex';
 import { SingleComplexArray, CA } from '../../src/types/singleComplexArray';
 import { isClose, isEqual, isUndefined } from '../testfn';
 import { random } from '../../utils/random';
+import { toDual } from '../../utils/complex';
 
 // Define test variables
 let values: Dual[];
@@ -14,7 +14,7 @@ describe('Single complex array type', () => {
   beforeAll(() => {
     values = new Array(100);
     for (let i = 0; i < 100; i++) {
-      values[i] = _C(random(), random());
+      values[i] = toDual(random(), random());
     }
     instance = new SingleComplexArray(values);
   });
@@ -27,7 +27,7 @@ describe('Single complex array type', () => {
 
   it('should set and get value correctly', () => {
     index = random(0, 99, true);
-    values[index] = _C(random(), random());
+    values[index] = toDual(random(), random());
     instance.set(index + 1, values[index]);
     isClose(instance.get(index + 1), values[index]);
   });
@@ -38,12 +38,12 @@ describe('Single complex array type', () => {
 
   it('should clear value to zero', () => {
     instance.clear();
-    isEqual(instance.getAll(), values.fill(_C(0, 0)));
+    isEqual(instance.getAll(), values.fill(toDual(0, 0)));
   });
 
   it('should resize value array correctly in constructor', () => {
     instance = new SingleComplexArray(values, 101);
-    isEqual(instance.get(101), _C(0, 0));
+    isEqual(instance.get(101), toDual(0, 0));
     instance = new SingleComplexArray(values, 99);
     isUndefined(instance.get(100));
   });

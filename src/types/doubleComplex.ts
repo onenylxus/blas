@@ -1,5 +1,5 @@
 // Import
-import { _C } from '../../utils/complex';
+import { toDual } from '../../utils/complex';
 import { Double, D } from './double';
 import { add, div, mul, sub } from '../mathlib';
 import Complex from '../structs/complex';
@@ -16,18 +16,18 @@ const reduce = (value: Dynamic): Dual => {
     result = result.get();
   }
   if (typeof result === 'number') {
-    result = _C(result, 0);
+    result = toDual(result, 0);
   }
   return result;
 };
 const process = (value: Dynamic): Dual => {
-  return (new CDoubleComplex(reduce(value))).get();
+  return new CDoubleComplex(reduce(value)).get();
 };
 
 // Double complex class
 class CDoubleComplex extends Complex<D> {
   // Constructor
-  public constructor(value: Dynamic = _C(0, 0)) {
+  public constructor(value: Dynamic = toDual(0, 0)) {
     super();
     const v: Dual = reduce(value);
     this.rstore = new Double(v.r);

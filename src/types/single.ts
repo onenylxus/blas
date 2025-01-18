@@ -19,7 +19,7 @@ const reduce = (value: Dynamic): number => {
   return result;
 };
 const process = (value: Dynamic): number => {
-  return (new CSingle(value)).get();
+  return new CSingle(value).get();
 };
 
 // Single class

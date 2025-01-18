@@ -66,7 +66,14 @@ const dasum = ({ n, dx, incx }: Input): Output => {
     }
     mp1.set(m.get() + 1);
     for (i.set(mp1); i.le(_n); i.add(6)) {
-      dtemp.add(abs(_dx.get(i)) + abs(_dx.get(i.get() + 1)) + abs(_dx.get(i.get() + 2)) + abs(_dx.get(i.get() + 3)) + abs(_dx.get(i.get() + 4)) + abs(_dx.get(i.get() + 5)));
+      dtemp.add(
+        abs(_dx.get(i)) +
+          abs(_dx.get(i.get() + 1)) +
+          abs(_dx.get(i.get() + 2)) +
+          abs(_dx.get(i.get() + 3)) +
+          abs(_dx.get(i.get() + 4)) +
+          abs(_dx.get(i.get() + 5)),
+      );
     }
   } else {
     nincx.set(_n.get() * _incx.get());

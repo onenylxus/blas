@@ -1,9 +1,7 @@
 // Import
-import { isEqual, isPerf, isUndefined } from '../../testfn';
+import { isEqual, isFast, isUndefined, perf, report } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dswap.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // DSWAP routine test
 describe('DSWAP routine test', () => {
@@ -27,7 +25,7 @@ describe('DSWAP routine test', () => {
       isEqual(result.incx, incx);
       isEqual(result.dy, _dy);
       isEqual(result.incy, incy);
-      isPerf(time);
+      isFast(time);
       report('DSWAP', i, time);
     });
   });

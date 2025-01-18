@@ -1,9 +1,7 @@
 // Import
-import { isEqual, isPerf } from '../../testfn';
+import { isEqual, isFast, perf, report } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1z/izamax.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // IZAMAX routine test
 describe('IZAMAX routine test', () => {
@@ -22,7 +20,7 @@ describe('IZAMAX routine test', () => {
       isEqual(result.n, n);
       isEqual(result.zx, zx);
       isEqual(result.incx, incx);
-      isPerf(time);
+      isFast(time);
       report('IZAMAX', i, time);
     });
   });

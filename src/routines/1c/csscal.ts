@@ -1,5 +1,5 @@
 // Import
-import { _C } from '../../../utils/complex';
+import { toDual } from '../../../utils/complex';
 import { Integer, I } from '../../types/integer';
 import { Single, S } from '../../types/single';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
@@ -53,12 +53,12 @@ const csscal = ({ n, sa, cx, incx }: Input): Output => {
   }
   if (_incx.eq(1)) {
     for (i.set(1); i.le(n); i.add(1)) {
-      _cx.set(i, _C(_sa.get() * _cx.get(i).r, _sa.get() * _cx.get(i).i));
+      _cx.set(i, toDual(_sa.get() * _cx.get(i).r, _sa.get() * _cx.get(i).i));
     }
   } else {
     nincx.set(_n.get() * _incx.get());
     for (i.set(1); i.le(nincx); i.add(_incx)) {
-      _cx.set(i, _C(_sa.get() * _cx.get(i).r, _sa.get() * _cx.get(i).i));
+      _cx.set(i, toDual(_sa.get() * _cx.get(i).r, _sa.get() * _cx.get(i).i));
     }
   }
 

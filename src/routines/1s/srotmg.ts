@@ -70,8 +70,7 @@ const srotmg = ({ sd1, sd2, sx1, sy1, sparam }: Input): Output => {
     _sd1.set(0);
     _sd2.set(0);
     _sx1.set(0);
-  }
-  else {
+  } else {
     sp2.set(_sd2.get() * _sy1.get());
     if (sp2.eq(0)) {
       sflag.set(-2);

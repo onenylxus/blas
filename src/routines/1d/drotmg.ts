@@ -70,8 +70,7 @@ const drotmg = ({ dd1, dd2, dx1, dy1, dparam }: Input): Output => {
     _dd1.set(0);
     _dd2.set(0);
     _dx1.set(0);
-  }
-  else {
+  } else {
     dp2.set(_dd2.get() * _dy1.get());
     if (dp2.eq(0)) {
       dflag.set(-2);

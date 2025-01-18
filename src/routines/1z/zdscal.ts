@@ -1,5 +1,5 @@
 // Import
-import { _C } from '../../../utils/complex';
+import { toDual } from '../../../utils/complex';
 import { Integer, I } from '../../types/integer';
 import { Double, D } from '../../types/double';
 import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
@@ -53,12 +53,12 @@ const zdscal = ({ n, da, zx, incx }: Input): Output => {
   }
   if (_incx.eq(1)) {
     for (i.set(1); i.le(n); i.add(1)) {
-      _zx.set(i, _C(_da.get() * _zx.get(i).r, _da.get() * _zx.get(i).i));
+      _zx.set(i, toDual(_da.get() * _zx.get(i).r, _da.get() * _zx.get(i).i));
     }
   } else {
     nincx.set(_n.get() * _incx.get());
     for (i.set(1); i.le(nincx); i.add(_incx)) {
-      _zx.set(i, _C(_da.get() * _zx.get(i).r, _da.get() * _zx.get(i).i));
+      _zx.set(i, toDual(_da.get() * _zx.get(i).r, _da.get() * _zx.get(i).i));
     }
   }
 

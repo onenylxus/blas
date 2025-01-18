@@ -78,9 +78,18 @@ const saxpy = ({ n, sa, sx, incx, sy, incy }: Input): Output => {
     mp1.set(m.get() + 1);
     for (i.set(mp1); i.le(_n); i.add(4)) {
       _sy.set(i, _sy.get(i) + _sa.get() * _sx.get(i));
-      _sy.set(i.get() + 1, _sy.get(i.get() + 1) + _sa.get() * _sx.get(i.get() + 1));
-      _sy.set(i.get() + 2, _sy.get(i.get() + 2) + _sa.get() * _sx.get(i.get() + 2));
-      _sy.set(i.get() + 3, _sy.get(i.get() + 3) + _sa.get() * _sx.get(i.get() + 3));
+      _sy.set(
+        i.get() + 1,
+        _sy.get(i.get() + 1) + _sa.get() * _sx.get(i.get() + 1),
+      );
+      _sy.set(
+        i.get() + 2,
+        _sy.get(i.get() + 2) + _sa.get() * _sx.get(i.get() + 2),
+      );
+      _sy.set(
+        i.get() + 3,
+        _sy.get(i.get() + 3) + _sa.get() * _sx.get(i.get() + 3),
+      );
     }
   } else {
     ix.set(1);

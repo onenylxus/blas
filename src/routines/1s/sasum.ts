@@ -66,7 +66,14 @@ const sasum = ({ n, sx, incx }: Input): Output => {
     }
     mp1.set(m.get() + 1);
     for (i.set(mp1); i.le(_n); i.add(6)) {
-      stemp.add(abs(_sx.get(i)) + abs(_sx.get(i.get() + 1)) + abs(_sx.get(i.get() + 2)) + abs(_sx.get(i.get() + 3)) + abs(_sx.get(i.get() + 4)) + abs(_sx.get(i.get() + 5)));
+      stemp.add(
+        abs(_sx.get(i)) +
+          abs(_sx.get(i.get() + 1)) +
+          abs(_sx.get(i.get() + 2)) +
+          abs(_sx.get(i.get() + 3)) +
+          abs(_sx.get(i.get() + 4)) +
+          abs(_sx.get(i.get() + 5)),
+      );
     }
   } else {
     nincx.set(_n.get() * _incx.get());

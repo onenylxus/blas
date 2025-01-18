@@ -1,7 +1,5 @@
 // Input interface
-interface Input extends FParameters {
-
-}
+interface Input extends FParameters {}
 
 // Output interface
 interface Output extends FParameters {
@@ -26,4 +24,3 @@ const sspr2 = ({}: Input): Output => {
 
 // Export
 export default sspr2;
-

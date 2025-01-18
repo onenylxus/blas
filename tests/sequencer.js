@@ -31,4 +31,3 @@ class CustomSequencer extends TestSequencer.default {
 
 // Export
 export default CustomSequencer;
-

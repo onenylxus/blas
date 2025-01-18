@@ -1,9 +1,7 @@
 // Import
-import { isEqual, isPerf, isUndefined } from '../../testfn';
+import { isEqual, isFast, isUndefined, perf, report } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1z/zswap.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // ZSWAP routine test
 describe('ZSWAP routine test', () => {
@@ -27,7 +25,7 @@ describe('ZSWAP routine test', () => {
       isEqual(result.incx, incx);
       isEqual(result.zy, _zy);
       isEqual(result.incy, incy);
-      isPerf(time);
+      isFast(time);
       report('ZSWAP', i, time);
     });
   });

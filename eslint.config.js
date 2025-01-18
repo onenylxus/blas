@@ -1,7 +1,7 @@
 import { FlatCompat } from '@eslint/eslintrc';
 import { fileURLToPath } from 'url';
-import js from '@eslint/js';
 import eslint from '@typescript-eslint/eslint-plugin';
+import js from '@eslint/js';
 import parser from '@typescript-eslint/parser';
 import path from 'path';
 
@@ -18,7 +18,10 @@ export default [
   {
     ignores: ['**/dist', '**/out-tsc', 'tests/routines'],
   },
-  ...compat.extends('eslint:recommended', 'plugin:@typescript-eslint/recommended'),
+  ...compat.extends(
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ),
   {
     plugins: {
       '@typescript-eslint': eslint,
@@ -29,20 +32,20 @@ export default [
     },
 
     rules: {
-      "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
         {
-          "args": "all",
-          "argsIgnorePattern": "^_",
-          "caughtErrors": "all",
-          "caughtErrorsIgnorePattern": "^_",
-          "destructuredArrayIgnorePattern": "^_",
-          "varsIgnorePattern": "^_",
-          "ignoreRestSiblings": true
-        }
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
       ],
       'no-empty-pattern': 'off',
     },
-  }
+  },
 ];

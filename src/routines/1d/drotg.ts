@@ -68,7 +68,11 @@ const drotg = ({ a, b, c, s }: Input): Output => {
     } else {
       sigma.set(sign(_b.get()));
     }
-    r.set(sigma.get() * (scl.get() * sqrt((_a.get() / scl.get()) ** 2 + (_b.get() / scl.get()) ** 2)));
+    r.set(
+      sigma.get() *
+        (scl.get() *
+          sqrt((_a.get() / scl.get()) ** 2 + (_b.get() / scl.get()) ** 2)),
+    );
     _c.set(_a.get() / r.get());
     _s.set(_b.get() / r.get());
     if (anorm.gt(bnorm)) {

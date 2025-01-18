@@ -1,5 +1,5 @@
 // Import
-import { _C } from '../../utils/complex';
+import { toDual } from '../../utils/complex';
 import { Single, S } from './single';
 import { add, div, mul, sub } from '../mathlib';
 import Complex from '../structs/complex';
@@ -16,18 +16,18 @@ const reduce = (value: Dynamic): Dual => {
     result = result.get();
   }
   if (typeof result === 'number') {
-    result = _C(result, 0);
+    result = toDual(result, 0);
   }
   return result;
 };
 const process = (value: Dynamic): Dual => {
-  return (new CSingleComplex(reduce(value))).get();
+  return new CSingleComplex(reduce(value)).get();
 };
 
 // Single complex class
 class CSingleComplex extends Complex<S> {
   // Constructor
-  public constructor(value: Dynamic = _C(0, 0)) {
+  public constructor(value: Dynamic = toDual(0, 0)) {
     super();
     const v: Dual = reduce(value);
     this.rstore = new Single(v.r);

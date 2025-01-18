@@ -1,9 +1,7 @@
 // Import
-import { isEqual, isPerf } from '../../testfn';
+import { isEqual, isFast, perf, report } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/dasum.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // DASUM routine test
 describe('DASUM routine test', () => {
@@ -22,7 +20,7 @@ describe('DASUM routine test', () => {
       isEqual(result.n, n);
       isEqual(result.dx, dx);
       isEqual(result.incx, incx);
-      isPerf(time);
+      isFast(time);
       report('DASUM', i, time);
     });
   });

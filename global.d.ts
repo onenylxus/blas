@@ -1,5 +1,5 @@
 // Dual number type
-type Dual = { r: number, i: number };
+type Dual = { r: number; i: number };
 
 // Fortran data types
 type FCharacter = string;

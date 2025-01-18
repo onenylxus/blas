@@ -1,9 +1,14 @@
 // Import
-import { isClose, isEqual, isPerf, isUndefined } from '../../testfn';
+import {
+  isClose,
+  isEqual,
+  isFast,
+  isUndefined,
+  perf,
+  report,
+} from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/sscal.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // SSCAL routine test
 describe('SSCAL routine test', () => {
@@ -24,7 +29,7 @@ describe('SSCAL routine test', () => {
       isClose(result.sa, sa);
       isClose(result.sx, _sx);
       isEqual(result.incx, incx);
-      isPerf(time);
+      isFast(time);
       report('SSCAL', i, time);
     });
   });

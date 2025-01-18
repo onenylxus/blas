@@ -1,9 +1,7 @@
 // Import
-import { isEqual, isPerf, isUndefined } from '../../testfn';
+import { isEqual, isFast, isUndefined, perf, report } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/drotg.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // DROTG routine test
 describe('DROTG routine test', () => {
@@ -25,7 +23,7 @@ describe('DROTG routine test', () => {
       isEqual(result.b, _b);
       isEqual(result.c, _c);
       isEqual(result.s, _s);
-      isPerf(time);
+      isFast(time);
       report('DROTG', i, time);
     });
   });

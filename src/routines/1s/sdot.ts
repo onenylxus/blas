@@ -75,7 +75,13 @@ const sdot = ({ n, sx, incx, sy, incy }: Input): Output => {
     }
     mp1.set(m.get() + 1);
     for (i.set(mp1); i.le(_n); i.add(5)) {
-      stemp.add(_sx.get(i) * _sy.get(i) + _sx.get(i.get() + 1) * _sy.get(i.get() + 1) + _sx.get(i.get() + 2) * _sy.get(i.get() + 2) + _sx.get(i.get() + 3) * _sy.get(i.get() + 3) + _sx.get(i.get() + 4) * _sy.get(i.get() + 4));
+      stemp.add(
+        _sx.get(i) * _sy.get(i) +
+          _sx.get(i.get() + 1) * _sy.get(i.get() + 1) +
+          _sx.get(i.get() + 2) * _sy.get(i.get() + 2) +
+          _sx.get(i.get() + 3) * _sy.get(i.get() + 3) +
+          _sx.get(i.get() + 4) * _sy.get(i.get() + 4),
+      );
     }
   } else {
     ix.set(1);

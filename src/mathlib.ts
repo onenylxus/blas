@@ -1,5 +1,5 @@
 // Import
-import { _C } from '../utils/complex';
+import { toDual } from '../utils/complex';
 import Complex from './structs/complex';
 import Simple from './structs/simple';
 
@@ -58,15 +58,15 @@ export const add = (x: Dynamic, y: Dynamic): number | Dual => {
     return x + y;
   }
   if (typeof x === 'number' && typeof y === 'object') {
-    return _C(x + y.r, y.i);
+    return toDual(x + y.r, y.i);
   }
   if (typeof x === 'object' && typeof y === 'number') {
-    return _C(x.r + y, x.i);
+    return toDual(x.r + y, x.i);
   }
   if (typeof x === 'object' && typeof y === 'object') {
-    return _C(x.r + y.r, x.i + y.i);
+    return toDual(x.r + y.r, x.i + y.i);
   }
-}
+};
 
 // Inverse cosine function
 // export const acos: (x: number) => number = Math.acos;
@@ -92,8 +92,7 @@ export const add = (x: Dynamic, y: Dynamic): number | Dual => {
 // Complex absolute function
 export const cabs = (x: Dynamic): number => {
   x = reduce(x);
-  if (typeof x === 'number')
-  {
+  if (typeof x === 'number') {
     return Math.abs(x);
   }
   return Math.abs(x.r) + Math.abs(x.i);
@@ -114,7 +113,7 @@ export const conjg = (x: Dynamic): number | Dual => {
   if (typeof x === 'number') {
     return x;
   }
-  return _C(x.r, -x.i);
+  return toDual(x.r, -x.i);
 };
 
 // Cosine function
@@ -132,16 +131,16 @@ export const div = (x: Dynamic, y: Dynamic): number | Dual => {
   }
   if (typeof x === 'number' && typeof y === 'object') {
     const q = y.r ** 2 + y.i ** 2;
-    return _C(x * y.r / q, -x * y.i / q);
+    return toDual((x * y.r) / q, (-x * y.i) / q);
   }
   if (typeof x === 'object' && typeof y === 'number') {
-    return _C(x.r / y, x.i / y);
+    return toDual(x.r / y, x.i / y);
   }
   if (typeof x === 'object' && typeof y === 'object') {
     const q = y.r ** 2 + y.i ** 2;
-    return _C((x.r * y.r + x.i * y.i) / q, (x.i * y.r - x.r * y.i) / q);
+    return toDual((x.r * y.r + x.i * y.i) / q, (x.i * y.r - x.r * y.i) / q);
   }
-}
+};
 
 // Exponent function
 // export const exp: (x: number) => number = Math.exp;
@@ -175,15 +174,15 @@ export const div = (x: Dynamic, y: Dynamic): number | Dual => {
 
 // Maximum function
 export const max = (...values: (number | Simple)[]): number => {
-  values = values.map(x => reduce(x) as number);
-  return Math.max(...values as number[]);
+  values = values.map((x) => reduce(x) as number);
+  return Math.max(...(values as number[]));
 };
 
 // Minimum function
-export const min =(...values: (number | Simple)[]): number => {
-  values = values.map(x => reduce(x) as number);
-  return Math.min(...values as number[]);
-}
+export const min = (...values: (number | Simple)[]): number => {
+  values = values.map((x) => reduce(x) as number);
+  return Math.min(...(values as number[]));
+};
 
 // Modulo function
 export const mod = (x: number | Simple, y: number | Simple): number => {
@@ -198,15 +197,15 @@ export const mul = (x: Dynamic, y: Dynamic): number | Dual => {
     return x * y;
   }
   if (typeof x === 'number' && typeof y === 'object') {
-    return _C(x * y.r, x * y.i);
+    return toDual(x * y.r, x * y.i);
   }
   if (typeof x === 'object' && typeof y === 'number') {
-    return _C(x.r * y, x.i * y);
+    return toDual(x.r * y, x.i * y);
   }
   if (typeof x === 'object' && typeof y === 'object') {
-    return _C(x.r * y.r - x.i * y.i, x.r * y.i + x.i * y.r);
+    return toDual(x.r * y.r - x.i * y.i, x.r * y.i + x.i * y.r);
   }
-}
+};
 
 // Negative function
 export const neg = (x: Dynamic): number | Dual => {
@@ -214,7 +213,7 @@ export const neg = (x: Dynamic): number | Dual => {
   if (typeof x === 'number') {
     return -x;
   }
-  return _C(-x.r, -x.i);
+  return toDual(-x.r, -x.i);
 };
 
 // Power function
@@ -252,15 +251,15 @@ export const sub = (x: Dynamic, y: Dynamic): number | Dual => {
     return x - y;
   }
   if (typeof x === 'number' && typeof y === 'object') {
-    return _C(x - y.r, y.i);
+    return toDual(x - y.r, y.i);
   }
   if (typeof x === 'object' && typeof y === 'number') {
-    return _C(x.r - y, x.i);
+    return toDual(x.r - y, x.i);
   }
   if (typeof x === 'object' && typeof y === 'object') {
-    return _C(x.r - y.r, x.i - y.i);
+    return toDual(x.r - y.r, x.i - y.i);
   }
-}
+};
 
 // Tangent function
 // export const tan: (x: number) => number = Math.tan;

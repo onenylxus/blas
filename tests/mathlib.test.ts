@@ -1,7 +1,7 @@
 // Import
 import * as ml from '../src/mathlib';
-import { _C } from '../utils/complex';
 import { isEqual } from './testfn';
+import { toDual } from '../utils/complex';
 
 // Absolute function
 describe('Absolute function', () => {
@@ -12,7 +12,7 @@ describe('Absolute function', () => {
   });
 
   it('should calculate complex number correctly', () => {
-    isEqual(ml.abs(_C(3, -4)), 5);
+    isEqual(ml.abs(toDual(3, -4)), 5);
   });
 });
 
@@ -23,9 +23,9 @@ describe('Add function', () => {
   });
 
   it('should calculate complex numbers correctly', () => {
-    isEqual(ml.add(_C(3, 4), 2), _C(5, 4));
-    isEqual(ml.add(1, _C(1, 2)), _C(2, 2));
-    isEqual(ml.add(_C(3, 4), _C(1, 2)), _C(4, 6));
+    isEqual(ml.add(toDual(3, 4), 2), toDual(5, 4));
+    isEqual(ml.add(1, toDual(1, 2)), toDual(2, 2));
+    isEqual(ml.add(toDual(3, 4), toDual(1, 2)), toDual(4, 6));
   });
 });
 
@@ -38,18 +38,18 @@ describe('Complex absolute function', () => {
   });
 
   it('should calculate complex number correctly', () => {
-    isEqual(ml.cabs(_C(3, -4)), 7);
+    isEqual(ml.cabs(toDual(3, -4)), 7);
   });
 });
 
 // Conjugate function
 describe('Conjugate function', () => {
-  it ('should calculate real number correctly', () => {
+  it('should calculate real number correctly', () => {
     isEqual(ml.conjg(2), 2);
   });
 
   it('should calculate complex number correctly', () => {
-    isEqual(ml.conjg(_C(3, -4)), _C(3, 4));
+    isEqual(ml.conjg(toDual(3, -4)), toDual(3, 4));
   });
 });
 
@@ -60,9 +60,9 @@ describe('Divide function', () => {
   });
 
   it('should calculate complex numbers correctly', () => {
-    isEqual(ml.div(_C(3, 4), 2), _C(1.5, 2));
-    isEqual(ml.div(1, _C(1, 2)), _C(0.2, -0.4));
-    isEqual(ml.div(_C(3, 4), _C(1, 2)), _C(2.2, -0.4));
+    isEqual(ml.div(toDual(3, 4), 2), toDual(1.5, 2));
+    isEqual(ml.div(1, toDual(1, 2)), toDual(0.2, -0.4));
+    isEqual(ml.div(toDual(3, 4), toDual(1, 2)), toDual(2.2, -0.4));
   });
 });
 
@@ -94,9 +94,9 @@ describe('Multiply function', () => {
   });
 
   it('should calculate complex numbers correctly', () => {
-    isEqual(ml.mul(_C(3, 4), 2), _C(6, 8));
-    isEqual(ml.mul(1, _C(1, 2)), _C(1, 2));
-    isEqual(ml.mul(_C(3, 4), _C(1, 2)), _C(-5, 10));
+    isEqual(ml.mul(toDual(3, 4), 2), toDual(6, 8));
+    isEqual(ml.mul(1, toDual(1, 2)), toDual(1, 2));
+    isEqual(ml.mul(toDual(3, 4), toDual(1, 2)), toDual(-5, 10));
   });
 });
 
@@ -107,7 +107,7 @@ describe('Negative function', () => {
   });
 
   it('should calculate complex number correctly', () => {
-    isEqual(ml.neg(_C(3, -1)), _C(-3, 1));
+    isEqual(ml.neg(toDual(3, -1)), toDual(-3, 1));
   });
 });
 
@@ -139,8 +139,8 @@ describe('Subtract function', () => {
   });
 
   it('should calculate complex numbers correctly', () => {
-    isEqual(ml.sub(_C(3, 4), 2), _C(1, 4));
-    isEqual(ml.sub(1, _C(1, 2)), _C(0, 2));
-    isEqual(ml.sub(_C(3, 4), _C(1, 2)), _C(2, 2));
+    isEqual(ml.sub(toDual(3, 4), 2), toDual(1, 4));
+    isEqual(ml.sub(1, toDual(1, 2)), toDual(0, 2));
+    isEqual(ml.sub(toDual(3, 4), toDual(1, 2)), toDual(2, 2));
   });
 });

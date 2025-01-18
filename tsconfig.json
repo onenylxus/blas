@@ -10,5 +10,5 @@
     "outDir": "out-tsc",
     "rootDir": "./"
   },
-  "include": ["./src/**/*.ts"]
+  "include": ["src/**/*.ts", "tests/testfn.ts", "utils/*.ts", "global.d.ts"]
 }

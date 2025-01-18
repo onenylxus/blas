@@ -19,7 +19,7 @@ const reduce = (value: Dynamic): number => {
   return result;
 };
 const process = (value: Dynamic): number => {
-  return (new CDouble(value)).get();
+  return new CDouble(value).get();
 };
 
 // Double class

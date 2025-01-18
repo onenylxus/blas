@@ -1,9 +1,7 @@
 // Import
-import { isEqual, isPerf } from '../../testfn';
+import { isEqual, isFast, perf, report } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1d/ddot.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // DDOT routine test
 describe('DDOT routine test', () => {
@@ -26,7 +24,7 @@ describe('DDOT routine test', () => {
       isEqual(result.incx, incx);
       isEqual(result.dy, dy);
       isEqual(result.incy, incy);
-      isPerf(time);
+      isFast(time);
       report('DDOT', i, time);
     });
   });

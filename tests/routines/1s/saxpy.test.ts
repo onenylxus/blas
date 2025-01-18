@@ -1,9 +1,14 @@
 // Import
-import { isClose, isEqual, isPerf, isUndefined } from '../../testfn';
+import {
+  isClose,
+  isEqual,
+  isFast,
+  isUndefined,
+  perf,
+  report,
+} from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/saxpy.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // SAXPY routine test
 describe('SAXPY routine test', () => {
@@ -28,7 +33,7 @@ describe('SAXPY routine test', () => {
       isEqual(result.incx, incx);
       isClose(result.sy, _sy);
       isEqual(result.incy, incy);
-      isPerf(time);
+      isFast(time);
       report('SAXPY', i, time);
     });
   });

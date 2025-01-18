@@ -1,10 +1,8 @@
 // Import
-import { _pC } from '../../../utils/complex';
-import { isEqual, isPerf, isUndefined } from '../../testfn';
+import { isEqual, isFast, isUndefined, perf, report } from '../../testfn';
+import { printDual } from '../../../utils/complex';
 import blas from '../../../src';
 import data from '../../data/1z/zaxpy.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // ZAXPY routine test
 describe('ZAXPY routine test', () => {
@@ -21,7 +19,7 @@ describe('ZAXPY routine test', () => {
     const { result, time } = perf(blas.zaxpy, { n, za, zx, incx, zy, incy });
 
     // Run test
-    it(`Case ${++i}: n{${n}},za{${_pC(za)}},zx[${zx.length}],incx{${incx}},zy[${zy.length}],incy{${incy}}`, () => {
+    it(`Case ${++i}: n{${n}},za{${printDual(za)}},zx[${zx.length}],incx{${incx}},zy[${zy.length}],incy{${incy}}`, () => {
       isUndefined(result._ret);
       isEqual(result.n, n);
       isEqual(result.za, za);
@@ -29,7 +27,7 @@ describe('ZAXPY routine test', () => {
       isEqual(result.incx, incx);
       isEqual(result.zy, _zy);
       isEqual(result.incy, incy);
-      isPerf(time);
+      isFast(time);
       report('ZAXPY', i, time);
     });
   });

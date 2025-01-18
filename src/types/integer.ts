@@ -19,7 +19,7 @@ const reduce = (value: Dynamic): number => {
   return result;
 };
 const process = (value: Dynamic): number => {
-  return (new CInteger(value)).get();
+  return new CInteger(value).get();
 };
 
 // Integer class

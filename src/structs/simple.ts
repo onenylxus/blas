@@ -16,7 +16,7 @@ abstract class Simple {
   }
 
   // Set value to store
-  public abstract set(_value: Dynamic): void
+  public abstract set(_value: Dynamic): void;
 
   // Get value from store
   public get(): number {

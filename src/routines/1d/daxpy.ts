@@ -78,9 +78,18 @@ const daxpy = ({ n, da, dx, incx, dy, incy }: Input): Output => {
     mp1.set(m.get() + 1);
     for (i.set(mp1); i.le(_n); i.add(4)) {
       _dy.set(i, _dy.get(i) + _da.get() * _dx.get(i));
-      _dy.set(i.get() + 1, _dy.get(i.get() + 1) + _da.get() * _dx.get(i.get() + 1));
-      _dy.set(i.get() + 2, _dy.get(i.get() + 2) + _da.get() * _dx.get(i.get() + 2));
-      _dy.set(i.get() + 3, _dy.get(i.get() + 3) + _da.get() * _dx.get(i.get() + 3));
+      _dy.set(
+        i.get() + 1,
+        _dy.get(i.get() + 1) + _da.get() * _dx.get(i.get() + 1),
+      );
+      _dy.set(
+        i.get() + 2,
+        _dy.get(i.get() + 2) + _da.get() * _dx.get(i.get() + 2),
+      );
+      _dy.set(
+        i.get() + 3,
+        _dy.get(i.get() + 3) + _da.get() * _dx.get(i.get() + 3),
+      );
     }
   } else {
     ix.set(1);

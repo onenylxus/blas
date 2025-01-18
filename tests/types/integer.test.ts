@@ -66,38 +66,74 @@ describe('Integer type', () => {
 
   it('should compare equal to value correctly', () => {
     instance.set(value);
-    isEqual(instance.eq(value + 1), instance.get() === (new Integer(value + 1).get()));
-    isEqual(instance.eq(value), instance.get() === (new Integer(value).get()));
-    isEqual(instance.eq(value - 1), instance.get() === (new Integer(value - 1).get()));
+    isEqual(
+      instance.eq(value + 1),
+      instance.get() === new Integer(value + 1).get(),
+    );
+    isEqual(instance.eq(value), instance.get() === new Integer(value).get());
+    isEqual(
+      instance.eq(value - 1),
+      instance.get() === new Integer(value - 1).get(),
+    );
   });
 
   it('should compare not equal to value correctly', () => {
-    isEqual(instance.ne(value + 1), instance.get() !== (new Integer(value + 1).get()));
-    isEqual(instance.ne(value), instance.get() !== (new Integer(value).get()));
-    isEqual(instance.ne(value - 1), instance.get() !== (new Integer(value - 1).get()));
+    isEqual(
+      instance.ne(value + 1),
+      instance.get() !== new Integer(value + 1).get(),
+    );
+    isEqual(instance.ne(value), instance.get() !== new Integer(value).get());
+    isEqual(
+      instance.ne(value - 1),
+      instance.get() !== new Integer(value - 1).get(),
+    );
   });
 
   it('should compare greater than value correctly', () => {
-    isEqual(instance.gt(value + 1), instance.get() > (new Integer(value + 1).get()));
-    isEqual(instance.gt(value), instance.get() > (new Integer(value).get()));
-    isEqual(instance.gt(value - 1), instance.get() > (new Integer(value - 1).get()));
+    isEqual(
+      instance.gt(value + 1),
+      instance.get() > new Integer(value + 1).get(),
+    );
+    isEqual(instance.gt(value), instance.get() > new Integer(value).get());
+    isEqual(
+      instance.gt(value - 1),
+      instance.get() > new Integer(value - 1).get(),
+    );
   });
 
   it('should compare less than value correctly', () => {
-    isEqual(instance.lt(value + 1), instance.get() < (new Integer(value + 1).get()));
-    isEqual(instance.lt(value), instance.get() < (new Integer(value).get()));
-    isEqual(instance.lt(value - 1), instance.get() < (new Integer(value - 1).get()));
+    isEqual(
+      instance.lt(value + 1),
+      instance.get() < new Integer(value + 1).get(),
+    );
+    isEqual(instance.lt(value), instance.get() < new Integer(value).get());
+    isEqual(
+      instance.lt(value - 1),
+      instance.get() < new Integer(value - 1).get(),
+    );
   });
 
   it('should compare greater than or equal to value correctly', () => {
-    isEqual(instance.ge(value + 1), instance.get() >= (new Integer(value + 1).get()));
-    isEqual(instance.ge(value), instance.get() >= (new Integer(value).get()));
-    isEqual(instance.ge(value - 1), instance.get() >= (new Integer(value - 1).get()));
+    isEqual(
+      instance.ge(value + 1),
+      instance.get() >= new Integer(value + 1).get(),
+    );
+    isEqual(instance.ge(value), instance.get() >= new Integer(value).get());
+    isEqual(
+      instance.ge(value - 1),
+      instance.get() >= new Integer(value - 1).get(),
+    );
   });
 
   it('should compare less than or equal to value correctly', () => {
-    isEqual(instance.le(value + 1), instance.get() <= (new Integer(value + 1).get()));
-    isEqual(instance.le(value), instance.get() <= (new Integer(value).get()));
-    isEqual(instance.le(value - 1), instance.get() <= (new Integer(value - 1).get()));
+    isEqual(
+      instance.le(value + 1),
+      instance.get() <= new Integer(value + 1).get(),
+    );
+    isEqual(instance.le(value), instance.get() <= new Integer(value).get());
+    isEqual(
+      instance.le(value - 1),
+      instance.get() <= new Integer(value - 1).get(),
+    );
   });
 });

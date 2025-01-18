@@ -1,5 +1,5 @@
 // Import
-import { _C } from '../../utils/complex';
+import { toDual } from '../../utils/complex';
 import { Integer } from './integer';
 import { SingleComplex, C } from './singleComplex';
 import Complex from '../structs/complex';
@@ -33,7 +33,7 @@ class CSingleComplexArray extends FortranArray<C> {
 
   // Get zero value
   public get zero(): C {
-    return new SingleComplex(_C(0, 0));
+    return new SingleComplex(toDual(0, 0));
   }
 
   // Set value to store

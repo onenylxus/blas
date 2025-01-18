@@ -1,7 +1,5 @@
 // Input interface
-interface Input extends FParameters {
-
-}
+interface Input extends FParameters {}
 
 // Output interface
 interface Output extends FParameters {

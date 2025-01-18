@@ -1,9 +1,7 @@
 // Import
-import { isClose, isEqual, isPerf } from '../../testfn';
+import { isClose, isEqual, isFast, perf, report } from '../../testfn';
 import blas from '../../../src/index';
 import data from '../../data/1s/sdsdot.json';
-import perf from '../../../utils/performance';
-import report from '../../../utils/report';
 
 // SDSDOT routine test
 describe('SDSDOT routine test', () => {
@@ -28,7 +26,7 @@ describe('SDSDOT routine test', () => {
       isEqual(result.incx, incx);
       isClose(result.sy, sy);
       isEqual(result.incy, incy);
-      isPerf(time);
+      isFast(time);
       report('SDSDOT', i, time);
     });
   });
