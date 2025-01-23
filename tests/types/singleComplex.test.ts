@@ -35,18 +35,30 @@ describe('Single complex type', () => {
     instance.set(value);
     instance.add(toDual(1, -1));
     isClose(instance.get(), toDual(value.r + 1, value.i - 1));
+    isClose(
+      SingleComplex.add(value, toDual(1, -1)).get(),
+      toDual(value.r + 1, value.i - 1),
+    );
   });
 
   it('should subtract value correctly', () => {
     instance.set(value);
     instance.sub(toDual(1, -1));
     isClose(instance.get(), toDual(value.r - 1, value.i + 1));
+    isClose(
+      SingleComplex.sub(value, toDual(1, -1)).get(),
+      toDual(value.r - 1, value.i + 1),
+    );
   });
 
   it('should multiply value correctly', () => {
     instance.set(value);
     instance.mul(toDual(1, -1));
     isClose(instance.get(), toDual(value.r + value.i, value.i - value.r));
+    isClose(
+      SingleComplex.mul(value, toDual(1, -1)).get(),
+      toDual(value.r + value.i, value.i - value.r),
+    );
   });
 
   it('should divide value correctly', () => {
@@ -54,6 +66,10 @@ describe('Single complex type', () => {
     instance.div(toDual(1, -1));
     isClose(
       instance.get(),
+      toDual((value.r - value.i) / 2, (value.i + value.r) / 2),
+    );
+    isClose(
+      SingleComplex.div(value, toDual(1, -1)).get(),
       toDual((value.r - value.i) / 2, (value.i + value.r) / 2),
     );
   });

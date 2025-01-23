@@ -41,10 +41,19 @@ describe('Single complex array type', () => {
     isEqual(instance.getAll(), values.fill(toDual(0, 0)));
   });
 
-  it('should resize value array correctly in constructor', () => {
+  it('should handle resize correctly for array with size', () => {
     instance = new SingleComplexArray(values, 101);
-    isEqual(instance.get(101), toDual(0, 0));
-    instance = new SingleComplexArray(values, 99);
-    isUndefined(instance.get(100));
+    instance.set(-1, random());
+    instance.set(102, random());
+    isClose(instance.getAll(), [...values, toDual(0, 0)]);
+    isUndefined(instance.get(-1));
+    isUndefined(instance.get(102));
+  });
+
+  it('should handle resize correctly for array without value and size', () => {
+    instance = new SingleComplexArray();
+    instance.set(2, values[0]);
+    isClose(instance.getAll(), [toDual(0, 0), values[0]]);
+    isEqual(instance.get(3), toDual(0, 0));
   });
 });

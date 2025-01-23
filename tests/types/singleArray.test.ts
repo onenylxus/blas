@@ -40,10 +40,19 @@ describe('Single array type', () => {
     isEqual(instance.getAll(), values.fill(0));
   });
 
-  it('should resize value array correctly in constructor', () => {
+  it('should handle resize correctly for array with size', () => {
     instance = new SingleArray(values, 101);
-    isEqual(instance.get(101), 0);
-    instance = new SingleArray(values, 99);
-    isUndefined(instance.get(100));
+    instance.set(-1, random());
+    instance.set(102, random());
+    isClose(instance.getAll(), [...values, 0]);
+    isUndefined(instance.get(-1));
+    isUndefined(instance.get(102));
+  });
+
+  it('should handle resize correctly for array without value and size', () => {
+    instance = new SingleArray();
+    instance.set(2, values[0]);
+    isClose(instance.getAll(), [0, values[0]]);
+    isEqual(instance.get(3), 0);
   });
 });

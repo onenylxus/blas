@@ -32,30 +32,35 @@ describe('Double type', () => {
     instance.set(value);
     instance.add(1);
     isEqual(instance.get(), value + 1);
+    isEqual(Double.add(value, 1).get(), value + 1);
   });
 
   it('should subtract value correctly', () => {
     instance.set(value);
     instance.sub(1);
     isEqual(instance.get(), value - 1);
+    isEqual(Double.sub(value, 1).get(), value - 1);
   });
 
   it('should multiply value correctly', () => {
     instance.set(value);
     instance.mul(2);
     isEqual(instance.get(), value * 2);
+    isEqual(Double.mul(value, 2).get(), value * 2);
   });
 
   it('should divide value correctly', () => {
     instance.set(value);
     instance.div(2);
     isEqual(instance.get(), value / 2);
+    isEqual(Double.div(value, 2).get(), value / 2);
   });
 
   it('should exponent value correctly', () => {
     instance.set(value);
     instance.pow(2);
     isEqual(instance.get(), value ** 2);
+    isEqual(Double.pow(value, 2).get(), value ** 2);
   });
 
   it('should compare equal to value correctly', () => {

@@ -32,36 +32,42 @@ describe('Integer type', () => {
     instance.set(value);
     instance.add(1);
     isClose(instance.get(), value + 1);
+    isClose(Integer.add(value, 1).get(), value + 1);
   });
 
   it('should subtract value correctly', () => {
     instance.set(value);
     instance.sub(1);
     isClose(instance.get(), value - 1);
+    isClose(Integer.sub(value, 1).get(), value - 1);
   });
 
   it('should multiply value correctly', () => {
     instance.set(value);
     instance.mul(2);
     isClose(instance.get(), value * 2);
+    isClose(Integer.mul(value, 2).get(), value * 2);
   });
 
   it('should divide value correctly', () => {
     instance.set(value);
     instance.div(2);
     isClose(instance.get(), value / 2);
+    isClose(Integer.div(value, 2).get(), value / 2);
   });
 
   it('should module value correctly', () => {
     instance.set(value);
     instance.mod(2);
     isClose(instance.get(), value % 2);
+    isClose(Integer.mod(value, 2).get(), value % 2);
   });
 
   it('should exponent value correctly', () => {
     instance.set(value);
     instance.pow(2);
     isClose(instance.get(), value ** 2);
+    isClose(Integer.pow(value, 2).get(), value ** 2);
   });
 
   it('should compare equal to value correctly', () => {

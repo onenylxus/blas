@@ -33,30 +33,35 @@ describe('Single type', () => {
     instance.set(value);
     instance.add(1);
     isClose(instance.get(), value + 1);
+    isClose(Single.add(value, 1).get(), value + 1);
   });
 
   it('should subtract value correctly', () => {
     instance.set(value);
     instance.sub(1);
     isClose(instance.get(), value - 1);
+    isClose(Single.sub(value, 1).get(), value - 1);
   });
 
   it('should multiply value correctly', () => {
     instance.set(value);
     instance.mul(2);
     isClose(instance.get(), value * 2);
+    isClose(Single.mul(value, 2).get(), value * 2);
   });
 
   it('should divide value correctly', () => {
     instance.set(value);
     instance.div(2);
     isClose(instance.get(), value / 2);
+    isClose(Single.div(value, 2).get(), value / 2);
   });
 
   it('should exponent value correctly', () => {
     instance.set(value);
     instance.pow(2);
     isClose(instance.get(), value ** 2);
+    isClose(Single.pow(value, 2).get(), value ** 2);
   });
 
   it('should compare equal to value correctly', () => {
