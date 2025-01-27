@@ -1,4 +1,5 @@
 // Input interface
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface Input extends FParameters {}
 
 // Output interface

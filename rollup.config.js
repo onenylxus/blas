@@ -18,7 +18,7 @@ export default {
     commonjs(),
     json({ compact: true }),
     resolve({ preferBuiltins: true }),
-    typescript(),
+    typescript({ outDir: 'dist' }),
     terser(),
   ],
   treeshake: true,

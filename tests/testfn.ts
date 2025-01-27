@@ -76,7 +76,7 @@ export function isFalse(value: any): void {
 // Equal test function
 export function isEqual(left: any, right: any): void {
   const test: boolean = compare(left, right, 0);
-  test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
+  return test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
 }
 
 // Strict equal test function
@@ -87,11 +87,13 @@ export function isStrictEqual(left: any, right: any): void {
 // Close test function
 export function isClose(left: any, right: any, precision: number = 1e-5): void {
   const test: boolean = compare(left, right, precision);
-  test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
+  return test ? expect(test).toBeTruthy() : expect(left).toEqual(right);
 }
 
 // Performance test function
 export function isFast(time: number, limit: number = 1e4): void {
   const test: boolean = time <= limit;
-  test ? expect(test).toBeTruthy() : expect(time).toBeLessThanOrEqual(limit);
+  return test
+    ? expect(test).toBeTruthy()
+    : expect(time).toBeLessThanOrEqual(limit);
 }
