@@ -48,6 +48,9 @@ describe('Double complex array type', () => {
     isEqual(instance.getAll(), [...values, toDual(0, 0)]);
     isUndefined(instance.get(-1));
     isUndefined(instance.get(102));
+
+    instance = new DoubleComplexArray(values, 99);
+    isUndefined(instance.get(100));
   });
 
   it('should handle resize correctly for array without value and size', () => {

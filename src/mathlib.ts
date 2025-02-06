@@ -1,17 +1,7 @@
 // Import
-import { Complex } from './structs/complex';
+import { Dynamic, reduce } from './structs/dynamic';
 import { Simple } from './structs/simple';
 import { toDual } from '../utils/complex';
-
-// Dynamic type handling
-type Dynamic = number | Dual | Simple | Complex<any>;
-const reduce = (value: Dynamic): number | Dual => {
-  let result: Dynamic = value;
-  if (result instanceof Simple || result instanceof Complex) {
-    result = result.get();
-  }
-  return result;
-};
 
 // Math object constants
 // export const E: number = Math.E;

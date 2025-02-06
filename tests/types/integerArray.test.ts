@@ -47,6 +47,9 @@ describe('Integer array type', () => {
     isClose(instance.getAll(), [...values, 0]);
     isUndefined(instance.get(-1));
     isUndefined(instance.get(102));
+
+    instance = new IntegerArray(values, 99);
+    isUndefined(instance.get(100));
   });
 
   it('should handle resize correctly for array without value and size', () => {
