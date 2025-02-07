@@ -51,7 +51,7 @@
 🟢 **CSSCAL** - x = a\*x\
 🟢 **CCOPY** - copy x into y\
 🟢 **CAXPY** - y = a\*x + y\
-⚫ **CDOTU** - dot product\
+🔴 **CDOTU** - dot product\
 ⚫ **CDOTC** - dot product, conjugating the first vector\
 🔴 **SCASUM** - sum of absolute values\
 🟢 **ICAMAX** - index of max abs value
