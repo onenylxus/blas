@@ -1,3 +1,4 @@
+// Import
 import { SingleComplex, C } from '../../types/singleComplex';
 import { SingleComplexArray, CA } from '../../types/singleComplexArray';
 import { Integer, I } from '../../types/integer';

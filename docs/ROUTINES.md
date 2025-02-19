@@ -66,7 +66,7 @@
 🟢 **ZCOPY** - copy x into y\
 🟢 **ZAXPY** - y = a\*x + y\
 🔴 **ZDOTU** - dot product\
-⚫ **ZDOTC** - dot product, conjugating the first vector\
+🔴 **ZDOTC** - dot product, conjugating the first vector\
 🔴 **DZASUM** - sum of absolute values\
 🟢 **IZAMAX** - index of max abs value
 
