@@ -1,10 +1,5 @@
-// Import
-import { Double, D } from '../../types/double';
-import { DoubleArray, DA } from '../../types/doubleArray';
-import { Integer, I } from '../../types/integer';
-import { vsize } from '../../macro';
+import { fortranRealVector } from '@/utils/vector';
 
-// Input interface
 interface Input extends FParameters {
   n: FInteger;
   dx: FDoubleArray;
@@ -13,97 +8,46 @@ interface Input extends FParameters {
   incy: FInteger;
 }
 
-// Output interface
 interface Output extends FParameters {
   _ret: FEmpty;
-  n: FInteger | FEmpty;
+  n: FInteger;
   dx: FDoubleArray;
-  incx: FInteger | FEmpty;
+  incx: FInteger;
   dy: FDoubleArray;
-  incy: FInteger | FEmpty;
+  incy: FInteger;
 }
 
-// DSWAP routine
 const dswap = ({ n, dx, incx, dy, incy }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
+  const x = fortranRealVector(dx, n, incx);
+  const y = fortranRealVector(dy, n, incy);
 
-  // Arguments
-  const _n: I = new Integer(n);
-  const _dx: DA = new DoubleArray(dx);
-  const _incx: I = new Integer(incx);
-  const _dy: DA = new DoubleArray(dy);
-  const _incy: I = new Integer(incy);
+  if (n > 0) {
+    let ix = incx < 0 ? (1 - n) * incx + 1 : 1;
+    let iy = incy < 0 ? (1 - n) * incy + 1 : 1;
 
-  // Resolve function
-  const resolve = (): Output => ({
+    for (let i = 0; i < n; i += 1) {
+      const value = x.getElement(ix).value;
+      x.setElement(y.getElement(iy).value, ix);
+      y.setElement(value, iy);
+      ix += incx;
+      iy += incy;
+    }
+  }
+
+  const requiredX = n > 0 ? (n - 1) * Math.abs(incx) + 1 : dx.length;
+  const requiredY = n > 0 ? (n - 1) * Math.abs(incy) + 1 : dy.length;
+  return {
     _ret: undefined,
-    n: _n.get(),
-    dx: _dx.getAll(),
-    incx: _incx.get(),
-    dy: _dy.getAll(),
-    incy: _incy.get(),
-  });
-
-  // Local variables
-  const dtemp: D = new Double();
-  const ix: I = new Integer();
-  const iy: I = new Integer();
-  const m: I = new Integer();
-  const mp1: I = new Integer();
-  const i: I = new Integer();
-
-  // Process
-  if (_n.le(0)) {
-    return resolve();
-  }
-  if (_incx.eq(1) && _incy.eq(1)) {
-    m.set(_n.get() % 3);
-    if (m.ne(0)) {
-      for (i.set(1); i.le(m); i.add(1)) {
-        dtemp.set(_dx.get(i));
-        _dx.set(i, _dy.get(i));
-        _dy.set(i, dtemp);
-      }
-      if (_n.lt(3)) {
-        return resolve();
-      }
-    }
-    mp1.set(m.get() + 1);
-    for (i.set(mp1); i.le(_n); i.add(3)) {
-      dtemp.set(_dx.get(i));
-      _dx.set(i, _dy.get(i));
-      _dy.set(i, dtemp);
-      dtemp.set(_dx.get(i.get() + 1));
-      _dx.set(i.get() + 1, _dy.get(i.get() + 1));
-      _dy.set(i.get() + 1, dtemp);
-      dtemp.set(_dx.get(i.get() + 2));
-      _dx.set(i.get() + 2, _dy.get(i.get() + 2));
-      _dy.set(i.get() + 2, dtemp);
-    }
-  } else {
-    ix.set(1);
-    iy.set(1);
-    if (_incx.lt(0)) {
-      ix.set(vsize(_n, _incx));
-    }
-    if (_incy.lt(0)) {
-      iy.set(vsize(_n, _incy));
-    }
-    for (i.set(1); i.le(_n); i.add(1)) {
-      dtemp.set(_dx.get(ix));
-      _dx.set(ix, _dy.get(iy));
-      _dy.set(iy, dtemp);
-      ix.add(_incx);
-      iy.add(_incy);
-    }
-  }
-
-  // Output
-  return resolve();
+    n,
+    dx: x.toColumnMajorArray().slice(0, Math.max(dx.length, requiredX)),
+    incx,
+    dy: y.toColumnMajorArray().slice(0, Math.max(dy.length, requiredY)),
+    incy,
+  };
 };
 
-// Export
 export default dswap;
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.

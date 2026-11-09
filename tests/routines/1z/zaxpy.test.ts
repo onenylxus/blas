@@ -1,6 +1,6 @@
 // Import
 import { isEqual, isFast, isUndefined, perf, report } from '../../testfn';
-import { printDual } from '../../../utils/complex';
+import { printComplex } from '../../../utils/complex';
 import blas from '../../../src';
 import data from '../../data/1z/zaxpy.json';
 
@@ -19,7 +19,7 @@ describe('ZAXPY routine test', () => {
     const { result, time } = perf(blas.zaxpy, { n, za, zx, incx, zy, incy });
 
     // Run test
-    it(`Case ${++i}: n{${n}},za{${printDual(za)}},zx[${zx.length}],incx{${incx}},zy[${zy.length}],incy{${incy}}`, () => {
+    it(`Case ${++i}: n{${n}},za{${printComplex(za)}},zx[${zx.length}],incx{${incx}},zy[${zy.length}],incy{${incy}}`, () => {
       isUndefined(result._ret);
       isEqual(result.n, n);
       isEqual(result.za, za);

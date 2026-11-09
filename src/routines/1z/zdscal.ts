@@ -1,70 +1,51 @@
-// Import
-import { toDual } from '../../../utils/complex';
-import { Integer, I } from '../../types/integer';
-import { Double, D } from '../../types/double';
-import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.
 
-// Input interface
+import { fortranComplexVector } from '@/utils/vector';
+
 interface Input extends FParameters {
   n: FInteger;
   da: FReal;
-  zx: FComplexArray;
+  zx: FDoubleComplexArray;
   incx: FInteger;
 }
 
-// Output interface
 interface Output extends FParameters {
   _ret: FEmpty;
-  n: FInteger | FEmpty;
-  da: FReal | FEmpty;
-  zx: FComplexArray;
-  incx: FInteger | FEmpty;
+  n: FInteger;
+  da: FReal;
+  zx: FDoubleComplexArray;
+  incx: FInteger;
 }
 
-// ZDSCAL routine
 const zdscal = ({ n, da, zx, incx }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
-
-  // Arguments
-  const _n: I = new Integer(n);
-  const _da: D = new Double(da);
-  const _zx: ZA = new DoubleComplexArray(zx);
-  const _incx: I = new Integer(incx);
-
-  // Resolve function
-  const resolve = (): Output => ({
+  n = Math.trunc(n);
+  incx = Math.trunc(incx);
+  const alpha = da;
+  const x = fortranComplexVector(zx, n, incx, 16);
+  const active = n > 0 && incx > 0 && alpha !== 1;
+  if (active) {
+    let ix = 1;
+    for (let i = 0; i < n; i += 1) {
+      const xv = x.getElement(ix).value;
+      x.setElement({ r: alpha * xv.r, i: alpha * xv.i }, ix);
+      ix += incx;
+    }
+  }
+  return {
     _ret: undefined,
-    n: _n.get(),
-    da: _da.get(),
-    zx: _zx.getAll(),
-    incx: _incx.get(),
-  });
-
-  // Local variables
-  const i: I = new Integer();
-  const nincx: I = new Integer();
-
-  // Process
-  if (_n.le(0) || _incx.le(0) || _da.eq(1)) {
-    return resolve();
-  }
-  if (_incx.eq(1)) {
-    for (i.set(1); i.le(n); i.add(1)) {
-      _zx.set(i, toDual(_da.get() * _zx.get(i).r, _da.get() * _zx.get(i).i));
-    }
-  } else {
-    nincx.set(_n.get() * _incx.get());
-    for (i.set(1); i.le(nincx); i.add(_incx)) {
-      _zx.set(i, toDual(_da.get() * _zx.get(i).r, _da.get() * _zx.get(i).i));
-    }
-  }
-
-  // Output
-  return resolve();
+    n,
+    da: alpha,
+    zx: x
+      .toColumnMajorArray()
+      .slice(
+        0,
+        active ? Math.max(zx.length, (n - 1) * Math.abs(incx) + 1) : zx.length,
+      ),
+    incx,
+  };
 };
 
-// Export
 export default zdscal;

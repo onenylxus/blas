@@ -1,10 +1,10 @@
-// Import
-import { Double, D } from '../../types/double';
-import { DoubleArray, DA } from '../../types/doubleArray';
-import { Integer, I } from '../../types/integer';
-import { GAM, GAMSQ, RGAMSQ, abs } from '../../mathlib';
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.
 
-// Input interface
+import { REAL } from '@f';
+
 interface Input extends FParameters {
   dd1: FDouble;
   dd2: FDouble;
@@ -13,177 +13,165 @@ interface Input extends FParameters {
   dparam: FDoubleArray | FEmpty;
 }
 
-// Output interface
 interface Output extends FParameters {
   _ret: FEmpty;
   dd1: FDouble;
   dd2: FDouble;
   dx1: FDouble;
-  dy1: FDouble | FEmpty;
+  dy1: FDouble;
   dparam: FDoubleArray;
 }
 
-// DROTMG routine
 const drotmg = ({ dd1, dd2, dx1, dy1, dparam }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
+  const param = REAL(
+    [
+      ...(dparam ?? []).slice(0, 5),
+      ...Array<number>(Math.max(0, 5 - (dparam ?? []).length)).fill(0),
+    ],
+    8,
+  );
+  let flag = -1;
+  let h11 = 0;
+  let h12 = 0;
+  let h21 = 0;
+  let h22 = 0;
+  let p1: number;
+  let p2: number;
+  let q1: number;
+  let q2: number;
+  let temp: number;
+  let u: number;
 
-  // Arguments
-  const _dd1: D = new Double(dd1);
-  const _dd2: D = new Double(dd2);
-  const _dx1: D = new Double(dx1);
-  const _dy1: D = new Double(dy1);
-  const _dparam: DA = new DoubleArray(dparam, 5);
-
-  // Resolve function
-  const resolve = (): Output => ({
-    _ret: undefined,
-    dd1: _dd1.get(),
-    dd2: _dd2.get(),
-    dx1: _dx1.get(),
-    dy1: _dy1.get(),
-    dparam: _dparam.getAll(),
-  });
-
-  // Local variables
-  const dflag: I = new Integer();
-  const dh11: D = new Double();
-  const dh12: D = new Double();
-  const dh21: D = new Double();
-  const dh22: D = new Double();
-  const dp1: D = new Double();
-  const dp2: D = new Double();
-  const dq1: D = new Double();
-  const dq2: D = new Double();
-  const dtemp: D = new Double();
-  const du: D = new Double();
-
-  // Process
-  if (_dd1.lt(0)) {
-    dflag.set(-1);
-    dh11.set(0);
-    dh12.set(0);
-    dh21.set(0);
-    dh22.set(0);
-    _dd1.set(0);
-    _dd2.set(0);
-    _dx1.set(0);
+  if (dd1 < 0) {
+    dd1 = 0;
+    dd2 = 0;
+    dx1 = 0;
   } else {
-    dp2.set(_dd2.get() * _dy1.get());
-    if (dp2.eq(0)) {
-      dflag.set(-2);
-      _dparam.set(1, dflag);
-      return resolve();
+    p2 = dd2 * dy1;
+    if (p2 === 0) {
+      param.setElement(-2, 1);
+      return {
+        _ret: undefined,
+        dd1,
+        dd2,
+        dx1,
+        dy1,
+        dparam: param.toColumnMajorArray(),
+      };
     }
-    dp1.set(_dd1.get() * _dx1.get());
-    dq2.set(dp2.get() * _dy1.get());
-    dq1.set(dp1.get() * _dx1.get());
-    if (abs(dq1.get()) > abs(dq2.get())) {
-      dh21.set(-_dy1.get() / _dx1.get());
-      dh12.set(dp2.get() / dp1.get());
-      du.set(1 - dh12.get() / dh21.get());
-      if (du.gt(0)) {
-        dflag.set(0);
-        _dd1.div(du);
-        _dd2.div(du);
-        _dx1.mul(du);
+    p1 = dd1 * dx1;
+    q2 = p2 * dy1;
+    q1 = p1 * dx1;
+    if (Math.abs(q1) > Math.abs(q2)) {
+      h21 = -dy1 / dx1;
+      h12 = p2 / p1;
+      u = 1 - h12 * h21;
+      if (u > 0) {
+        flag = 0;
+        dd1 /= u;
+        dd2 /= u;
+        dx1 *= u;
       } else {
-        dflag.set(-1);
-        dh11.set(0);
-        dh12.set(0);
-        dh21.set(0);
-        dh22.set(0);
-        _dd1.set(0);
-        _dd2.set(0);
-        _dx1.set(0);
+        h11 = 0;
+        h12 = 0;
+        h21 = 0;
+        h22 = 0;
+        dd1 = 0;
+        dd2 = 0;
+        dx1 = 0;
       }
+    } else if (q2 < 0) {
+      h11 = 0;
+      h12 = 0;
+      h21 = 0;
+      h22 = 0;
+      dd1 = 0;
+      dd2 = 0;
+      dx1 = 0;
     } else {
-      if (dq2.lt(0)) {
-        dflag.set(-1);
-        dh11.set(0);
-        dh12.set(0);
-        dh21.set(0);
-        dh22.set(0);
-        _dd1.set(0);
-        _dd2.set(0);
-        _dx1.set(0);
-      } else {
-        dflag.set(1);
-        dh11.set(dp1.get() / dp2.get());
-        dh22.set(_dx1.get() / _dy1.get());
-        du.set(1 + dh11.get() * dh22.get());
-        dtemp.set(_dd2.get() / du.get());
-        _dd2.set(_dd1.get() / du.get());
-        _dd1.set(dtemp);
-        _dx1.set(_dy1.get() * du.get());
-      }
+      flag = 1;
+      h11 = p1 / p2;
+      h22 = dx1 / dy1;
+      u = 1 + h11 * h22;
+      temp = dd2 / u;
+      dd2 = dd1 / u;
+      dd1 = temp;
+      dx1 = dy1 * u;
     }
-    if (_dd1.ne(0)) {
-      while (_dd1.le(RGAMSQ) || _dd1.ge(GAMSQ)) {
-        if (dflag.eq(0)) {
-          dh11.set(1);
-          dh22.set(1);
-          dflag.set(-1);
-        } else {
-          dh21.set(-1);
-          dh12.set(1);
-          dflag.set(-1);
-        }
-        if (_dd1.le(RGAMSQ)) {
-          _dd1.mul(GAMSQ);
-          _dx1.div(GAM);
-          dh11.div(GAM);
-          dh12.div(GAM);
-        } else {
-          _dd1.div(GAMSQ);
-          _dx1.mul(GAM);
-          dh11.mul(GAM);
-          dh12.mul(GAM);
-        }
-      }
-    }
-    if (_dd2.get() !== 0) {
-      while (abs(_dd2.get()) <= RGAMSQ || abs(_dd2.get()) >= GAMSQ) {
-        if (dflag.eq(0)) {
-          dh11.set(1);
-          dh22.set(1);
-          dflag.set(-1);
-        } else {
-          dh21.set(-1);
-          dh12.set(1);
-          dflag.set(-1);
-        }
-        if (abs(_dd2.get()) <= RGAMSQ) {
-          _dd2.mul(GAMSQ);
-          dh21.div(GAM);
-          dh22.div(GAM);
-        } else {
-          _dd2.div(GAMSQ);
-          dh21.mul(GAM);
-          dh22.mul(GAM);
-        }
-      }
-    }
-  }
-  if (dflag.lt(0)) {
-    _dparam.set(2, dh11);
-    _dparam.set(3, dh21);
-    _dparam.set(4, dh12);
-    _dparam.set(5, dh22);
-  } else if (dflag.eq(0)) {
-    _dparam.set(3, dh21);
-    _dparam.set(4, dh12);
-  } else {
-    _dparam.set(2, dh11);
-    _dparam.set(5, dh22);
-  }
-  _dparam.set(1, dflag);
 
-  // Output
-  return resolve();
+    const gam = 4096;
+    const gamsq = gam * gam;
+    const rgamsq = 1 / gamsq;
+    if (dd1 !== 0) {
+      while (Number.isFinite(dd1) && (dd1 <= rgamsq || dd1 >= gamsq)) {
+        if (flag === 0) {
+          h11 = 1;
+          h22 = 1;
+        } else {
+          h21 = -1;
+          h12 = 1;
+        }
+        flag = -1;
+        if (dd1 <= rgamsq) {
+          dd1 *= gamsq;
+          dx1 /= gam;
+          h11 /= gam;
+          h12 /= gam;
+        } else {
+          dd1 /= gamsq;
+          dx1 *= gam;
+          h11 *= gam;
+          h12 *= gam;
+        }
+      }
+    }
+    if (dd2 !== 0) {
+      while (
+        Number.isFinite(dd2) &&
+        (Math.abs(dd2) <= rgamsq || Math.abs(dd2) >= gamsq)
+      ) {
+        if (flag === 0) {
+          h11 = 1;
+          h22 = 1;
+        } else {
+          h21 = -1;
+          h12 = 1;
+        }
+        flag = -1;
+        if (Math.abs(dd2) <= rgamsq) {
+          dd2 *= gamsq;
+          h21 /= gam;
+          h22 /= gam;
+        } else {
+          dd2 /= gamsq;
+          h21 *= gam;
+          h22 *= gam;
+        }
+      }
+    }
+  }
+
+  if (flag < 0) {
+    param.setElement(h11, 2);
+    param.setElement(h21, 3);
+    param.setElement(h12, 4);
+    param.setElement(h22, 5);
+  } else if (flag === 0) {
+    param.setElement(h21, 3);
+    param.setElement(h12, 4);
+  } else {
+    param.setElement(h11, 2);
+    param.setElement(h22, 5);
+  }
+  param.setElement(flag, 1);
+  return {
+    _ret: undefined,
+    dd1,
+    dd2,
+    dx1,
+    dy1,
+    dparam: param.toColumnMajorArray(),
+  };
 };
 
-// Export
 export default drotmg;

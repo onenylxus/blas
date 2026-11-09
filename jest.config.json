@@ -1,6 +1,24 @@
 {
   "collectCoverage": true,
   "collectCoverageFrom": ["src/**/*.ts"],
+  "moduleNameMapper": {
+    "^@/utils/(.*)$": "<rootDir>/utils/$1",
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^@f$": "<rootDir>/fortran-ts/src/index.ts"
+  },
+  "extensionsToTreatAsEsm": [".ts"],
   "preset": "ts-jest",
+  "transform": {
+    "^.+\\.tsx?$": [
+      "ts-jest",
+      {
+        "useESM": true,
+        "tsconfig": {
+          "module": "ESNext",
+          "moduleResolution": "Node"
+        }
+      }
+    ]
+  },
   "testSequencer": "./tests/sequencer.js"
 }

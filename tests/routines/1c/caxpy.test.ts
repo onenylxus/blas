@@ -7,7 +7,7 @@ import {
   perf,
   report,
 } from '../../testfn';
-import { printDual } from '../../../utils/complex';
+import { printComplex } from '../../../utils/complex';
 import blas from '../../../src';
 import data from '../../data/1c/caxpy.json';
 
@@ -26,7 +26,7 @@ describe('CAXPY routine test', () => {
     const { result, time } = perf(blas.caxpy, { n, ca, cx, incx, cy, incy });
 
     // Run test
-    it(`Case ${++i}: n{${n}},ca{${printDual(ca)}},cx[${cx.length}],incx{${incx}},cy[${cy.length}],incy{${incy}}`, () => {
+    it(`Case ${++i}: n{${n}},ca{${printComplex(ca)}},cx[${cx.length}],incx{${incx}},cy[${cy.length}],incy{${incy}}`, () => {
       isUndefined(result._ret);
       isEqual(result.n, n);
       isClose(result.ca, ca);

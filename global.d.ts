@@ -1,13 +1,10 @@
-// Dual number type
-type Dual = { r: number; i: number };
-
-// Fortran data types
+// BLAS argument and result types
 type FCharacter = string;
-type FComplex = Dual;
+type FComplex = Complex;
 type FComplexArray = FComplex[];
 type FDouble = number;
 type FDoubleArray = FDouble[];
-type FDoubleComplex = Dual;
+type FDoubleComplex = Complex;
 type FDoubleComplexArray = FDoubleComplex[];
 type FEmpty = undefined;
 type FInteger = number;

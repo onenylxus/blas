@@ -1,10 +1,10 @@
-// Import
-import { Integer, I } from '../../types/integer';
-import { DoubleComplex, Z } from '../../types/doubleComplex';
-import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
-import { vsize } from '../../macro';
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.
 
-// Input interface
+import { fortranComplexVector } from '@/utils/vector';
+
 interface Input extends FParameters {
   n: FInteger;
   zx: FDoubleComplexArray;
@@ -13,77 +13,52 @@ interface Input extends FParameters {
   incy: FInteger;
 }
 
-// Output interface
 interface Output extends FParameters {
   _ret: FEmpty;
-  n: FInteger | FEmpty;
+  n: FInteger;
   zx: FDoubleComplexArray;
-  incx: FInteger | FEmpty;
+  incx: FInteger;
   zy: FDoubleComplexArray;
-  incy: FInteger | FEmpty;
+  incy: FInteger;
 }
 
-// ZSWAP routine
 const zswap = ({ n, zx, incx, zy, incy }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
-
-  // Arguments
-  const _n: I = new Integer(n);
-  const _zx: ZA = new DoubleComplexArray(zx);
-  const _incx: I = new Integer(incx);
-  const _zy: ZA = new DoubleComplexArray(zy);
-  const _incy: I = new Integer(incy);
-
-  // Resolve function
-  const resolve = (): Output => ({
+  n = Math.trunc(n);
+  incx = Math.trunc(incx);
+  incy = Math.trunc(incy);
+  const x = fortranComplexVector(zx, n, incx, 16);
+  const y = fortranComplexVector(zy, n, incy, 16);
+  const active = n > 0;
+  if (active) {
+    let ix = incx < 0 ? (1 - n) * incx + 1 : 1;
+    let iy = incy < 0 ? (1 - n) * incy + 1 : 1;
+    for (let i = 0; i < n; i += 1) {
+      const xv = x.getElement(ix).value;
+      const yv = y.getElement(iy).value;
+      x.setElement(yv, ix);
+      y.setElement(xv, iy);
+      ix += incx;
+      iy += incy;
+    }
+  }
+  return {
     _ret: undefined,
-    n: _n.get(),
-    zx: _zx.getAll(),
-    incx: _incx.get(),
-    zy: _zy.getAll(),
-    incy: _incy.get(),
-  });
-
-  // Local variables
-  const ztemp: Z = new DoubleComplex();
-  const i: I = new Integer();
-  const ix: I = new Integer();
-  const iy: I = new Integer();
-
-  // Process
-  if (_n.le(0)) {
-    return resolve();
-  }
-  if (_incx.eq(1) && _incy.eq(1)) {
-    for (i.set(1); i.le(_n); i.add(1)) {
-      ztemp.set(_zx.get(i));
-      _zx.set(i, _zy.get(i));
-      _zy.set(i, ztemp);
-    }
-  } else {
-    ix.set(1);
-    iy.set(1);
-    if (_incx.lt(0)) {
-      ix.set(vsize(_n, _incx));
-    }
-    if (_incy.lt(0)) {
-      iy.set(vsize(_n, _incy));
-    }
-    for (i.set(1); i.le(_n); i.add(1)) {
-      ztemp.set(_zx.get(ix));
-      _zx.set(ix, _zy.get(iy));
-      _zy.set(iy, ztemp);
-      ix.add(_incx);
-      iy.add(_incy);
-    }
-  }
-
-  // Output
-  return resolve();
+    n,
+    zx: x
+      .toColumnMajorArray()
+      .slice(
+        0,
+        active ? Math.max(zx.length, (n - 1) * Math.abs(incx) + 1) : zx.length,
+      ),
+    incx,
+    zy: y
+      .toColumnMajorArray()
+      .slice(
+        0,
+        active ? Math.max(zy.length, (n - 1) * Math.abs(incy) + 1) : zy.length,
+      ),
+    incy,
+  };
 };
 
-// Export
 export default zswap;

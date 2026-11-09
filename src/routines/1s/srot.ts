@@ -1,10 +1,10 @@
-// Import
-import { Integer, I } from '../../types/integer';
-import { Single, S } from '../../types/single';
-import { SingleArray, SA } from '../../types/singleArray';
-import { vsize } from '../../macro';
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.
 
-// Input interface
+import { fortranRealVector } from '@/utils/vector';
+
 interface Input extends FParameters {
   n: FInteger;
   sx: FRealArray;
@@ -15,83 +15,42 @@ interface Input extends FParameters {
   s: FReal;
 }
 
-// Output interface
-interface Output extends FParameters {
+interface Output extends Input {
   _ret: FEmpty;
-  n: FInteger | FEmpty;
-  sx: FRealArray;
-  incx: FInteger | FEmpty;
-  sy: FRealArray;
-  incy: FInteger | FEmpty;
-  c: FReal | FEmpty;
-  s: FReal | FEmpty;
 }
 
-// SROT routine
 const srot = ({ n, sx, incx, sy, incy, c, s }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
-
-  // Arguments
-  const _n: I = new Integer(n);
-  const _sx: SA = new SingleArray(sx);
-  const _incx: I = new Integer(incx);
-  const _sy: SA = new SingleArray(sy);
-  const _incy: I = new Integer(incy);
-  const _c: S = new Single(c);
-  const _s: S = new Single(s);
-
-  // Resolve function
-  const resolve = (): Output => ({
+  n = Math.trunc(n);
+  incx = Math.trunc(incx);
+  incy = Math.trunc(incy);
+  c = Math.fround(c);
+  s = Math.fround(s);
+  const x = fortranRealVector(sx, n, incx, 4);
+  const y = fortranRealVector(sy, n, incy, 4);
+  let ix = incx < 0 ? (1 - n) * incx + 1 : 1;
+  let iy = incy < 0 ? (1 - n) * incy + 1 : 1;
+  for (let i = 0; i < n; i += 1) {
+    const xv = x.getElement(ix).value;
+    const yv = y.getElement(iy).value;
+    x.setElement(c * xv + s * yv, ix);
+    y.setElement(c * yv - s * xv, iy);
+    ix += incx;
+    iy += incy;
+  }
+  const xLength =
+    n > 0 ? Math.max(sx.length, (n - 1) * Math.abs(incx) + 1) : sx.length;
+  const yLength =
+    n > 0 ? Math.max(sy.length, (n - 1) * Math.abs(incy) + 1) : sy.length;
+  return {
     _ret: undefined,
-    n: _n.get(),
-    sx: _sx.getAll(),
-    incx: _incx.get(),
-    sy: _sy.getAll(),
-    incy: _incy.get(),
-    c: _c.get(),
-    s: _s.get(),
-  });
-
-  // Local variables
-  const stemp: S = new Single();
-  const i: I = new Integer();
-  const ix: I = new Integer();
-  const iy: I = new Integer();
-
-  // Process
-  if (_n.le(0)) {
-    return resolve();
-  }
-  if (_incx.eq(1) && _incy.eq(1)) {
-    for (i.set(1); i.le(_n); i.add(1)) {
-      stemp.set(_c.get() * _sx.get(i) + _s.get() * _sy.get(i));
-      _sy.set(i, _c.get() * _sy.get(i) - _s.get() * _sx.get(i));
-      _sx.set(i, stemp);
-    }
-  } else {
-    ix.set(0);
-    iy.set(0);
-    if (_incx.lt(0)) {
-      ix.set(vsize(_n, _incx));
-    }
-    if (_incy.lt(0)) {
-      iy.set(vsize(_n, _incy));
-    }
-    for (i.set(1); i.le(_n); i.add(1)) {
-      stemp.set(_c.get() * _sx.get(ix) + _s.get() * _sy.get(iy));
-      _sy.set(iy, _c.get() * _sy.get(iy) - _s.get() * _sx.get(ix));
-      _sx.set(ix, stemp);
-      ix.add(_incx);
-      iy.add(_incy);
-    }
-  }
-
-  // Output
-  return resolve();
+    n,
+    sx: x.toColumnMajorArray().slice(0, xLength),
+    incx,
+    sy: y.toColumnMajorArray().slice(0, yLength),
+    incy,
+    c,
+    s,
+  };
 };
 
-// Export
 export default srot;

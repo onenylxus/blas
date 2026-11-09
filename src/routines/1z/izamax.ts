@@ -1,84 +1,47 @@
-// Import
-import { Integer, I } from '../../types/integer';
-import { Double, D } from '../../types/double';
-import { DoubleComplexArray, ZA } from '../../types/doubleComplexArray';
-import { cabs } from '../../mathlib';
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.
 
-// Input interface
+import { fortranComplexVector } from '@/utils/vector';
+
 interface Input extends FParameters {
   n: FInteger;
-  zx: FComplexArray;
+  zx: FDoubleComplexArray;
   incx: FInteger;
 }
 
-// Output interface
 interface Output extends FParameters {
   _ret: FInteger;
-  n: FInteger | FEmpty;
-  zx: FComplexArray | FEmpty;
-  incx: FInteger | FEmpty;
+  n: FInteger;
+  zx: FDoubleComplexArray;
+  incx: FInteger;
 }
 
-// IZAMAX routine
 const izamax = ({ n, zx, incx }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
-
-  // Arguments
-  const _n: I = new Integer(n);
-  const _zx: ZA = new DoubleComplexArray(zx);
-  const _incx: I = new Integer(incx);
-
-  // Return value
-  const _ret: I = new Integer();
-
-  // Resolve function
-  const resolve = (): Output => ({
-    _ret: _ret.get(),
-    n: _n.get(),
-    zx: _zx.getAll(),
-    incx: _incx.get(),
-  });
-
-  // Local variables
-  const dmax: D = new Double();
-  const i: I = new Integer();
-  const ix: I = new Integer();
-
-  // Process
-  if (_n.lt(1) || _incx.le(0)) {
-    return resolve();
-  }
-  _ret.set(1);
-  if (_n.eq(1)) {
-    return resolve();
-  }
-  if (_incx.eq(1)) {
-    dmax.set(cabs(_zx.get(1)));
-    for (i.set(2); i.le(_n); i.add(1)) {
-      if (cabs(_zx.get(i)) > dmax.get()) {
-        _ret.set(i);
-        dmax.set(cabs(_zx.get(i)));
+  n = Math.trunc(n);
+  incx = Math.trunc(incx);
+  const x = fortranComplexVector(zx, n, incx, 16);
+  let result = 0;
+  if (n > 0 && incx > 0) {
+    result = 1;
+    const first = x.getElement(1).value;
+    let maximum = Math.abs(first.r) + Math.abs(first.i);
+    for (let i = 1; i < n; i += 1) {
+      const value = x.getElement(1 + i * incx).value;
+      const magnitude = Math.abs(value.r) + Math.abs(value.i);
+      if (magnitude > maximum) {
+        maximum = magnitude;
+        result = i + 1;
       }
     }
-  } else {
-    ix.set(1);
-    dmax.set(cabs(_zx.get(1)));
-    ix.add(_incx);
-    for (i.set(2); i.le(_n); i.add(1)) {
-      if (cabs(_zx.get(ix)) > dmax.get()) {
-        _ret.set(i);
-        dmax.set(cabs(_zx.get(ix)));
-      }
-      ix.add(_incx);
-    }
   }
-
-  // Output
-  return resolve();
+  return {
+    _ret: result,
+    n,
+    zx: x.toColumnMajorArray().slice(0, zx.length),
+    incx,
+  };
 };
 
-// Export
 export default izamax;

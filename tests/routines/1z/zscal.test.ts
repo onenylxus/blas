@@ -1,6 +1,6 @@
 // Import
 import { isEqual, isFast, isUndefined, perf, report } from '../../testfn';
-import { printDual } from '../../../utils/complex';
+import { printComplex } from '../../../utils/complex';
 import blas from '../../../src';
 import data from '../../data/1z/zscal.json';
 
@@ -17,7 +17,7 @@ describe('ZSCAL routine test', () => {
     const { result, time } = perf(blas.zscal, { n, za, zx, incx });
 
     // Run test
-    it(`Case ${++i}: n{${n}},za{${printDual(za)}},zx[${zx.length}],incx{${incx}}`, () => {
+    it(`Case ${++i}: n{${n}},za{${printComplex(za)}},zx[${zx.length}],incx{${incx}}`, () => {
       isUndefined(result._ret);
       isEqual(result.n, n);
       isEqual(result.za, za);

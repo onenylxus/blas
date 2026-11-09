@@ -1,11 +1,11 @@
-// Import
-import { Integer, I } from '../../types/integer';
-import { SingleComplex, C } from '../../types/singleComplex';
-import { SingleComplexArray, CA } from '../../types/singleComplexArray';
-import { add, cabs, mul } from '../../mathlib';
-import { vsize } from '../../macro';
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.
 
-// Input interface
+import { fortranComplexVector } from '@/utils/vector';
+import { CMPLX } from '@f';
+
 interface Input extends FParameters {
   n: FInteger;
   ca: FComplex;
@@ -15,78 +15,55 @@ interface Input extends FParameters {
   incy: FInteger;
 }
 
-// Output interface
 interface Output extends FParameters {
   _ret: FEmpty;
-  n: FInteger | FEmpty;
-  ca: FComplex | FEmpty;
-  cx: FComplexArray | FEmpty;
-  incx: FInteger | FEmpty;
+  n: FInteger;
+  ca: FComplex;
+  cx: FComplexArray;
+  incx: FInteger;
   cy: FComplexArray;
-  incy: FInteger | FEmpty;
+  incy: FInteger;
 }
 
-// CAXPY routine
 const caxpy = ({ n, ca, cx, incx, cy, incy }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
-
-  // Arguments
-  const _n: I = new Integer(n);
-  const _ca: C = new SingleComplex(ca);
-  const _cx: CA = new SingleComplexArray(cx);
-  const _incx: I = new Integer(incx);
-  const _cy: CA = new SingleComplexArray(cy);
-  const _incy: I = new Integer(incy);
-
-  // Resolve function
-  const resolve = (): Output => ({
+  n = Math.trunc(n);
+  incx = Math.trunc(incx);
+  incy = Math.trunc(incy);
+  const alpha = CMPLX(ca, 8).value;
+  const x = fortranComplexVector(cx, n, incx, 8);
+  const y = fortranComplexVector(cy, n, incy, 8);
+  const active = n > 0 && (alpha.r !== 0 || alpha.i !== 0);
+  if (active) {
+    let ix = incx < 0 ? (1 - n) * incx + 1 : 1;
+    let iy = incy < 0 ? (1 - n) * incy + 1 : 1;
+    for (let i = 0; i < n; i += 1) {
+      const xv = x.getElement(ix).value;
+      const yv = y.getElement(iy).value;
+      y.setElement(
+        {
+          r: yv.r + (alpha.r * xv.r - alpha.i * xv.i),
+          i: yv.i + (alpha.r * xv.i + alpha.i * xv.r),
+        },
+        iy,
+      );
+      ix += incx;
+      iy += incy;
+    }
+  }
+  return {
     _ret: undefined,
-    n: _n.get(),
-    ca: _ca.get(),
-    cx: _cx.getAll(),
-    incx: _incx.get(),
-    cy: _cy.getAll(),
-    incy: _incy.get(),
-  });
-
-  // Local variables
-  const i: I = new Integer();
-  const ix: I = new Integer();
-  const iy: I = new Integer();
-
-  // Process
-  if (_n.le(0)) {
-    return resolve();
-  }
-  if (cabs(_ca) === 0) {
-    return resolve();
-  }
-  if (_incx.eq(1) && _incy.eq(1)) {
-    for (i.set(1); i.le(_n); i.add(1)) {
-      _cy.set(i, add(_cy.get(i), mul(_ca, _cx.get(i))));
-    }
-  } else {
-    ix.set(1);
-    iy.set(1);
-    if (_incx.lt(0)) {
-      ix.set(vsize(_n, _incx));
-    }
-    if (_incy.lt(0)) {
-      iy.set(vsize(_n, _incy));
-    }
-    for (i.set(1); i.le(_n); i.add(1)) {
-      _cy.set(iy, add(_cy.get(iy), mul(_ca, _cx.get(ix))));
-      ix.add(_incx);
-      iy.add(_incy);
-    }
-  }
-
-  // Output
-  return resolve();
+    n,
+    ca: alpha,
+    cx: x.toColumnMajorArray().slice(0, cx.length),
+    incx,
+    cy: y
+      .toColumnMajorArray()
+      .slice(
+        0,
+        active ? Math.max(cy.length, (n - 1) * Math.abs(incy) + 1) : cy.length,
+      ),
+    incy,
+  };
 };
 
-// Export
 export default caxpy;

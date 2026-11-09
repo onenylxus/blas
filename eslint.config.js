@@ -16,7 +16,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['**/dist', '**/out-tsc', 'tests'],
+    ignores: ['**/dist', '**/out-tsc', 'fortran-ts/**', 'tests'],
   },
   ...compat.extends(
     'eslint:recommended',

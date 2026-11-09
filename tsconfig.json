@@ -1,14 +1,31 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "paths": {
+      "@/utils/*": ["./utils/*.ts"],
+      "@/*": ["./src/*"],
+      "@f": ["./fortran-ts/src/index.ts"]
+    },
     "noEmitOnError": true,
-    "lib": [],
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "outDir": "out-tsc",
     "rootDir": "./"
   },
-  "include": ["src/**/*.ts", "tests/testfn.ts", "utils/*.ts", "global.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "tests/testfn.ts",
+    "utils/*.ts",
+    "global.d.ts",
+    "fortran-ts/global.d.ts"
+  ],
+  "exclude": [
+    "fortran-ts/dist",
+    "fortran-ts/eslint.config.ts",
+    "fortran-ts/out-tsc",
+    "fortran-ts/tests",
+    "fortran-ts/types"
+  ]
 }

@@ -1,10 +1,7 @@
-// Dual function
-export function toDual(r: number, i: number): Dual {
-  return { r, i };
-}
+import type { Complex } from '@f';
 
-// Print dual value
-export function printDual(c: Dual): string {
+// Print complex value
+export function printComplex(c: Complex): string {
   const r = c.r != 0 || c.i == 0 ? `${c.r}` : '';
   const i =
     c.i != 0

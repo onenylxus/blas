@@ -1,0 +1,3 @@
+[submodule "fortran-ts"]
+	path = fortran-ts
+	url = https://github.com/onenylxus/fortran-ts.git

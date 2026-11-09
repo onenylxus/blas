@@ -1,10 +1,10 @@
-// Import
-import { Integer, I } from '../../types/integer';
-import { Single, S } from '../../types/single';
-import { SingleArray, SA } from '../../types/singleArray';
-import { GAM, GAMSQ, RGAMSQ, abs } from '../../mathlib';
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.
 
-// Input interface
+import { REAL } from '@f';
+
 interface Input extends FParameters {
   sd1: FReal;
   sd2: FReal;
@@ -13,177 +13,170 @@ interface Input extends FParameters {
   sparam: FRealArray | FEmpty;
 }
 
-// Output interface
 interface Output extends FParameters {
   _ret: FEmpty;
   sd1: FReal;
   sd2: FReal;
   sx1: FReal;
-  sy1: FReal | FEmpty;
+  sy1: FReal;
   sparam: FRealArray;
 }
 
-// SROTMG routine
 const srotmg = ({ sd1, sd2, sx1, sy1, sparam }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
+  const round = Math.fround;
+  sd1 = REAL(sd1, 4).value;
+  sd2 = REAL(sd2, 4).value;
+  sx1 = REAL(sx1, 4).value;
+  sy1 = REAL(sy1, 4).value;
+  const param = REAL(
+    [
+      ...(sparam ?? []).slice(0, 5),
+      ...Array<number>(Math.max(0, 5 - (sparam ?? []).length)).fill(0),
+    ],
+    4,
+  );
+  let flag = -1;
+  let h11 = 0;
+  let h12 = 0;
+  let h21 = 0;
+  let h22 = 0;
+  let p1: number;
+  let p2: number;
+  let q1: number;
+  let q2: number;
+  let temp: number;
+  let u: number;
 
-  // Arguments
-  const _sd1: S = new Single(sd1);
-  const _sd2: S = new Single(sd2);
-  const _sx1: S = new Single(sx1);
-  const _sy1: S = new Single(sy1);
-  const _sparam: SA = new SingleArray(sparam, 5);
-
-  // Resolve function
-  const resolve = (): Output => ({
-    _ret: undefined,
-    sd1: _sd1.get(),
-    sd2: _sd2.get(),
-    sx1: _sx1.get(),
-    sy1: _sy1.get(),
-    sparam: _sparam.getAll(),
-  });
-
-  // Local variables
-  const sflag: I = new Integer();
-  const sh11: S = new Single();
-  const sh12: S = new Single();
-  const sh21: S = new Single();
-  const sh22: S = new Single();
-  const sp1: S = new Single();
-  const sp2: S = new Single();
-  const sq1: S = new Single();
-  const sq2: S = new Single();
-  const stemp: S = new Single();
-  const su: S = new Single();
-
-  // Process
-  if (_sd1.lt(0)) {
-    sflag.set(-1);
-    sh11.set(0);
-    sh12.set(0);
-    sh21.set(0);
-    sh22.set(0);
-    _sd1.set(0);
-    _sd2.set(0);
-    _sx1.set(0);
+  if (sd1 < 0) {
+    sd1 = 0;
+    sd2 = 0;
+    sx1 = 0;
   } else {
-    sp2.set(_sd2.get() * _sy1.get());
-    if (sp2.eq(0)) {
-      sflag.set(-2);
-      _sparam.set(1, sflag);
-      return resolve();
+    p2 = round(sd2 * sy1);
+    if (p2 === 0) {
+      param.setElement(-2, 1);
+      return {
+        _ret: undefined,
+        sd1,
+        sd2,
+        sx1,
+        sy1,
+        sparam: param.toColumnMajorArray(),
+      };
     }
-    sp1.set(_sd1.get() * _sx1.get());
-    sq2.set(sp2.get() * _sy1.get());
-    sq1.set(sp1.get() * _sx1.get());
-    if (abs(sq1.get()) > abs(sq2.get())) {
-      sh21.set(-_sy1.get() / _sx1.get());
-      sh12.set(sp2.get() / sp1.get());
-      su.set(1 - sh12.get() / sh21.get());
-      if (su.gt(0)) {
-        sflag.set(0);
-        _sd1.div(su);
-        _sd2.div(su);
-        _sx1.mul(su);
+    p1 = round(sd1 * sx1);
+    q2 = round(p2 * sy1);
+    q1 = round(p1 * sx1);
+    if (Math.abs(q1) > Math.abs(q2)) {
+      h21 = round(-sy1 / sx1);
+      h12 = round(p2 / p1);
+      u = round(1 - h12 * h21);
+      if (u > 0) {
+        flag = 0;
+        sd1 = round(sd1 / u);
+        sd2 = round(sd2 / u);
+        sx1 = round(sx1 * u);
       } else {
-        sflag.set(-1);
-        sh11.set(0);
-        sh12.set(0);
-        sh21.set(0);
-        sh22.set(0);
-        _sd1.set(0);
-        _sd2.set(0);
-        _sx1.set(0);
+        h11 = 0;
+        h12 = 0;
+        h21 = 0;
+        h22 = 0;
+        sd1 = 0;
+        sd2 = 0;
+        sx1 = 0;
       }
+    } else if (q2 < 0) {
+      h11 = 0;
+      h12 = 0;
+      h21 = 0;
+      h22 = 0;
+      sd1 = 0;
+      sd2 = 0;
+      sx1 = 0;
     } else {
-      if (sq2.lt(0)) {
-        sflag.set(-1);
-        sh11.set(0);
-        sh12.set(0);
-        sh21.set(0);
-        sh22.set(0);
-        _sd1.set(0);
-        _sd2.set(0);
-        _sx1.set(0);
-      } else {
-        sflag.set(1);
-        sh11.set(sp1.get() / sp2.get());
-        sh22.set(_sx1.get() / _sy1.get());
-        su.set(1 + sh11.get() * sh22.get());
-        stemp.set(_sd2.get() / su.get());
-        _sd2.set(_sd1.get() / su.get());
-        _sd1.set(stemp);
-        _sx1.set(_sy1.get() * su.get());
-      }
+      flag = 1;
+      h11 = round(p1 / p2);
+      h22 = round(sx1 / sy1);
+      u = round(1 + h11 * h22);
+      temp = round(sd2 / u);
+      sd2 = round(sd1 / u);
+      sd1 = temp;
+      sx1 = round(sy1 * u);
     }
-    if (_sd1.ne(0)) {
-      while (_sd1.le(RGAMSQ) || _sd1.ge(GAMSQ)) {
-        if (sflag.eq(0)) {
-          sh11.set(1);
-          sh22.set(1);
-          sflag.set(-1);
-        } else {
-          sh21.set(-1);
-          sh12.set(1);
-          sflag.set(-1);
-        }
-        if (_sd1.le(RGAMSQ)) {
-          _sd1.mul(GAMSQ);
-          _sx1.div(GAM);
-          sh11.div(GAM);
-          sh12.div(GAM);
-        } else {
-          _sd1.div(GAMSQ);
-          _sx1.mul(GAM);
-          sh11.mul(GAM);
-          sh12.mul(GAM);
-        }
-      }
-    }
-    if (_sd2.ne(0)) {
-      while (abs(_sd2.get()) <= RGAMSQ || abs(_sd2.get()) >= GAMSQ) {
-        if (sflag.eq(0)) {
-          sh11.set(1);
-          sh22.set(1);
-          sflag.set(-1);
-        } else {
-          sh21.set(-1);
-          sh12.set(1);
-          sflag.set(-1);
-        }
-        if (abs(_sd2.get()) <= RGAMSQ) {
-          _sd2.mul(GAMSQ);
-          sh21.div(GAM);
-          sh22.div(GAM);
-        } else {
-          _sd2.div(GAMSQ);
-          sh21.mul(GAM);
-          sh22.mul(GAM);
-        }
-      }
-    }
-  }
-  if (sflag.lt(0)) {
-    _sparam.set(2, sh11);
-    _sparam.set(3, sh21);
-    _sparam.set(4, sh12);
-    _sparam.set(5, sh22);
-  } else if (sflag.eq(0)) {
-    _sparam.set(3, sh21);
-    _sparam.set(4, sh12);
-  } else {
-    _sparam.set(2, sh11);
-    _sparam.set(5, sh22);
-  }
-  _sparam.set(1, sflag);
 
-  // Output
-  return resolve();
+    const gam = 4096;
+    const gamsq = gam * gam;
+    const rgamsq = 1 / gamsq;
+    if (sd1 !== 0) {
+      while (Number.isFinite(sd1) && (sd1 <= rgamsq || sd1 >= gamsq)) {
+        if (flag === 0) {
+          h11 = 1;
+          h22 = 1;
+        } else {
+          h21 = -1;
+          h12 = 1;
+        }
+        flag = -1;
+        if (sd1 <= rgamsq) {
+          sd1 = round(sd1 * gamsq);
+          sx1 = round(sx1 / gam);
+          h11 = round(h11 / gam);
+          h12 = round(h12 / gam);
+        } else {
+          sd1 = round(sd1 / gamsq);
+          sx1 = round(sx1 * gam);
+          h11 = round(h11 * gam);
+          h12 = round(h12 * gam);
+        }
+      }
+    }
+    if (sd2 !== 0) {
+      while (
+        Number.isFinite(sd2) &&
+        (Math.abs(sd2) <= rgamsq || Math.abs(sd2) >= gamsq)
+      ) {
+        if (flag === 0) {
+          h11 = 1;
+          h22 = 1;
+        } else {
+          h21 = -1;
+          h12 = 1;
+        }
+        flag = -1;
+        if (Math.abs(sd2) <= rgamsq) {
+          sd2 = round(sd2 * gamsq);
+          h21 = round(h21 / gam);
+          h22 = round(h22 / gam);
+        } else {
+          sd2 = round(sd2 / gamsq);
+          h21 = round(h21 * gam);
+          h22 = round(h22 * gam);
+        }
+      }
+    }
+  }
+
+  if (flag < 0) {
+    param.setElement(h11, 2);
+    param.setElement(h21, 3);
+    param.setElement(h12, 4);
+    param.setElement(h22, 5);
+  } else if (flag === 0) {
+    param.setElement(h21, 3);
+    param.setElement(h12, 4);
+  } else {
+    param.setElement(h11, 2);
+    param.setElement(h22, 5);
+  }
+  param.setElement(flag, 1);
+  return {
+    _ret: undefined,
+    sd1,
+    sd2,
+    sx1,
+    sy1,
+    sparam: param.toColumnMajorArray(),
+  };
 };
 
-// Export
 export default srotmg;

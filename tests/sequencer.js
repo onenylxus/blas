@@ -2,7 +2,7 @@
 import { URL } from 'url';
 import TestSequencer from '@jest/test-sequencer';
 import path from 'path';
-import sequence from './data/sequence.json' assert { type: 'json' };
+import sequence from './data/sequence.json' with { type: 'json' };
 
 // Modify sequence with relative paths
 const __dirname = new URL('.', import.meta.url).pathname;

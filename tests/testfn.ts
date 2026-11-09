@@ -3,14 +3,14 @@ import { existsSync, writeFileSync } from 'fs';
 // Compare function
 function compare(left: any, right: any, precision: number): boolean {
   // Array iteration
-  if (left instanceof Array && right instanceof Array) {
+  if (Array.isArray(left) && Array.isArray(right)) {
     return (
       left.length === right.length &&
       left.every((v, i) => compare(v, right[i], precision))
     );
   }
 
-  // Dual check
+  // Complex check
   if (typeof left === 'object' && typeof right === 'object') {
     if (
       typeof left.r === 'number' &&

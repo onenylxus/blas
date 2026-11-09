@@ -1,84 +1,41 @@
-// Import
-import { Double, D } from '../../types/double';
-import { DoubleArray, DA } from '../../types/doubleArray';
-import { Integer, I } from '../../types/integer';
-import { abs } from '../../mathlib';
+import { fortranRealVector } from '@/utils/vector';
 
-// Input interface
 interface Input extends FParameters {
   n: FInteger;
   dx: FDoubleArray;
   incx: FInteger;
 }
 
-// Output interface
 interface Output extends FParameters {
   _ret: FInteger;
-  n: FInteger | FEmpty;
-  dx: FDoubleArray | FEmpty;
-  incx: FInteger | FEmpty;
+  n: FInteger;
+  dx: FDoubleArray;
+  incx: FInteger;
 }
 
-// IDAMAX routine
 const idamax = ({ n, dx, incx }: Input): Output => {
-  // Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
-  // Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
-  // Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
-  // Copyright (c) 2023-2025 Nicholas Ng. All rights reserved.
+  const values = fortranRealVector(dx, n, incx);
+  let result = 0;
 
-  // Arguments
-  const _n: I = new Integer(n);
-  const _dx: DA = new DoubleArray(dx);
-  const _incx: I = new Integer(incx);
-
-  // Return value
-  const _ret: I = new Integer();
-
-  // Resolve function
-  const resolve = (): Output => ({
-    _ret: _ret.get(),
-    n: _n.get(),
-    dx: _dx.getAll(),
-    incx: _incx.get(),
-  });
-
-  // Local variables
-  const dmax: D = new Double();
-  const i: I = new Integer();
-  const ix: I = new Integer();
-
-  // Process
-  if (_n.lt(1) || _incx.le(0)) {
-    return resolve();
-  }
-  _ret.set(1);
-  if (_n.eq(1)) {
-    return resolve();
-  }
-  if (_incx.eq(1)) {
-    dmax.set(abs(_dx.get(1)));
-    for (i.set(2); i.le(_n); i.add(1)) {
-      if (abs(_dx.get(i)) > dmax.get()) {
-        _ret.set(i);
-        dmax.set(abs(_dx.get(i)));
+  if (n > 0 && incx > 0) {
+    result = 1;
+    let index = 1;
+    let maximum = Math.abs(values.getElement(index).value);
+    for (let i = 2; i <= n; i += 1) {
+      index += incx;
+      const value = Math.abs(values.getElement(index).value);
+      if (value > maximum) {
+        result = i;
+        maximum = value;
       }
     }
-  } else {
-    ix.set(1);
-    dmax.set(abs(_dx.get(1)));
-    ix.add(_incx.get());
-    for (i.set(2); i.le(_n); i.add(1)) {
-      if (abs(_dx.get(ix)) > dmax.get()) {
-        _ret.set(i);
-        dmax.set(abs(_dx.get(ix)));
-      }
-      ix.add(_incx);
-    }
   }
 
-  // Output
-  return resolve();
+  return { _ret: result, n, dx: dx.slice(), incx };
 };
 
-// Export
 export default idamax;
+// Copyright (c) 1992-2013 The University of Tennessee and The University of Tennessee Research Foundation. All rights reserved.
+// Copyright (c) 2000-2013 The University of California Berkeley. All rights reserved.
+// Copyright (c) 2006-2013 The University of Colorado Denver. All rights reserved.
+// Copyright (c) 2023-2026 Nicholas Ng. All rights reserved.
